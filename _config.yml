@@ -57,7 +57,6 @@ plugins:
 exclude:
     - package.json
     - src/
-    - node_modules
     - .sass-cache/
     - .jekyll-cache/
     - gemfiles/
