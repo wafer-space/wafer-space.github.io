@@ -37,6 +37,18 @@ h3 {
 h4 {
     font-size: 1rem;
 }
+
+table {
+    th {
+      font-size: 1rem;
+      text-align: right;
+    }
+    td {
+      font-size: 1rem;
+      text-align: left;
+    }
+}
+
 ul, ol {
     margin: 1em 0;
     padding-left: 40px;
