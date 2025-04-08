@@ -43,6 +43,13 @@ github_username:  wafer-space
 #theme: minima
 plugins:
   - jekyll-feed
+  - github-pages
+
+kramdown:
+  input: GFM
+  parse_block_html: True
+  parse_span_html: True
+  gfm_quirks: [paragraph_end]
 
 # Exclude from processing.
 # The following items will not be processed, by default.
