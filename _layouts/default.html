@@ -1,0 +1,22 @@
+{% comment %} Apply the class `overflow-hidden` to the body element to prevent
+scrolling when a modal is visible. This is useful when you want to ensure that the
+user can't scroll away from the modal. {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags-->
+  {% include core/head/meta-seo-tags.html %}
+  {% include core/head/meta-og-tags.html %}
+  <!-- Stylesheets-->
+  {% include core/styles/styles.html %}
+  <!-- Google Analytics-->
+  {% include utilities/analytics.html %}
+</head>
+<body {% if page.overflow %} class="overflow-hidden" {% endif %}>
+  <div class="content-wrapper">
+    {{ content }}
+  </div>
+  <!-- Site Scripts-->
+  {% include core/scripts/scripts.html %}
+</body>
+</html>
