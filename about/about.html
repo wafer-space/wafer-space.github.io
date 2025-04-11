@@ -5,7 +5,7 @@ sub_title: |
   Branding agency that believes in the <br class="d-none d-lg-block" />power of creative ideas & great designs
 header_image: "/assets/images/art/bg1.webp"
 
-about_area: 
+about_area:
   enable: true
   title: "Hello! We Are Snowlake"
   sub_title: "Branding agency that believes in the power of creative ideas & great designs"
@@ -80,19 +80,19 @@ testimonials:
 
     - quote: |
         Sed posuere consectetur est at lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat.
-      image: "/assets/images/art/t5.webp" 
+      image: "/assets/images/art/t5.webp"
       name: "Cornelia Gibson"
       designation: "Financial Analyst"
-  
+
     - quote: |
         Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus.
-      image: "/assets/images/art/t2.webp" 
+      image: "/assets/images/art/t2.webp"
       name: "Coriss Ambady"
       designation: "Marketing Specialist"
-  
+
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t3.webp" 
+      image: "/assets/images/art/t3.webp"
       name: "Barclay Widerski"
       designation: "Sales Manager"
 
@@ -108,11 +108,11 @@ contact_area:
   image: "/assets/images/art/about8.webp"
   address: |
     <strong>Moonshine St. <br /> 14/05 Light City<br /> London, UK</strong>
-  forms_data: 
+  forms_data:
 
     - field_type: "input"
       field_name: "first_name"
-      placeholder: "First Name" 
+      placeholder: "First Name"
       error_message: "First Name Is required"
 
     - field_type: "input"
@@ -135,7 +135,7 @@ contact_area:
       placeholder: "Message"
       error_message: "Message Is required"
 ---
-{% include layouts/nav/nav.html default_logo="black" drop_search=true %} 
+{% include layouts/nav/nav.html default_logo="black" drop_search=true %}
 {% include layouts/header/page-title9.html %}
   <div class="wrapper gray-wrapper">
     <div class="container inner">
@@ -187,17 +187,17 @@ contact_area:
         </div>
         <!--/column -->
       </div>
-      <!--/.row --> 
+      <!--/.row -->
         {% endif %}
         {% if page.boxes_area.enable %}
-        <div class="boxes-area"> 
+        <div class="boxes-area">
       <div class="space60"></div>
       <div class="row text-center">
           {% for list in page.boxes_area.lists %}
         <div class="col-md-6 col-lg-3">
           <div class="box {{list.bg_color}} shadow inverse-text">
-            <div class="icon color-white fs-42 mb-20"> 
-              <i class="{{list.icon}}"></i> 
+            <div class="icon color-white fs-42 mb-20">
+              <i class="{{list.icon}}"></i>
             </div>
             <h5>{{list.title}}</h5>
             <p>{{list.description}}</p>

@@ -4,23 +4,23 @@
   <div class="container-fluid flex-row justify-content-center">
     <div class="navbar-brand" data-default-logo="{{ include.default_logo | default: 'white' }}">
       <!-- White Logo -->
-      <a href="{{site.url}}"><img 
-        src="{{site.data.general_settings.light_logo_1x}}" 
+      <a href="{{site.url}}"><img
+        src="{{site.data.general_settings.light_logo_1x}}"
         srcset="{{site.data.general_settings.light_logo_1x}} 1x, {{site.data.general_settings.light_logo_2x}} 2x"
-        class="logo-light {% if include.default_logo == 'black' %}d-none{% endif %}" 
+        class="logo-light {% if include.default_logo == 'black' %}d-none{% endif %}"
         alt="{{site.data.general_settings.title}}" /></a>
-  
+
       <!-- Black Logo -->
-      <a href="{{site.url}}"><img 
-        src="{{site.data.general_settings.black_logo_1x}}" 
+      <a href="{{site.url}}"><img
+        src="{{site.data.general_settings.black_logo_1x}}"
         srcset="{{site.data.general_settings.black_logo_1x}} 1x, {{site.data.general_settings.black_logo_2x}} 2x"
-        class="logo-dark {% unless include.default_logo == 'black' %}d-none{% endunless %}" 
+        class="logo-dark {% unless include.default_logo == 'black' %}d-none{% endunless %}"
         alt="{{site.data.general_settings.title}}" /></a>
     </div>
     <div class="navbar-other ms-auto order-lg-3">
       <ul class="navbar-nav flex-row align-items-center" data-sm-skip="true">
         {% include layouts/nav/_hamburger.html %}
-        
+
       {% if include.social_header %}
       {% include layouts/nav/_social_header.html %}
       {% endif %}
@@ -28,7 +28,7 @@
         {% if include.btn_header %}
       {% include layouts/nav/_btn-header.html %}
       {% endif %}
-      
+
       {% if include.drop_search %}
       {% include layouts/nav/_drop-search.html %}
       {% endif %}

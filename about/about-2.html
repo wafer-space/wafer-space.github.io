@@ -9,7 +9,7 @@ about_us_area:
   enable: true
   title: "About Us"
   sub_title: "We are a digital & branding company that believes in the power of creative ideas."
-  image: "/assets/images/art/about2.webp" 
+  image: "/assets/images/art/about2.webp"
   description: |
     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia.
   projects:
@@ -71,19 +71,19 @@ testimonials:
 
     - quote: |
         Sed posuere consectetur est at lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat.
-      image: "/assets/images/art/t5.webp" 
+      image: "/assets/images/art/t5.webp"
       name: "Cornelia Gibson"
       designation: "Financial Analyst"
-  
+
     - quote: |
         Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus.
-      image: "/assets/images/art/t2.webp" 
+      image: "/assets/images/art/t2.webp"
       name: "Coriss Ambady"
       designation: "Marketing Specialist"
-  
+
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t3.webp" 
+      image: "/assets/images/art/t3.webp"
       name: "Barclay Widerski"
       designation: "Sales Manager"
 
@@ -91,7 +91,7 @@ clients_carousel:
   enable: true
 
 ---
-{% include layouts/nav/nav.html drop_search=true %} 
+{% include layouts/nav/nav.html drop_search=true %}
 {% include layouts/header/page-title.html %}
 <div class="wrapper white-wrapper">
   <div class="container inner">
@@ -132,13 +132,13 @@ clients_carousel:
     <!--/column -->
   </div>
   <!--/.row -->
-  {% endif %} 
+  {% endif %}
   </div>
 </div>
   <!-- /.wrapper -->
 <!-- teams section -->
 {% if page.teams_carousel.enable %}
-  
+
 {% include components/team/team-members.html %}
 {% endif %}
 <!--/.teams section-->
@@ -183,7 +183,7 @@ clients_carousel:
     </div>
     {% endif %}
   </div>
- 
+
 </div>
 {% endif %}
 
@@ -192,7 +192,7 @@ clients_carousel:
  <div class="wrapper gray-wrapper">
   <div class="container inner">
   	{% if page.testimonials.enable %}
-    <h2 class="title-color color-gray text-center">{{page.testimonials.title}}</h2> 
+    <h2 class="title-color color-gray text-center">{{page.testimonials.title}}</h2>
         <h3 class="display-3 text-center">{{ page.testimonials.sub_title }}</h3>
         <div class="space20"></div>
     <div class="grid-view">

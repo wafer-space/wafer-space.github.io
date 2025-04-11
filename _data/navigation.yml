@@ -50,14 +50,14 @@ main_menu:
             url: "/features/footer8"
     level_one:
       - text: "Modal"
-        url: "/features/modal"  
+        url: "/features/modal"
       - text: "FAQ"
         url: "/features/faq"
       - text: "Page Loading "
         url: "/features/loading"
       - text: "Page Scrolling"
         url: "/features/scroll"
-        
+
   - text: "Pages"
     url: "#"
     menu_type: "dropdown"
@@ -101,7 +101,7 @@ main_menu:
           - text: "Shop 02"
             url: "/shop/index-2"
 
-          - text: "Product Page" 
+          - text: "Product Page"
             url: "/shop/brand-box"
 
           - text: "Featurd Product Page"
@@ -109,7 +109,7 @@ main_menu:
 
           - text: "Cart Page"
             url: "/shop/cart"
-          
+
           - text: "Checkout Page"
             url: "/shop/checkout"
 
@@ -127,7 +127,7 @@ main_menu:
           - text: "Contact 04"
             url: "/contact/contact-4"
 
-   
+
 
   - text: "Elements"
     url: "#"
