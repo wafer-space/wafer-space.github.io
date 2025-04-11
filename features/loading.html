@@ -10,25 +10,25 @@ services_area:
   enable: true
   title: "What We Do?"
   sub_title: "The full service we are offering is specifically designed to meet your business needs."
-  services: 
+  services:
     - title: "24/7 Support"
       sub_title: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo odio. Cum sociis natoque penatibus magnis dis."
-      icon: "icofont-headphone-alt" 
+      icon: "icofont-headphone-alt"
       color: "rose"
 
     - title: "Secure Payments"
       sub_title: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo odio. Cum sociis natoque penatibus magnis dis."
-      icon: "icofont-safety" 
+      icon: "icofont-safety"
       color: "blue"
 
     - title: "Daily Updates"
       sub_title: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo odio. Cum sociis natoque penatibus magnis dis."
-      icon: "icofont-refresh" 
+      icon: "icofont-refresh"
       color: "green"
 
     - title: "Research & Marketing"
       sub_title: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo odio. Cum sociis natoque penatibus magnis dis."
-      icon: "icofont-chart-arrows-axis" 
+      icon: "icofont-chart-arrows-axis"
       color: "purple"
 
     - title: "System Integration"
@@ -46,7 +46,7 @@ process_area:
   enable: true
   title: "Our Process"
   sub_title: "Find out everything you need to know about creating a business process."
-  image: "/assets/images/art/about5.webp" 
+  image: "/assets/images/art/about5.webp"
   video_url: "https://www.youtube.com/watch?v=26TbMXXOe0I"
   description: |
     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia.
@@ -89,19 +89,19 @@ testimonials:
 
     - quote: |
         Sed posuere consectetur est at lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat.
-      image: "/assets/images/art/t5.webp" 
+      image: "/assets/images/art/t5.webp"
       name: "Cornelia Gibson"
       designation: "Financial Analyst"
-  
+
     - quote: |
         Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus.
-      image: "/assets/images/art/t2.webp" 
+      image: "/assets/images/art/t2.webp"
       name: "Coriss Ambady"
       designation: "Marketing Specialist"
-  
+
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t3.webp" 
+      image: "/assets/images/art/t3.webp"
       name: "Barclay Widerski"
       designation: "Sales Manager"
 
@@ -243,8 +243,8 @@ subscribe_popup_modal:
         <div class="col-md-6 col-lg-4 {% if forloop.index > 3 %} pb-3 pb-lg-0 {% else %} pb-3 {% endif %}">
           <div class="d-flex flex-row justify-content-center">
             <div>
-              <div class="icon icon-blob icon-blob-{{service.color}} color-{{service.color}} mr-25"> 
-                <i class="{{service.icon}}"></i> 
+              <div class="icon icon-blob icon-blob-{{service.color}} color-{{service.color}} mr-25">
+                <i class="{{service.icon}}"></i>
               </div>
             </div>
             <div>
@@ -354,7 +354,7 @@ subscribe_popup_modal:
         <!-- /.wrapper -->
     </section>
     <!-- /section -->
-    {% endif %} 
+    {% endif %}
 {% if page.testimonials.enable %}
 <div class="wrapper image-wrapper bg-image inverse-text" data-image-src="{{relative_url}}/assets/images/art/bg5.webp">
   <div class="container inner pt-100">
@@ -521,7 +521,7 @@ subscribe_popup_modal:
         {% endif %}
         <div class="space10"></div>
         {% if page.about_us.button_one_text %}
-        <a href="{{page.about_us.button_one_url}}" class="btn">{{page.about_us.button_one_text}}</a> 
+        <a href="{{page.about_us.button_one_url}}" class="btn">{{page.about_us.button_one_text}}</a>
         {% endif %}
         {% if page.about_us.button_two_text %}
         <a href="{{page.about_us.button_two_url}}" class="btn btn-sky">{{page.about_us.button_two_text}}</a>

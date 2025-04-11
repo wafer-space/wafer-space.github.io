@@ -30,7 +30,7 @@
     {% if post.categories %}
     <div class="category {{ text_alignment }}">
       {% for category in post.categories %}
-      <a href="/category/{{ category | downcase }}" 
+      <a href="/category/{{ category | downcase }}"
          class="badge badge-pill {{ post.badge_color | default: 'bg-purple' }}">
         {{ category }}
       </a>

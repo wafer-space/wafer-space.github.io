@@ -26,14 +26,14 @@ layout: default
     </div>
     <!-- /.grid -->
     <div class="space30"></div>
-    
+
     {% if paginator.total_pages > 1 %}
     <div class="pagination text-center">
       <ul>
         {% if paginator.previous_page %}
         <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="pl-0"><i class="jam jam-arrow-left"></i></a></li>
         {% endif %}
-        
+
         {% if paginator.page_trail %}
         {% for trail in paginator.page_trail %}
           <li {% if page.url == trail.path %}class="active"{% endif %}>
@@ -47,8 +47,8 @@ layout: default
         {% endif %}
       </ul>
     </div>
-    {% endif %}  
-    
+    {% endif %}
+
     <!-- /.pagination -->
   </div>
   <!-- /.container -->

@@ -84,7 +84,7 @@ billing_details:
       type: textarea
       placeholder: "Notes about your order, e.g. special notes for delivery."
       rows: 4
-  
+
   create_account:
     label: "Create account?"
     type: checkbox
@@ -139,19 +139,19 @@ order_details:
                     <p>{{ page.returning_customer_accordion.description }}</p>
                     <form>
                       <div class="form-group">
-                        <input type="{{ page.returning_customer_accordion.form.username.type }}" 
-                               class="form-control" 
+                        <input type="{{ page.returning_customer_accordion.form.username.type }}"
+                               class="form-control"
                                placeholder="{{ page.returning_customer_accordion.form.username.placeholder }}">
                       </div>
                       <div class="form-group">
-                        <input type="{{ page.returning_customer_accordion.form.email.type }}" 
-                               class="form-control" 
+                        <input type="{{ page.returning_customer_accordion.form.email.type }}"
+                               class="form-control"
                                placeholder="{{ page.returning_customer_accordion.form.email.placeholder }}">
                       </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" 
-                                 class="custom-control-input" 
+                          <input type="checkbox"
+                                 class="custom-control-input"
                                  id="customCheck1">
                           <label class="custom-control-label" for="customCheck1">
                             {{ page.returning_customer_accordion.form.remember_me.label }}
@@ -193,9 +193,9 @@ order_details:
                         <form>
                           <div class="input-group">
                             <label class="visually-hidden" for="{{ page.coupon_accordion.form.coupon_code.id }}">Coupon Code</label>
-                            <input type="{{ page.coupon_accordion.form.coupon_code.type }}" 
-                                   class="form-control mb-0 mr-2 mb-sm-0" 
-                                   id="{{ page.coupon_accordion.form.coupon_code.id }}" 
+                            <input type="{{ page.coupon_accordion.form.coupon_code.type }}"
+                                   class="form-control mb-0 mr-2 mb-sm-0"
+                                   id="{{ page.coupon_accordion.form.coupon_code.id }}"
                                    placeholder="{{ page.coupon_accordion.form.coupon_code.placeholder }}">
                             <button type="submit" class="btn mb-0">
                               {{ page.coupon_accordion.form.submit_button.text }}
@@ -238,23 +238,23 @@ order_details:
                       </select>
                     </div>
                   {% elsif field[1].type == 'textarea' %}
-                    <textarea class="form-control" 
-                              placeholder="{{ field[1].placeholder }}" 
+                    <textarea class="form-control"
+                              placeholder="{{ field[1].placeholder }}"
                               rows="{{ field[1].rows }}"
                               {% if field[1].required %}required{% endif %}></textarea>
                   {% else %}
-                    <input type="{{ field[1].type }}" 
-                           class="form-control" 
+                    <input type="{{ field[1].type }}"
+                           class="form-control"
                            placeholder="{{ field[1].placeholder }}"
                            {% if field[1].required %}required{% endif %}>
                   {% endif %}
                 </div>
               {% endfor %}
-              
+
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                  <input type="{{ page.billing_details.create_account.type }}" 
-                         class="custom-control-input" 
+                  <input type="{{ page.billing_details.create_account.type }}"
+                         class="custom-control-input"
                          id="customCheck2">
                   <label class="custom-control-label" for="customCheck2">
                     {{ page.billing_details.create_account.label }}
@@ -284,8 +284,8 @@ order_details:
                   <tr>
                     <td class="cart-thumbnail">
                       <figure class="rounded">
-                        <a href="#"> 
-                          <img src="{{ item.image }}" alt="{{ item.name }}"> 
+                        <a href="#">
+                          <img src="{{ item.image }}" alt="{{ item.name }}">
                         </a>
                       </figure>
                     </td>
@@ -302,7 +302,7 @@ order_details:
                 </tbody>
               </table>
             </div>
-            
+
             <div class="space50"></div>
             <h3>Order Total</h3>
             <div class="space10"></div>
@@ -328,7 +328,7 @@ order_details:
                 </tbody>
               </table>
             </div>
-            
+
             <div class="text-lg-right">
               <a class="btn mr-0" href="{{ page.order_details.place_order_button.url }}">
                 {{ page.order_details.place_order_button.text }}
@@ -338,4 +338,3 @@ order_details:
         </div>
       </div>
     </div>
- 

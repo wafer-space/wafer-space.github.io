@@ -88,8 +88,8 @@ checkout_button:
               <tr>
                 <td class="cart-thumbnail">
                   <figure class="rounded">
-                    <a href="#"> 
-                      <img src="{{ item.image }}" alt="{{ item.name }}"> 
+                    <a href="#">
+                      <img src="{{ item.image }}" alt="{{ item.name }}">
                     </a>
                   </figure>
                 </td>
@@ -101,7 +101,7 @@ checkout_button:
                   <p class="mb-0">{{ item.size }}</p>
                 </td>
                 <td class="cart-price">
-                  <span class="amount">${{ item.price | round: 2 }}</span> 
+                  <span class="amount">${{ item.price | round: 2 }}</span>
                 </td>
                 <td class="cart-quantity">
                   <div class="form-group item-quantity">
@@ -149,10 +149,10 @@ checkout_button:
                       <div class="col-sm-12">
                         <div class="form-group custom-select-wrapper mb-3">
                           <label for="{{ field_type[0] }}" class="form-label">{{ field.placeholder }}</label>
-                          <select 
-                            class="custom-select" 
-                            id="{{ field_type[0] }}" 
-                            name="{{ field_type[0] }}" 
+                          <select
+                            class="custom-select"
+                            id="{{ field_type[0] }}"
+                            name="{{ field_type[0] }}"
                             aria-label="{{ field.placeholder }}"
                           >
                             <option value="" selected disabled>{{ field.placeholder }}</option>
@@ -168,10 +168,10 @@ checkout_button:
                       <div class="col-sm-6">
                         <div class="form-group custom-select-wrapper mb-3">
                           <label for="{{ field_type[0] }}" class="form-label">{{ field.placeholder }}</label>
-                          <select 
-                            class="custom-select" 
-                            id="{{ field_type[0] }}" 
-                            name="{{ field_type[0] }}" 
+                          <select
+                            class="custom-select"
+                            id="{{ field_type[0] }}"
+                            name="{{ field_type[0] }}"
                             aria-label="{{ field.placeholder }}"
                           >
                             <option value="" selected disabled>{{ field.placeholder }}</option>
@@ -185,9 +185,9 @@ checkout_button:
                       <div class="col-sm-6">
                         <div class="form-group mb-3">
                           <label for="{{ field_type[0] }}" class="form-label">{{ field.placeholder }}</label>
-                          <input 
-                            type="{{ field.type }}" 
-                            class="form-control" 
+                          <input
+                            type="{{ field.type }}"
+                            class="form-control"
                             id="{{ field_type[0] }}"
                             name="{{ field_type[0] }}"
                             placeholder="{{ field.placeholder }}"
@@ -199,10 +199,10 @@ checkout_button:
                 {% elsif field_type[0] == 'shipping_method' %}
                   <div class="form-group custom-select-wrapper mb-3">
                     <label for="{{ field_type[0] }}" class="form-label">{{ field.placeholder }}</label>
-                    <select 
-                      class="custom-select" 
-                      id="{{ field_type[0] }}" 
-                      name="{{ field_type[0] }}" 
+                    <select
+                      class="custom-select"
+                      id="{{ field_type[0] }}"
+                      name="{{ field_type[0] }}"
                       aria-label="{{ field.placeholder }}"
                     >
                       <option value="" selected disabled>{{ field.placeholder }}</option>
@@ -247,4 +247,3 @@ checkout_button:
       <!-- /.container -->
     </div>
     <!-- /.wrapper -->
-   

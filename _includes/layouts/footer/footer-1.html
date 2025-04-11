@@ -3,7 +3,7 @@
   <div class="container inner">
     <div class="row">
       <div class="col-md-12 col-lg-3 text-center text-lg-start">
-        <div class="widget"> 
+        <div class="widget">
           <a href="{{site.url}}">
             {% assign logo_type = include.default_logo | default: 'white' %}
             {% if logo_type == 'white' %}
@@ -11,7 +11,7 @@
             {% elsif logo_type == 'black' %}
               <img src="{{site.data.general_settings.black_logo_1x}}" srcset="{{site.data.general_settings.black_logo_1x}} 1x, {{site.data.general_settings.black_logo_2x}} 2x" alt="{{site.data.general_settings.title}}" />
             {% endif %}
-          </a>          
+          </a>
           {% if site.data.general_settings.description %}
           <div class="space20"></div>
           <p>{{site.data.general_settings.description}}</p>

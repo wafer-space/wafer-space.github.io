@@ -5,12 +5,12 @@
 {% assign items = site.portfolio | where:"grouped_by","mosaic" | sort: 'order' %}
 
     {% for post in items %}
-      <div class="item grid-sizer 
+      <div class="item grid-sizer
         {% if post.width2 %}width2 {% endif %}
         {% if post.height2 %}height2 {% endif %}
       ">
         <figure class="overlay overlay1 rounded">
-          <a href="{{ post.url }}"> 
+          <a href="{{ post.url }}">
             <img src="{{ post.thumbnail }}" alt="{{ post.title | escape }}" />
           </a>
           <figcaption>
@@ -20,5 +20,5 @@
       </div>
       <!-- /.item -->
     {% endfor %}
-    
-  
+
+
