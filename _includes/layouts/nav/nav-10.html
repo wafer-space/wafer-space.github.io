@@ -1,7 +1,7 @@
-<!--  Nav Name : Wide Header -->
+<!--  Nav Name : Shop Header -->
 <nav
-  class="navbar wide {% if include.extra_class %} {{include.extra_class}} {% else %} absolute transparent{% endif %} navbar-expand-lg nav-uppercase">
-  <div class="container-fluid flex-row justify-content-center">
+  class="navbar {% if include.extra_class %} {{include.extra_class}} {% endif %} transparent navbar-expand-lg nav-uppercase">
+  <div class="container flex-row justify-content-center">
     <div class="navbar-brand" data-default-logo="{{ include.default_logo | default: 'white' }}">
       <!-- White Logo -->
       <a href="{{site.url}}"><img 
@@ -16,33 +16,44 @@
         srcset="{{site.data.general_settings.black_logo_1x}} 1x, {{site.data.general_settings.black_logo_2x}} 2x"
         class="logo-dark {% unless include.default_logo == 'black' %}d-none{% endunless %}" 
         alt="{{site.data.general_settings.title}}" /></a>
-    </div>
+  </div>
     <div class="navbar-other ms-auto order-lg-3">
       <ul class="navbar-nav flex-row align-items-center" data-sm-skip="true">
-        {% include layouts/nav/_hamburger.html %}
-        
-      {% if include.social_header %}
-      {% include layouts/nav/_social_header.html %}
-      {% endif %}
+        <li class="nav-item">
+          <div class="navbar-hamburger d-lg-none d-xl-none ms-auto">
+            <button class="hamburger animate plain" data-bs-toggle="offcanvas-nav"><span></span></button>
+          </div>
+        </li>
+        <!--{% assign partials = include.partials | split: ',' %}
+        {% for partial in partials %}
+          {% include layouts/nav/{{ partial }}.html %}
+        {% endfor %}
+      </ul>-->
 
-        {% if include.btn_header %}
+      {% if include.shop_header %}
+      {% include layouts/nav/_shop-header.html %}
+      {% endif %}
+      
+      {% if include.btn_header %}
       {% include layouts/nav/_btn-header.html %}
       {% endif %}
       
       {% if include.drop_search %}
       {% include layouts/nav/_drop-search.html %}
       {% endif %}
-      </ul>
       <!-- /.navbar-nav -->
     </div>
     <!-- /.navbar-other -->
     <div class="navbar-collapse offcanvas-nav">
       <div class="offcanvas-header d-lg-none d-xl-none">
         <a href="{{site.url}}">
-          <img src="{{site.data.general_settings.light_logo_1x}}" srcset="{{site.data.general_settings.light_logo_1x}} 1x, {{site.data.general_settings.light_logo_2x}} 2x" alt="{{site.data.general_settings.title}}"/></a>
+          <img src="{{site.data.general_settings.light_logo_1x}}"
+            srcset="{{site.data.general_settings.light_logo_1x}} 1x, {{site.data.general_settings.light_logo_2x}} 2x"
+            alt="{{site.data.general_settings.title}}" /></a>
         <button class="plain offcanvas-close offcanvas-nav-close"><i class="jam jam-close"></i></button>
       </div>
-      <ul class="navbar-nav mx-auto" data-sm-skip-collapsible-behavior="true">
+      <ul
+        class="navbar-nav {% if include.alignment_class %} {{include.alignment_class}} {% else %} ms-auto {% endif %}" data-sm-skip-collapsible-behavior="true">
         {% for menu in site.data.navigation.main_menu %}
         {% assign check_menu = menu.menu_type %}
         {% case check_menu %}
