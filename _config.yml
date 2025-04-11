@@ -13,12 +13,13 @@ collections:
   authors:
     output: true
   shop_items:
-    output: true
+    output: false
     permalink: /shop/:name
   portfolio:
-      output: true
+      output: false
       permalink: /portfolio/:name
-
+  advisors:
+    output: true
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
