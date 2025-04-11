@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "We Are Snowlake"
+title: "About wafer.space"
 sub_title: |
   Branding agency that believes in the <br class="d-none d-lg-block" />power of creative ideas & great designs
 header_image: "/assets/images/art/slider-bg1.webp"
@@ -42,26 +42,19 @@ clients_carousel:
 teams_carousel:
   enable: true
   type: "box"
-  title: Meet The Team
+  title: Advisors
   sub_title: |
-    Save your time and money <br class="d-none d-lg-block"> by choosing our professional team.
+    xxxxxxxxxxxx
 
 contact_area:
   enable: true
   title: "Contact Us"
   image: "/assets/images/art/map.webp"
   sub_title: |
-   'Convinced yet? Let's make something great together. <br class="d-none d-lg-block">If you got any questions, don't hesitate to get in touch with us.'
+   'If you got any questions, don't hesitate to get in touch with us.'
   contact_data:
-    - icon: "/assets/images/icon/ui-gps.webp"
-      info: "Moon Street Light Avenue<br> 14/05 Jupiter, JP 80630"
-
-    - icon: "/assets/images/icon/co-telephone.webp"
-      info: "00 (123) 456 78 90<br/> 00 (987) 654 32 10"
-
     - icon: "/assets/images/icon/co-email-5.webp"
-      email_01: "manager@email.com"
-      email_02: "asistant@email.com"
+      email_01: "info@wafer.space"
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
@@ -151,9 +144,12 @@ contact_area:
     </div>
 </div>
 <!--/.wrapper clients carousel-->
+<!-- wrapper founder members-->
+{% include posts/author.html boxed=true check_author=site.authors %}
+<!--/.wrapper team members-->
 <!-- wrapper team members-->
 {% if page.teams_carousel.enable %}
-{% include components/team/team-members.html %}
+{% include posts/author.html boxed=true check_author=site.advisors %}
 {% endif %}
 <!--/.wrapper team members-->
 <!--contact-->

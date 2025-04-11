@@ -1,5 +1,9 @@
-{% if include.simple_post %}
+{% if include.check_author|nil %}
+{% assign check_author = include.check_author %}
+{% else %}
 {% assign check_author = site.authors | where: "title", page.author %}
+{% endif %}
+{% if include.simple_post %}
 {% for author_data in check_author %}
 <div class="wrapper light-wrapper">
   <div class="container inner">
@@ -14,9 +18,10 @@
       <!--/column -->
       {% endif %}
       <div class="col-md-8">
-        <h4>{{author_data.title}}</h4>
-        {% if author_data.bio %}
-        <p class="mb-10">{{author_data.bio}}</p>
+        <h3>{{author_data.title}}</h3>
+	<h4>{{author_data.sub_title}}</h4>
+        {% if author_data.content %}
+	<p class="mb-10">{{author_data.content}}</p>
         {% endif %}
         {% if author_data.social_accounts %}
         <ul class="social">
@@ -35,7 +40,6 @@
 <!-- /.wrapper -->
 {% endfor %}
 {% elsif include.boxed %}
-{% assign check_author = site.authors | where: "title", page.author %}
 {% for author_data in check_author %}
 <div class="wrapper light-wrapper">
   <div class="container inner">
@@ -50,9 +54,10 @@
           <!--/column -->
           {% endif %}
           <div class="col-md-8">
-            <h4>{{author_data.title}}</h4>
-            {% if author_data.bio %}
-            <p class="mb-10">{{author_data.bio}}</p>
+            <h3>{{author_data.title}}</h3>
+            <h4>{{author_data.sub_title}}</h4>
+            {% if author_data.content %}
+	    <p class="mb-10">{{author_data.content}}</p>
             {% endif %}
             {% if author_data.social_accounts %}
             <ul class="social">
@@ -72,5 +77,5 @@
 <!-- /.container -->
 </div>
 <!-- /.wrapper -->
-  {% endfor %}
+{% endfor %}
 {% endif %}
