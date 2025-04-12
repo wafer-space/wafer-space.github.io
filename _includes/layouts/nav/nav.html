@@ -1,6 +1,6 @@
 <!--  Nav Name : Wide Header -->
 <nav
-  class="navbar wide {% if include.extra_class %} {{include.extra_class}} {% else %} absolute transparent{% endif %} navbar-expand-lg nav-uppercase">
+  class="navbar wide {% if include.extra_class %} {{include.extra_class}} {% else %} absolute transparent{% endif %} dark-wrapper inverse-text navbar-hover-opacity navbar-expand-lg nav-uppercase">
   <div class="container-fluid flex-row justify-content-center">
     <div class="navbar-brand" data-default-logo="{{ include.default_logo | default: 'white' }}">
       <!-- White Logo -->
@@ -39,10 +39,13 @@
     <div class="navbar-collapse offcanvas-nav">
       <div class="offcanvas-header d-lg-none d-xl-none">
         <a href="{{site.url}}">
-          <img src="{{site.data.general_settings.light_logo_1x}}" srcset="{{site.data.general_settings.light_logo_1x}} 1x, {{site.data.general_settings.light_logo_2x}} 2x" alt="{{site.data.general_settings.title}}"/></a>
+          <img src="{{site.data.general_settings.light_logo_1x}}"
+            srcset="{{site.data.general_settings.light_logo_1x}} 1x, {{site.data.general_settings.light_logo_2x}} 2x"
+            alt="{{site.data.general_settings.title}}" /></a>
         <button class="plain offcanvas-close offcanvas-nav-close"><i class="jam jam-close"></i></button>
       </div>
-      <ul class="navbar-nav mx-auto" data-sm-skip-collapsible-behavior="true">
+      <ul
+        class="navbar-nav mx-auto" data-sm-skip-collapsible-behavior="true">
         {% for menu in site.data.navigation.main_menu %}
         {% assign check_menu = menu.menu_type %}
         {% case check_menu %}
