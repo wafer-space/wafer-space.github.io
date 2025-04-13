@@ -132,35 +132,35 @@ testimonials:
 
 pricing_table:
   enable: true
-  title: "Planned Pricing"
-  sub_title: "."
+  title: "Planned Pricing and Configuration"
+  sub_title: |
+    We're still working on the details of our silicon offering.
   btn_url: "#"
   description: |
-    "Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam."
+    <p>The values shown here represent our <em>target range</em>, but they're not guaranteed and may change as we lock in specifics.</p>
+    <p>There will be a single offering which is expected to look similar to <a href="">the Google GF180MCU OpenMPW configuration</a>.</p>
+    <p><em>Unlike</em> the Google program, people will get back raw unpackaged silicon die and thus not requiring the usage of a specific pad frame or Caravel.</p>
+    <p>Packaging <em>may</em> be through a third party at an additional cost.</p>
   plans:
-    - title: "Basic Pricing"
-      monthly_price: 9
+    - title: "Lowest"
+      monthly_price: "6,000"
       pricing_url: "#"
       icon: "/assets/images/icons/ec-mobile.webp"
       features:
-        - "<strong>1</strong> Project"
-        - "<strong>100K</strong> API Access"
-        - "<strong>100MB</strong> Storage"
-        - "Custom <strong>Cloud</strong> Services"
-        - "Weekly <strong>Reports</strong>"
-        - "7/24 <strong>Support</strong>"
+        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
+        - "<strong>~20mm<sup>2</sup></strong> silicon"
+        - "3.88mm x 5.07mm die size"
+        - "500 to 1,000 raw dies"
 
-    - title: "Premium Plan"
-      monthly_price: 19
+    - title: "Highest"
+      monthly_price: "8,000"
       pricing_url: "#"
       icon: "/assets/images/icons/ec-store.webp"
       features:
-        - "<strong>5</strong> Project"
-        - "<strong>200K</strong> API Access"
-        - "<strong>250MB</strong> Storage"
-        - "Custom <strong>Cloud</strong> Services"
-        - "Weekly <strong>Reports</strong>"
-        - "7/24 <strong>Support</strong>"
+        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
+        - "<strong>~20mm<sup>2</sup></strong> silicon"
+        - "3.88mm x 5.07mm die size"
+        - "500 to 1,000 raw dies"
 
 about_us:
   enable: true
@@ -174,9 +174,9 @@ about_us:
 
 subscribe_area:
   enable: true
-  title: "Analyze Now"
-  sub_title: "Wonder how much faster your website can go? Easily check your SEO Score now."
-  action_email: "tortoizthemes@gmail.com"
+  title: "Get notified!"
+  sub_title: "Sign up to be notified when more information is available."
+  action_email: "tim@wafer.space"
   button_text: "Analyze"
   image: "/assets/images/art/rocket1.webp"
 
@@ -330,7 +330,8 @@ subscribe_area:
   <!-- /.rev_slider_wrapper -->
 </div>
 <!-- /.wrapper -->
-{% endif %}
+{% endif %} <!-- page.slider_area.enable -->
+
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
   <div class="container inner pt-100">
@@ -338,13 +339,13 @@ subscribe_area:
     <div class="row">
     	<div class="col-md-7 mx-auto">
 		    <h2 class="title-color color-gray text-center">{{page.features_area.title}}</h2>
-		    {% endif %}
 		    {% if page.features_area.sub_title %}
 		     <h3 class="display-3 text-center">{{page.features_area.sub_title}}</h3>
 		    {% endif %}
 		    <div class="space40"></div>
     	</div>
     </div>
+		{% endif %}
     <div class="row text-center gutter-60">
       {% for features in page.features_area.features %}
       <div class="col-md-6 col-lg-3">
@@ -440,7 +441,8 @@ subscribe_area:
     </div>
     <!--/.row -->
     </div>
-    {% endif %}
+    {% endif %} <!-- pages.two_columns_one.enable -->
+
     {% if page.two_columns_two.enable %}
     <div class="two-columns-two">
     <div class="space140"></div>
@@ -473,14 +475,16 @@ subscribe_area:
     </div>
     <!--/.row -->
     </div>
-    {% endif %}
+    {% endif %} <!-- pages.two_columns_two.enable -->
   </div>
   <!-- /.container -->
 </div>
 <!-- /.wrapper -->
-{% endif %}
+{% endif %}<!-- page.features_area.enable -->
+
   <div class="wrapper light-wrapper">
     <div class="container inner">
+
       {% if page.testimonials.enable %}
       <div class="testimonials-wrapper">
       <div class="row">
@@ -524,16 +528,17 @@ subscribe_area:
       </div>
       <!-- /.grid-view -->
       </div>
-      {% endif %}
+      {% endif %}<!-- page.testimonials.enable-->
+
+      {% if pricing_data.enable %}
       <div class="pricing-wrapper">
        <div class="container inner">
         {% assign pricing_data = page.pricing_table %}
-        {% if pricing_data.enable %}
         <div class="row">
             <div class="col-lg-5 pr-50 pr-md-15">
                 <h2 class="title-color color-gray">{{pricing_data.title}}</h2>
                 <h3 class="display-3">{{pricing_data.sub_title}}</h3>
-                <div class="space20"></div>
+                <!-- <div class="space20"></div> -->
                 <p>{{pricing_data.description}}</p>
                 <div class="space10"></div>
                 {% if pricing_data.pricing_url %}
@@ -551,7 +556,7 @@ subscribe_area:
                             <div class="pricing panel box bg-white shadow">
                                 <div class="panel-heading">
                                     <div class="prices color-dark">
-                                        <div class="price price-show"><span class="price-currency">$</span><span class="price-value">{{pricing.monthly_price}}</span> <span class="price-duration">month</span></div>
+                                        <div class="price price-show"><span class="price-currency">$</span><span class="price-value">{{pricing.monthly_price | money}}</span> <span class="price-duration">USD</span></div>
                                     </div>
                                     <h4 class="panel-title mb-0">{{pricing.title}}</h4>
                                 </div>
@@ -564,7 +569,7 @@ subscribe_area:
                                         {% endfor %}
                                     </table>
                                 </div>
-                                <div class="panel-footer"><a href="{{pricing.pricing_url}}" class="btn" role="button">Choose Plan</a></div>
+                                <!-- <div class="panel-footer"><a href="{{pricing.pricing_url}}" class="btn" role="button">Choose Plan</a></div> -->
                             </div>
                         </div>
                         {% endfor %}
@@ -572,8 +577,9 @@ subscribe_area:
                 </div>
             </div>
         </div>
-        {% endif %}
       </div>
+      {% endif %}<!-- pricing_data.enable -->
+
       {% if page.about_us.enable %}
       <div class="about-wrapper">
         <div class="space140"></div>
@@ -605,9 +611,11 @@ subscribe_area:
         </div>
         <!--/.row -->
       </div>
-      {% endif %}
+      {% endif %}<!-- page.about_us.enable -->
+
     </div>
   </div>
+
   {% if page.subscribe_area.enable %}
   <div class="subscribe-area">
     <div class="wrapper bg-opacity-default">
@@ -641,5 +649,6 @@ subscribe_area:
       {% endif %}
     </div>
   </div>
-  {% endif %}
+  {% endif %}<!-- page.subscribe_area.enable -->
+
   {% include layouts/footer/footer-8.html %}
