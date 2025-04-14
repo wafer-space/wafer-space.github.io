@@ -4,7 +4,7 @@ email: "info@wafer.space"
 #email_2: "support@tortoizthemes.com"
 description: >- # this means to ignore newlines until "baseurl:"
   Budget Silicon Manufacturing.
-favicon: "/assets/images/favicon.webp"
+favicon: "/favicon.png"
 
 # Seo Meta Settings
 meta_og_image: "/assets/images/meta-image.webp"
