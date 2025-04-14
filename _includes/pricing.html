@@ -1,0 +1,47 @@
+<div class="pricing-wrapper">
+ <div class="container inner">
+  {% assign pricing_data = page.pricing_table %}
+  <div class="row">
+      <div class="col-lg-5 pr-50 pr-md-15">
+          <h2 class="title-color color-gray">{{pricing_data.title}}</h2>
+          <h3 class="display-3">{{pricing_data.sub_title}}</h3>
+          <!-- <div class="space20"></div> -->
+          <p>{{pricing_data.description}}</p>
+          <div class="space10"></div>
+          {% if pricing_data.pricing_url %}
+          <a href="{{pricing_data.pricing_url}}" class="btn">See All Prices</a>
+          {% endif %}
+      </div>
+      <!--/column -->
+      <div class="space70 d-none d-md-block d-lg-none"></div>
+      <div class="space20 d-md-none"></div>
+      <div class="col-lg-7">
+          <div class="pricing-wrapper">
+              <div class="row g-0">
+                  {% for pricing in pricing_data.plans %}
+                  <div class="col-md-6 {% cycle 'popular', '' %}">
+                      <div class="pricing panel box bg-white shadow">
+                          <div class="panel-heading">
+                              <div class="prices color-dark">
+                                  <div class="price price-show"><span class="price-currency">$</span><span class="price-value">{{pricing.monthly_price}}</span> <span class="price-duration">{{pricing.monthly_currency}}</span></div>
+                              </div>
+                              <h4 class="panel-title mb-0">{{pricing.title}}</h4>
+                          </div>
+                          <div class="panel-body">
+                              <table class="table">
+                                  {% for features in pricing.features %}
+                                  <tr>
+                                      <td>{{features}}</td>
+                                  </tr>
+                                  {% endfor %}
+                              </table>
+                          </div>
+                          <!-- <div class="panel-footer"><a href="{{pricing.pricing_url}}" class="btn" role="button">Choose Plan</a></div> -->
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
