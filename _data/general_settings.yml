@@ -3,8 +3,7 @@ title: "wafer.space - Budget Silicon Manufacturing"
 email: "info@wafer.space"
 #email_2: "support@tortoizthemes.com"
 description: >- # this means to ignore newlines until "baseurl:"
-  Snowlake Jekyll Theme is a perfectly crafted fast loading and SEO-friendly static site generator theme
-  with a variety of UI elements and countless features. A perfect theme to build your next dream project.
+  Budget Silicon Manufacturing.
 favicon: "/assets/images/favicon.webp"
 
 # Seo Meta Settings
@@ -60,53 +59,53 @@ google_map: |
 
 # Site Wide External Links for footer
 external_links:
-  title: "Learn More"
+  title: "More"
   links:
-    - url: "#"
-      text: "About Us"
-    - url: "#"
-      text: "Our Story"
-    - url: "#"
-      text: "Projects"
-    - url: "#"
-      text: "Pricing"
-    - url: "#"
-      text: "Features"
+    - url: "/"
+      text: "Home"
+    - url: "/about/"
+      text: "About"
+    - url: "/news/"
+      text: "News"
+    - url: "/how/"
+      text: "How"
+    - url: "/help/"
+      text: "Help"
 
 # Site Wide External Links for footer
-external_links_02:
-  title: "Need Help?"
-  links:
-    - url: "#"
-      text: "Support"
-    - url: "#"
-      text: "Get Started"
-    - url: "#"
-      text: "Contact Us"
-    - url: "#"
-      text: "Terms of Use"
-    - url: "#"
-      text: "Privacy Policy"
+#external_links_02:
+#  title: "&nbsp;"
+#  links:
+#    - url: "/how/"
+#      text: "How"
+#    - url: "/help/"
+#      text: "Help"
+#    - url: "#"
+#      text: "Contact Us"
+#    - url: "#"
+#      text: "Terms of Use"
+#    - url: "#"
+#      text: "Privacy Policy"
 
 # Site Wide External Links for footer
-external_links_03:
-  title: "Company"
-  links:
-    - url: "#"
-      text: "Our Team"
-    - url: "#"
-      text: "Strategy"
-    - url: "#"
-      text: "Service"
-    - url: "#"
-      text: "Mission"
-    - url: "#"
-      text: "Process"
+#external_links_03:
+#  title: "Company"
+#  links:
+#    - url: "#"
+#      text: "Our Team"
+#    - url: "#"
+#      text: "Strategy"
+#    - url: "#"
+#      text: "Service"
+#    - url: "#"
+#      text: "Mission"
+#    - url: "#"
+#      text: "Process"
 
 # Footer Newsletter
 footer_newsletter:
-  title: "Our Newsletter"
-  sub_title: "Subscribe to our newsletter to get our news & deals delivered to your inbox!"
+  title: "Get Notified!"
+  sub_title: "Sign up to be notified when more information is available"
   subscribe_button_text: "Join"
 
 # Author Page Background Image

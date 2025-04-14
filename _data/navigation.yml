@@ -8,6 +8,15 @@ main_menu:
     url: "/about/"
     menu_type: "simple"
 
+  - text: "How"
+    url: "/how/"
+    menu_type: "simple"
+
+  - text: "Help"
+    url: "/help/"
+    menu_type: "simple"
+
   - text: "News"
     url: "/news/"
     menu_type: "simple"
+

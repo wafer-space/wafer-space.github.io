@@ -165,20 +165,20 @@ pricing_table:
 about_us:
   enable: true
   title: "Let's Talk"
-  sub_title: "Let's make something great together. If you got any questions, don't hesitate to get in touch with us."
+  sub_title: "If you got any questions, don't hesitate to get in touch with us."
   image: "/assets/images/concept/concept12@2x.webp"
   description: |
     Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur.
   button_text: "Contact Us"
   button_url: "#"
+  bottom_image: "/assets/images/art/rocket1.webp"
 
 subscribe_area:
   enable: true
   title: "Get notified!"
-  sub_title: "Sign up to be notified when more information is available."
+  sub_title: "We’ll email you when details are confirmed."
   action_email: "tim@wafer.space"
   button_text: "Analyze"
-  image: "/assets/images/art/rocket1.webp"
 
 ---
 
@@ -530,7 +530,7 @@ subscribe_area:
       </div>
       {% endif %}<!-- page.testimonials.enable-->
 
-      {% if pricing_data.enable %}
+      {% if page.pricing_table.enable %}
       <div class="pricing-wrapper">
        <div class="container inner">
         {% assign pricing_data = page.pricing_table %}
@@ -580,6 +580,50 @@ subscribe_area:
       </div>
       {% endif %}<!-- pricing_data.enable -->
 
+    </div>
+  </div>
+
+  {% if page.subscribe_area.enable %}
+  <div class="subscribe-area">
+    <div class="wrapper bg-opacity-default">
+      <div class="container inner">
+        <div class="row text-center">
+          <div class="col-lg-8 offset-lg-2">
+            {% if page.subscribe_area.title %}
+             <h2 class="title-color color-gray">{{page.subscribe_area.title}}</h2>
+            {% endif %}
+            {% if page.subscribe_area.sub_title %}
+             <h3 class="display-3">{{page.subscribe_area.sub_title}}</h3>
+            {% endif %}
+          </div>
+        </div>
+        <div class="space30"></div>
+        <div class="row">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIcBzu6W0sZZpFak3hsCWveSZaUkdmFSCdExs1sn2xgeeZEw/viewform?embedded=true" width="640" height="592" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<!--
+          <div class="col-md-6 offset-md-3">
+            <form class="fields-white" action="https://formsubmit.io/send/{{page.subscribe_area.action_email}}" target="_blank">
+              <div class="input-group">
+                <input type="email"  name="user_email" class="email form-control mb-0 mr-2 mb-sm-0" placeholder="Email Address" required>
+                <button type="submit" class="btn btn-rounded btn-default mr-0 mb-0 pull-right">{{page.subscribe_area.button_text}}</button>
+              </div>
+            </form>
+          </div>
+ -->
+        </div>
+      </div>
+      {% if page.subscribe_area.image %}
+      <figure style="margin-bottom:-3px;">
+        <img src="{{page.subscribe_area.bottom_image}}" alt="subscribe"/>
+      </figure>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}<!-- page.subscribe_area.enable -->
+
+  <div class="wrapper light-wrapper">
+    <div class="container inner">
+
       {% if page.about_us.enable %}
       <div class="about-wrapper">
         <div class="space140"></div>
@@ -616,39 +660,6 @@ subscribe_area:
     </div>
   </div>
 
-  {% if page.subscribe_area.enable %}
-  <div class="subscribe-area">
-    <div class="wrapper bg-opacity-default">
-      <div class="container inner">
-        <div class="row text-center">
-          <div class="col-lg-8 offset-lg-2">
-            {% if page.subscribe_area.title %}
-             <h2 class="title-color color-gray">{{page.subscribe_area.title}}</h2>
-            {% endif %}
-            {% if page.subscribe_area.sub_title %}
-             <h3 class="display-3">{{page.subscribe_area.sub_title}}</h3>
-            {% endif %}
-          </div>
-        </div>
-        <div class="space30"></div>
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <form class="fields-white" action="https://formsubmit.io/send/{{page.subscribe_area.action_email}}" target="_blank">
-              <div class="input-group">
-                <input type="email"  name="user_email" class="email form-control mb-0 mr-2 mb-sm-0" placeholder="Email Address" required>
-                <button type="submit" class="btn btn-rounded btn-default mr-0 mb-0 pull-right">{{page.subscribe_area.button_text}}</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {% if page.subscribe_area.image %}
-      <figure style="margin-bottom:-3px;">
-        <img src="{{page.subscribe_area.image}}" alt="subscribe"/>
-      </figure>
-      {% endif %}
-    </div>
-  </div>
-  {% endif %}<!-- page.subscribe_area.enable -->
-
-  {% include layouts/footer/footer-8.html %}
+<div class="space120"></div>
+<!--/.footer Wrapper-->
+{% include layouts/footer/footer-1.html %}
