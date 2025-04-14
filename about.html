@@ -6,7 +6,7 @@ sub_title: |
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 about_area:
-  enable: true
+  enable: false
   title: "What We Do?"
   sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
   projects_number: 450
@@ -58,10 +58,11 @@ contact_area:
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
+
 <!--about us wrapper-->
+{% if page.about_area.enable %}
 <div class="wrapper light-wrapper">
     <div class="container inner">
-      {% if page.about_area.enable %}
         <div class="row align-items-center">
           <div class="col-lg-6 order-lg-2 text-center">
             <div class="position-relative">
@@ -110,10 +111,11 @@ contact_area:
           <!--/column -->
         </div>
         <!--/.row -->
-        {% endif %}
     </div>
 </div>
+{% endif %}
 <!--wrapper About Us-->
+
 <!--wrapper video CTA-->
 {% if page.video_area.enable %}
   <div class="video-area">
@@ -134,24 +136,28 @@ contact_area:
 </div>
 {% endif %}
 <!--/.wrapper video CTA-->
+
 <!-- clients carousel wrapper-->
+{% if page.clients_carousel.enable %}
 <div class="wrapper gray-wrapper">
     <div class="container inner">
-        {% if page.clients_carousel.enable %}
 
       {% include components/clients/clients-carousel.html %}
-      {% endif %}
     </div>
 </div>
+{% endif %}
 <!--/.wrapper clients carousel-->
+
 <!-- wrapper founder members-->
 {% include posts/author.html boxed=true check_author=site.authors %}
 <!--/.wrapper team members-->
+
 <!-- wrapper team members-->
 {% if page.teams_carousel.enable %}
 {% include posts/author.html boxed=true check_author=site.advisors %}
 {% endif %}
 <!--/.wrapper team members-->
+
 <!--contact-->
 {% if page.contact_area.enable %}
 <div class="wrapper image-wrapper bg-auto no-overlay bg-image text-center"
@@ -195,6 +201,8 @@ contact_area:
 </div>
 <!-- /.wrapper -->
 {% endif %}
+
 <div class="space120"></div>
+
 <!--/.footer Wrapper-->
 {% include layouts/footer/footer-1.html %}
