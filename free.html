@@ -1,12 +1,11 @@
 ---
 layout: default
-title: "How wafer.space works"
+title: "Free silicon!"
 sub_title: |
-  How wafer.space provides budget silicon manufacturing.
+  Options to get free silicon from wafer.space
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 about_area:
-  enable: true
   title: "What We Do?"
   sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
   projects_number: 450
@@ -29,21 +28,10 @@ about_area:
       numbers: 90
       style: "purple"
 
-video_area:
-  enable: false
-  title: "How We Do It?"
-  sub_title: "Find out everything you need to know <br>about creating a business process model."
-  image: "/assets/images/art/bg10.webp"
-  video_url: "https://www.youtube.com/watch?v=26TbMXXOe0I"
-
-clients_carousel:
-  enable: false
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
 
-<!--how wrapper-->
-{% if page.about_area.enable %}
 <div class="wrapper light-wrapper">
     <div class="container inner">
         <div class="row align-items-center">
@@ -96,39 +84,6 @@ clients_carousel:
         <!--/.row -->
     </div>
 </div>
-{% endif %}
-<!--wrapper how -->
-
-<!--wrapper video CTA-->
-{% if page.video_area.enable %}
-  <div class="video-area">
-  <div class="wrapper image-wrapper bg-image inverse-text" data-image-src="{{page.video_area.image}}">
-    <div class="container inner pt-140 pb-140 text-center">
-      <div class="row">
-        <div class="col-md-7 mx-auto">
-          <h2 class="section-title text-center">{{page.video_area.title}}</h2>
-          <p class="lead larger text-center">{{page.video_area.sub_title}}</p>
-          <div class="space10"></div>
-          <div class="light-gallery-wrapper">
-            <a href="{{page.video_area.video_url}}" class="btn-play lightbox"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endif %}
-<!--/.wrapper video CTA-->
-
-<!-- clients carousel wrapper-->
-{% if page.clients_carousel.enable %}
-<div class="wrapper gray-wrapper">
-    <div class="container inner">
-      {% include components/clients/clients-carousel.html %}
-    </div>
-</div>
-{% endif %}
-<!--/.wrapper clients carousel-->
 
 <div class="space120"></div>
 
