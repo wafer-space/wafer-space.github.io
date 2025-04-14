@@ -1,9 +1,9 @@
 # General Settings
-title: "wafer.space - Budget Silicon Manufacturing"
+title: "wafer.space - Budget silicon manufacturing"
 email: "info@wafer.space"
 #email_2: "support@tortoizthemes.com"
 description: >- # this means to ignore newlines until "baseurl:"
-  Budget Silicon Manufacturing.
+  Budget silicon manufacturing.
 favicon: "/favicon.png"
 
 # Seo Meta Settings

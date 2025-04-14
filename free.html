@@ -6,8 +6,9 @@ sub_title: |
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 about_area:
+  enable: true
   title: "What We Do?"
-  sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
+  sub_title: "Giving people access to silicon is our mission, we are looking to provide no-cost options where possible."
   projects_number: 450
   project_tag: "Completed Projects"
   image: "/assets/images/art/about7.webp"
@@ -28,11 +29,38 @@ about_area:
       numbers: 90
       style: "purple"
 
+pricing_table:
+  enable: true
+  title: "Referral Program"
+  sub_title: |
+    We're still working on the details of our referral program.
+  btn_url: "#"
+  description: |
+    <p>The values shown here represent our <em>target range</em>, but they're not guaranteed and may change as we lock in specifics.</p>
+    <p>Referrals will be applied at when a slot on an wafer.space run is purchased.</p>
+  plans:
+    - title: "Money"
+      monthly_price: "500"
+      monthly_currency: "USD"
+      pricing_url: "#"
+      icon: "/assets/images/icons/ec-mobile.webp"
+      features:
+        - Cold, hard cash.
+
+    - title: "Credit"
+      monthly_price: "1,000"
+      monthly_currency: "USD"
+      pricing_url: "#"
+      icon: "/assets/images/icons/ec-store.webp"
+      features:
+        - Credit with wafer.space
+        - ~6-8 referrals -- free silicon!
+
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
 
-<div class="wrapper light-wrapper">
+<div class="wrapper white-wrapper">
     <div class="container inner">
         <div class="row align-items-center">
           <div class="col-lg-6 order-lg-2 text-center">
@@ -62,20 +90,14 @@ about_area:
           <!--/column -->
           <div class="space30 d-none d-md-block d-lg-none"></div>
           <div class="col-lg-6 pr-60 pr-md-15">
-            {% if page.about_area.title %}
-             <h2 class="section-title mb-20">{{ page.about_area.title }}</h2>
-            {% endif %}
+             <h2 class="section-title mb-20">Options to get free silicon</h2>
             {% if  page.about_area.sub_title %}
              <p class="lead larger">{{page.about_area.sub_title}}</p>
             {% endif %}
             <div class="space20"></div>
-            <ul class="progress-list">
-              {% for skills in page.about_area.skills %}
-              <li>
-                <p>{{skills.title}}</p>
-                <div class="progressbar line {{skills.style}}" data-value="{{skills.numbers}}"></div>
-              </li>
-              {% endfor %}
+            <ul>
+	        <li><p>Referral Program</p></li>
+                <li><p>Grants &amp; Sponsorship</p></li>
             </ul>
             <!-- /.progress-list -->
           </div>
@@ -86,6 +108,39 @@ about_area:
 </div>
 
 <div class="space120"></div>
+
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    {% if page.pricing_table.enable %}
+    {% include pricing.html %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="space120"></div>
+
+<div class="wrapper white-wrapper">
+  <div class="container inner">
+
+     <h2 class="section-title mb-20">Grants & Sponsorship</h2>
+     <p class="lead larger">
+      We're still working on the details of our grants and sponsorship programs.
+     </p>
+
+     <h3>Grants</h3>
+     <p>
+        Providing access to silicon is wafer.space's core mission. For this reason we plan to offer a grant's program to allow open source projects free tape outs.
+     </p>
+
+     <h3>Sponsorship</h3>
+     <p>
+        Are you interested in sponsoring free silicon? Please reach out, we are excited to find out a solution which works for everyone!
+     </p>
+
+     <div class="space20"></div>
+
+  </div>
+</div>
 
 <!--/.footer Wrapper-->
 {% include layouts/footer/footer-1.html %}
