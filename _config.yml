@@ -1,5 +1,5 @@
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://snowlake-jekyll-v2.pages.dev" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://wafer.space" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: "/:title"
 
 # Build settings
