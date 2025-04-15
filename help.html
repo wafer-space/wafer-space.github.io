@@ -5,91 +5,17 @@ sub_title: |
   How you can help wafer.space?
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
-about_area:
-  enable: true
-  title: "What We Do?"
-  sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
-  projects_number: 450
-  project_tag: "Completed Projects"
-  image: "/assets/images/art/about7.webp"
-  skills:
-    - title: "Web Development"
-      numbers: 100
-      style: "pink"
-
-    - title: "Product Design"
-      numbers: 80
-      style: "blue"
-
-    - title: "Identity & Branding"
-      numbers: 85
-      style: "green"
-
-    - title: "Mobile Development"
-      numbers: 90
-      style: "purple"
-
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
 
-<!--how wrapper-->
 <div class="wrapper light-wrapper">
     <div class="container inner">
-      {% if page.about_area.enable %}
-        <div class="row align-items-center">
-          <div class="col-lg-6 order-lg-2 text-center">
-            <div class="position-relative">
-              {% if page.about_area.image %}
-              <figure>
-                <img src="{{page.about_area.image}}" alt="{{page.about_area.title}}"/>
-              </figure>
-              {% endif %}
-              <div class="row counter counter-s position-absolute" style="top: 45%; right: 8%;">
-                <div class="col-md-10 text-center">
-                  <div class="box bg-white shadow">
-                    {% if page.about_area.projects_number %}
-                     <h3><span class="value">{{page.about_area.projects_number}}</span>+</h3>
-                    {% endif %}
-                    {% if page.about_area.project_tag %}
-                     <p>{{page.about_area.project_tag}}</p>
-                    {% endif %}
-                  </div>
-                  <!--/.box -->
-                </div>
-                <!--/column -->
-              </div>
-              <!--/.row -->
-            </div>
-          </div>
-          <!--/column -->
-          <div class="space30 d-none d-md-block d-lg-none"></div>
-          <div class="col-lg-6 pr-60 pr-md-15">
-            {% if page.about_area.title %}
-             <h2 class="section-title mb-20">{{ page.about_area.title }}</h2>
-            {% endif %}
-            {% if  page.about_area.sub_title %}
-             <p class="lead larger">{{page.about_area.sub_title}}</p>
-            {% endif %}
-            <div class="space20"></div>
-            <ul class="progress-list">
-              {% for skills in page.about_area.skills %}
-              <li>
-                <p>{{skills.title}}</p>
-                <div class="progressbar line {{skills.style}}" data-value="{{skills.numbers}}"></div>
-              </li>
-              {% endfor %}
-            </ul>
-            <!-- /.progress-list -->
-          </div>
-          <!--/column -->
-        </div>
-        <!--/.row -->
-        {% endif %}
+        <p class="lead larger">This page will describe how you can wafer.space with it's mission.</p>
+        <div class="space20"></div>
+	<p>There will be more information here soon!</p>
     </div>
 </div>
-<!--wrapper how -->
-
 <div class="space120"></div>
 
 <!--/.footer Wrapper-->

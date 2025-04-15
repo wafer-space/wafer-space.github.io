@@ -6,7 +6,7 @@ sub_title: |
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 about_area:
-  enable: true
+  enable: false
   title: "What We Do?"
   sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
   projects_number: 450
@@ -41,6 +41,15 @@ clients_carousel:
 ---
 {% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
+
+<div class="wrapper light-wrapper">
+    <div class="container inner">
+        <h2 class="section-title mb-20">How do it work?</h2>
+        <p class="lead larger">This page will describe how wafer.space gets your silicon manufactured.</p>
+        <div class="space20"></div>
+	<p>There will be more information here.</p>
+    </div>
+</div>
 
 <!--how wrapper-->
 {% if page.about_area.enable %}
@@ -101,7 +110,7 @@ clients_carousel:
 
 <!--wrapper video CTA-->
 {% if page.video_area.enable %}
-  <div class="video-area">
+<div class="video-area">
   <div class="wrapper image-wrapper bg-image inverse-text" data-image-src="{{page.video_area.image}}">
     <div class="container inner pt-140 pb-140 text-center">
       <div class="row">
