@@ -63,13 +63,13 @@ external_links:
   links:
     - url: "/"
       text: "Home"
-    - url: "/about/"
+    - url: "/about.html"
       text: "About"
-    - url: "/news/"
+    - url: "/news.html"
       text: "News"
-    - url: "/how/"
+    - url: "/how.html"
       text: "How"
-    - url: "/help/"
+    - url: "/help.html"
       text: "Help"
 
 # Site Wide External Links for footer
