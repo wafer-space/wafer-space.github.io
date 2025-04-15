@@ -32,7 +32,8 @@ copyright_text: "© 2025 Wafer Space PTE. LTD. All rights reserved."
 # Site Wide Google Analytics
 google_analytics:
   enable: true
-  key: "UA-351909305-1"  # UA-664136761-1
+  type: gtag
+  key: "G-1JB9VZY864" # UA-351909305-1"  # UA-664136761-1
 
 # Site Wide Google Map
 google_map: |
