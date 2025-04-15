@@ -5,18 +5,18 @@ main_menu:
     menu_type: "simple"
 
   - text: "About"
-    url: "/about/"
+    url: "/about.html"
     menu_type: "simple"
 
   - text: "How"
-    url: "/how/"
+    url: "/how.html"
     menu_type: "simple"
 
   - text: "Help"
-    url: "/help/"
+    url: "/help.html"
     menu_type: "simple"
 
   - text: "News"
-    url: "/news/"
+    url: "/news.html"
     menu_type: "simple"
 
