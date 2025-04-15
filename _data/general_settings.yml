@@ -23,7 +23,7 @@ light_logo_1x: "/assets/images/logo-light.webp"
 light_logo_2x: "/assets/images/logo-light@2x.webp"
 
 # Site Wide Address and Phone Number
-address_01: '143 Cecil Street,<br />#17-04, GB Building,<br />Singapore 069542'
+address_01: '143&nbsp;Cecil&nbsp;Street,<br />#17&#8209;04,&nbsp;GB&nbsp;Building,<br />Singapore 069542'
 phone_number: # "+00 (123) 456 78 90"
 
 # Site Wide Copyright
