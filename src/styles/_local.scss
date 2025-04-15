@@ -1,0 +1,57 @@
+.headshot {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem auto;
+  display: inline-block;
+
+  img {
+    float: right;
+    width: 300px;
+  }
+}
+
+.about-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  a {
+    // no borders
+    outline: 0 !important;
+    border: none !important;
+    outline-style: none !important;
+    -moz-outline-style: none !important;
+
+    padding: none;
+    margin: none;
+  }
+  .icon {
+    text-align: center;
+    color: #000;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 2px solid #FFF;
+    transition: all .5s;
+    &:hover {
+      color: #FFF;
+      background: #000;
+    }
+    &:active {
+      color: #FFF;
+      background: #000;
+    }
+    @media only screen and (min-width:$cut) {
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+      line-height: 30px;
+    }
+  }
+}
