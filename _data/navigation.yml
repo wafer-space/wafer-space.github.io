@@ -17,6 +17,6 @@ main_menu:
     menu_type: "simple"
 
   - text: "News"
-    url: "/news.html"
+    url: "/news/index.html"
     menu_type: "simple"
 
