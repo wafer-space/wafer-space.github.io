@@ -21,7 +21,7 @@
         <h3>{{author_data.title}}</h3>
 	<h4>{{author_data.sub_title}}</h4>
         {% if author_data.content %}
-	<p class="mb-10">{{author_data.content}}</p>
+	<p class="mb-10">{{author_data.content | markdownify }}</p>
         {% endif %}
         {% if author_data.social_accounts %}
         <ul class="social">
@@ -57,7 +57,7 @@
             <h3>{{author_data.title}}</h3>
             <h4>{{author_data.sub_title}}</h4>
             {% if author_data.content %}
-	    <p class="mb-10">{{author_data.content}}</p>
+	    <p class="mb-10">{{author_data.content | markdownify }}</p>
             {% endif %}
             {% if author_data.social_accounts %}
             <ul class="social">
