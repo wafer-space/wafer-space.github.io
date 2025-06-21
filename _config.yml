@@ -30,6 +30,8 @@ theme_path: "_theme"
 exclude:
   - _site_after_refactor
   - _site_before_refactor
+  - _site_reference
+  - _site_refactored_verify
   - extract-theme.sh
   - theme-files.txt
 
