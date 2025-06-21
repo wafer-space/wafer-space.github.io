@@ -71,30 +71,8 @@ Jekyll::Hooks.register :site, :post_read do |site|
     end
   end
   
-  # Add theme demo pages to site pages collection
-  # This is needed to match the original site output exactly
-  theme_pages_dir = File.join(site.source, theme_path)
-  
-  if Dir.exist?(theme_pages_dir)
-    # Find all HTML files in theme that should be pages (excluding _layouts, _includes, etc.)
-    Dir.glob(File.join(theme_pages_dir, '**', '*.html')).each do |page_file|
-      # Skip internal directories
-      relative_to_theme = Pathname.new(page_file).relative_path_from(Pathname.new(theme_pages_dir))
-      next if relative_to_theme.to_s.start_with?('_')
-      
-      # Create a Jekyll Page for each theme demo page
-      page_dir = File.dirname(relative_to_theme)
-      page_name = File.basename(relative_to_theme)
-      
-      # Skip if page already exists in main site
-      main_page_path = File.join(site.source, relative_to_theme)
-      next if File.exist?(main_page_path)
-      
-      # Create Jekyll Page and add to site
-      theme_page = Jekyll::Page.new(site, theme_pages_dir, page_dir == '.' ? '' : page_dir, page_name)
-      site.pages << theme_page
-    end
-  end
+  # Skip theme demo pages - exclude demo/template content
+  # Demo pages are not needed for the production wafer.space site
 end
 
 # Hook to copy theme demo content and assets after site generation

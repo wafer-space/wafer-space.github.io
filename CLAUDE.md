@@ -17,7 +17,7 @@ export PATH=$PATH:/home/tim/.local/share/gem/ruby/3.2.0/bin
 - `make production` - Build for production with JEKYLL_ENV=production
 - `make clean` - Remove generated files and caches
 - `make install` - Install Ruby dependencies via bundle install
-- `make test` - Build and run basic validation (checks for 113 HTML files)
+- `make test` - Build and run basic validation (checks for 17 HTML files)
 - `make verify` - Run comprehensive output verification script
 
 ### Manual Commands (if Make unavailable)
@@ -42,7 +42,7 @@ The `theme_plugin.rb` file implements a sophisticated system to load theme compo
 1. **Layouts Loading**: Dynamically loads layouts from `_theme/_layouts/` via Jekyll::Layout.new
 2. **Includes Path**: Adds `_theme/_includes/` to Jekyll's include search paths
 3. **Collections Merging**: Loads theme collections (like shop_items, portfolio) when not overridden
-4. **Demo Pages**: Automatically includes theme demo pages (contact/, elements/, features/, etc.)
+4. **Demo Pages**: Demo pages are excluded from production site
 5. **Asset Copying**: Copies theme assets to build output with site assets taking precedence
 6. **Override System**: Site files always override theme files when both exist
 
@@ -60,8 +60,8 @@ The `theme_plugin.rb` file implements a sophisticated system to load theme compo
 3. **Navigation override**: Custom `_includes/layouts/nav/_btn-header.html` changes button text from "Free Trial" to "Free Silicon?"
 
 ### Build Output Validation
-The site must generate exactly **113 HTML files** to match the reference implementation. The test system verifies:
-- Correct file count (113 HTML files)
+The site generates **17 HTML files** for the production wafer.space website. The test system verifies:
+- Correct file count (17 HTML files)
 - Theme plugin presence
 - Theme submodule availability
 
