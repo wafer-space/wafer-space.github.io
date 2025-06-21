@@ -1,4 +1,51 @@
-## Header
+# Wafer Space Website
+
+This is the Jekyll-based website for Wafer Space.
+
+## Building the Site
+
+This project includes a Makefile for easy building and management:
+
+### Quick Start
+
+```bash
+# Install dependencies
+make install
+
+# Build the site
+make build
+
+# Serve locally (http://localhost:4000)
+make serve
+# or
+make dev
+```
+
+### Available Commands
+
+- `make build` - Build the Jekyll site
+- `make serve` - Build and serve the site locally (default: http://localhost:4000)
+- `make dev` - Alias for 'serve' - development mode with auto-regeneration
+- `make production` - Build site in production mode (with JEKYLL_ENV=production)
+- `make clean` - Remove generated site and caches
+- `make install` - Install Ruby dependencies
+- `make update` - Update Ruby dependencies
+- `make verify` - Run verification script to check site output
+- `make test` - Build site and run basic tests
+
+### Manual Build
+
+If you prefer not to use the Makefile:
+
+```bash
+export PATH=$PATH:/home/tim/.local/share/gem/ruby/3.2.0/bin
+bundle exec jekyll build
+bundle exec jekyll serve
+```
+
+## Theme Documentation
+
+### Header
 
 Header folder consists of 8 variations of Page Header with Titles
 
