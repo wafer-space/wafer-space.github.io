@@ -24,6 +24,15 @@ collections:
 include:
   - .well-known
 
+# Theme configuration
+theme_path: "_theme"
+
+exclude:
+  - _site_after_refactor
+  - _site_before_refactor
+  - extract-theme.sh
+  - theme-files.txt
+
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
 # The values here represent the defaults if nothing is set

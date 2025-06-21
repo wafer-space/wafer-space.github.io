@@ -1,0 +1,13 @@
+_includes/
+_layouts/
+assets/css/
+assets/js/
+assets/revolution/
+assets/type/
+assets/images/art/
+assets/images/blob/
+assets/images/concept/
+assets/images/icon/
+_portfolio/
+_data/navigation.yml
+_data/one_page_nav.yml

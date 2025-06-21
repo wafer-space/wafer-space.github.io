@@ -1,7 +1,8 @@
-<!--  Nav Name : Shop Header -->
+<!--  Nav Name :Classic Dark Header -->
 <nav
-  class="navbar {% if include.extra_class %} {{include.extra_class}} {% endif %} transparent navbar-expand-lg nav-uppercase">
-  <div class="container flex-row justify-content-center">
+
+  class="navbar {% if include.extra_class %} {{include.extra_class}} {% endif %} dark-wrapper inverse-text navbar-hover-opacity navbar-expand-lg nav-uppercase ">
+  <div class="container">
     <div class="navbar-brand" data-default-logo="{{ include.default_logo | default: 'white' }}">
       <!-- White Logo -->
       <a href="{{site.url}}"><img
@@ -16,31 +17,23 @@
         srcset="{{site.data.general_settings.black_logo_1x}} 1x, {{site.data.general_settings.black_logo_2x}} 2x"
         class="logo-dark {% unless include.default_logo == 'black' %}d-none{% endunless %}"
         alt="{{site.data.general_settings.title}}" /></a>
-  </div>
+    </div>
     <div class="navbar-other ms-auto order-lg-3">
       <ul class="navbar-nav flex-row align-items-center" data-sm-skip="true">
         <li class="nav-item">
           <div class="navbar-hamburger d-lg-none d-xl-none ms-auto">
-            <button class="hamburger animate plain" data-bs-toggle="offcanvas-nav"><span></span></button>
+            <button class="hamburger animate plain" data-bstoggle="offcanvas-nav"><span></span></button>
           </div>
         </li>
-        <!--{% assign partials = include.partials | split: ',' %}
-        {% for partial in partials %}
-          {% include layouts/nav/{{ partial }}.html %}
-        {% endfor %}
-      </ul>-->
 
-      {% if include.shop_header %}
-      {% include layouts/nav/_shop-header.html %}
-      {% endif %}
-
-      {% if include.btn_header %}
+        {% if include.btn_header %}
       {% include layouts/nav/_btn-header.html %}
       {% endif %}
 
       {% if include.drop_search %}
       {% include layouts/nav/_drop-search.html %}
       {% endif %}
+      </ul>
       <!-- /.navbar-nav -->
     </div>
     <!-- /.navbar-other -->
