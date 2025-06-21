@@ -4,6 +4,14 @@
 # documentation.
 
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# This workflow handles private theme submodules using GitHub tokens
+#
+# Setup required:
+# 1. If the theme submodule is in a private repository, create a Personal Access Token (PAT)
+#    with 'repo' permissions at: https://github.com/settings/tokens
+# 2. Add the PAT as a repository secret named 'SUBMODULE_TOKEN' in:
+#    Settings > Secrets and variables > Actions
+# 3. The workflow will fall back to GITHUB_TOKEN if SUBMODULE_TOKEN is not available
 name: Deploy Jekyll site to Pages
 
 on:
@@ -33,6 +41,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.SUBMODULE_TOKEN || secrets.GITHUB_TOKEN }}
+      
+      - name: Configure Git for submodules
+        run: |
+          # Configure Git to use token for GitHub repositories
+          if [ -n "${{ secrets.SUBMODULE_TOKEN }}" ]; then
+            echo "Using SUBMODULE_TOKEN for private repository access"
+            git config --global url."https://${{ secrets.SUBMODULE_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          else
+            echo "Using GITHUB_TOKEN (may not work for private repositories)"
+            git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          fi
+          
+          # Update submodules
+          git submodule update --init --recursive
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4

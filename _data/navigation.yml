@@ -1,0 +1,22 @@
+main_menu:
+
+  - text: "Home"
+    url: "/"
+    menu_type: "simple"
+
+  - text: "About"
+    url: "/about.html"
+    menu_type: "simple"
+
+  - text: "How"
+    url: "/how.html"
+    menu_type: "simple"
+
+  - text: "Help"
+    url: "/help.html"
+    menu_type: "simple"
+
+  - text: "News"
+    url: "/news/index.html"
+    menu_type: "simple"
+

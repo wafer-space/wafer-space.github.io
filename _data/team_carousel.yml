@@ -1,0 +1,50 @@
+members:
+  - name: "Boris Murmann"
+    designation: "Advisor"
+    image: "/assets/images/people/boris.jpg"
+    social_icons:
+      - icon: "jam jam-linkedin"
+        url: "https://www.linkedin.com/in/bmurmann/"
+      - icon: "jam jam-newspaper"
+        url: "https://ee.hawaii.edu/faculty/profile?usr=121"
+    description: boris.md
+
+  - name: "Tom Spyrou"
+    designation: "Advisor"
+    image: "/assets/images/people/tom.jpg"
+    social_icons:
+      - icon: "jam jam-linkedin"
+        url: "https://www.linkedin.com/in/tomspyrou/"
+      - icon: "jam jam-html5"
+        url: "https://"
+    description: tom.md
+
+  - name: "Matt Venn"
+    designation: "Advisor"
+    image: "/assets/images/people/matt.jpg"
+    social_icons:
+      - icon: "jam jam-linkedin"
+        url: "https://www.linkedin.com/in/matt-venn"
+      - icon: "jam jam-backpack"
+        url: "https://zerotoasiccourse.com/"
+      - icon: "jam jam-html5"
+        url: "https://tinytapeout.com/"
+    description: matt.md
+
+  - name: "Andrew 'bunnie' Huang"
+    designation: "Advisor"
+    image: "/assets/images/people/bunnie.jpg"
+    social_icons:
+      - icon: "jam jam-home"
+        url: "https://www.bunniestudios.com/"
+    description: bunnie.md
+
+  - name: "Sean 'xobs' Cross"
+    designation: "Advisor"
+    image: "/assets/images/people/xobs.jpg"
+    social_icons:
+      - icon: "jam jam-linkedin"
+        url: "https://www.linkedin.com/in/sean-cross-78186816a"
+      - icon: "jam jam-home"
+        url: "https://xobs.io/"
+    description: xobs.md
