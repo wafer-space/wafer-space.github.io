@@ -90,6 +90,15 @@ git commit -m "Update theme to latest version"
 
 The site is automatically deployed via GitHub Pages when changes are pushed to the main branch.
 
+### GitHub Actions Setup
+
+Since the theme is stored as a private git submodule, GitHub Actions requires special configuration to access it during builds. See [`.github/SUBMODULE_SETUP.md`](.github/SUBMODULE_SETUP.md) for detailed setup instructions.
+
+**Quick setup:**
+1. Create a Personal Access Token with `repo` permissions
+2. Add it as a repository secret named `SUBMODULE_TOKEN`
+3. The workflow will automatically use it to access the private theme repository
+
 ## Contributing
 
 For site content updates, please submit a pull request. For theme-related issues, please contact the Wafer Space team as the theme is proprietary.
