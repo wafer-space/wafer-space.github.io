@@ -57,21 +57,6 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --recursive
           
-      - name: Debug git and submodule setup
-        run: |
-          echo "=== Working directory ==="
-          pwd
-          ls -la
-          echo "=== .gitmodules file ==="
-          cat .gitmodules || echo ".gitmodules not found"
-          echo "=== Git config ==="
-          git config --list | grep submodule || echo "No submodule config found"
-          echo "=== .git/config ==="
-          cat .git/config | grep -A 5 submodule || echo "No submodule section in .git/config"
-          echo "=== Submodule status ==="
-          git submodule status
-          echo "=== Theme directory contents ==="
-          ls -la _theme/ || echo "_theme directory not found"
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
