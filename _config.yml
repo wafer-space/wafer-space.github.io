@@ -34,6 +34,7 @@ exclude:
   - _site_refactored_verify
   - extract-theme.sh
   - theme-files.txt
+  - Makefile
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
