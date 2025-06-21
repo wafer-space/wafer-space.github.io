@@ -49,11 +49,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: false
       
-      - name: Initialize submodules
+      - name: Initialize submodules with SSH
         run: |
-          # Ensure submodule is properly initialized with SSH
+          # Initialize submodules using SSH (without HTTPS conversion)
           git submodule sync --recursive
           git submodule update --init --recursive
       - name: Setup Ruby
