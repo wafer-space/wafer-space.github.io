@@ -4,14 +4,13 @@
 # documentation.
 
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
-# This workflow handles private theme submodules using GitHub tokens
+# This workflow handles private theme submodules using SSH deploy keys
 #
 # Setup required:
-# 1. If the theme submodule is in a private repository, create a Personal Access Token (PAT)
-#    with 'repo' permissions at: https://github.com/settings/tokens
-# 2. Add the PAT as a repository secret named 'SUBMODULE_TOKEN' in:
+# 1. Generate an SSH key pair for the theme repository access
+# 2. Add the public key as a deploy key to the theme repository with read access
+# 3. Add the private key as a repository secret named 'JEKYLL_THEME_KEY' in:
 #    Settings > Secrets and variables > Actions
-# 3. The workflow will fall back to GITHUB_TOKEN if SUBMODULE_TOKEN is not available
 name: Deploy Jekyll site to Pages
 
 on:
@@ -39,24 +38,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup SSH for private submodule
+        run: |
+          # Setup SSH key for private repository access
+          mkdir -p ~/.ssh
+          echo "${{ secrets.JEKYLL_THEME_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.SUBMODULE_TOKEN || secrets.GITHUB_TOKEN }}
       
-      - name: Configure Git for submodules
+      - name: Initialize submodules
         run: |
-          # Configure Git to use token for GitHub repositories
-          if [ -n "${{ secrets.SUBMODULE_TOKEN }}" ]; then
-            echo "Using SUBMODULE_TOKEN for private repository access"
-            git config --global url."https://${{ secrets.SUBMODULE_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          else
-            echo "Using GITHUB_TOKEN (may not work for private repositories)"
-            git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          fi
-          
-          # Update submodules
+          # Ensure submodule is properly initialized with SSH
+          git submodule sync --recursive
           git submodule update --init --recursive
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0

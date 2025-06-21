@@ -72,9 +72,9 @@ The site must generate exactly **113 HTML files** to match the reference impleme
 
 ### GitHub Actions Deployment
 - Deploys from `main` branch via GitHub Pages
-- Uses `SUBMODULE_TOKEN` secret for private theme repository access
-- Falls back to `GITHUB_TOKEN` if submodule token unavailable
-- Requires submodule configuration: `git submodule update --init --recursive`
+- Uses SSH deploy key (`JEKYLL_THEME_KEY` secret) for private theme repository access
+- Requires SSH key setup: public key as deploy key on theme repo, private key as repository secret
+- Submodule checkout via SSH: `git@github.com:wafer-space/wafer-space-jekyll-theme.git`
 
 ### Private Submodule Setup
 The theme is proprietary and stored as a private git submodule. For development:
@@ -95,3 +95,5 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 3. `post_write` - Copies theme assets and removes `_theme` from output
 
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
+
+<!-- Trigger build to test submodule configuration -->

@@ -92,12 +92,13 @@ The site is automatically deployed via GitHub Pages when changes are pushed to t
 
 ### GitHub Actions Setup
 
-Since the theme is stored as a private git submodule, GitHub Actions requires special configuration to access it during builds. See [`.github/SUBMODULE_SETUP.md`](.github/SUBMODULE_SETUP.md) for detailed setup instructions.
+Since the theme is stored as a private git submodule, GitHub Actions requires SSH deploy key configuration to access it during builds.
 
-**Quick setup:**
-1. Create a Personal Access Token with `repo` permissions
-2. Add it as a repository secret named `SUBMODULE_TOKEN`
-3. The workflow will automatically use it to access the private theme repository
+**Setup required:**
+1. Generate an SSH key pair for theme repository access
+2. Add the public key as a deploy key to the `wafer-space-jekyll-theme` repository with read access
+3. Add the private key as a repository secret named `JEKYLL_THEME_KEY`
+4. The workflow will automatically use the SSH key to access the private theme repository
 
 ## Contributing
 
