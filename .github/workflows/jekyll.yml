@@ -56,6 +56,15 @@ jobs:
           # Initialize submodules using SSH (without HTTPS conversion)
           git submodule sync --recursive
           git submodule update --init --recursive
+          
+      - name: Debug submodule checkout
+        run: |
+          echo "=== Submodule status ==="
+          git submodule status
+          echo "=== Theme directory contents ==="
+          ls -la _theme/ || echo "_theme directory not found"
+          echo "=== Theme includes directory ==="
+          ls -la _theme/_includes/layouts/nav/ || echo "_theme/_includes/layouts/nav/ not found"
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
