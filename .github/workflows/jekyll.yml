@@ -53,7 +53,8 @@ jobs:
       
       - name: Initialize submodules with SSH
         run: |
-          # Initialize submodules using SSH (without HTTPS conversion)
+          # Remove any existing _theme symlink and properly initialize submodule
+          rm -f _theme
           git submodule sync --recursive
           git submodule update --init --recursive
           
