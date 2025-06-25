@@ -1,0 +1,210 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .primary-color { fill: #5ca7db; }
+      .secondary-color { fill: #4a95c9; }
+      .accent-color { fill: #6db235; }
+      .warning-color { fill: #f7941e; }
+      .text-color { fill: #2c3e50; }
+      .light-bg { fill: #f8f9fa; }
+      .border-color { stroke: #5ca7db; stroke-width: 2; fill: none; }
+      .arrow { fill: #5ca7db; }
+      .text-sm { font-family: 'Arial', sans-serif; font-size: 12px; fill: #2c3e50; }
+      .text-md { font-family: 'Arial', sans-serif; font-size: 14px; fill: #2c3e50; font-weight: bold; }
+      .text-lg { font-family: 'Arial', sans-serif; font-size: 16px; fill: #2c3e50; font-weight: bold; }
+    </style>
+    
+    <!-- Arrow marker definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="arrow" />
+      </marker>
+    </defs>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" class="light-bg"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="text-lg" style="font-size: 20px;">
+    Silicon Manufacturing Process Flow
+  </text>
+  
+  <!-- Process Steps -->
+  
+  <!-- Step 1: Design -->
+  <g id="step1">
+    <rect x="50" y="80" width="120" height="80" rx="10" class="primary-color"/>
+    <text x="110" y="105" text-anchor="middle" class="text-md" fill="white">Design</text>
+    <text x="110" y="125" text-anchor="middle" class="text-sm" fill="white">Circuit Layout</text>
+    <text x="110" y="140" text-anchor="middle" class="text-sm" fill="white">& Verification</text>
+    
+    <!-- Design icon -->
+    <circle cx="110" cy="155" r="8" fill="white" opacity="0.3"/>
+    <path d="M106,151 L114,151 M106,155 L114,155 M106,159 L114,159" stroke="white" stroke-width="1"/>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <line x1="170" y1="120" x2="220" y2="120" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 2: Mask Creation -->
+  <g id="step2">
+    <rect x="230" y="80" width="120" height="80" rx="10" class="secondary-color"/>
+    <text x="290" y="105" text-anchor="middle" class="text-md" fill="white">Mask Creation</text>
+    <text x="290" y="125" text-anchor="middle" class="text-sm" fill="white">Photolithography</text>
+    <text x="290" y="140" text-anchor="middle" class="text-sm" fill="white">Masks</text>
+    
+    <!-- Mask icon -->
+    <rect x="285" y="150" width="10" height="10" fill="white" opacity="0.5"/>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <line x1="350" y1="120" x2="400" y2="120" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 3: Wafer Prep -->
+  <g id="step3">
+    <rect x="410" y="80" width="120" height="80" rx="10" class="accent-color"/>
+    <text x="470" y="105" text-anchor="middle" class="text-md" fill="white">Wafer Prep</text>
+    <text x="470" y="125" text-anchor="middle" class="text-sm" fill="white">Silicon Wafer</text>
+    <text x="470" y="140" text-anchor="middle" class="text-sm" fill="white">Preparation</text>
+    
+    <!-- Wafer icon -->
+    <circle cx="470" cy="155" r="8" fill="white" opacity="0.5"/>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <line x1="530" y1="120" x2="580" y2="120" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 4: Fabrication -->
+  <g id="step4">
+    <rect x="590" y="80" width="120" height="80" rx="10" class="warning-color"/>
+    <text x="650" y="105" text-anchor="middle" class="text-md" fill="white">Fabrication</text>
+    <text x="650" y="125" text-anchor="middle" class="text-sm" fill="white">Layer Building</text>
+    <text x="650" y="140" text-anchor="middle" class="text-sm" fill="white">& Etching</text>
+    
+    <!-- Fab icon -->
+    <rect x="645" y="150" width="10" height="2" fill="white" opacity="0.7"/>
+    <rect x="645" y="153" width="10" height="2" fill="white" opacity="0.5"/>
+    <rect x="645" y="156" width="10" height="2" fill="white" opacity="0.3"/>
+  </g>
+  
+  <!-- Downward arrow -->
+  <line x1="650" y1="160" x2="650" y2="210" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 5: Testing -->
+  <g id="step5">
+    <rect x="590" y="220" width="120" height="80" rx="10" class="primary-color"/>
+    <text x="650" y="245" text-anchor="middle" class="text-md" fill="white">Testing</text>
+    <text x="650" y="265" text-anchor="middle" class="text-sm" fill="white">Electrical Test</text>
+    <text x="650" y="280" text-anchor="middle" class="text-sm" fill="white">& Validation</text>
+    
+    <!-- Test icon -->
+    <circle cx="645" cy="290" r="3" fill="white"/>
+    <circle cx="655" cy="290" r="3" fill="white"/>
+    <line x1="648" y1="290" x2="652" y2="290" stroke="white" stroke-width="1"/>
+  </g>
+  
+  <!-- Leftward arrow -->
+  <line x1="590" y1="260" x2="540" y2="260" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 6: Dicing -->
+  <g id="step6">
+    <rect x="410" y="220" width="120" height="80" rx="10" class="secondary-color"/>
+    <text x="470" y="245" text-anchor="middle" class="text-md" fill="white">Dicing</text>
+    <text x="470" y="265" text-anchor="middle" class="text-sm" fill="white">Wafer Cutting</text>
+    <text x="470" y="280" text-anchor="middle" class="text-sm" fill="white">Individual Dies</text>
+    
+    <!-- Dicing icon -->
+    <path d="M465,290 L475,290 M470,285 L470,295" stroke="white" stroke-width="2"/>
+  </g>
+  
+  <!-- Leftward arrow -->
+  <line x1="410" y1="260" x2="360" y2="260" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 7: Packaging -->
+  <g id="step7">
+    <rect x="230" y="220" width="120" height="80" rx="10" class="accent-color"/>
+    <text x="290" y="245" text-anchor="middle" class="text-md" fill="white">Packaging</text>
+    <text x="290" y="265" text-anchor="middle" class="text-sm" fill="white">Die Assembly</text>
+    <text x="290" y="280" text-anchor="middle" class="text-sm" fill="white">& Encapsulation</text>
+    
+    <!-- Package icon -->
+    <rect x="285" y="285" width="10" height="8" fill="white" opacity="0.7" rx="1"/>
+    <circle cx="290" cy="289" r="1" fill="rgba(255,255,255,0.5)"/>
+  </g>
+  
+  <!-- Leftward arrow -->
+  <line x1="230" y1="260" x2="180" y2="260" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 8: Final Test -->
+  <g id="step8">
+    <rect x="50" y="220" width="120" height="80" rx="10" class="warning-color"/>
+    <text x="110" y="245" text-anchor="middle" class="text-md" fill="white">Final Test</text>
+    <text x="110" y="265" text-anchor="middle" class="text-sm" fill="white">Quality Control</text>
+    <text x="110" y="280" text-anchor="middle" class="text-sm" fill="white">& Delivery</text>
+    
+    <!-- Check icon -->
+    <path d="M105,290 L108,293 L115,286" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Success Path -->
+  <g id="success-path">
+    <text x="50" y="340" class="text-md" style="fill: #6db235;">✓ Success Path</text>
+    <line x1="50" y1="350" x2="710" y2="350" stroke="#6db235" stroke-width="3" opacity="0.3"/>
+    
+    <!-- Success boxes -->
+    <rect x="100" y="360" width="80" height="40" rx="5" fill="#6db235" opacity="0.8"/>
+    <text x="140" y="375" text-anchor="middle" class="text-sm" fill="white">Functional</text>
+    <text x="140" y="390" text-anchor="middle" class="text-sm" fill="white">Chips</text>
+    
+    <rect x="220" y="360" width="80" height="40" rx="5" fill="#6db235" opacity="0.6"/>
+    <text x="260" y="375" text-anchor="middle" class="text-sm" fill="white">Grade A</text>
+    <text x="260" y="390" text-anchor="middle" class="text-sm" fill="white">Quality</text>
+    
+    <rect x="340" y="360" width="80" height="40" rx="5" fill="#6db235" opacity="0.4"/>
+    <text x="380" y="375" text-anchor="middle" class="text-sm" fill="white">Customer</text>
+    <text x="380" y="390" text-anchor="middle" class="text-sm" fill="white">Delivery</text>
+  </g>
+  
+  <!-- Failure/Rework Path -->
+  <g id="failure-path">
+    <text x="50" y="450" class="text-md" style="fill: #f7941e;">⚠ Rework Path</text>
+    <line x1="50" y1="460" x2="530" y2="460" stroke="#f7941e" stroke-width="2" stroke-dasharray="5,5" opacity="0.7"/>
+    
+    <!-- Rework arrow going back to fabrication -->
+    <path d="M530,460 Q580,460 580,200 Q580,180 590,180" 
+          stroke="#f7941e" stroke-width="2" fill="none" 
+          stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+    
+    <text x="450" y="480" class="text-sm" style="fill: #f7941e;">Defects found → Return to fabrication</text>
+  </g>
+  
+  <!-- Statistics Box -->
+  <g id="stats">
+    <rect x="50" y="520" width="250" height="60" rx="5" fill="#f8f9fa" stroke="#5ca7db" stroke-width="1"/>
+    <text x="175" y="540" text-anchor="middle" class="text-md">Process Statistics</text>
+    <text x="70" y="555" class="text-sm">• Yield Rate: 85-95%</text>
+    <text x="70" y="570" class="text-sm">• Time to Market: 4-6 weeks</text>
+  </g>
+  
+  <!-- Cost Box -->
+  <g id="cost">
+    <rect x="320" y="520" width="200" height="60" rx="5" fill="#f8f9fa" stroke="#6db235" stroke-width="1"/>
+    <text x="420" y="540" text-anchor="middle" class="text-md">Cost Benefits</text>
+    <text x="340" y="555" class="text-sm">• 60% cost reduction</text>
+    <text x="340" y="570" class="text-sm">• Shared mask costs</text>
+  </g>
+  
+  <!-- Rocket illustration (matching site theme) -->
+  <g id="rocket" transform="translate(650, 450)">
+    <path d="M30,50 Q30,20 20,10 Q15,5 10,10 Q0,20 0,50 L5,60 L25,60 Z" class="primary-color"/>
+    <path d="M8,40 Q15,35 22,40 L20,50 L10,50 Z" class="secondary-color"/>
+    <circle cx="15" cy="30" r="3" fill="white"/>
+    <path d="M5,60 L10,70 L20,70 L25,60" class="warning-color"/>
+    <text x="40" y="40" class="text-sm" style="fill: #5ca7db;">wafer.space</text>
+    <text x="40" y="55" class="text-sm">Budget Silicon</text>
+    <text x="40" y="70" class="text-sm">Manufacturing</text>
+  </g>
+  
+</svg>
