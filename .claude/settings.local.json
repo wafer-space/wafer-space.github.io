@@ -59,7 +59,9 @@
       "Bash(bundle install)",
       "Bash(bundle config set:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(bundle exec:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
