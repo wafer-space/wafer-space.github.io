@@ -1,222 +1,325 @@
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <!-- Gradients for modern look -->
+    <linearGradient id="userGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5ca7db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a95c9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="waferGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6db235;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a9c2a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="foundryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7941e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8842a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="chipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a252f;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Radial gradients for glow effects -->
+    <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#5ca7db;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#5ca7db;stop-opacity:0" />
+    </radialGradient>
+    
+    <radialGradient id="glowGreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#6db235;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#6db235;stop-opacity:0" />
+    </radialGradient>
+    
+    <radialGradient id="glowOrange" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f7941e;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#f7941e;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="4" result="offset" />
+      <feFlood flood-color="#000000" flood-opacity="0.1"/>
+      <feComposite in2="offset" operator="in"/>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker with gradient -->
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" 
+            refX="12" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 12 4, 0 8" fill="url(#userGradient)" />
+    </marker>
+    
+    <marker id="arrowheadOrange" markerWidth="12" markerHeight="8" 
+            refX="12" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 12 4, 0 8" fill="url(#foundryGradient)" />
+    </marker>
+    
+    <marker id="arrowheadGreen" markerWidth="12" markerHeight="8" 
+            refX="12" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 12 4, 0 8" fill="url(#waferGradient)" />
+    </marker>
+
+    <!-- Text styles -->
     <style>
-      .primary-color { fill: #5ca7db; }
-      .secondary-color { fill: #4a95c9; }
-      .accent-color { fill: #6db235; }
-      .warning-color { fill: #f7941e; }
-      .text-color { fill: #2c3e50; }
-      .light-bg { fill: #f8f9fa; }
-      .wafer-bg { fill: #fef7e6; }
-      .foundry-bg { fill: #f0e6d2; }
-      .border-color { stroke: #5ca7db; stroke-width: 2; fill: none; }
-      .arrow { fill: #5ca7db; }
-      .text-sm { font-family: 'Arial', sans-serif; font-size: 11px; fill: #2c3e50; }
-      .text-md { font-family: 'Arial', sans-serif; font-size: 13px; fill: #2c3e50; font-weight: bold; }
-      .text-lg { font-family: 'Arial', sans-serif; font-size: 16px; fill: #2c3e50; font-weight: bold; }
-      .text-xl { font-family: 'Arial', sans-serif; font-size: 18px; fill: #2c3e50; font-weight: bold; }
-      .step-text { font-family: 'Arial', sans-serif; font-size: 14px; fill: #2c3e50; font-weight: bold; }
+      .title-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .step-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #2c3e50; }
+      .label-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 500; fill: white; text-anchor: middle; }
+      .company-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; font-weight: 400; fill: #666; text-anchor: middle; font-style: italic; }
       .highlight-blue { fill: #5ca7db; font-weight: bold; }
       .highlight-magenta { fill: #e91e63; font-weight: bold; }
       .highlight-green { fill: #6db235; font-weight: bold; }
     </style>
-    
-    <!-- Arrow marker definition -->
-    <defs>
-      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
-              refX="10" refY="3.5" orient="auto">
-        <polygon points="0 0, 10 3.5, 0 7" class="arrow" />
-      </marker>
-    </defs>
   </defs>
 
-  <!-- Background -->
-  <rect width="1000" height="700" class="light-bg"/>
+  <!-- Background with subtle pattern -->
+  <rect width="1200" height="800" fill="#fafbfc"/>
   
-  <!-- Users Section (Left) -->
+  <!-- Decorative background elements -->
+  <circle cx="100" cy="100" r="200" fill="url(#glowBlue)" opacity="0.1"/>
+  <circle cx="1100" cy="200" r="250" fill="url(#glowOrange)" opacity="0.1"/>
+  <circle cx="600" cy="700" r="180" fill="url(#glowGreen)" opacity="0.1"/>
+  
+  <!-- Step labels at top -->
+  <text x="60" y="40" class="step-text">Step 1: <tspan class="highlight-blue">Project GDS</tspan> delivered from User → Wafer.Space</text>
+  <text x="480" y="40" class="step-text">Step 2: <tspan class="highlight-magenta">Mask GDS</tspan> delivered Wafer.Space → GlobalFoundries</text>
+  <text x="60" y="380" class="step-text">Step 5: <tspan class="highlight-green">Silicon die</tspan> sent to customers</text>
+  <text x="650" y="380" class="step-text">Step 4: <tspan class="highlight-blue">Wafers</tspan> cut into <tspan class="highlight-green">silicon die</tspan> (dicing)</text>
+  <text x="780" y="140" class="step-text">Step 3: GF manufacturing</text>
+  <text x="900" y="580" class="step-text">Step 3.3: <tspan class="highlight-blue">Wafers</tspan> returned to Wafer.Space</text>
+  
+  <!-- Users Section (Left) with modern cards -->
   <g id="users">
-    <!-- User 1 -->
-    <rect x="20" y="80" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
-    <text x="60" y="100" text-anchor="middle" class="text-sm" fill="white">User 1</text>
-    <text x="60" y="115" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    <!-- User cards with modern styling -->
+    <g filter="url(#dropShadow)">
+      <rect x="40" y="80" width="90" height="60" rx="15" fill="url(#userGradient)"/>
+      <circle cx="140" cy="80" r="30" fill="url(#glowBlue)"/>
+      <text x="85" y="105" class="label-text">User 1</text>
+      <text x="85" y="120" class="company-text" fill="rgba(255,255,255,0.8)">(Anywhere)</text>
+    </g>
     
-    <!-- User 2 -->
-    <rect x="20" y="150" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
-    <text x="60" y="170" text-anchor="middle" class="text-sm" fill="white">User 2</text>
-    <text x="60" y="185" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    <g filter="url(#dropShadow)">
+      <rect x="40" y="160" width="90" height="60" rx="15" fill="url(#userGradient)"/>
+      <circle cx="140" cy="160" r="30" fill="url(#glowBlue)"/>
+      <text x="85" y="185" class="label-text">User 2</text>
+      <text x="85" y="200" class="company-text" fill="rgba(255,255,255,0.8)">(Anywhere)</text>
+    </g>
     
-    <!-- User 3 -->
-    <rect x="20" y="220" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
-    <text x="60" y="240" text-anchor="middle" class="text-sm" fill="white">User 3</text>
-    <text x="60" y="255" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    <g filter="url(#dropShadow)">
+      <rect x="40" y="240" width="90" height="60" rx="15" fill="url(#userGradient)"/>
+      <circle cx="140" cy="240" r="30" fill="url(#glowBlue)"/>
+      <text x="85" y="265" class="label-text">User 3</text>
+      <text x="85" y="280" class="company-text" fill="rgba(255,255,255,0.8)">(Anywhere)</text>
+    </g>
     
-    <!-- User X (dashed) -->
-    <rect x="20" y="290" width="80" height="50" rx="25" fill="none" stroke="#5ca7db" stroke-width="2" stroke-dasharray="5,5"/>
-    <text x="60" y="310" text-anchor="middle" class="text-sm">User X</text>
-    <text x="60" y="325" text-anchor="middle" class="text-sm" style="font-style: italic;">(Anywhere)</text>
+    <!-- User X with dashed style -->
+    <g opacity="0.6">
+      <rect x="40" y="320" width="90" height="60" rx="15" fill="none" stroke="url(#userGradient)" stroke-width="3" stroke-dasharray="8,4"/>
+      <text x="85" y="345" class="step-text">User X</text>
+      <text x="85" y="360" class="company-text">(Anywhere)</text>
+    </g>
   </g>
   
-  <!-- Project GDS Files -->
+  <!-- Project GDS Files with modern cards -->
   <g id="project-gds">
-    <rect x="130" y="80" width="80" height="40" rx="5" class="secondary-color"/>
-    <text x="170" y="95" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
-    <text x="170" y="110" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <g filter="url(#dropShadow)">
+      <rect x="180" y="80" width="100" height="50" rx="12" fill="#4a95c9"/>
+      <text x="230" y="100" class="label-text">Project P1</text>
+      <text x="230" y="115" class="label-text">GDS</text>
+    </g>
     
-    <rect x="130" y="130" width="80" height="40" rx="5" class="secondary-color"/>
-    <text x="170" y="145" text-anchor="middle" class="text-sm" fill="white">Project P2</text>
-    <text x="170" y="160" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <g filter="url(#dropShadow)">
+      <rect x="180" y="140" width="100" height="50" rx="12" fill="#4a95c9"/>
+      <text x="230" y="160" class="label-text">Project P2</text>
+      <text x="230" y="175" class="label-text">GDS</text>
+    </g>
     
-    <rect x="130" y="180" width="80" height="40" rx="5" class="secondary-color"/>
-    <text x="170" y="195" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
-    <text x="170" y="210" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <g filter="url(#dropShadow)">
+      <rect x="180" y="200" width="100" height="50" rx="12" fill="#4a95c9"/>
+      <text x="230" y="220" class="label-text">Project P1</text>
+      <text x="230" y="235" class="label-text">GDS</text>
+    </g>
     
-    <rect x="130" y="230" width="80" height="40" rx="5" class="secondary-color"/>
-    <text x="170" y="245" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
-    <text x="170" y="260" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <g filter="url(#dropShadow)">
+      <rect x="180" y="260" width="100" height="50" rx="12" fill="#4a95c9"/>
+      <text x="230" y="280" class="label-text">Project P1</text>
+      <text x="230" y="295" class="label-text">GDS</text>
+    </g>
     
-    <rect x="130" y="280" width="80" height="40" rx="5" fill="none" stroke="#4a95c9" stroke-width="2" stroke-dasharray="5,5"/>
-    <text x="170" y="295" text-anchor="middle" class="text-sm">Project Pn</text>
-    <text x="170" y="310" text-anchor="middle" class="text-sm">GDS</text>
+    <g opacity="0.6">
+      <rect x="180" y="320" width="100" height="50" rx="12" fill="none" stroke="#4a95c9" stroke-width="3" stroke-dasharray="8,4"/>
+      <text x="230" y="340" class="step-text">Project Pn</text>
+      <text x="230" y="355" class="step-text">GDS</text>
+    </g>
   </g>
   
-  <!-- Wafer.Space Company Area -->
-  <rect x="250" y="50" width="200" height="320" rx="15" class="wafer-bg" stroke="#5ca7db" stroke-width="3"/>
-  <text x="350" y="75" text-anchor="middle" class="text-lg">Wafer.Space</text>
-  <text x="350" y="95" text-anchor="middle" class="text-md" style="font-style: italic;">Singapore Private Company</text>
-  
-  <!-- Tiles inside Wafer.Space -->
-  <g id="tiles">
-    <rect x="270" y="110" width="60" height="40" rx="5" class="accent-color"/>
-    <text x="300" y="125" text-anchor="middle" class="text-sm" fill="white">Tile 1</text>
-    <text x="300" y="140" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+  <!-- Wafer.Space Company Area with enhanced styling -->
+  <g id="wafer-space" filter="url(#dropShadow)">
+    <rect x="320" y="70" width="250" height="280" rx="25" fill="url(#waferGradient)" opacity="0.1"/>
+    <rect x="325" y="75" width="240" height="270" rx="20" fill="none" stroke="url(#waferGradient)" stroke-width="3"/>
+    <circle cx="570" cy="70" r="40" fill="url(#glowGreen)"/>
     
-    <rect x="340" y="110" width="60" height="40" rx="5" class="accent-color"/>
-    <text x="370" y="125" text-anchor="middle" class="text-sm" fill="white">Tile 2</text>
-    <text x="370" y="140" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <text x="445" y="100" class="title-text">Wafer.Space</text>
+    <text x="445" y="120" class="company-text">Singapore Private Company</text>
     
-    <rect x="270" y="160" width="60" height="40" rx="5" class="accent-color"/>
-    <text x="300" y="175" text-anchor="middle" class="text-sm" fill="white">Tile 3</text>
-    <text x="300" y="190" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <!-- Tiles with modern grid layout -->
+    <g id="tiles">
+      <rect x="340" y="140" width="70" height="45" rx="8" fill="url(#waferGradient)" filter="url(#dropShadow)"/>
+      <text x="375" y="158" class="label-text">Tile 1</text>
+      <text x="375" y="173" class="label-text">GDS</text>
+      
+      <rect x="420" y="140" width="70" height="45" rx="8" fill="url(#waferGradient)" filter="url(#dropShadow)"/>
+      <text x="455" y="158" class="label-text">Tile 2</text>
+      <text x="455" y="173" class="label-text">GDS</text>
+      
+      <rect x="500" y="140" width="70" height="45" rx="8" fill="url(#waferGradient)" filter="url(#dropShadow)"/>
+      <text x="535" y="158" class="label-text">Tile 3</text>
+      <text x="535" y="173" class="label-text">GDS</text>
+      
+      <rect x="340" y="195" width="70" height="45" rx="8" fill="url(#waferGradient)" filter="url(#dropShadow)"/>
+      <text x="375" y="213" class="label-text">Tile 4</text>
+      <text x="375" y="228" class="label-text">GDS</text>
+      
+      <rect x="420" y="195" width="70" height="45" rx="8" fill="none" stroke="url(#waferGradient)" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="455" y="213" class="step-text">Tile n</text>
+      <text x="455" y="228" class="step-text">GDS</text>
+    </g>
     
-    <rect x="340" y="160" width="60" height="40" rx="5" class="accent-color"/>
-    <text x="370" y="175" text-anchor="middle" class="text-sm" fill="white">Tile 4</text>
-    <text x="370" y="190" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    <!-- Combined Mask with glow effect -->
+    <g filter="url(#glow)">
+      <rect x="400" y="260" width="90" height="50" rx="10" fill="url(#foundryGradient)"/>
+      <text x="445" y="280" class="label-text">Combined</text>
+      <text x="445" y="295" class="label-text">Mask GDS</text>
+    </g>
     
-    <rect x="305" y="210" width="60" height="40" rx="5" fill="none" stroke="#6db235" stroke-width="2" stroke-dasharray="5,5"/>
-    <text x="335" y="225" text-anchor="middle" class="text-sm">Tile n</text>
-    <text x="335" y="240" text-anchor="middle" class="text-sm">GDS</text>
+    <!-- Wafers return section -->
+    <g id="wafers-return">
+      <rect x="340" y="450" width="70" height="25" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="375" y="467" class="label-text">Wafers</text>
+      <rect x="420" y="450" width="70" height="25" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="455" y="467" class="label-text">Wafers</text>
+      <rect x="500" y="450" width="70" height="25" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="535" y="467" class="label-text">Wafers</text>
+    </g>
   </g>
   
-  <!-- Mask GDS -->
-  <rect x="320" y="280" width="60" height="40" rx="5" class="warning-color"/>
-  <text x="350" y="295" text-anchor="middle" class="text-sm" fill="white">Mask</text>
-  <text x="350" y="310" text-anchor="middle" class="text-sm" fill="white">GDS</text>
-  
-  <!-- GlobalFoundries Area -->
-  <rect x="500" y="150" width="200" height="250" rx="15" class="foundry-bg" stroke="#f7941e" stroke-width="3"/>
-  <text x="600" y="175" text-anchor="middle" class="text-lg">GlobalFoundries</text>
-  <text x="600" y="195" text-anchor="middle" class="text-md" style="font-style: italic;">US Public Company</text>
-  <text x="600" y="210" text-anchor="middle" class="text-md" style="font-style: italic;">Foundry in Singapore</text>
-  
-  <!-- Mask inside GF -->
-  <rect x="570" y="230" width="60" height="30" rx="5" class="secondary-color"/>
-  <text x="600" y="250" text-anchor="middle" class="text-sm" fill="white">Mask</text>
-  
-  <!-- Wafers stack -->
-  <g id="wafers-gf">
-    <rect x="570" y="280" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="600" y="293" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
-    <rect x="570" y="305" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="600" y="318" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
-    <rect x="570" y="330" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="600" y="343" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+  <!-- GlobalFoundries Area with enhanced styling -->
+  <g id="globalfoundries" filter="url(#dropShadow)">
+    <rect x="650" y="160" width="250" height="200" rx="25" fill="url(#foundryGradient)" opacity="0.1"/>
+    <rect x="655" y="165" width="240" height="190" rx="20" fill="none" stroke="url(#foundryGradient)" stroke-width="3"/>
+    <circle cx="900" cy="160" r="40" fill="url(#glowOrange)"/>
+    
+    <text x="775" y="190" class="title-text">GlobalFoundries</text>
+    <text x="775" y="210" class="company-text">US Public Company</text>
+    <text x="775" y="225" class="company-text">Foundry in Singapore</text>
+    
+    <!-- Manufacturing steps -->
+    <g>
+      <text x="670" y="250" class="step-text">Step 3.1: GF creates Mask</text>
+      <rect x="670" y="260" width="80" height="30" rx="8" fill="#4a95c9" filter="url(#dropShadow)"/>
+      <text x="710" y="280" class="label-text">Mask</text>
+      
+      <text x="670" y="310" class="step-text">Step 3.2: GF creates <tspan class="highlight-blue">Wafers</tspan></text>
+      <rect x="670" y="320" width="70" height="20" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="705" y="333" class="label-text" style="font-size: 10px;">Wafers</text>
+      <rect x="750" y="320" width="70" height="20" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="785" y="333" class="label-text" style="font-size: 10px;">Wafers</text>
+      <rect x="830" y="320" width="70" height="20" rx="5" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+      <text x="865" y="333" class="label-text" style="font-size: 10px;">Wafers</text>
+    </g>
   </g>
   
-  <!-- Wafers return stack -->
-  <g id="wafers-return">
-    <rect x="300" y="380" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="330" y="393" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
-    <rect x="300" y="405" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="330" y="418" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
-    <rect x="300" y="430" width="60" height="20" rx="3" class="primary-color"/>
-    <text x="330" y="443" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
-  </g>
-  
-  <!-- IC chips -->
+  <!-- IC chips with modern styling -->
   <g id="ic-chips">
-    <rect x="380" y="520" width="30" height="30" rx="2" fill="#2c3e50"/>
-    <text x="395" y="540" text-anchor="middle" class="text-sm" fill="white">IC</text>
+    <rect x="650" y="520" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="670" y="545" class="label-text">IC</text>
     
-    <rect x="420" y="520" width="30" height="30" rx="2" fill="#2c3e50"/>
-    <text x="435" y="540" text-anchor="middle" class="text-sm" fill="white">IC</text>
+    <rect x="700" y="520" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="720" y="545" class="label-text">IC</text>
     
-    <rect x="380" y="560" width="30" height="30" rx="2" fill="#2c3e50"/>
-    <text x="395" y="580" text-anchor="middle" class="text-sm" fill="white">IC</text>
+    <rect x="750" y="520" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="770" y="545" class="label-text">IC</text>
+    
+    <rect x="650" y="570" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="670" y="595" class="label-text">IC</text>
+    
+    <rect x="700" y="570" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="720" y="595" class="label-text">IC</text>
+    
+    <rect x="750" y="570" width="40" height="40" rx="5" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <text x="770" y="595" class="label-text">IC</text>
   </g>
   
-  <!-- Customer silicon die grid -->
+  <!-- Customer silicon die grid with enhanced styling -->
   <g id="customer-chips">
-    <rect x="40" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="65" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="90" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="40" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="65" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="90" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="40" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="65" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
-    <rect x="90" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="40" y="520" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="70" y="520" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="100" y="520" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="40" y="550" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="70" y="550" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="100" y="550" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="40" y="580" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="70" y="580" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
+    <rect x="100" y="580" width="25" height="25" rx="3" fill="url(#chipGradient)" filter="url(#dropShadow)"/>
   </g>
   
-  <!-- Arrows -->
+  <!-- Modern styled arrows with gradients -->
   <!-- Users to Project GDS -->
-  <line x1="100" y1="105" x2="125" y2="105" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="100" y1="175" x2="125" y2="155" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="100" y1="245" x2="125" y2="205" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="100" y1="315" x2="125" y2="255" class="border-color" marker-end="url(#arrowhead)"/>
+  <path d="M130 110 Q140 110 150 110 L175 110" stroke="url(#userGradient)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M130 190 Q140 185 150 180 L175 165" stroke="url(#userGradient)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M130 270 Q140 260 150 250 L175 225" stroke="url(#userGradient)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M130 350 Q140 340 150 330 L175 285" stroke="url(#userGradient)" stroke-width="3" fill="none" marker-end="url(#arrowhead)" opacity="0.6"/>
   
   <!-- Project GDS to Tiles -->
-  <line x1="210" y1="100" x2="265" y2="125" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="210" y1="150" x2="265" y2="175" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="210" y1="200" x2="335" y2="175" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="210" y1="250" x2="335" y2="225" class="border-color" marker-end="url(#arrowhead)"/>
+  <path d="M280 105 Q300 105 315 130 L335 155" stroke="#4a95c9" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M280 165 Q300 165 315 165 L335 165" stroke="#4a95c9" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M280 225 Q300 225 315 200 L335 175" stroke="#4a95c9" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M280 285 Q300 285 315 240 L335 218" stroke="#4a95c9" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
   
-  <!-- Tiles to Mask -->
-  <line x1="300" y1="250" x2="340" y2="285" class="border-color" marker-end="url(#arrowhead)"/>
-  <line x1="370" y1="200" x2="360" y2="275" class="border-color" marker-end="url(#arrowhead)"/>
+  <!-- Tiles converging to Mask -->
+  <path d="M375 185 Q375 220 420 250 L440 270" stroke="url(#waferGradient)" stroke-width="3" fill="none" marker-end="url(#arrowheadGreen)"/>
+  <path d="M455 185 Q455 220 450 250 L445 260" stroke="url(#waferGradient)" stroke-width="3" fill="none" marker-end="url(#arrowheadGreen)"/>
+  <path d="M535 185 Q535 220 480 250 L450 270" stroke="url(#waferGradient)" stroke-width="3" fill="none" marker-end="url(#arrowheadGreen)"/>
+  <path d="M410 218 Q420 240 435 260" stroke="url(#waferGradient)" stroke-width="3" fill="none" marker-end="url(#arrowheadGreen)"/>
   
   <!-- Mask to GlobalFoundries -->
-  <line x1="380" y1="300" x2="565" y2="245" class="border-color" marker-end="url(#arrowhead)"/>
+  <path d="M490 285 Q580 285 580 250 L650 220" stroke="url(#foundryGradient)" stroke-width="4" fill="none" marker-end="url(#arrowheadOrange)" filter="url(#glow)"/>
   
-  <!-- Mask to Wafers in GF -->
-  <line x1="600" y1="260" x2="600" y2="275" class="border-color" marker-end="url(#arrowhead)"/>
+  <!-- Manufacturing flow in GF -->
+  <path d="M750 275 Q775 275 775 315" stroke="url(#foundryGradient)" stroke-width="3" fill="none" marker-end="url(#arrowheadOrange)"/>
   
-  <!-- Wafers return curve -->
-  <path d="M570,320 Q480,320 480,370 Q480,420 360,420" stroke="#5ca7db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <!-- Wafers return with elegant curve -->
+  <path d="M670 340 Q550 400 450 400 Q400 400 410 445" stroke="url(#userGradient)" stroke-width="4" fill="none" marker-end="url(#arrowhead)" filter="url(#glow)"/>
   
   <!-- Wafers to IC chips -->
-  <line x1="330" y1="450" x2="390" y2="515" class="border-color" marker-end="url(#arrowhead)"/>
+  <path d="M455 475 Q550 500 620 520 L645 530" stroke="url(#userGradient)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
   
-  <!-- IC chips to customers -->
-  <path d="M380,540 Q250,540 250,510 Q250,480 115,480" stroke="#5ca7db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <!-- IC chips to customers with elegant curve -->
+  <path d="M645 550 Q400 650 200 650 Q100 650 100 600 L100 515" stroke="url(#chipGradient)" stroke-width="4" fill="none" marker-end="url(#arrowheadGreen)" filter="url(#glow)"/>
   
-  <!-- Step Labels -->
-  <text x="60" y="40" class="step-text">Step 1: <tspan class="highlight-blue">Project GDS</tspan> delivered</text>
-  <text x="60" y="60" class="step-text">from User → Wafer.Space</text>
-  
-  <text x="520" y="120" class="step-text">Step 2: <tspan class="highlight-magenta">Mask GDS</tspan> delivered</text>
-  <text x="520" y="140" class="step-text">Wafer.Space → GlobalFoundries</text>
-  
-  <text x="720" y="220" class="step-text">Step 3: GF does manufacturing</text>
-  <text x="720" y="240" class="step-text">Step 3.1: GF creates Mask</text>
-  <text x="720" y="260" class="step-text">Step 3.2: GF creates <tspan class="highlight-blue">Wafers</tspan></text>
-  
-  <text x="520" y="420" class="step-text">Step 3.3: <tspan class="highlight-blue">Wafers</tspan> returned from</text>
-  <text x="520" y="440" class="step-text">GlobalFoundries → Wafer.Space</text>
-  
-  <text x="480" y="580" class="step-text">Step 4: <tspan class="highlight-blue">Wafers</tspan> are cut into</text>
-  <text x="480" y="600" class="step-text"><tspan class="highlight-green">silicon die</tspan> (dicing) and sorted</text>
-  
-  <text x="60" y="580" class="step-text">Step 5: <tspan class="highlight-green">Silicon die</tspan> are</text>
-  <text x="60" y="600" class="step-text">sent to customers</text>
+  <!-- Decorative rocket element -->
+  <g id="rocket" transform="translate(1050, 650)">
+    <path d="M30,50 Q30,15 20,5 Q15,0 10,5 Q0,15 0,50 L8,65 L22,65 Z" fill="url(#userGradient)" filter="url(#dropShadow)"/>
+    <path d="M8,35 Q15,30 22,35 L20,45 L10,45 Z" fill="url(#foundryGradient)"/>
+    <circle cx="15" cy="25" r="4" fill="white"/>
+    <path d="M8,65 L12,80 L18,80 L22,65" fill="url(#foundryGradient)"/>
+    <text x="40" y="35" class="step-text" style="fill: #5ca7db;">wafer.space</text>
+    <text x="40" y="50" class="step-text" style="font-size: 11px;">Budget Silicon</text>
+    <text x="40" y="65" class="step-text" style="font-size: 11px;">Manufacturing</text>
+  </g>
   
 </svg>
