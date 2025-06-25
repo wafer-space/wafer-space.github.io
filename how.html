@@ -44,10 +44,55 @@ clients_carousel:
 
 <div class="wrapper light-wrapper">
     <div class="container inner">
-        <h2 class="section-title mb-20">How do it work?</h2>
-        <p class="lead larger">This page will describe how wafer.space gets your silicon manufactured.</p>
-        <div class="space20"></div>
-	<p>There will be more information here.</p>
+        <h2 class="section-title mb-20">How does it work?</h2>
+        <p class="lead larger">wafer.space makes silicon manufacturing accessible by pooling multiple designs onto shared wafers, dramatically reducing costs for everyone.</p>
+        <div class="space40"></div>
+        
+        <!-- Process Diagram -->
+        <div class="text-center mb-40">
+            <figure>
+                <img src="/assets/images/wafer-space-process-diagram.svg" alt="wafer.space Manufacturing Process" style="max-width: 100%; height: auto;"/>
+            </figure>
+        </div>
+        
+        <!-- Process Steps Explanation -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h3 class="mb-30">The Manufacturing Process</h3>
+                
+                <div class="process-step mb-30">
+                    <h5><span class="color-blue">Step 1:</span> Submit Your Design</h5>
+                    <p>Upload your Project GDS files to wafer.space from anywhere in the world. Our platform accepts standard GDSII format files containing your integrated circuit layout.</p>
+                </div>
+                
+                <div class="process-step mb-30">
+                    <h5><span style="color: #e91e63;">Step 2:</span> Design Consolidation</h5>
+                    <p>We tile multiple customer designs onto a single mask layout, creating a combined Mask GDS file. This shared approach is what makes the process cost-effective.</p>
+                </div>
+                
+                <div class="process-step mb-30">
+                    <h5><span class="color-orange">Step 3:</span> Manufacturing at GlobalFoundries</h5>
+                    <p>The consolidated mask is sent to GlobalFoundries' Singapore facility where they create the photolithography masks and manufacture the silicon wafers using their proven GF180MCU process.</p>
+                </div>
+                
+                <div class="process-step mb-30">
+                    <h5><span class="color-blue">Step 4:</span> Wafer Processing</h5>
+                    <p>Completed wafers return to wafer.space where they are diced (cut) into individual silicon die and sorted by design. Each customer receives their specific chips.</p>
+                </div>
+                
+                <div class="process-step mb-30">
+                    <h5><span class="color-green">Step 5:</span> Delivery</h5>
+                    <p>Your finished silicon die are packaged and shipped directly to you. You receive 500-1,000 raw, unpackaged die ready for your application or further packaging.</p>
+                </div>
+                
+                <div class="space30"></div>
+                <div class="bg-opacity-default p-30 rounded">
+                    <h5 class="mb-20">Why This Works</h5>
+                    <p class="mb-15">Traditional silicon manufacturing requires expensive mask sets that can cost tens of thousands of dollars. By sharing mask costs across multiple designs, wafer.space reduces individual project costs by up to 60%.</p>
+                    <p class="mb-0">The process typically takes 4-6 weeks from mask submission to receiving your finished silicon, with yield rates of 85-95% depending on design complexity.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

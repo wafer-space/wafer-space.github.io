@@ -1,0 +1,222 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .primary-color { fill: #5ca7db; }
+      .secondary-color { fill: #4a95c9; }
+      .accent-color { fill: #6db235; }
+      .warning-color { fill: #f7941e; }
+      .text-color { fill: #2c3e50; }
+      .light-bg { fill: #f8f9fa; }
+      .wafer-bg { fill: #fef7e6; }
+      .foundry-bg { fill: #f0e6d2; }
+      .border-color { stroke: #5ca7db; stroke-width: 2; fill: none; }
+      .arrow { fill: #5ca7db; }
+      .text-sm { font-family: 'Arial', sans-serif; font-size: 11px; fill: #2c3e50; }
+      .text-md { font-family: 'Arial', sans-serif; font-size: 13px; fill: #2c3e50; font-weight: bold; }
+      .text-lg { font-family: 'Arial', sans-serif; font-size: 16px; fill: #2c3e50; font-weight: bold; }
+      .text-xl { font-family: 'Arial', sans-serif; font-size: 18px; fill: #2c3e50; font-weight: bold; }
+      .step-text { font-family: 'Arial', sans-serif; font-size: 14px; fill: #2c3e50; font-weight: bold; }
+      .highlight-blue { fill: #5ca7db; font-weight: bold; }
+      .highlight-magenta { fill: #e91e63; font-weight: bold; }
+      .highlight-green { fill: #6db235; font-weight: bold; }
+    </style>
+    
+    <!-- Arrow marker definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="arrow" />
+      </marker>
+    </defs>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" class="light-bg"/>
+  
+  <!-- Users Section (Left) -->
+  <g id="users">
+    <!-- User 1 -->
+    <rect x="20" y="80" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
+    <text x="60" y="100" text-anchor="middle" class="text-sm" fill="white">User 1</text>
+    <text x="60" y="115" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    
+    <!-- User 2 -->
+    <rect x="20" y="150" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
+    <text x="60" y="170" text-anchor="middle" class="text-sm" fill="white">User 2</text>
+    <text x="60" y="185" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    
+    <!-- User 3 -->
+    <rect x="20" y="220" width="80" height="50" rx="25" class="primary-color" stroke="#4a95c9" stroke-width="2"/>
+    <text x="60" y="240" text-anchor="middle" class="text-sm" fill="white">User 3</text>
+    <text x="60" y="255" text-anchor="middle" class="text-sm" fill="white" style="font-style: italic;">(Anywhere)</text>
+    
+    <!-- User X (dashed) -->
+    <rect x="20" y="290" width="80" height="50" rx="25" fill="none" stroke="#5ca7db" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="60" y="310" text-anchor="middle" class="text-sm">User X</text>
+    <text x="60" y="325" text-anchor="middle" class="text-sm" style="font-style: italic;">(Anywhere)</text>
+  </g>
+  
+  <!-- Project GDS Files -->
+  <g id="project-gds">
+    <rect x="130" y="80" width="80" height="40" rx="5" class="secondary-color"/>
+    <text x="170" y="95" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
+    <text x="170" y="110" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="130" y="130" width="80" height="40" rx="5" class="secondary-color"/>
+    <text x="170" y="145" text-anchor="middle" class="text-sm" fill="white">Project P2</text>
+    <text x="170" y="160" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="130" y="180" width="80" height="40" rx="5" class="secondary-color"/>
+    <text x="170" y="195" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
+    <text x="170" y="210" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="130" y="230" width="80" height="40" rx="5" class="secondary-color"/>
+    <text x="170" y="245" text-anchor="middle" class="text-sm" fill="white">Project P1</text>
+    <text x="170" y="260" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="130" y="280" width="80" height="40" rx="5" fill="none" stroke="#4a95c9" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="170" y="295" text-anchor="middle" class="text-sm">Project Pn</text>
+    <text x="170" y="310" text-anchor="middle" class="text-sm">GDS</text>
+  </g>
+  
+  <!-- Wafer.Space Company Area -->
+  <rect x="250" y="50" width="200" height="320" rx="15" class="wafer-bg" stroke="#5ca7db" stroke-width="3"/>
+  <text x="350" y="75" text-anchor="middle" class="text-lg">Wafer.Space</text>
+  <text x="350" y="95" text-anchor="middle" class="text-md" style="font-style: italic;">Singapore Private Company</text>
+  
+  <!-- Tiles inside Wafer.Space -->
+  <g id="tiles">
+    <rect x="270" y="110" width="60" height="40" rx="5" class="accent-color"/>
+    <text x="300" y="125" text-anchor="middle" class="text-sm" fill="white">Tile 1</text>
+    <text x="300" y="140" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="340" y="110" width="60" height="40" rx="5" class="accent-color"/>
+    <text x="370" y="125" text-anchor="middle" class="text-sm" fill="white">Tile 2</text>
+    <text x="370" y="140" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="270" y="160" width="60" height="40" rx="5" class="accent-color"/>
+    <text x="300" y="175" text-anchor="middle" class="text-sm" fill="white">Tile 3</text>
+    <text x="300" y="190" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="340" y="160" width="60" height="40" rx="5" class="accent-color"/>
+    <text x="370" y="175" text-anchor="middle" class="text-sm" fill="white">Tile 4</text>
+    <text x="370" y="190" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+    
+    <rect x="305" y="210" width="60" height="40" rx="5" fill="none" stroke="#6db235" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="335" y="225" text-anchor="middle" class="text-sm">Tile n</text>
+    <text x="335" y="240" text-anchor="middle" class="text-sm">GDS</text>
+  </g>
+  
+  <!-- Mask GDS -->
+  <rect x="320" y="280" width="60" height="40" rx="5" class="warning-color"/>
+  <text x="350" y="295" text-anchor="middle" class="text-sm" fill="white">Mask</text>
+  <text x="350" y="310" text-anchor="middle" class="text-sm" fill="white">GDS</text>
+  
+  <!-- GlobalFoundries Area -->
+  <rect x="500" y="150" width="200" height="250" rx="15" class="foundry-bg" stroke="#f7941e" stroke-width="3"/>
+  <text x="600" y="175" text-anchor="middle" class="text-lg">GlobalFoundries</text>
+  <text x="600" y="195" text-anchor="middle" class="text-md" style="font-style: italic;">US Public Company</text>
+  <text x="600" y="210" text-anchor="middle" class="text-md" style="font-style: italic;">Foundry in Singapore</text>
+  
+  <!-- Mask inside GF -->
+  <rect x="570" y="230" width="60" height="30" rx="5" class="secondary-color"/>
+  <text x="600" y="250" text-anchor="middle" class="text-sm" fill="white">Mask</text>
+  
+  <!-- Wafers stack -->
+  <g id="wafers-gf">
+    <rect x="570" y="280" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="600" y="293" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+    <rect x="570" y="305" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="600" y="318" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+    <rect x="570" y="330" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="600" y="343" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+  </g>
+  
+  <!-- Wafers return stack -->
+  <g id="wafers-return">
+    <rect x="300" y="380" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="330" y="393" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+    <rect x="300" y="405" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="330" y="418" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+    <rect x="300" y="430" width="60" height="20" rx="3" class="primary-color"/>
+    <text x="330" y="443" text-anchor="middle" class="text-sm" fill="white">Wafers</text>
+  </g>
+  
+  <!-- IC chips -->
+  <g id="ic-chips">
+    <rect x="380" y="520" width="30" height="30" rx="2" fill="#2c3e50"/>
+    <text x="395" y="540" text-anchor="middle" class="text-sm" fill="white">IC</text>
+    
+    <rect x="420" y="520" width="30" height="30" rx="2" fill="#2c3e50"/>
+    <text x="435" y="540" text-anchor="middle" class="text-sm" fill="white">IC</text>
+    
+    <rect x="380" y="560" width="30" height="30" rx="2" fill="#2c3e50"/>
+    <text x="395" y="580" text-anchor="middle" class="text-sm" fill="white">IC</text>
+  </g>
+  
+  <!-- Customer silicon die grid -->
+  <g id="customer-chips">
+    <rect x="40" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="65" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="90" y="480" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="40" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="65" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="90" y="505" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="40" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="65" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
+    <rect x="90" y="530" width="20" height="20" rx="1" fill="#2c3e50"/>
+  </g>
+  
+  <!-- Arrows -->
+  <!-- Users to Project GDS -->
+  <line x1="100" y1="105" x2="125" y2="105" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="100" y1="175" x2="125" y2="155" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="100" y1="245" x2="125" y2="205" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="100" y1="315" x2="125" y2="255" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Project GDS to Tiles -->
+  <line x1="210" y1="100" x2="265" y2="125" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="210" y1="150" x2="265" y2="175" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="210" y1="200" x2="335" y2="175" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="210" y1="250" x2="335" y2="225" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Tiles to Mask -->
+  <line x1="300" y1="250" x2="340" y2="285" class="border-color" marker-end="url(#arrowhead)"/>
+  <line x1="370" y1="200" x2="360" y2="275" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Mask to GlobalFoundries -->
+  <line x1="380" y1="300" x2="565" y2="245" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Mask to Wafers in GF -->
+  <line x1="600" y1="260" x2="600" y2="275" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- Wafers return curve -->
+  <path d="M570,320 Q480,320 480,370 Q480,420 360,420" stroke="#5ca7db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Wafers to IC chips -->
+  <line x1="330" y1="450" x2="390" y2="515" class="border-color" marker-end="url(#arrowhead)"/>
+  
+  <!-- IC chips to customers -->
+  <path d="M380,540 Q250,540 250,510 Q250,480 115,480" stroke="#5ca7db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step Labels -->
+  <text x="60" y="40" class="step-text">Step 1: <tspan class="highlight-blue">Project GDS</tspan> delivered</text>
+  <text x="60" y="60" class="step-text">from User → Wafer.Space</text>
+  
+  <text x="520" y="120" class="step-text">Step 2: <tspan class="highlight-magenta">Mask GDS</tspan> delivered</text>
+  <text x="520" y="140" class="step-text">Wafer.Space → GlobalFoundries</text>
+  
+  <text x="720" y="220" class="step-text">Step 3: GF does manufacturing</text>
+  <text x="720" y="240" class="step-text">Step 3.1: GF creates Mask</text>
+  <text x="720" y="260" class="step-text">Step 3.2: GF creates <tspan class="highlight-blue">Wafers</tspan></text>
+  
+  <text x="520" y="420" class="step-text">Step 3.3: <tspan class="highlight-blue">Wafers</tspan> returned from</text>
+  <text x="520" y="440" class="step-text">GlobalFoundries → Wafer.Space</text>
+  
+  <text x="480" y="580" class="step-text">Step 4: <tspan class="highlight-blue">Wafers</tspan> are cut into</text>
+  <text x="480" y="600" class="step-text"><tspan class="highlight-green">silicon die</tspan> (dicing) and sorted</text>
+  
+  <text x="60" y="580" class="step-text">Step 5: <tspan class="highlight-green">Silicon die</tspan> are</text>
+  <text x="60" y="600" class="step-text">sent to customers</text>
+  
+</svg>
