@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PR Previews - Wafer Space</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+      margin: 40px; 
+      background-color: #f6f8fa;
+    }
+    .container { 
+      max-width: 800px; 
+      margin: 0 auto; 
+      background: white; 
+      padding: 40px; 
+      border-radius: 12px; 
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    h1 { 
+      color: #24292e; 
+      text-align: center; 
+      margin-bottom: 10px;
+    }
+    .subtitle { 
+      text-align: center; 
+      color: #586069; 
+      margin-bottom: 30px;
+    }
+    .main-site-link { 
+      background: #28a745; 
+      color: white; 
+      padding: 12px 24px; 
+      border-radius: 6px; 
+      text-decoration: none; 
+      display: inline-block; 
+      margin: 20px 0; 
+      font-weight: 600;
+    }
+    .main-site-link:hover { 
+      background: #218838; 
+      color: white; 
+    }
+    .preview-list { 
+      list-style: none; 
+      padding: 0; 
+      margin-top: 30px;
+    }
+    .preview-list li { 
+      margin: 15px 0; 
+      padding: 20px; 
+      background: #f6f8fa; 
+      border-radius: 8px; 
+      border: 1px solid #e1e4e8;
+      transition: all 0.2s ease;
+    }
+    .preview-list li:hover {
+      background: #e6ebf1;
+      border-color: #c8e1ff;
+    }
+    .preview-list a { 
+      color: #0366d6; 
+      text-decoration: none; 
+      font-weight: 600; 
+      font-size: 16px;
+    }
+    .preview-list a:hover { 
+      text-decoration: underline; 
+    }
+    .preview-url { 
+      color: #586069; 
+      font-size: 14px; 
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      margin-top: 5px;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #586069;
+    }
+    .header-actions {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-actions">
+      <h1>🚀 Wafer Space PR Previews</h1>
+      <p class="subtitle">Active preview deployments for pull requests</p>
+      <a href="https://wafer.space" class="main-site-link">← Back to wafer.space</a>
+    </div>
+    
+    <ul class="preview-list">
+      <!-- PREVIEW_ITEMS_PLACEHOLDER -->
+    </ul>
+    
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <p>No active PR previews at the moment.</p>
+      <p>Open a pull request to the main branch to create a preview!</p>
+    </div>
+  </div>
+</body>
+</html>

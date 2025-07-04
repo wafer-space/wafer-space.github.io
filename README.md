@@ -90,6 +90,10 @@ git commit -m "Update theme to latest version"
 
 The site is automatically deployed via GitHub Pages when changes are pushed to the main branch.
 
+### Pull Request Previews
+
+Pull requests to the `main` branch automatically get **live preview deployments** at custom URLs! Each PR gets its own preview URL like `https://preview.wafer.space/pr-123/` that updates with every commit. See [.github/workflows/pr-preview.md](.github/workflows/pr-preview.md) for details.
+
 ### GitHub Actions Setup
 
 Since the theme is stored as a private git submodule, GitHub Actions requires SSH deploy key configuration to access it during builds.
