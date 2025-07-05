@@ -137,25 +137,60 @@ jobs:
           echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
           git push origin main
           
-      - name: Wait for Pages deployment
+      - name: Wait for Pages deployment and verify accessibility
+        id: verify-deployment
         run: |
-          # Poll for Pages deployment completion
+          # Poll for Pages deployment completion with comprehensive verification
           echo "Waiting for GitHub Pages deployment to complete..."
           PREVIEW_URL="https://preview.wafer.space/pr-${{ github.event.pull_request.number }}/"
           
-          for i in {1..12}; do
+          # First wait for basic HTTP response (shorter attempts, more frequent)
+          echo "Phase 1: Waiting for HTTP response..."
+          for i in {1..18}; do
             sleep 10
-            echo "Attempt $i/12: Checking deployment at $PREVIEW_URL..."
+            echo "Attempt $i/18: Checking basic HTTP response at $PREVIEW_URL..."
             
             if curl -s --fail --head "$PREVIEW_URL" >/dev/null 2>&1; then
-              echo "Deployment successful! Preview is live at: $PREVIEW_URL"
-              exit 0
+              echo "Basic HTTP response received. Moving to content verification..."
+              break
+            fi
+            
+            if [ $i -eq 18 ]; then
+              echo "ERROR: No HTTP response after 3 minutes."
+              echo "deployment_status=failed" >> $GITHUB_OUTPUT
+              echo "error_message=Pages deployment failed - no HTTP response" >> $GITHUB_OUTPUT
+              exit 1
             fi
           done
           
-          echo "WARNING: Could not verify deployment after 2 minutes."
-          echo "The deployment may still be propagating. Manual verification recommended."
-          echo "Check: $PREVIEW_URL"
+          # Second phase: Verify actual content is served correctly
+          echo "Phase 2: Verifying content delivery..."
+          for i in {1..12}; do
+            sleep 5
+            echo "Content verification attempt $i/12..."
+            
+            # Check that the page returns expected content (not error pages)
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PREVIEW_URL")
+            CONTENT_CHECK=$(curl -s "$PREVIEW_URL" | grep -q "wafer.space" && echo "found" || echo "missing")
+            
+            if [ "$HTTP_STATUS" = "200" ] && [ "$CONTENT_CHECK" = "found" ]; then
+              echo "✅ Deployment verification successful!"
+              echo "Preview is fully accessible at: $PREVIEW_URL"
+              echo "HTTP Status: $HTTP_STATUS"
+              echo "Content verification: passed"
+              echo "deployment_status=success" >> $GITHUB_OUTPUT
+              echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+              exit 0
+            else
+              echo "Content check failed - HTTP: $HTTP_STATUS, Content: $CONTENT_CHECK"
+            fi
+          done
+          
+          echo "⚠️  WARNING: Deployment may not be fully ready after 4 minutes total."
+          echo "HTTP response received but content verification incomplete."
+          echo "deployment_status=partial" >> $GITHUB_OUTPUT
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "error_message=Content verification incomplete after 4 minutes" >> $GITHUB_OUTPUT
         
       - name: Update deployment status
         if: always()
@@ -163,17 +198,121 @@ jobs:
         env:
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
           JOB_STATUS: ${{ job.status }}
+          VERIFICATION_STATUS: ${{ steps.verify-deployment.outputs.deployment_status }}
         with:
           script: |
             const updateDeploymentStatus = require('./.github/scripts/update-deployment-status.js');
             await updateDeploymentStatus(github, context, core);
             
       - name: Comment PR with preview URL
+        if: steps.verify-deployment.outputs.deployment_status == 'success'
         uses: actions/github-script@v7
         with:
           script: |
             const commentPrPreview = require('./.github/scripts/comment-pr-preview.js');
             await commentPrPreview(github, context, core);
+            
+      - name: Comment PR with deployment warning
+        if: steps.verify-deployment.outputs.deployment_status == 'partial'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = '${{ steps.verify-deployment.outputs.preview_url }}';
+            const errorMessage = '${{ steps.verify-deployment.outputs.error_message }}';
+            
+            const warningBody = `## ⚠️ Preview Deployment Partially Ready
+            
+            | Status | Preview URL | Issue |
+            |--------|-------------|-------|
+            | 🟡 Partial | [View Preview](${previewUrl}) | ${errorMessage} |
+            
+            The preview has been deployed but content verification is incomplete. The site may still be propagating or there may be loading issues.
+            
+            **Manual verification recommended:** ${previewUrl}
+            
+            ---
+            <sub>⚡ Deployed to custom domain • Preview will be removed when PR is closed</sub>`;
+            
+            // Find existing comment and update or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              (comment.body.includes('Preview Deployment Ready!') || comment.body.includes('Preview Deployment Partially Ready'))
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: warningBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: warningBody
+              });
+            }
+            
+      - name: Comment PR with deployment failure
+        if: steps.verify-deployment.outputs.deployment_status == 'failed'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const errorMessage = '${{ steps.verify-deployment.outputs.error_message }}';
+            
+            const failureBody = `## ❌ Preview Deployment Failed
+            
+            | Status | Error |
+            |--------|-------|
+            | 🔴 Failed | ${errorMessage} |
+            
+            The preview deployment failed to complete successfully. This may be due to:
+            - GitHub Pages service issues
+            - DNS propagation delays  
+            - Build or deployment errors
+            
+            Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
+            
+            ---
+            <sub>⚡ Deployment failed • Check workflow logs for troubleshooting</sub>`;
+            
+            // Find existing comment and update or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              (comment.body.includes('Preview Deployment') || comment.body.includes('deployment'))
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: failureBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: failureBody
+              });
+            }
 
   cleanup-preview:
     if: github.event.action == 'closed'

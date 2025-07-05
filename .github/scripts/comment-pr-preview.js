@@ -61,7 +61,9 @@ module.exports = async function commentPrPreview(github, context, core) {
 
   const botComment = comments.find(comment => 
     comment.user.type === 'Bot' && 
-    comment.body.includes('Preview Deployment Ready!')
+    (comment.body.includes('Preview Deployment Ready!') || 
+     comment.body.includes('Preview Deployment Partially Ready') ||
+     comment.body.includes('Preview Deployment Failed'))
   );
 
   if (botComment) {
