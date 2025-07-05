@@ -137,8 +137,6 @@ jobs:
 </html>
 REDIRECT_EOF
             echo "Created redirect from ${{ steps.pr-directory.outputs.slugified_name }} to ${{ steps.pr-directory.outputs.directory_name }}"
-            # Store redirect info for tracking
-            echo "${{ steps.pr-directory.outputs.slugified_name }}" >> .pr-${{ github.event.pull_request.number }}-redirects.txt
           fi
           
       - name: Ensure CNAME file exists
@@ -387,19 +385,8 @@ REDIRECT_EOF
           # Remove main PR directory
           rm -rf pr-${{ github.event.pull_request.number }}
           
-          # Remove redirect tracking file and associated directories
-          if [ -f ".pr-${{ github.event.pull_request.number }}-redirects.txt" ]; then
-            while IFS= read -r redirect_dir; do
-              if [ -d "$redirect_dir" ]; then
-                rm -rf "$redirect_dir"
-                echo "Removed redirect directory: $redirect_dir"
-              fi
-            done < ".pr-${{ github.event.pull_request.number }}-redirects.txt"
-            rm -f ".pr-${{ github.event.pull_request.number }}-redirects.txt"
-          fi
-          
-          # Fallback: remove any remaining slugified directories for this PR
-          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} + 2>/dev/null || true
+          # Remove all redirect directories for this PR (pr-123-*)
+          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} +
           
           echo "Cleaned up pr-${{ github.event.pull_request.number }} and all associated redirect directories"
           
