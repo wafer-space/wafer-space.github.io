@@ -1,0 +1,370 @@
+# PR Preview Deployment using GitHub Pages with Custom Domain
+# This workflow builds the Jekyll site and deploys it to GitHub Pages for pull request previews
+name: PR Preview Deployment
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  deployments: write
+  pages: write
+  id-token: write
+
+# Prevent concurrent deployments to avoid gh-pages conflicts
+concurrency:
+  group: pr-preview-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          submodules: false
+          
+      - name: Create deployment
+        id: deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const createDeployment = require('./.github/scripts/create-deployment.js');
+            await createDeployment(github, context, core);
+      
+      - name: Initialize submodules with SSH
+        run: |
+          # Setup SSH agent and add key for this step only
+          eval $(ssh-agent -s)
+          echo "${{ secrets.JEKYLL_THEME_KEY }}" | ssh-add -
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          
+          # Initialize submodules using SSH
+          git submodule sync --recursive
+          git submodule update --init --recursive
+          
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4
+        with:
+          ruby-version: '3.1' # Match main workflow - will use .ruby-version if present
+          bundler-cache: true
+          cache-version: 0
+          
+      - name: Generate PR directory name and slugified redirect
+        id: pr-directory
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const generatePrDirectoryName = require('./.github/scripts/generate-pr-directory-name.js');
+            const prNumber = context.payload.pull_request.number;
+            const prTitle = context.payload.pull_request.title;
+            
+            // Main directory uses just PR number for simplicity
+            const directoryName = `pr-${prNumber}`;
+            // Slugified version for user-friendly redirect
+            const slugifiedName = generatePrDirectoryName(prNumber, prTitle);
+            
+            console.log(`Main directory: ${directoryName}`);
+            console.log(`Slugified redirect: ${slugifiedName}`);
+            
+            // Set outputs
+            core.setOutput('directory_name', directoryName);
+            core.setOutput('slugified_name', slugifiedName);
+            core.setOutput('baseurl_path', `/${directoryName}`);
+            
+            return directoryName;
+            
+      - name: Build Jekyll site
+        run: |
+          # Build site with PR-specific baseurl
+          bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}"
+        env:
+          JEKYLL_ENV: production
+          
+      - name: Save built site and templates
+        run: |
+          # Copy built site and workflow files to temp location before switching branches
+          cp -r _site /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}
+          cp -r .github /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}
+          
+      - name: Setup SSH and clone preview repository
+        run: |
+          # Setup SSH for deploying to dedicated preview repository (memory-only)
+          eval $(ssh-agent -s)
+          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          
+          # Clone using SSH with ssh-agent authentication
+          git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
+          
+          cd preview-repo
+          # Configure git for commits
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+      - name: Create PR directory and user-friendly redirect
+        run: |
+          cd preview-repo
+          # Create main directory for this PR (pr-123)
+          mkdir -p ${{ steps.pr-directory.outputs.directory_name }}
+          # Copy the built site from temp location to the preview directory
+          cp -r /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}/* ${{ steps.pr-directory.outputs.directory_name }}/
+          
+          # Create redirect page for slugified URL if different from main directory
+          if [ "${{ steps.pr-directory.outputs.slugified_name }}" != "${{ steps.pr-directory.outputs.directory_name }}" ]; then
+            mkdir -p ${{ steps.pr-directory.outputs.slugified_name }}
+            # Copy redirect template and replace placeholders
+            cp /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/redirect-template.html ${{ steps.pr-directory.outputs.slugified_name }}/index.html
+            sed -i "s|{{TARGET_URL}}|/${{ steps.pr-directory.outputs.directory_name }}|g" ${{ steps.pr-directory.outputs.slugified_name }}/index.html
+            echo "Created user-friendly redirect from ${{ steps.pr-directory.outputs.slugified_name }} to ${{ steps.pr-directory.outputs.directory_name }}"
+          fi
+          
+      - name: Ensure CNAME file exists
+        run: |
+          cd preview-repo
+          # Ensure CNAME file exists (should already be configured in preview repo)
+          if [ ! -f CNAME ]; then
+            echo "preview.wafer.space" > CNAME
+          fi
+          
+      - name: Create index page for preview listing
+        run: |
+          cd preview-repo
+          # Copy script and template from temp location, then generate preview index
+          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ]; then
+            echo "ERROR: Preview generation script not found in temp location"
+            exit 1
+          fi
+          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" ]; then
+            echo "ERROR: Preview template not found in temp location"
+            exit 1
+          fi
+          
+          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ./
+          mkdir -p .github/templates
+          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" .github/templates/
+          chmod +x generate-preview-index.sh
+          ./generate-preview-index.sh
+          
+      - name: Deploy to preview repository
+        run: |
+          cd preview-repo
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit for preview deployment"
+            exit 1
+          else
+            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }} (${{ steps.pr-directory.outputs.directory_name }}) - ${{ github.event.pull_request.head.sha }}"
+          fi
+          
+          # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
+          eval $(ssh-agent -s)
+          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+          git push origin main
+          
+      - name: Wait for Pages deployment and verify accessibility
+        id: verify-deployment
+        run: |
+          # Poll for Pages deployment completion with comprehensive verification
+          echo "Waiting for GitHub Pages deployment to complete..."
+          PREVIEW_URL="https://preview.wafer.space/pr-${{ github.event.pull_request.number }}/"
+          
+          # First wait for basic HTTP response (shorter attempts, more frequent)
+          echo "Phase 1: Waiting for HTTP response..."
+          for i in {1..18}; do
+            sleep 10
+            echo "Attempt $i/18: Checking basic HTTP response at $PREVIEW_URL..."
+            
+            if curl -s --fail --head "$PREVIEW_URL"; then
+              echo "Basic HTTP response received. Moving to content verification..."
+              break
+            fi
+            
+            if [ $i -eq 18 ]; then
+              echo "ERROR: No HTTP response after 3 minutes."
+              echo "deployment_status=failed" >> $GITHUB_OUTPUT
+              echo "error_message=Pages deployment failed - no HTTP response" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          done
+          
+          # Second phase: Verify actual content is served correctly
+          echo "Phase 2: Verifying content delivery..."
+          for i in {1..12}; do
+            sleep 5
+            echo "Content verification attempt $i/12..."
+            
+            # Check that the page returns expected content (not error pages)
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PREVIEW_URL")
+            CONTENT_CHECK=$(curl -s "$PREVIEW_URL" | grep -q "wafer.space" && echo "found" || echo "missing")
+            
+            if [ "$HTTP_STATUS" = "200" ] && [ "$CONTENT_CHECK" = "found" ]; then
+              echo "✅ Deployment verification successful!"
+              echo "Preview is fully accessible at: $PREVIEW_URL"
+              echo "HTTP Status: $HTTP_STATUS"
+              echo "Content verification: passed"
+              echo "deployment_status=success" >> $GITHUB_OUTPUT
+              echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+              exit 0
+            else
+              echo "Content check failed - HTTP: $HTTP_STATUS, Content: $CONTENT_CHECK"
+            fi
+          done
+          
+          echo "⚠️  WARNING: Deployment may not be fully ready after 4 minutes total."
+          echo "HTTP response received but content verification incomplete."
+          echo "deployment_status=partial" >> $GITHUB_OUTPUT
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "error_message=Content verification incomplete after 4 minutes" >> $GITHUB_OUTPUT
+        
+      - name: Update deployment status
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
+          JOB_STATUS: ${{ job.status }}
+          VERIFICATION_STATUS: ${{ steps.verify-deployment.outputs.deployment_status }}
+        with:
+          script: |
+            const updateDeploymentStatus = require('./.github/scripts/update-deployment-status.js');
+            await updateDeploymentStatus(github, context, core);
+            
+      - name: Comment PR with preview URL
+        if: steps.verify-deployment.outputs.deployment_status == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentPrPreview = require('./.github/scripts/comment-pr-preview.js');
+            await commentPrPreview(github, context, core);
+            
+      - name: Comment PR with deployment warning
+        if: steps.verify-deployment.outputs.deployment_status == 'partial'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = '${{ steps.verify-deployment.outputs.preview_url }}';
+            const errorMessage = '${{ steps.verify-deployment.outputs.error_message }}';
+            
+            const warningBody = `## ⚠️ Preview Deployment Partially Ready
+            
+            | Status | Preview URL | Issue |
+            |--------|-------------|-------|
+            | 🟡 Partial | [View Preview](${previewUrl}) | ${errorMessage} |
+            
+            The preview has been deployed but content verification is incomplete. The site may still be propagating or there may be loading issues.
+            
+            **Manual verification recommended:** ${previewUrl}
+            
+            ---
+            <sub>⚡ Deployed to custom domain • Preview will be removed when PR is closed</sub>`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: warningBody
+            });
+            
+      - name: Comment PR with deployment failure
+        if: steps.verify-deployment.outputs.deployment_status == 'failed'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const errorMessage = '${{ steps.verify-deployment.outputs.error_message }}';
+            
+            const failureBody = `## ❌ Preview Deployment Failed
+            
+            | Status | Error |
+            |--------|-------|
+            | 🔴 Failed | ${errorMessage} |
+            
+            The preview deployment failed to complete successfully. This may be due to:
+            - GitHub Pages service issues
+            - DNS propagation delays  
+            - Build or deployment errors
+            
+            Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
+            
+            ---
+            <sub>⚡ Deployment failed • Check workflow logs for troubleshooting</sub>`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: failureBody
+            });
+
+  cleanup-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo for scripts
+        uses: actions/checkout@v4
+        
+      - name: Setup SSH and cleanup preview repository
+        run: |
+          # Setup SSH for deploying to dedicated preview repository (memory-only)
+          eval $(ssh-agent -s)
+          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          
+          # Clone using SSH with ssh-agent authentication
+          git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
+          cd preview-repo
+          
+          # Configure git for commits
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Remove main PR directory
+          rm -rf pr-${{ github.event.pull_request.number }}
+          
+          # Remove all user-friendly redirect directories for this PR (pr-123-*)
+          # Note: This may not find any directories if none exist, which is expected
+          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} + || echo "No redirect directories found for PR #${{ github.event.pull_request.number }} (this is normal)"
+          
+          echo "Cleaned up preview and redirects for PR #${{ github.event.pull_request.number }}"
+          
+          # Copy script and template, then regenerate index
+          cp ${{ github.workspace }}/.github/scripts/generate-preview-index.sh ./
+          mkdir -p .github/templates
+          cp ${{ github.workspace }}/.github/templates/preview-index.html .github/templates/
+          chmod +x generate-preview-index.sh
+          ./generate-preview-index.sh
+          
+          # Commit and push cleanup
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "Remove preview for closed PR #${{ github.event.pull_request.number }}"
+            
+            # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
+            eval $(ssh-agent -s)
+            echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+            git push origin main
+          fi
+          
+      - name: Mark deployment as inactive
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const cleanupDeployments = require('./.github/scripts/cleanup-deployments.js');
+            await cleanupDeployments(github, context, core);
+            
+      - name: Comment PR about cleanup
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentPrCleanup = require('./.github/scripts/comment-pr-cleanup.js');
+            await commentPrCleanup(github, context, core);
