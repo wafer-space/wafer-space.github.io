@@ -176,6 +176,8 @@ jobs:
           # Poll for Pages deployment completion with comprehensive verification
           echo "Waiting for GitHub Pages deployment to complete..."
           PREVIEW_URL="https://preview.wafer.space/pr-${{ github.event.pull_request.number }}/"
+          EXPECTED_COMMIT="${{ github.event.pull_request.head.sha }}"
+          echo "Expected commit hash: $EXPECTED_COMMIT"
           
           # First wait for basic HTTP response (shorter attempts, more frequent)
           echo "Phase 1: Waiting for HTTP response..."
@@ -196,34 +198,54 @@ jobs:
             fi
           done
           
-          # Second phase: Verify actual content is served correctly
-          echo "Phase 2: Verifying content delivery..."
-          for i in {1..12}; do
+          # Second phase: Verify actual content is served correctly and check git hash
+          echo "Phase 2: Verifying content delivery and git commit hash..."
+          for i in {1..24}; do
             sleep 5
-            echo "Content verification attempt $i/12..."
+            echo "Content verification attempt $i/24..."
             
-            # Check that the page returns expected content (not error pages)
-            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PREVIEW_URL")
-            CONTENT_CHECK=$(curl -s "$PREVIEW_URL" | grep -q "wafer.space" && echo "found" || echo "missing")
+            # Fetch the page content once and reuse it for all checks
+            CURL_RESPONSE=$(curl -s -D - "$PREVIEW_URL")
+            HTTP_STATUS=$(echo "$CURL_RESPONSE" | head -n 1 | awk '{print $2}')
+            PAGE_CONTENT=$(echo "$CURL_RESPONSE" | sed '1,/^$/d')
+            CONTENT_CHECK=$(echo "$PAGE_CONTENT" | grep -q "wafer.space" && echo "found" || echo "missing")
+            
+            # Check for git commit hash in HTML comment and meta tag
+            COMMIT_COMMENT=$(echo "$PAGE_CONTENT" | grep -E '<!-- Generated from git commit: [a-f0-9]{40}' | sed -E 's/.*<!-- Generated from git commit: ([a-f0-9]{40}).*/\1/' || echo "")
+            COMMIT_META=$(echo "$PAGE_CONTENT" | grep -E '<meta name="git-commit" content="[a-f0-9]{40}"' | sed -E 's/.*<meta name="git-commit" content="([a-f0-9]{40})".*/\1/' || echo "")
+            
+            echo "HTTP Status: $HTTP_STATUS"
+            echo "Content check: $CONTENT_CHECK"
+            echo "Commit in comment: ${COMMIT_COMMENT:-not found}"
+            echo "Commit in meta tag: ${COMMIT_META:-not found}"
             
             if [ "$HTTP_STATUS" = "200" ] && [ "$CONTENT_CHECK" = "found" ]; then
-              echo "✅ Deployment verification successful!"
-              echo "Preview is fully accessible at: $PREVIEW_URL"
-              echo "HTTP Status: $HTTP_STATUS"
-              echo "Content verification: passed"
-              echo "deployment_status=success" >> $GITHUB_OUTPUT
-              echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
-              exit 0
+              # Check if git commit hash matches
+              if [ "$COMMIT_COMMENT" = "$EXPECTED_COMMIT" ] || [ "$COMMIT_META" = "$EXPECTED_COMMIT" ]; then
+                echo "✅ Deployment verification successful!"
+                echo "Preview is fully accessible at: $PREVIEW_URL"
+                echo "HTTP Status: $HTTP_STATUS"
+                echo "Content verification: passed"
+                echo "Git commit hash verification: passed"
+                echo "deployment_status=success" >> $GITHUB_OUTPUT
+                echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+                exit 0
+              else
+                echo "Git commit hash mismatch - deployment may be outdated"
+                echo "Expected: $EXPECTED_COMMIT"
+                echo "Found in comment: ${COMMIT_COMMENT:-none}"
+                echo "Found in meta: ${COMMIT_META:-none}"
+              fi
             else
               echo "Content check failed - HTTP: $HTTP_STATUS, Content: $CONTENT_CHECK"
             fi
           done
           
-          echo "⚠️  WARNING: Deployment may not be fully ready after 4 minutes total."
-          echo "HTTP response received but content verification incomplete."
+          echo "⚠️  WARNING: Deployment verification failed after 2 minutes total."
+          echo "The expected git commit hash was not found in the deployed site."
           echo "deployment_status=partial" >> $GITHUB_OUTPUT
           echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
-          echo "error_message=Content verification incomplete after 4 minutes" >> $GITHUB_OUTPUT
+          echo "error_message=Git commit hash verification failed - deployment may be outdated" >> $GITHUB_OUTPUT
         
       - name: Update deployment status
         if: always()
