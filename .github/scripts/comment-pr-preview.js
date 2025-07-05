@@ -17,7 +17,9 @@ module.exports = async function commentPrPreview(github, context, core) {
     throw new Error('Invalid commit SHA format');
   }
   
-  const previewUrl = `https://preview.wafer.space/pr-${prNumber}/`;
+  // Get the PR directory name from the environment (set by workflow)
+  const prDirectoryName = process.env.PR_DIRECTORY_NAME || `pr-${prNumber}`;
+  const previewUrl = `https://preview.wafer.space/${prDirectoryName}/`;
   const commitSha = rawCommitSha.substring(0, 7);
 
   // Read comment template with path validation

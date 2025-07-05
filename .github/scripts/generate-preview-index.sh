@@ -31,11 +31,19 @@ for dir in pr-*/; do
       continue
     fi
     
-    pr_num=$(basename "$dir" | sed 's/pr-//')
+    # Extract PR number from directory name (handles both old pr-123 and new pr-123-title formats)
+    pr_num=$(basename "$dir" | sed 's/pr-\([0-9][0-9]*\).*/\1/')
     # Validate PR number is numeric
     if ! [[ "$pr_num" =~ ^[0-9]+$ ]]; then
       echo "Warning: $dir has invalid PR number format, skipping..."
       continue
+    fi
+    
+    # Extract title part if it exists (for display purposes)
+    title_part=$(basename "$dir" | sed 's/pr-[0-9][0-9]*-\(.*\)/\1/' | sed 's/-/ /g')
+    if [ "$title_part" = "$(basename "$dir")" ]; then
+      # No title part found, use empty string
+      title_part=""
     fi
     
     # Additional validation: PR number must be reasonable range
@@ -47,9 +55,17 @@ for dir in pr-*/; do
     # HTML escape the directory name to prevent injection
     dir_escaped=$(echo "$dir" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#x27;/g')
     pr_num_escaped=$(echo "$pr_num" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#x27;/g')
+    title_part_escaped=$(echo "$title_part" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#x27;/g')
+    
+    # Create display title
+    if [ -n "$title_part" ]; then
+      display_title="PR #$pr_num_escaped: $title_part_escaped"
+    else
+      display_title="PR #$pr_num_escaped Preview"
+    fi
     
     PREVIEW_ITEMS+="<li>"
-    PREVIEW_ITEMS+="<a href=\"/$dir_escaped\">PR #$pr_num_escaped Preview</a>"
+    PREVIEW_ITEMS+="<a href=\"/$dir_escaped\">$display_title</a>"
     PREVIEW_ITEMS+="<div class=\"preview-url\">https://preview.wafer.space/$dir_escaped</div>"
     PREVIEW_ITEMS+="</li>"
     FOUND_PREVIEWS=true

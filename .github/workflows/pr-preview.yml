@@ -57,18 +57,36 @@ jobs:
           bundler-cache: true
           cache-version: 0
           
+      - name: Generate PR directory name
+        id: pr-directory
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const generatePrDirectoryName = require('./.github/scripts/generate-pr-directory-name.js');
+            const prNumber = context.payload.pull_request.number;
+            const prTitle = context.payload.pull_request.title;
+            
+            const directoryName = generatePrDirectoryName(prNumber, prTitle);
+            console.log(`Generated directory name: ${directoryName}`);
+            
+            // Set outputs
+            core.setOutput('directory_name', directoryName);
+            core.setOutput('baseurl_path', `/${directoryName}`);
+            
+            return directoryName;
+            
       - name: Build Jekyll site
         run: |
-          # Build site with PR-specific base URL for custom domain
-          bundle exec jekyll build --baseurl "/pr-${{ github.event.pull_request.number }}"
+          # Build site with user-friendly PR directory name
+          bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}"
         env:
           JEKYLL_ENV: production
           
       - name: Save built site and templates
         run: |
           # Copy built site and workflow files to temp location before switching branches
-          cp -r _site /tmp/pr-site-${{ github.event.pull_request.number }}
-          cp -r .github /tmp/pr-github-${{ github.event.pull_request.number }}
+          cp -r _site /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}
+          cp -r .github /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}
           
       - name: Setup SSH and clone preview repository
         run: |
@@ -86,13 +104,16 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-      - name: Create preview directory and copy built site
+      - name: Cleanup old PR directories and create new one
         run: |
           cd preview-repo
-          # Create directory for this PR's preview
-          mkdir -p pr-${{ github.event.pull_request.number }}
+          # Clean up any old directories for this PR number (in case title changed)
+          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" ! -name "${{ steps.pr-directory.outputs.directory_name }}" -exec rm -rf {} + 2>/dev/null || true
+          
+          # Create directory for this PR's preview with user-friendly name
+          mkdir -p ${{ steps.pr-directory.outputs.directory_name }}
           # Copy the built site from temp location to the preview directory
-          cp -r /tmp/pr-site-${{ github.event.pull_request.number }}/* pr-${{ github.event.pull_request.number }}/
+          cp -r /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}/* ${{ steps.pr-directory.outputs.directory_name }}/
           
       - name: Ensure CNAME file exists
         run: |
@@ -106,18 +127,18 @@ jobs:
         run: |
           cd preview-repo
           # Copy script and template from temp location, then generate preview index
-          if [ ! -f "/tmp/pr-github-${{ github.event.pull_request.number }}/scripts/generate-preview-index.sh" ]; then
+          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ]; then
             echo "ERROR: Preview generation script not found in temp location"
             exit 1
           fi
-          if [ ! -f "/tmp/pr-github-${{ github.event.pull_request.number }}/templates/preview-index.html" ]; then
+          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" ]; then
             echo "ERROR: Preview template not found in temp location"
             exit 1
           fi
           
-          cp "/tmp/pr-github-${{ github.event.pull_request.number }}/scripts/generate-preview-index.sh" ./
+          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ./
           mkdir -p .github/templates
-          cp "/tmp/pr-github-${{ github.event.pull_request.number }}/templates/preview-index.html" .github/templates/
+          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" .github/templates/
           chmod +x generate-preview-index.sh
           ./generate-preview-index.sh
           
@@ -129,7 +150,7 @@ jobs:
             echo "No changes to commit for preview deployment"
             exit 1
           else
-            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.head.sha }}"
+            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }} (${{ steps.pr-directory.outputs.directory_name }}) - ${{ github.event.pull_request.head.sha }}"
           fi
           
           # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
@@ -142,7 +163,7 @@ jobs:
         run: |
           # Poll for Pages deployment completion with comprehensive verification
           echo "Waiting for GitHub Pages deployment to complete..."
-          PREVIEW_URL="https://preview.wafer.space/pr-${{ github.event.pull_request.number }}/"
+          PREVIEW_URL="https://preview.wafer.space/${{ steps.pr-directory.outputs.directory_name }}/"
           
           # First wait for basic HTTP response (shorter attempts, more frequent)
           echo "Phase 1: Waiting for HTTP response..."
@@ -199,6 +220,7 @@ jobs:
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
           JOB_STATUS: ${{ job.status }}
           VERIFICATION_STATUS: ${{ steps.verify-deployment.outputs.deployment_status }}
+          PR_DIRECTORY_NAME: ${{ steps.pr-directory.outputs.directory_name }}
         with:
           script: |
             const updateDeploymentStatus = require('./.github/scripts/update-deployment-status.js');
@@ -207,6 +229,8 @@ jobs:
       - name: Comment PR with preview URL
         if: steps.verify-deployment.outputs.deployment_status == 'success'
         uses: actions/github-script@v7
+        env:
+          PR_DIRECTORY_NAME: ${{ steps.pr-directory.outputs.directory_name }}
         with:
           script: |
             const commentPrPreview = require('./.github/scripts/comment-pr-preview.js');
@@ -337,8 +361,10 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Remove preview directory
-          rm -rf pr-${{ github.event.pull_request.number }}
+          # Remove all preview directories for this PR number (handles title changes)
+          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} + 2>/dev/null || true
+          # Also remove old format directory if it exists
+          rm -rf pr-${{ github.event.pull_request.number }} 2>/dev/null || true
           
           # Copy script and template, then regenerate index
           cp ${{ github.workspace }}/.github/scripts/generate-preview-index.sh ./
