@@ -57,7 +57,7 @@ jobs:
           bundler-cache: true
           cache-version: 0
           
-      - name: Generate PR directory name
+      - name: Generate PR directory name and slugified redirect
         id: pr-directory
         uses: actions/github-script@v7
         with:
@@ -66,11 +66,17 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const prTitle = context.payload.pull_request.title;
             
-            const directoryName = generatePrDirectoryName(prNumber, prTitle);
-            console.log(`Generated directory name: ${directoryName}`);
+            // Main directory uses just PR number
+            const directoryName = `pr-${prNumber}`;
+            // Slugified version for redirect
+            const slugifiedName = generatePrDirectoryName(prNumber, prTitle);
+            
+            console.log(`Main directory: ${directoryName}`);
+            console.log(`Slugified redirect: ${slugifiedName}`);
             
             // Set outputs
             core.setOutput('directory_name', directoryName);
+            core.setOutput('slugified_name', slugifiedName);
             core.setOutput('baseurl_path', `/${directoryName}`);
             
             return directoryName;
@@ -104,16 +110,36 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-      - name: Cleanup old PR directories and create new one
+      - name: Create PR directory and slugified redirect
         run: |
           cd preview-repo
-          # Clean up any old directories for this PR number (in case title changed)
-          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" ! -name "${{ steps.pr-directory.outputs.directory_name }}" -exec rm -rf {} + 2>/dev/null || true
-          
-          # Create directory for this PR's preview with user-friendly name
+          # Create main directory for this PR (pr-123)
           mkdir -p ${{ steps.pr-directory.outputs.directory_name }}
           # Copy the built site from temp location to the preview directory
           cp -r /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}/* ${{ steps.pr-directory.outputs.directory_name }}/
+          
+          # Create redirect page for slugified URL if different from main directory
+          if [ "${{ steps.pr-directory.outputs.slugified_name }}" != "${{ steps.pr-directory.outputs.directory_name }}" ]; then
+            mkdir -p ${{ steps.pr-directory.outputs.slugified_name }}
+            cat > ${{ steps.pr-directory.outputs.slugified_name }}/index.html << 'REDIRECT_EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <meta http-equiv="refresh" content="0; url=/${{ steps.pr-directory.outputs.directory_name }}/">
+  <link rel="canonical" href="/${{ steps.pr-directory.outputs.directory_name }}/">
+  <script>window.location.replace('/${{ steps.pr-directory.outputs.directory_name }}/');</script>
+</head>
+<body>
+  <p>Redirecting to <a href="/${{ steps.pr-directory.outputs.directory_name }}/">/${{ steps.pr-directory.outputs.directory_name }}/</a>...</p>
+</body>
+</html>
+REDIRECT_EOF
+            echo "Created redirect from ${{ steps.pr-directory.outputs.slugified_name }} to ${{ steps.pr-directory.outputs.directory_name }}"
+            # Store redirect info for tracking
+            echo "${{ steps.pr-directory.outputs.slugified_name }}" >> .pr-${{ github.event.pull_request.number }}-redirects.txt
+          fi
           
       - name: Ensure CNAME file exists
         run: |
@@ -150,7 +176,7 @@ jobs:
             echo "No changes to commit for preview deployment"
             exit 1
           else
-            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }} (${{ steps.pr-directory.outputs.directory_name }}) - ${{ github.event.pull_request.head.sha }}"
+            git commit -m "Deploy preview for PR #${{ github.event.pull_request.number }} (pr-${{ github.event.pull_request.number }}) - ${{ github.event.pull_request.head.sha }}"
           fi
           
           # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
@@ -163,7 +189,7 @@ jobs:
         run: |
           # Poll for Pages deployment completion with comprehensive verification
           echo "Waiting for GitHub Pages deployment to complete..."
-          PREVIEW_URL="https://preview.wafer.space/${{ steps.pr-directory.outputs.directory_name }}/"
+          PREVIEW_URL="https://preview.wafer.space/pr-${{ github.event.pull_request.number }}/"
           
           # First wait for basic HTTP response (shorter attempts, more frequent)
           echo "Phase 1: Waiting for HTTP response..."
@@ -220,7 +246,6 @@ jobs:
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
           JOB_STATUS: ${{ job.status }}
           VERIFICATION_STATUS: ${{ steps.verify-deployment.outputs.deployment_status }}
-          PR_DIRECTORY_NAME: ${{ steps.pr-directory.outputs.directory_name }}
         with:
           script: |
             const updateDeploymentStatus = require('./.github/scripts/update-deployment-status.js');
@@ -229,8 +254,6 @@ jobs:
       - name: Comment PR with preview URL
         if: steps.verify-deployment.outputs.deployment_status == 'success'
         uses: actions/github-script@v7
-        env:
-          PR_DIRECTORY_NAME: ${{ steps.pr-directory.outputs.directory_name }}
         with:
           script: |
             const commentPrPreview = require('./.github/scripts/comment-pr-preview.js');
@@ -361,10 +384,24 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Remove all preview directories for this PR number (handles title changes)
+          # Remove main PR directory
+          rm -rf pr-${{ github.event.pull_request.number }}
+          
+          # Remove redirect tracking file and associated directories
+          if [ -f ".pr-${{ github.event.pull_request.number }}-redirects.txt" ]; then
+            while IFS= read -r redirect_dir; do
+              if [ -d "$redirect_dir" ]; then
+                rm -rf "$redirect_dir"
+                echo "Removed redirect directory: $redirect_dir"
+              fi
+            done < ".pr-${{ github.event.pull_request.number }}-redirects.txt"
+            rm -f ".pr-${{ github.event.pull_request.number }}-redirects.txt"
+          fi
+          
+          # Fallback: remove any remaining slugified directories for this PR
           find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} + 2>/dev/null || true
-          # Also remove old format directory if it exists
-          rm -rf pr-${{ github.event.pull_request.number }} 2>/dev/null || true
+          
+          echo "Cleaned up pr-${{ github.event.pull_request.number }} and all associated redirect directories"
           
           # Copy script and template, then regenerate index
           cp ${{ github.workspace }}/.github/scripts/generate-preview-index.sh ./

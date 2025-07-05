@@ -50,9 +50,8 @@ module.exports = async function updateDeploymentStatus(github, context, core) {
     throw new Error(`Invalid deployment state: ${state}`);
   }
 
-  // Get the PR directory name from the environment (set by workflow)
-  const prDirectoryName = process.env.PR_DIRECTORY_NAME || `pr-${prNumber}`;
-  const previewUrl = `https://preview.wafer.space/${prDirectoryName}/`;
+  // Use simple PR number for directory
+  const previewUrl = `https://preview.wafer.space/pr-${prNumber}/`;
 
   await github.rest.repos.createDeploymentStatus({
     owner: context.repo.owner,
