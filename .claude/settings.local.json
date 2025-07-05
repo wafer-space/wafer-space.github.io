@@ -88,7 +88,13 @@
       "Bash(for file in _includes/layouts/nav/nav-*.html _includes/layouts/nav/one-page-nav*.html)",
       "Bash(then echo \"Processing $file\")",
       "Bash(node:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(.github/scripts/verify-preview-site.sh:*)",
+      "Bash(muffet:*)",
+      "Bash(./temp-tools/muffet:*)",
+      "Bash(./muffet:*)",
+      "Bash(temp-tools/muffet:*)",
+      "Bash(GIT_SEQUENCE_EDITOR=\"cp /tmp/rebase-plan.txt\" git rebase -i development)"
     ],
     "deny": []
   }
