@@ -1,0 +1,33 @@
+{
+  "pr_number": http://localhost:4000,
+  "preview_url": "--url",
+  "timestamp": "2025-07-05T11:20:51+00:00",
+  "checks": {
+    "http_response": {
+      "status": "fail",
+      "details": "HTTP 000, Response time: 0s"
+    },
+    "baseurl_configuration": {
+      "status": "warn",
+      "details": "Baseurl configuration not detected (may use alternative method)"
+    },
+    "content_site_title_present": {
+      "status": "fail",
+      "details": "Site title present missing"
+    },
+    "content_tagline_present": {
+      "status": "fail",
+      "details": "Tagline present missing"
+    },
+    "content_valid_html_document": {
+      "status": "fail",
+      "details": "Valid HTML document missing"
+    },
+    "content_page_title_tag": {
+      "status": "fail",
+      "details": "Page title tag missing"
+    },
+    "muffet_availability": {
+      "status": "fail",
+      "details": "muffet not installed - install with: go install github.com/raviqqe/muffet/v2@latest"
+    },

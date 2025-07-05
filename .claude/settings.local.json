@@ -94,7 +94,10 @@
       "Bash(./temp-tools/muffet:*)",
       "Bash(./muffet:*)",
       "Bash(temp-tools/muffet:*)",
-      "Bash(GIT_SEQUENCE_EDITOR=\"cp /tmp/rebase-plan.txt\" git rebase -i development)"
+      "Bash(GIT_SEQUENCE_EDITOR=\"cp /tmp/rebase-plan.txt\" git rebase -i development)",
+      "Bash(./verify-preview-site.sh:*)",
+      "Bash(for file in nav-*.html)",
+      "Bash(do sed -i 's/href=\"\"{{site\\.url}}\"\"/href=\"\"{{ \"\"\\/\\\"\" | relative_url }}\"\"/g' \"$file\")"
     ],
     "deny": []
   }

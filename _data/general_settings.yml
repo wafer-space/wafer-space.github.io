@@ -7,8 +7,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 favicon: "/favicon.png"
 
 # Seo Meta Settings
-meta_og_image: "/assets/images/meta-image.webp"
-meta_twitter_image: "/assets/images/meta-image.webp"
+# meta_og_image: "/assets/images/meta-image.webp"
+# meta_twitter_image: "/assets/images/meta-image.webp"
 
 # Site Wide Theme Color Setting
 color_scheme: sky #Aqua Blue Brown Cobalt Green Hibiscus Leaf Meander Orange Pink Purple Red Rose Sky Teal Violet Yellow
