@@ -210,8 +210,8 @@ jobs:
             
             # Check for git commit hash in HTML comment (now at end of file) and meta tag
             PAGE_CONTENT=$(curl -s "$PREVIEW_URL")
-            COMMIT_COMMENT=$(echo "$PAGE_CONTENT" | grep -oP '<!-- Generated from git commit: \K[a-f0-9]{40}' || echo "")
-            COMMIT_META=$(echo "$PAGE_CONTENT" | grep -oP '<meta name="git-commit" content="\K[a-f0-9]{40}' || echo "")
+            COMMIT_COMMENT=$(echo "$PAGE_CONTENT" | grep -E '<!-- Generated from git commit: [a-f0-9]{40}' | sed -E 's/.*<!-- Generated from git commit: ([a-f0-9]{40}).*/\1/' || echo "")
+            COMMIT_META=$(echo "$PAGE_CONTENT" | grep -E '<meta name="git-commit" content="[a-f0-9]{40}"' | sed -E 's/.*<meta name="git-commit" content="([a-f0-9]{40})".*/\1/' || echo "")
             
             echo "HTTP Status: $HTTP_STATUS"
             echo "Content check: $CONTENT_CHECK"
@@ -240,7 +240,7 @@ jobs:
             fi
           done
           
-          echo "⚠️  WARNING: Deployment verification failed after 5 minutes total."
+          echo "⚠️  WARNING: Deployment verification failed after 2 minutes total."
           echo "The expected git commit hash was not found in the deployed site."
           echo "deployment_status=partial" >> $GITHUB_OUTPUT
           echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
