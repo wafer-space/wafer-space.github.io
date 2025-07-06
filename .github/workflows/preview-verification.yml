@@ -320,36 +320,21 @@ jobs:
           echo "Verification completed. Status: $VERIFICATION_PASSED"
           cat $REPORT_FILE
       
-      - name: Comment verification results on PR
+      - name: Comment verification results on PR with lifecycle management
         if: steps.pr-info.outputs.pr_number
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = ${{ steps.pr-info.outputs.pr_number }};
-            const verificationStatus = '${{ steps.verification.outputs.verification_status }}';
-            const reportContent = process.env.REPORT_CONTENT;
+            const commentVerificationResults = require('./.github/scripts/comment-verification-results.js');
+            const result = await commentVerificationResults(github, context, core);
             
-            // Create comment with verification results
-            const statusIcon = verificationStatus === 'success' ? '✅' : '❌';
-            const statusText = verificationStatus === 'success' ? 'PASSED' : 'FAILED';
-            
-            const commentBody = `## ${statusIcon} Preview Site Verification ${statusText}
-            
-            ${reportContent}
-            
-            ---
-            <sub>🔍 Automated verification • Run ID: ${{ github.run_id }}</sub>`;
-            
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: commentBody
-            });
-            
+            const prNumber = context.payload.pull_request?.number || 'unknown';
             console.log(`Posted verification results to PR #${prNumber}`);
+            console.log(`Comment ID: ${result.commentId}, Archived: ${result.archivedCount} previous comments`);
         env:
+          VERIFICATION_STATUS: ${{ steps.verification.outputs.verification_status }}
           REPORT_CONTENT: ${{ steps.verification.outputs.report_content }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
       
       - name: Fail workflow if verification failed
         if: steps.verification.outputs.verification_status == 'failed'
