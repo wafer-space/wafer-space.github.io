@@ -327,66 +327,6 @@ jobs:
               body: failureBody
             });
 
-  cleanup-preview:
-    if: github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout main repo for scripts
-        uses: actions/checkout@v4
-        
-      - name: Setup SSH and cleanup preview repository
-        run: |
-          # Setup SSH for deploying to dedicated preview repository (memory-only)
-          eval $(ssh-agent -s)
-          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          
-          # Clone using SSH with ssh-agent authentication
-          git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
-          cd preview-repo
-          
-          # Configure git for commits
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Remove main PR directory
-          rm -rf pr-${{ github.event.pull_request.number }}
-          
-          # Remove all user-friendly redirect directories for this PR (pr-123-*)
-          # Note: This may not find any directories if none exist, which is expected
-          find . -maxdepth 1 -type d -name "pr-${{ github.event.pull_request.number }}-*" -exec rm -rf {} + || echo "No redirect directories found for PR #${{ github.event.pull_request.number }} (this is normal)"
-          
-          echo "Cleaned up preview and redirects for PR #${{ github.event.pull_request.number }}"
-          
-          # Copy script and template, then regenerate index
-          cp ${{ github.workspace }}/.github/scripts/generate-preview-index.sh ./
-          mkdir -p .github/templates
-          cp ${{ github.workspace }}/.github/templates/preview-index.html .github/templates/
-          chmod +x generate-preview-index.sh
-          ./generate-preview-index.sh
-          
-          # Commit and push cleanup
-          git add .
-          if ! git diff --staged --quiet; then
-            git commit -m "Remove preview for closed PR #${{ github.event.pull_request.number }}"
-            
-            # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
-            eval $(ssh-agent -s)
-            echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
-            git push origin main
-          fi
-          
-      - name: Mark deployment as inactive
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const cleanupDeployments = require('./.github/scripts/cleanup-deployments.js');
-            await cleanupDeployments(github, context, core);
-            
-      - name: Comment PR about cleanup
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const commentPrCleanup = require('./.github/scripts/comment-pr-cleanup.js');
-            await commentPrCleanup(github, context, core);
+  # Note: Preview cleanup has been moved to a scheduled workflow
+  # See .github/workflows/cleanup-previews.yml for automated cleanup of closed PR previews
+  # This prevents the cleanup job from appearing as a "skipped" check on open PRs
