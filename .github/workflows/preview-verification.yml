@@ -75,21 +75,35 @@ jobs:
         if: steps.pr-info.outputs.pr_number
         run: |
           PREVIEW_URL="${{ steps.pr-info.outputs.preview_url }}"
-          echo "Waiting for preview deployment and site to be ready at: $PREVIEW_URL"
+          EXPECTED_COMMIT="${{ steps.pr-info.outputs.head_sha }}"
+          echo "Waiting for preview deployment with commit $EXPECTED_COMMIT at: $PREVIEW_URL"
           
-          # Wait up to 5 minutes for the deployment to complete and site to be ready
-          for i in {1..60}; do
-            echo "Attempt $i/60: Checking preview site availability..."
+          # Wait up to 10 minutes for the deployment to complete with the correct commit
+          for i in {1..120}; do
+            echo "Attempt $i/120: Checking preview site availability..."
             
             if curl -s --fail --head "$PREVIEW_URL" > /dev/null; then
               echo "✅ Preview site is responding"
               
-              # Additional check for actual content to ensure it's not a stale cache
-              if curl -s "$PREVIEW_URL" | grep -q "wafer.space"; then
-                # Check if the deployment has the current commit by looking for updated content
-                CONTENT=$(curl -s "$PREVIEW_URL")
-                echo "✅ Preview site content verified - ready for verification"
-                break
+              # Check for actual content and correct commit hash
+              PAGE_CONTENT=$(curl -s "$PREVIEW_URL")
+              if echo "$PAGE_CONTENT" | grep -q "wafer.space"; then
+                # Extract git commit hash from HTML comment or meta tag
+                COMMIT_COMMENT=$(echo "$PAGE_CONTENT" | grep -oE '<!-- Generated from git commit: [a-f0-9]{40}' | grep -oE '[a-f0-9]{40}' || echo "")
+                COMMIT_META=$(echo "$PAGE_CONTENT" | grep -oE '<meta name="git-commit" content="[a-f0-9]{40}"' | grep -oE 'content="[a-f0-9]{40}"' | grep -oE '[a-f0-9]{40}' || echo "")
+                
+                FOUND_COMMIT="${COMMIT_COMMENT:-$COMMIT_META}"
+                
+                if [ "$FOUND_COMMIT" = "$EXPECTED_COMMIT" ]; then
+                  echo "✅ Preview site has correct commit: $FOUND_COMMIT"
+                  echo "✅ Preview site is ready for verification"
+                  break
+                elif [ -n "$FOUND_COMMIT" ]; then
+                  echo "⚠️  Preview site has different commit: $FOUND_COMMIT (expected: $EXPECTED_COMMIT)"
+                  echo "⚠️  Waiting for correct deployment..."
+                else
+                  echo "⚠️  Preview site content ready but commit hash not found"
+                fi
               else
                 echo "⚠️  Preview site responding but content not yet ready"
               fi
@@ -97,8 +111,12 @@ jobs:
               echo "❌ Preview site not yet responding (may still be deploying)"
             fi
             
-            if [ $i -eq 60 ]; then
-              echo "ERROR: Preview site not ready after 5 minutes"
+            if [ $i -eq 120 ]; then
+              echo "ERROR: Preview site not ready with correct commit after 10 minutes"
+              echo "Expected commit: $EXPECTED_COMMIT"
+              if [ -n "$FOUND_COMMIT" ]; then
+                echo "Found commit: $FOUND_COMMIT"
+              fi
               echo "This may indicate a deployment failure or very slow deployment"
               exit 1
             fi
@@ -252,12 +270,29 @@ jobs:
           echo "Running comprehensive muffet validation..." >> $REPORT_FILE
           
           # Run muffet with proper configuration for thorough checking
+          # Use realistic browser headers to avoid bot detection
           if muffet \
             --timeout=30 \
             --max-connections=10 \
             --max-connections-per-host=5 \
+            --buffer-size=16384 \
             --exclude=".*mailto:.*" \
-            --header="User-Agent:Mozilla/5.0 (compatible; VerificationBot/1.0)" \
+            --exclude=".*linkedin\.com.*" \
+            --exclude=".*hawaii\.edu.*" \
+            --header="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
+            --header="Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" \
+            --header="Accept-Language:en-US,en;q=0.9" \
+            --header="Accept-Encoding:gzip, deflate, br" \
+            --header="Cache-Control:no-cache" \
+            --header="Pragma:no-cache" \
+            --header="Sec-Ch-Ua:\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"" \
+            --header="Sec-Ch-Ua-Mobile:?0" \
+            --header="Sec-Ch-Ua-Platform:\"Windows\"" \
+            --header="Sec-Fetch-Dest:document" \
+            --header="Sec-Fetch-Mode:navigate" \
+            --header="Sec-Fetch-Site:none" \
+            --header="Sec-Fetch-User:?1" \
+            --header="Upgrade-Insecure-Requests:1" \
             "$PREVIEW_URL" > muffet-report.txt 2>&1; then
             echo "- ✅ All links and assets are valid (muffet)" >> $REPORT_FILE
           else
