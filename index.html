@@ -10,12 +10,12 @@ slider_area:
   title: "Budget silicon manufacturing"
   sub_title: "Create integrated circuits without breaking the bank!"
   button_text: "Learn how!"
-  button_url: "/how.html"
+  button_url: "how.html"
   slider_images:
-    img_01: "/assets/images/art/rocket1.webp"
-    img_02: "/assets/images/art/rocket2.webp"
-    img_03: "/assets/images/art/rocket3.webp"
-    img_04: "/assets/images/art/rocket4.webp"
+    img_01: "assets/images/art/rocket1.webp"
+    img_02: "assets/images/art/rocket2.webp"
+    img_03: "assets/images/art/rocket3.webp"
+    img_04: "assets/images/art/rocket4.webp"
 
 features_area:
   enable: false
@@ -47,7 +47,7 @@ two_columns_one:
   enable: true
   title: "Why Choose Us?"
   sub_title: "Why is Search Engine Optimization important for your business?"
-  image: "/assets/images/concept/concept8@2x.webp"
+  image: "assets/images/concept/concept8@2x.webp"
   description: |
     Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit.
   lists:
@@ -61,7 +61,7 @@ process_area:
   enable: true
   title: "Our Process"
   sub_title: "We bring solutions to make life easier for our customers"
-  image: "/assets/images/concept/concept1@2x.webp"
+  image: "assets/images/concept/concept1@2x.webp"
   lists:
 
     - title: "Collect Ideas"
@@ -84,7 +84,7 @@ two_columns_two:
   enable: true
   title: "Our Personalized Solutions"
   sub_title: "Just sit and relax while we take care of your business needs"
-  image: "/assets/images/concept/concept3@2x.webp"
+  image: "assets/images/concept/concept3@2x.webp"
   description: |
     Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
 
@@ -102,31 +102,31 @@ testimonials:
 
     - quote: |
         Sed posuere consectetur est at lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat.
-      image: "/assets/images/art/t5.webp"
+      image: "assets/images/art/t5.webp"
       name: "Cornelia Gibson"
       designation: "Financial Analyst"
 
     - quote: |
         Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus.
-      image: "/assets/images/art/t2.webp"
+      image: "assets/images/art/t2.webp"
       name: "Coriss Ambady"
       designation: "Marketing Specialist"
 
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t3.webp"
+      image: "assets/images/art/t3.webp"
       name: "Barclay Widerski"
       designation: "Sales Manager"
 
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t6.webp"
+      image: "assets/images/art/t6.webp"
       name: "Barclay Widerski"
       designation: "Sales Manager"
 
     - quote: |
         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget.
-      image: "/assets/images/art/t5.webp"
+      image: "assets/images/art/t5.webp"
       name: "Jackie Sanders"
       designation: "Sales Specialist"
 
@@ -146,7 +146,7 @@ pricing_table:
       monthly_price: "6,000"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "/assets/images/icons/ec-mobile.webp"
+      icon: "assets/images/icons/ec-mobile.webp"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
@@ -157,7 +157,7 @@ pricing_table:
       monthly_price: "8,000"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "/assets/images/icons/ec-store.webp"
+      icon: "assets/images/icons/ec-store.webp"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
@@ -168,12 +168,12 @@ about_us:
   enable: true
   title: "Let's Talk"
   sub_title: "If you got any questions, don't hesitate to get in touch with us."
-  image: "/assets/images/concept/concept12@2x.webp"
+  image: "assets/images/concept/concept12@2x.webp"
   description: |
     
   button_text: "Contact Us"
   button_url: "mailto:info@wafer.space"
-  bottom_image: "/assets/images/art/rocket1.webp"
+  bottom_image: "assets/images/art/rocket1.webp"
 
 subscribe_area:
   enable: true
@@ -192,7 +192,7 @@ subscribe_area:
     <div id="slider7" class="rev_slider fullwidthbanner" data-version="5.4.7">
       <ul>
         <li data-transition="fade" data-thumb="">
-         <img src="/assets/images/dummy.webp" style="background:transparent" alt="{{page.slider_area.title}}"/>
+         <img src="{{ "assets/images/dummy.webp" | relative_url }}" style="background:transparent" alt="{{page.slider_area.title}}"/>
          {% if page.slider_area.slider_images.img_01 %}
           <div class="tp-caption"
              data-x="['center','center','center','center']"

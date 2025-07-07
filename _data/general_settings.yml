@@ -4,11 +4,11 @@ email: "info@wafer.space"
 #email_2: "support@tortoizthemes.com"
 description: >- # this means to ignore newlines until "baseurl:"
   Budget silicon manufacturing.
-favicon: "/favicon.png"
+favicon: "favicon.png"
 
 # Seo Meta Settings
-meta_og_image: "/assets/images/meta-image.webp"
-meta_twitter_image: "/assets/images/meta-image.webp"
+# meta_og_image: "assets/images/meta-image.webp"
+# meta_twitter_image: "assets/images/meta-image.webp"
 
 # Site Wide Theme Color Setting
 color_scheme: sky #Aqua Blue Brown Cobalt Green Hibiscus Leaf Meander Orange Pink Purple Red Rose Sky Teal Violet Yellow
@@ -17,10 +17,10 @@ color_scheme: sky #Aqua Blue Brown Cobalt Green Hibiscus Leaf Meander Orange Pin
 font_scheme:  # Jost, Nunito , DM Sans + Zilla Slab , HK Grotesk, Abhaya, Libre
 
 # Sitewide Logo
-black_logo_1x: "/assets/images/logo.webp"
-black_logo_2x: "/assets/images/logo@2x.webp"
-light_logo_1x: "/assets/images/logo-light.webp"
-light_logo_2x: "/assets/images/logo-light@2x.webp"
+black_logo_1x: "assets/images/logo.webp"
+black_logo_2x: "assets/images/logo@2x.webp"
+light_logo_1x: "assets/images/logo-light.webp"
+light_logo_2x: "assets/images/logo-light@2x.webp"
 
 # Site Wide Address and Phone Number
 address_01: '143&nbsp;Cecil&nbsp;Street,<br />#17&#8209;04,&nbsp;GB&nbsp;Building,<br />Singapore 069542'
@@ -66,7 +66,7 @@ external_links:
       text: "Home"
     - url: "/about.html"
       text: "About"
-    - url: "/news/index.html"
+    - url: "/news"
       text: "News"
     - url: "/how.html"
       text: "How"
@@ -111,16 +111,16 @@ footer_newsletter:
 
 # Author Page Background Image
 author_page_header:
-  header_background_image: "/assets/images/art/bg31.webp"
+  header_background_image: "assets/images/art/bg31.webp"
 
 # Gallery
 gallery:
   images:
-  - img: "/assets/images/art/z1.svg"
-  - img: "/assets/images/art/z2.svg"
-  - img: "/assets/images/art/z3.svg"
-  - img: "/assets/images/art/z4.svg"
-  - img: "/assets/images/art/z5.svg"
-  - img: "/assets/images/art/z6.svg"
-  - img: "/assets/images/art/z7.svg"
-  - img: "/assets/images/art/z8.svg"
+  - img: "assets/images/art/z1.svg"
+  - img: "assets/images/art/z2.svg"
+  - img: "assets/images/art/z3.svg"
+  - img: "assets/images/art/z4.svg"
+  - img: "assets/images/art/z5.svg"
+  - img: "assets/images/art/z6.svg"
+  - img: "assets/images/art/z7.svg"
+  - img: "assets/images/art/z8.svg"

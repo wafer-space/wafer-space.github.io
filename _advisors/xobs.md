@@ -2,7 +2,7 @@
 layout: author_page
 title: "Sean 'xobs' Cross"
 sub_title: "Advisor"
-avatar: "/assets/images/people/xobs.jpg"
+avatar: "assets/images/people/xobs.jpg"
 social_accounts:
   - icon: "jam jam-linkedin"
     url: "https://www.linkedin.com/in/sean-cross-78186816a"
