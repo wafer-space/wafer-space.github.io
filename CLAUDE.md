@@ -109,4 +109,11 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
 
+## Git Workflow
+
+### Working Practices
+- When making changes, start a new git branch and then make sure to commit to the git repository frequently as you work. Once the work has been completed ask the user if you should merge the created branch into the main branch.
+- **Do not delete the branches after merging.**
+- When merging the branches to main, make sure to not fast forward.
+
 <!-- Trigger build to test submodule configuration -->
