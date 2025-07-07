@@ -35,6 +35,8 @@ exclude:
   - extract-theme.sh
   - theme-files.txt
   - Makefile
+  - CLAUDE.md
+  - .claude/
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
