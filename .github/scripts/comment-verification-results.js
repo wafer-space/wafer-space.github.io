@@ -68,7 +68,24 @@ ${reportContent}
     return filteredComments;
   };
 
-  // Keep archiving until only one unarchived verification comment remains
+  // Create new verification comment first
+  let newCommentId;
+  try {
+    const { data: newComment } = await github.rest.issues.createComment({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: prNumber,
+      body: newCommentBody
+    });
+    
+    newCommentId = newComment.id;
+    console.log(`Created new verification comment ${newComment.id} on PR #${prNumber}`);
+  } catch (error) {
+    console.error('Failed to create verification comment:', error);
+    throw error;
+  }
+
+  // Now archive ALL existing unarchived verification comments (except the one we just created)
   let archivedCount = 0;
   let maxIterations = 10; // Safety limit to prevent infinite loops
   let iteration = 0;
@@ -77,27 +94,24 @@ ${reportContent}
     iteration++;
     const verificationComments = await getVerificationComments();
     
-    // Filter to only unarchived verification comments
+    // Filter to only unarchived verification comments, excluding the one we just created
     const unarchivedComments = verificationComments.filter(comment => 
-      !comment.body.includes('**📋 Previous verification results (archived)**')
+      !comment.body.includes('**📋 Previous verification results (archived)**') &&
+      comment.id !== newCommentId
     );
     
-    console.log(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments`);
+    console.log(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments to archive`);
     
-    // If we have 1 or fewer unarchived comments, we're done
-    if (unarchivedComments.length <= 1) {
-      console.log(`Archive process complete: ${unarchivedComments.length} unarchived verification comments remaining`);
+    // If no unarchived comments remain (besides our new one), we're done
+    if (unarchivedComments.length === 0) {
+      console.log(`Archive process complete: Only 1 unarchived verification comment remaining (the new one)`);
       break;
     }
     
-    // Sort by creation date (oldest first) and archive all but the most recent
-    unarchivedComments.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
-    const commentsToArchive = unarchivedComments.slice(0, -1); // All except the last (most recent)
+    console.log(`Archiving ${unarchivedComments.length} existing verification comments`);
     
-    console.log(`Archiving ${commentsToArchive.length} older verification comments`);
-    
-    // Archive the older comments
-    for (const oldComment of commentsToArchive) {
+    // Archive ALL existing unarchived comments
+    for (const oldComment of unarchivedComments) {
       // Extract original content and determine comment type
       let originalContent = oldComment.body;
       const hasMarker = originalContent.includes('<!-- VERIFICATION_COMMENT_MARKER -->');
@@ -143,24 +157,10 @@ ${originalContent}
     console.warn(`Reached maximum iterations (${maxIterations}) while archiving comments`);
   }
 
-  // Create new verification comment
-  try {
-    const { data: newComment } = await github.rest.issues.createComment({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      issue_number: prNumber,
-      body: newCommentBody
-    });
-    
-    console.log(`Created new verification comment ${newComment.id} on PR #${prNumber}`);
-    console.log(`Archived ${archivedCount} previous verification comments`);
-    
-    return {
-      commentId: newComment.id,
-      archivedCount: archivedCount
-    };
-  } catch (error) {
-    console.error('Failed to create verification comment:', error);
-    throw error;
-  }
+  console.log(`Archived ${archivedCount} previous verification comments`);
+  
+  return {
+    commentId: newCommentId,
+    archivedCount: archivedCount
+  };
 };
