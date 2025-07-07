@@ -1,6 +1,9 @@
 // Comment verification results with lifecycle management
 // This module manages verification comment creation and archival of obsolete comments
 
+// Helper function for delays
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 module.exports = async function commentVerificationResults(github, context, core) {
   // Validate inputs
   if (!context.payload.pull_request) {
@@ -34,14 +37,13 @@ ${reportContent}
 
   // Function to get and filter verification comments with debugging
   const getVerificationComments = async () => {
-    console.log(`Fetching comments for PR #${prNumber}...`);
+    core.info(`Fetching comments for PR #${prNumber}...`);
     
     // Get all comments with pagination support
     const allComments = [];
     let page = 1;
-    let hasMore = true;
     
-    while (hasMore) {
+    while (true) {
       const { data: pageComments } = await github.rest.issues.listComments({
         owner: context.repo.owner,
         repo: context.repo.repo,
@@ -51,9 +53,12 @@ ${reportContent}
       });
       
       allComments.push(...pageComments);
-      hasMore = pageComments.length === 100;
-      page++;
       
+      // Break when we get less than a full page (more efficient)
+      if (pageComments.length < 100) {
+        break;
+      }
+      page++;
     }
     
     // Filter verification comments (exclude deployment ready)
@@ -79,22 +84,23 @@ ${reportContent}
     });
     
     newCommentId = newComment.id;
-    console.log(`Created new verification comment ${newComment.id} on PR #${prNumber}`);
+    core.info(`Created new verification comment ${newComment.id} on PR #${prNumber}`);
   } catch (error) {
-    console.error('Failed to create verification comment:', error);
+    core.error(`Failed to create verification comment: ${error.message}`);
     throw error;
   }
 
   // Add delay to allow any concurrent workflows to create their comments first
   // This helps handle rapid-fire pushes where multiple workflows may start simultaneously
   const initialDelay = Math.floor(Math.random() * 2000) + 1000; // 1-3 second random delay
-  console.log(`Waiting ${initialDelay}ms before archival to handle concurrent workflows...`);
-  await new Promise(resolve => setTimeout(resolve, initialDelay));
+  core.info(`Waiting ${initialDelay}ms before archival to handle concurrent workflows...`);
+  await sleep(initialDelay);
 
   // Now archive ALL existing unarchived verification comments (except the one we just created)
   let archivedCount = 0;
   let maxIterations = 15; // Increased limit for handling rapid-fire scenarios
   let iteration = 0;
+  let backoffDelay = 100; // Start with 100ms for exponential backoff
   
   while (iteration < maxIterations) {
     iteration++;
@@ -108,23 +114,23 @@ ${reportContent}
       comment.id !== newCommentId
     );
     
-    console.log(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments to archive`);
+    core.info(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments to archive`);
     
     // Debug: Log all unarchived comment IDs and creation times
     if (unarchivedComments.length > 0) {
-      console.log('Unarchived comments details:');
+      core.debug('Unarchived comments details:');
       unarchivedComments.forEach(c => {
-        console.log(`  - Comment ${c.id}: created ${c.created_at}`);
+        core.debug(`  - Comment ${c.id}: created ${c.created_at}`);
       });
     }
     
     // If no unarchived comments remain (besides our new one), we're done
     if (unarchivedComments.length === 0) {
-      console.log(`Archive process complete: Only 1 unarchived verification comment remaining (the new one)`);
+      core.info(`Archive process complete: Only 1 unarchived verification comment remaining (the new one)`);
       break;
     }
     
-    console.log(`Archiving ${unarchivedComments.length} existing verification comments`);
+    core.info(`Archiving ${unarchivedComments.length} existing verification comments`);
     
     // Archive ALL existing unarchived comments
     for (const oldComment of unarchivedComments) {
@@ -138,11 +144,11 @@ ${reportContent}
         
         // Skip if already archived by another workflow
         if (currentComment.body.includes('**📋 Previous verification results (archived)**')) {
-          console.log(`Comment ${oldComment.id} already archived by another workflow, skipping`);
+          core.debug(`Comment ${oldComment.id} already archived by another workflow, skipping`);
           continue;
         }
       } catch (error) {
-        console.log(`Comment ${oldComment.id} no longer exists, skipping`);
+        core.debug(`Comment ${oldComment.id} no longer exists, skipping`);
         continue;
       }
       
@@ -176,27 +182,28 @@ ${originalContent}
           comment_id: oldComment.id,
           body: archivedCommentBody
         });
-        console.log(`Archived verification comment ${oldComment.id} on PR #${prNumber} (created: ${createdAt})`);
+        core.info(`Archived verification comment ${oldComment.id} on PR #${prNumber} (created: ${createdAt})`);
         archivedCount++;
       } catch (error) {
         if (error.status === 409) {
-          console.log(`Comment ${oldComment.id} was modified by another workflow, skipping`);
+          core.debug(`Comment ${oldComment.id} was modified by another workflow, skipping`);
         } else {
-          console.error(`Failed to archive comment ${oldComment.id}:`, error);
+          core.error(`Failed to archive comment ${oldComment.id}: ${error.message}`);
         }
         // Continue processing other comments even if one fails
       }
     }
     
-    // Longer delay to allow GitHub API and concurrent workflows to settle
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Exponential backoff to reduce pressure on GitHub API
+    await sleep(backoffDelay);
+    backoffDelay = Math.min(backoffDelay * 2, 1600); // Cap the delay at 1600ms
   }
   
   if (iteration >= maxIterations) {
-    console.warn(`Reached maximum iterations (${maxIterations}) while archiving comments`);
+    core.warning(`Reached maximum iterations (${maxIterations}) while archiving comments`);
   }
 
-  console.log(`Archived ${archivedCount} previous verification comments`);
+  core.info(`Archived ${archivedCount} previous verification comments`);
   
   return {
     commentId: newCommentId,
