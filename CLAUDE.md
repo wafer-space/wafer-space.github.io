@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Setup
+
+First-time setup for Claude Code:
+```bash
+cp .claude/settings.local.json.template .claude/settings.local.json
+```
+
+The `settings.local.json` file is gitignored to prevent rebase conflicts and allow personalized configurations.
+
 ## Development Commands
 
 ### CRITICAL: Working Directory Verification
