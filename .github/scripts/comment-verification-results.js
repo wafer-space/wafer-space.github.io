@@ -32,33 +32,85 @@ ${reportContent}
 <sub>🔍 Automated verification • Run ID: ${runId} • ${new Date().toISOString()}</sub>
 <!-- VERIFICATION_COMMENT_MARKER -->`;
 
-  // Get all comments on the PR
-  const { data: comments } = await github.rest.issues.listComments({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    issue_number: prNumber,
-  });
-
-  // Find existing verification comments (marked with our identifier)
-  const verificationComments = comments.filter(comment => 
-    comment.user.type === 'Bot' && 
-    comment.body.includes('<!-- VERIFICATION_COMMENT_MARKER -->')
-  );
-
-  // Archive old verification comments by updating them
-  for (const oldComment of verificationComments) {
-    // Skip if this is already archived
-    if (oldComment.body.includes('**📋 Previous verification results (archived)**')) {
-      continue;
+  // Function to get and filter verification comments with debugging
+  const getVerificationComments = async () => {
+    console.log(`Fetching comments for PR #${prNumber}...`);
+    
+    // Get all comments with pagination support
+    const allComments = [];
+    let page = 1;
+    let hasMore = true;
+    
+    while (hasMore) {
+      const { data: pageComments } = await github.rest.issues.listComments({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        issue_number: prNumber,
+        per_page: 100,
+        page: page
+      });
+      
+      allComments.push(...pageComments);
+      hasMore = pageComments.length === 100;
+      page++;
+      
     }
     
-    // Extract the original content and archive it
-    const originalContent = oldComment.body.replace('<!-- VERIFICATION_COMMENT_MARKER -->', '');
+    // Filter verification comments (exclude deployment ready)
+    const filteredComments = allComments.filter(comment => {
+      const isBot = comment.user.login === 'github-actions[bot]';
+      const hasMarker = comment.body.includes('<!-- VERIFICATION_COMMENT_MARKER -->');
+      const hasVerificationText = comment.body.includes('Preview Site Verification');
+      const isDeployment = comment.body.includes('🚀 Preview Deployment Ready!');
+      
+      return isBot && (hasMarker || hasVerificationText) && !isDeployment;
+    });
+    return filteredComments;
+  };
+
+  // Keep archiving until only one unarchived verification comment remains
+  let archivedCount = 0;
+  let maxIterations = 10; // Safety limit to prevent infinite loops
+  let iteration = 0;
+  
+  while (iteration < maxIterations) {
+    iteration++;
+    const verificationComments = await getVerificationComments();
     
-    const archivedCommentBody = `**📋 Previous verification results (archived)**
+    // Filter to only unarchived verification comments
+    const unarchivedComments = verificationComments.filter(comment => 
+      !comment.body.includes('**📋 Previous verification results (archived)**')
+    );
+    
+    console.log(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments`);
+    
+    // If we have 1 or fewer unarchived comments, we're done
+    if (unarchivedComments.length <= 1) {
+      console.log(`Archive process complete: ${unarchivedComments.length} unarchived verification comments remaining`);
+      break;
+    }
+    
+    // Sort by creation date (oldest first) and archive all but the most recent
+    unarchivedComments.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    const commentsToArchive = unarchivedComments.slice(0, -1); // All except the last (most recent)
+    
+    console.log(`Archiving ${commentsToArchive.length} older verification comments`);
+    
+    // Archive the older comments
+    for (const oldComment of commentsToArchive) {
+      // Extract original content and determine comment type
+      let originalContent = oldComment.body;
+      const hasMarker = originalContent.includes('<!-- VERIFICATION_COMMENT_MARKER -->');
+      if (hasMarker) {
+        originalContent = originalContent.replace('<!-- VERIFICATION_COMMENT_MARKER -->', '').trim();
+      }
+      
+      // Create archived comment with timestamp from original comment
+      const createdAt = new Date(oldComment.created_at).toISOString();
+      const archivedCommentBody = `**📋 Previous verification results (archived)**
 
 <details>
-<summary>Click to view archived verification results</summary>
+<summary>Click to view archived verification results from ${createdAt}</summary>
 
 ${originalContent}
 
@@ -68,18 +120,27 @@ ${originalContent}
 <sub>⏰ This verification result has been archived • A newer verification is available below</sub>
 <!-- VERIFICATION_COMMENT_MARKER -->`;
 
-    try {
-      await github.rest.issues.updateComment({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        comment_id: oldComment.id,
-        body: archivedCommentBody
-      });
-      console.log(`Archived verification comment ${oldComment.id} on PR #${prNumber}`);
-    } catch (error) {
-      console.error(`Failed to archive comment ${oldComment.id}:`, error);
-      // Continue processing other comments even if one fails
+      try {
+        await github.rest.issues.updateComment({
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          comment_id: oldComment.id,
+          body: archivedCommentBody
+        });
+        console.log(`Archived verification comment ${oldComment.id} on PR #${prNumber} (created: ${createdAt})`);
+        archivedCount++;
+      } catch (error) {
+        console.error(`Failed to archive comment ${oldComment.id}:`, error);
+        // Continue processing other comments even if one fails
+      }
     }
+    
+    // Small delay to allow GitHub API to catch up
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  
+  if (iteration >= maxIterations) {
+    console.warn(`Reached maximum iterations (${maxIterations}) while archiving comments`);
   }
 
   // Create new verification comment
@@ -92,11 +153,11 @@ ${originalContent}
     });
     
     console.log(`Created new verification comment ${newComment.id} on PR #${prNumber}`);
-    console.log(`Archived ${verificationComments.length} previous verification comments`);
+    console.log(`Archived ${archivedCount} previous verification comments`);
     
     return {
       commentId: newComment.id,
-      archivedCount: verificationComments.length
+      archivedCount: archivedCount
     };
   } catch (error) {
     console.error('Failed to create verification comment:', error);
