@@ -19,3 +19,6 @@ node_modules
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
 yarn.lock
+
+# Claude Code local settings (user-specific)
+.claude/settings.local.json
