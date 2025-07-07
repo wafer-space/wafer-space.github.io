@@ -2,7 +2,7 @@
 layout: author_page
 title: "Matt Venn"
 sub_title: "Advisor"
-avatar: "/assets/images/people/matt.jpg"
+avatar: "assets/images/people/matt.jpg"
 social_accounts:
   - icon: "jam jam-linkedin"
     url: "https://www.linkedin.com/in/matt-venn"

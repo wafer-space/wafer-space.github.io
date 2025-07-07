@@ -2,7 +2,7 @@
 layout: author_page
 title: "Tim 'mithro' Ansell"
 sub_title: "Founder"
-avatar: "/assets/images/people/tim.jpg"
+avatar: "assets/images/people/tim.jpg"
 primary_author: true
 social_accounts:
   - icon: "jam jam-linkedin"

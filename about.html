@@ -53,7 +53,7 @@ contact_area:
   sub_title: |
    'If you got any questions, don't hesitate to get in touch with us.'
   contact_data:
-    - icon: "/assets/images/icon/co-email-5.webp"
+    - icon: "assets/images/icon/co-email-5.webp"
       email_01: "info@wafer.space"
 ---
 {% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
@@ -173,7 +173,7 @@ contact_area:
           <div class="col-md-4">
             {% if contact_data.icon %}
             <div class="icon icon-svg mb-20">
-              <img src="{{contact_data.icon}}" alt="{{contact_data.icon}}" />
+              <img src="{{contact_data.icon | relative_url}}" alt="{{contact_data.icon}}" />
             </div>
             {% endif %}
             {% if contact_data.info %}

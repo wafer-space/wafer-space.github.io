@@ -2,7 +2,7 @@
 layout: author_page
 title: "Andrew 'bunnie' Huang"
 sub_title: "Advisor"
-avatar: "/assets/images/people/bunnie.jpg"
+avatar: "assets/images/people/bunnie.jpg"
 social_accounts:
   - icon: "jam jam-home"
     url: "https://www.bunniestudios.com/"

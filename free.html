@@ -11,7 +11,7 @@ about_area:
   sub_title: "Giving people access to silicon is our mission, we are looking to provide no-cost options where possible."
   projects_number: 450
   project_tag: "Completed Projects"
-  image: "/assets/images/art/about7.webp"
+  image: "assets/images/art/about7.webp"
   skills:
     - title: "Web Development"
       numbers: 100
@@ -67,7 +67,7 @@ pricing_table:
             <div class="position-relative">
               {% if page.about_area.image %}
               <figure>
-                <img src="{{page.about_area.image}}" alt="{{page.about_area.title}}"/>
+                <img src="{{page.about_area.image | relative_url}}" alt="{{page.about_area.title}}"/>
               </figure>
               {% endif %}
               <div class="row counter counter-s position-absolute" style="top: 45%; right: 8%;">
