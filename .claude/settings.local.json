@@ -94,7 +94,8 @@
       "Bash(./temp-tools/muffet:*)",
       "Bash(./muffet:*)",
       "Bash(temp-tools/muffet:*)",
-      "Bash(GIT_SEQUENCE_EDITOR=\"cp /tmp/rebase-plan.txt\" git rebase -i development)"
+      "Bash(GIT_SEQUENCE_EDITOR=\"cp /tmp/rebase-plan.txt\" git rebase -i development)",
+      "WebFetch(domain:docs.google.com)"
     ],
     "deny": []
   }
