@@ -6,8 +6,8 @@ name: Cleanup Preview Deployments
 
 on:
   schedule:
-    # Run every 6 hours to clean up closed PR previews
-    - cron: '0 */6 * * *'
+    # Run every 15 minutes to clean up closed PR previews
+    - cron: '*/15 * * * *'
   
   # Manual trigger for testing and immediate cleanup
   workflow_dispatch:
