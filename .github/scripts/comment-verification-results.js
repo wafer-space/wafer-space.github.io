@@ -85,13 +85,21 @@ ${reportContent}
     throw error;
   }
 
+  // Add delay to allow any concurrent workflows to create their comments first
+  // This helps handle rapid-fire pushes where multiple workflows may start simultaneously
+  const initialDelay = Math.floor(Math.random() * 2000) + 1000; // 1-3 second random delay
+  console.log(`Waiting ${initialDelay}ms before archival to handle concurrent workflows...`);
+  await new Promise(resolve => setTimeout(resolve, initialDelay));
+
   // Now archive ALL existing unarchived verification comments (except the one we just created)
   let archivedCount = 0;
-  let maxIterations = 10; // Safety limit to prevent infinite loops
+  let maxIterations = 15; // Increased limit for handling rapid-fire scenarios
   let iteration = 0;
   
   while (iteration < maxIterations) {
     iteration++;
+    
+    // Refresh comment list each iteration to catch any new comments from concurrent workflows
     const verificationComments = await getVerificationComments();
     
     // Filter to only unarchived verification comments, excluding the one we just created
@@ -101,6 +109,14 @@ ${reportContent}
     );
     
     console.log(`Iteration ${iteration}: Found ${unarchivedComments.length} unarchived verification comments to archive`);
+    
+    // Debug: Log all unarchived comment IDs and creation times
+    if (unarchivedComments.length > 0) {
+      console.log('Unarchived comments details:');
+      unarchivedComments.forEach(c => {
+        console.log(`  - Comment ${c.id}: created ${c.created_at}`);
+      });
+    }
     
     // If no unarchived comments remain (besides our new one), we're done
     if (unarchivedComments.length === 0) {
@@ -112,6 +128,24 @@ ${reportContent}
     
     // Archive ALL existing unarchived comments
     for (const oldComment of unarchivedComments) {
+      // Double-check that this comment hasn't been archived by another concurrent workflow
+      try {
+        const { data: currentComment } = await github.rest.issues.getComment({
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          comment_id: oldComment.id
+        });
+        
+        // Skip if already archived by another workflow
+        if (currentComment.body.includes('**📋 Previous verification results (archived)**')) {
+          console.log(`Comment ${oldComment.id} already archived by another workflow, skipping`);
+          continue;
+        }
+      } catch (error) {
+        console.log(`Comment ${oldComment.id} no longer exists, skipping`);
+        continue;
+      }
+      
       // Extract original content and determine comment type
       let originalContent = oldComment.body;
       const hasMarker = originalContent.includes('<!-- VERIFICATION_COMMENT_MARKER -->');
@@ -121,6 +155,7 @@ ${reportContent}
       
       // Create archived comment with timestamp from original comment
       const createdAt = new Date(oldComment.created_at).toISOString();
+      const workflowInfo = `Run ID: ${runId}`;
       const archivedCommentBody = `**📋 Previous verification results (archived)**
 
 <details>
@@ -131,7 +166,7 @@ ${originalContent}
 </details>
 
 ---
-<sub>⏰ This verification result has been archived • A newer verification is available below</sub>
+<sub>⏰ This verification result has been archived by ${workflowInfo} • A newer verification is available below</sub>
 <!-- VERIFICATION_COMMENT_MARKER -->`;
 
       try {
@@ -144,13 +179,17 @@ ${originalContent}
         console.log(`Archived verification comment ${oldComment.id} on PR #${prNumber} (created: ${createdAt})`);
         archivedCount++;
       } catch (error) {
-        console.error(`Failed to archive comment ${oldComment.id}:`, error);
+        if (error.status === 409) {
+          console.log(`Comment ${oldComment.id} was modified by another workflow, skipping`);
+        } else {
+          console.error(`Failed to archive comment ${oldComment.id}:`, error);
+        }
         // Continue processing other comments even if one fails
       }
     }
     
-    // Small delay to allow GitHub API to catch up
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Longer delay to allow GitHub API and concurrent workflows to settle
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
   
   if (iteration >= maxIterations) {
