@@ -30,17 +30,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Setup SSH for preview repository access
+      - name: Setup SSH and clone preview repository
+        id: find-cleanup
         run: |
           # Setup SSH for accessing the preview repository
           eval $(ssh-agent -s)
           echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-      
-      - name: Clone preview repository and find directories to clean
-        id: find-cleanup
-        run: |
+          
           # Clone the preview repository to check what needs cleanup
           git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
           cd preview-repo
