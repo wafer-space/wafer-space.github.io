@@ -2,15 +2,24 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Setup
+
+First-time setup for Claude Code:
+```bash
+cp .claude/settings.local.json.template .claude/settings.local.json
+```
+
+The `settings.local.json` file is gitignored to prevent rebase conflicts and allow personalized configurations.
+
 ## Development Commands
 
 ### CRITICAL: Working Directory Verification
+
 **ALWAYS verify your current working directory before running any commands.** This repository has a complex architecture with theme submodules and various working directories. Always check `pwd` and ensure you're in the expected location:
 
 - **Main repository root**: `./` (top-level directory with _config.yml)
 - **Theme submodule**: `./_theme/` (contains Jekyll theme files)
-- **Preview cleanup**: `/tmp/preview-cleanup/` (temporary cleanup workspace)
-- **Temporary directories**: `_tmp/preview-repo/` (relative to repository root)
+- **Temporary directories**: `./_tmp` (relative to repository root)
 
 Common mistakes:
 - Running Jekyll commands from wrong directory
@@ -61,7 +70,7 @@ The `theme_plugin.rb` file implements a sophisticated system to load theme compo
 
 ### Collections Architecture
 - `_advisors/` - Advisor profiles (site-specific)
-- `_authors/` - Author information (site-specific) 
+- `_authors/` - Author information (site-specific)
 - `_friends/` - Partner organizations (site-specific)
 - `_posts/` - Blog posts and news (site-specific)
 - `_shop_items/` - E-commerce products (loaded from theme if not overridden)
@@ -97,7 +106,7 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 
 ### File Precedence Rules
 - Site assets in `assets/` override theme assets
-- Site includes in `_includes/` override theme includes  
+- Site includes in `_includes/` override theme includes
 - Site layouts override theme layouts (though none currently exist)
 - Site collections override theme collections entirely
 - Site pages override theme demo pages
@@ -109,4 +118,14 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
 
-<!-- Trigger build to test submodule configuration -->
+## Git Workflow
+
+Make sure you are on the right branch before doing any work.
+
+### Working Practices
+
+- When making changes, start a new git branch and then make sure to commit to the git repository frequently as you work.
+- Once the work has been completed, create a new pull request on GitHub.
+- Once the pull request has been created, wait for the GitHub Action checks to run and fix any issues they find.
+- Wait for GitHub Copilot to review your pull request and then use the GitHub GraphQL API to find all code suggestions, fix the issues and then resolve the threads.
+
