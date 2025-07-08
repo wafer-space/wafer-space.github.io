@@ -37,7 +37,9 @@ jobs:
           eval $(ssh-agent -s)
           echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
           
           # Clone the preview repository to check what needs cleanup
           git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
