@@ -62,48 +62,30 @@ jobs:
             console.log(`PR Number: ${prNumber}`);
             console.log(`Preview URL: ${previewUrl}`);
             
-            // Fetch current PR data from GitHub API to get the latest commit hash
+            // Always fetch current PR data from GitHub API to get the latest commit hash
             // This avoids issues with stale data in context.payload after force pushes
-            try {
-              const { data: pullRequest } = await github.rest.pulls.get({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: prNumber
-              });
-              
-              const currentHeadSha = pullRequest.head.sha;
-              const prTitle = pullRequest.title;
-              
-              console.log(`PR Title: ${prTitle}`);
-              console.log(`Current HEAD SHA from API: ${currentHeadSha}`);
-              console.log(`Original HEAD SHA from payload: ${context.payload.pull_request.head.sha}`);
-              
-              if (currentHeadSha !== context.payload.pull_request.head.sha) {
-                console.log(`⚠️  Detected stale commit hash in payload - using current API data`);
-              }
-              
-              // Set outputs for subsequent steps using current API data
-              core.setOutput('pr_number', prNumber);
-              core.setOutput('preview_url', previewUrl);
-              core.setOutput('pr_title', prTitle);
-              core.setOutput('head_sha', currentHeadSha);
-              
-            } catch (error) {
-              console.error(`Failed to fetch current PR data: ${error.message}`);
-              console.log(`Falling back to payload data`);
-              
-              // Fallback to payload data if API call fails
-              const prTitle = context.payload.pull_request.title;
-              const headSha = context.payload.pull_request.head.sha;
-              
-              console.log(`PR Title: ${prTitle}`);
-              console.log(`HEAD SHA from payload: ${headSha}`);
-              
-              core.setOutput('pr_number', prNumber);
-              core.setOutput('preview_url', previewUrl);
-              core.setOutput('pr_title', prTitle);
-              core.setOutput('head_sha', headSha);
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+            
+            const currentHeadSha = pullRequest.head.sha;
+            const prTitle = pullRequest.title;
+            
+            console.log(`PR Title: ${prTitle}`);
+            console.log(`Current HEAD SHA from API: ${currentHeadSha}`);
+            console.log(`Original HEAD SHA from payload: ${context.payload.pull_request.head.sha}`);
+            
+            if (currentHeadSha !== context.payload.pull_request.head.sha) {
+              console.log(`⚠️  Detected stale commit hash in payload - using current API data`);
             }
+            
+            // Set outputs for subsequent steps using current API data
+            core.setOutput('pr_number', prNumber);
+            core.setOutput('preview_url', previewUrl);
+            core.setOutput('pr_title', prTitle);
+            core.setOutput('head_sha', currentHeadSha);
       
       - name: Wait for preview deployment to complete
         if: steps.pr-info.outputs.pr_number
