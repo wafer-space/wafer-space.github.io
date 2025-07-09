@@ -16,6 +16,10 @@ main_menu:
     url: "/technology.html"
     menu_type: "simple"
 
+  - text: "Tiny Tapeout"
+    url: "/tiny-tapeout.html"
+    menu_type: "simple"
+
   - text: "Design Help"
     url: "/design-help.html"
     menu_type: "simple"
