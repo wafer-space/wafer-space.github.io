@@ -9,13 +9,50 @@ slider_area:
   enable: true
   title: "Budget silicon manufacturing"
   sub_title: "Create integrated circuits without breaking the bank!"
-  button_text: "Learn how!"
-  button_url: "how.html"
+  button_text: "Explore Your Options"
+  button_url: "#silicon-options"
   slider_images:
     img_01: "assets/images/art/rocket1.webp"
     img_02: "assets/images/art/rocket2.webp"
     img_03: "assets/images/art/rocket3.webp"
     img_04: "assets/images/art/rocket4.webp"
+
+silicon_options:
+  enable: true
+  title: "Choose Your Silicon Journey"
+  sub_title: "Two pathways to bring your chip designs to life"
+  description: |
+    Whether you're just starting out or ready for production, we have the right solution for your silicon manufacturing needs.
+  options:
+    - title: "Start with Tiny Tapeout"
+      subtitle: "Educational & Prototyping"
+      price: "$50"
+      price_detail: "Starting from $50-200"
+      icon: "assets/images/icon/ec-mobile.webp"
+      features:
+        - "Shared tile space on GF180MCU"
+        - "Learn chip design fundamentals"
+        - "Perfect for students & hobbyists"
+        - "Quick validation of concepts"
+        - "Community support included"
+      button_text: "Learn with Tiny Tapeout"
+      button_url: "/tiny-tapeout.html"
+      badge: "Great for Learning"
+      
+    - title: "wafer.space Direct"
+      subtitle: "Dedicated Production"
+      price: "$7,000"
+      price_detail: "$6,000-8,000 for 1000 dies"
+      icon: "assets/images/icon/ec-store.webp"
+      features:
+        - "Full dedicated chip on GF180MCU"
+        - "~20mm² silicon area available"
+        - "500-1,000 raw unpackaged dies"
+        - "Professional manufacturing"
+        - "Complete design freedom"
+      button_text: "Go Direct"
+      button_url: "/free.html"
+      badge: "Production Ready"
 
 features_area:
   enable: false
@@ -131,7 +168,7 @@ testimonials:
       designation: "Sales Specialist"
 
 pricing_table:
-  enable: true
+  enable: false
   title: "Planned Pricing and Configuration"
   sub_title: |
     We're still working on the details of our silicon offering.
@@ -141,12 +178,39 @@ pricing_table:
     <p>There will be a single offering which is expected to look similar to <a href="">the Google GF180MCU OpenMPW configuration</a>.</p>
     <p><em>Unlike</em> the Google program, people will get back raw unpackaged silicon die and thus not requiring the usage of a specific pad frame or Caravel.</p>
     <p>Packaging <em>may</em> be through a third party at an additional cost.</p>
+
+tiny_tapeout_section:
+  enable: true
+  title: "Your Silicon Journey Starts with Tiny Tapeout"
+  sub_title: "From $50 educational projects to $6,000 production chips"
+  description: |
+    We've partnered with Tiny Tapeout to create the perfect pathway into silicon manufacturing. Start learning with their educational platform for just $50-300, then graduate to wafer.space for your dedicated chip production.
+  image: "/assets/images/concept/concept12@2x.webp"
+  button_text: "Learn More"
+  button_url: "/tiny-tapeout.html"
+  features:
+    - title: "Learn"
+      description: "Start with Tiny Tapeout to understand chip design fundamentals"
+      icon: "jam jam-graduation-cap"
+      icon_color: "blue"
+    - title: "Prototype" 
+      description: "Use shared tile space to test and validate your concepts"
+      icon: "jam jam-cogs"
+      icon_color: "green"
+    - title: "Graduate"
+      description: "Move to wafer.space for dedicated chip manufacturing"
+      icon: "jam jam-rocket"
+      icon_color: "purple"
+    - title: "Scale"
+      description: "Continue with wafer.space for production volumes"
+      icon: "jam jam-trending-up"
+      icon_color: "yellow"
   plans:
     - title: "Lowest"
       monthly_price: "6,000"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "assets/images/icons/ec-mobile.webp"
+      icon: "assets/images/icon/ec-mobile.webp"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
@@ -157,7 +221,7 @@ pricing_table:
       monthly_price: "8,000"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "assets/images/icons/ec-store.webp"
+      icon: "assets/images/icon/ec-store.webp"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
@@ -318,7 +382,7 @@ subscribe_area:
              data-textAlign="['left','left','left','center']"
              data-frames='[{"delay":2000,"speed":1200,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
              data-responsive="on"
-             data-responsive_offset="on" style="z-index: 9;" href="{{page.slider_area.button_url}}">
+             data-responsive_offset="on" style="z-index: 9;" href="{{page.slider_area.button_url | relative_url}}">
              {{page.slider_area.button_text}}
         </a>
 	    <!-- /.tp-caption -->
@@ -333,6 +397,71 @@ subscribe_area:
 </div>
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
+
+{% if page.silicon_options.enable %}
+<div class="wrapper light-wrapper" id="silicon-options">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center mb-60">
+        {% if page.silicon_options.title %}
+         <h2 class="title-color color-gray">{{page.silicon_options.title}}</h2>
+        {% endif %}
+        {% if page.silicon_options.sub_title %}
+         <h3 class="display-3">{{page.silicon_options.sub_title}}</h3>
+        {% endif %}
+        {% if page.silicon_options.description %}
+         <p class="lead">{{page.silicon_options.description}}</p>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="row">
+      {% for option in page.silicon_options.options %}
+      <div class="col-lg-6 mb-40">
+        <div class="card h-100 shadow-lg">
+          {% if option.badge %}
+          <div class="card-badge">
+            <span class="badge badge-primary">{{option.badge}}</span>
+          </div>
+          {% endif %}
+          <div class="card-body text-center p-40">
+            <div class="icon-wrapper mb-20">
+              <img src="{{option.icon}}" alt="{{option.title}}" class="icon-lg">
+            </div>
+            <h3 class="card-title mb-10">{{option.title}}</h3>
+            <p class="text-muted mb-20">{{option.subtitle}}</p>
+            
+            <div class="pricing-wrapper mb-30">
+              <div class="price-main color-primary">{{option.price}}</div>
+              <div class="price-detail text-muted">{{option.price_detail}}</div>
+            </div>
+            
+            <ul class="list-unstyled mb-30">
+              {% for feature in option.features %}
+              <li class="mb-10"><i class="jam jam-check color-primary mr-10"></i>{{feature}}</li>
+              {% endfor %}
+            </ul>
+            
+            <a href="{{option.button_url | relative_url}}" class="btn btn-primary btn-rounded btn-block">
+              {{option.button_text}}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="row mt-40">
+      <div class="col-lg-8 mx-auto text-center">
+        <div class="alert alert-info">
+          <h5><i class="jam jam-lightbulb mr-10"></i>Not sure which path is right for you?</h5>
+          <p class="mb-0">Start with Tiny Tapeout to learn the fundamentals, then graduate to wafer.space when you're ready for production.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}<!-- page.silicon_options.enable -->
 
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
@@ -538,6 +667,47 @@ subscribe_area:
 
     </div>
   </div>
+
+  {% if page.tiny_tapeout_section.enable %}
+  <div class="wrapper white-wrapper tiny-tapeout-section">
+    <div class="container inner">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center">
+          {% if page.tiny_tapeout_section.title %}
+           <h2 class="title-color color-gray">{{page.tiny_tapeout_section.title}}</h2>
+          {% endif %}
+          {% if page.tiny_tapeout_section.sub_title %}
+           <h3 class="display-3">{{page.tiny_tapeout_section.sub_title}}</h3>
+          {% endif %}
+          <div class="space20"></div>
+          {% if page.tiny_tapeout_section.description %}
+           <p class="lead">{{page.tiny_tapeout_section.description}}</p>
+          {% endif %}
+          <div class="space30"></div>
+          {% if page.tiny_tapeout_section.button_text %}
+           <a href="{{page.tiny_tapeout_section.button_url | relative_url}}" class="btn btn-primary btn-rounded btn-l">{{page.tiny_tapeout_section.button_text}}</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="space60"></div>
+      <div class="row text-center">
+        {% for feature in page.tiny_tapeout_section.features %}
+        <div class="col-lg-3 col-md-6 mb-40">
+          <div class="icon icon-blob icon-blob-{{feature.icon_color}} color-{{feature.icon_color}} mb-25">
+            <i class="{{feature.icon}}"></i>
+          </div>
+          {% if feature.title %}
+           <h5>{{feature.title}}</h5>
+          {% endif %}
+          {% if feature.description %}
+           <p>{{feature.description}}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}<!-- page.tiny_tapeout_section.enable -->
 
   {% if page.subscribe_area.enable %}
   <div class="subscribe-area">
