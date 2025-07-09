@@ -9,8 +9,8 @@ slider_area:
   enable: true
   title: "Budget silicon manufacturing"
   sub_title: "Create integrated circuits without breaking the bank!"
-  button_text: "Learn how!"
-  button_url: "how.html"
+  button_text: "Explore Your Options"
+  button_url: "#silicon-options"
   slider_images:
     img_01: "assets/images/art/rocket1.webp"
     img_02: "assets/images/art/rocket2.webp"
@@ -130,6 +130,33 @@ testimonials:
       name: "Jackie Sanders"
       designation: "Sales Specialist"
 
+tiny_tapeout_section:
+  enable: true
+  title: "Your Silicon Journey Starts with Tiny Tapeout"
+  sub_title: "From $50 educational projects to $7,000 production chips"
+  description: |
+    We've partnered with Tiny Tapeout to create a pathway into silicon manufacturing. Start learning with their educational platform for just $50-300, then transition to wafer.space for dedicated chip and low-volume production.
+  image: "/assets/images/concept/concept12@2x.webp"
+  button_text: "Learn More"
+  button_url: "/tiny-tapeout.html"
+  features:
+    - title: "Learn"
+      description: "Start with Tiny Tapeout to understand chip design fundamentals"
+      icon: "jam jam-graduation-cap"
+      icon_color: "blue"
+    - title: "Prototype"
+      description: "Use shared tile space to test and validate your concepts"
+      icon: "jam jam-cogs"
+      icon_color: "green"
+    - title: "Transition"
+      description: "Move to wafer.space for dedicated chip manufacturing"
+      icon: "jam jam-rocket"
+      icon_color: "purple"
+    - title: "Produce"
+      description: "Continue with wafer.space for low-volume production"
+      icon: "jam jam-trending-up"
+      icon_color: "yellow"
+
 pricing_table:
   enable: true
   title: "Our pricing"
@@ -178,7 +205,7 @@ about_us:
   sub_title: "If you got any questions, don't hesitate to get in touch with us."
   image: "assets/images/concept/concept12@2x.webp"
   description: |
-    
+
   button_text: "Contact Us"
   button_url: "mailto:info@wafer.space"
   bottom_image: "assets/images/art/rocket1.webp"
@@ -630,6 +657,47 @@ subscribe_area:
     </div>
   </div>
   {% endif %}<!-- page.testimonials.enable-->
+
+  {% if page.tiny_tapeout_section.enable %}
+  <div class="wrapper white-wrapper tiny-tapeout-section">
+    <div class="container inner">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center">
+          {% if page.tiny_tapeout_section.title %}
+           <h2 class="title-color color-gray">{{page.tiny_tapeout_section.title}}</h2>
+          {% endif %}
+          {% if page.tiny_tapeout_section.sub_title %}
+           <h3 class="display-3">{{page.tiny_tapeout_section.sub_title}}</h3>
+          {% endif %}
+          <div class="space20"></div>
+          {% if page.tiny_tapeout_section.description %}
+           <p class="lead">{{page.tiny_tapeout_section.description}}</p>
+          {% endif %}
+          <div class="space30"></div>
+          {% if page.tiny_tapeout_section.button_text %}
+           <a href="{{page.tiny_tapeout_section.button_url | relative_url}}" class="btn btn-primary btn-rounded btn-l">{{page.tiny_tapeout_section.button_text}}</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="space60"></div>
+      <div class="row text-center">
+        {% for feature in page.tiny_tapeout_section.features %}
+        <div class="col-lg-3 col-md-6 mb-40">
+          <div class="icon icon-blob icon-blob-{{feature.icon_color}} color-{{feature.icon_color}} mb-25">
+            <i class="{{feature.icon}}"></i>
+          </div>
+          {% if feature.title %}
+           <h5>{{feature.title}}</h5>
+          {% endif %}
+          {% if feature.description %}
+           <p>{{feature.description}}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}<!-- page.tiny_tapeout_section.enable -->
 
   {% if page.subscribe_area.enable %}
   <div class="subscribe-area">
