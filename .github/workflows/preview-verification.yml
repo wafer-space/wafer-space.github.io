@@ -78,8 +78,16 @@ jobs:
             console.log(`Original HEAD SHA from payload: ${context.payload.pull_request.head.sha}`);
             
             if (currentHeadSha !== context.payload.pull_request.head.sha) {
-              console.log(`⚠️  Detected stale commit hash in payload - using current API data`);
+              console.log(`⚠️  Detected stale commit hash in payload`);
+              console.log(`Payload hash: ${context.payload.pull_request.head.sha}`);
+              console.log(`Current hash: ${currentHeadSha}`);
+              console.log(`A newer commit has been pushed - aborting this workflow run`);
+              console.log(`A new workflow run should be triggered for the newer commit`);
+              core.setFailed('Workflow aborted due to stale commit hash - newer commit detected');
+              return;
             }
+            
+            console.log(`✅ Commit hash is current - proceeding with verification`);
             
             // Set outputs for subsequent steps using current API data
             core.setOutput('pr_number', prNumber);
