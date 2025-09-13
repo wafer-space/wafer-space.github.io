@@ -564,15 +564,15 @@ subscribe_area:
         <div class="space40"></div>
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <div id="accordion-1" class="accordion-wrapper">
+            <div id="accordion-1" class="accordion accordion-wrapper">
               {% for item in page.faq_section.questions %}
-              <div class="card shadow">
-                <div class="card-header">
-                  <h3>
-                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapse-1-{{forloop.index}}">{{item.question}}</button>
-                  </h3>
+              <div class="accordion-item card shadow">
+                <div class="accordion-header card-header" id="accordion-heading-1-{{forloop.index}}">
+                  <h5>
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-1-{{forloop.index}}" aria-expanded="false" aria-controls="accordion-collapse-1-{{forloop.index}}">{{item.question}}</button>
+                  </h5>
                 </div>
-                <div id="collapse-1-{{forloop.index}}" class="collapse" data-parent="#accordion-1">
+                <div id="accordion-collapse-1-{{forloop.index}}" class="accordion-collapse collapse" aria-labelledby="accordion-heading-1-{{forloop.index}}" data-bs-parent="#accordion-1">
                   <div class="card-body">
                     <p>{{item.answer}}</p>
                   </div>
