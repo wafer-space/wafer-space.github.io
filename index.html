@@ -45,54 +45,59 @@ features_area:
 # Part of the features_area
 two_columns_one:
   enable: true
-  title: "Why Choose Us?"
-  sub_title: "Why is Search Engine Optimization important for your business?"
+  title: "Who Is It For?"
+  sub_title: "Turn your designs into real silicon that you can hold, probe, and ship to users"
   image: "assets/images/concept/concept8@2x.webp"
   description: |
-    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit.
+    wafer.space brings the pooled fabrication model to silicon, just like OSH Park did for PCBs. Predictable pricing, frequent runs, and no-nonsense logistics.
   lists:
-    - "Aenean eu leo quam ornare."
-    - "Nullam quis risus eget mollis."
-    - "Donec elit non mi porta gravida."
-    - "Fusce dapibus cursus commodo."
+    - "Educators & Students: Turn semester projects into real silicon"
+    - "Makers & Independent Developers: Build custom chips and accelerators"
+    - "Startups & Research Labs: Validate feasibility with tangible parts"
+    - "Hardware Engineers: Move beyond FPGA/MCU protos to custom silicon"
 
 # Part of the features_area
 process_area:
   enable: true
-  title: "Our Process"
-  sub_title: "We bring solutions to make life easier for our customers"
+  title: "How It Works"
+  sub_title: "Simple, straightforward path from design to silicon"
   image: "assets/images/concept/concept1@2x.webp"
   lists:
 
-    - title: "Collect Ideas"
-      description: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo."
-      icon: "jam jam-lightbulb"
+    - title: "Reserve Your Slot"
+      description: "Secure your ~20 mm² design slot during the campaign. Fixed pricing, no surprises."
+      icon: "jam jam-ticket"
       icon_color: "blue"
 
-    - title: "Data Analysis"
-      description: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo."
-      icon: "jam jam-search-folder"
+    - title: "Design & Verify"
+      description: "Use the open GF180MCU PDK with your preferred flow. Run DRC/LVS/ERC sign-off checks."
+      icon: "jam jam-cpu"
       icon_color: "teal"
 
-    - title: "Magic Touch"
-      description: "Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras justo."
-      icon: "jam jam-heart"
+    - title: "Submit & Fabricate"
+      description: "Submit your tape-in bundle. Your design rides with peers on a pooled wafer run."
+      icon: "jam jam-upload"
+      icon_color: "green"
+
+    - title: "Receive Your Dies"
+      description: "Get ~1,000 bare dies delivered. Optional packaging available via third parties."
+      icon: "jam jam-box"
       icon_color: "yellow"
 
 # Part of the features_area
 two_columns_two:
   enable: true
-  title: "Our Personalized Solutions"
-  sub_title: "Just sit and relax while we take care of your business needs"
+  title: "Features & Specifications"
+  sub_title: "GlobalFoundries GF180MCU - Mature, well-documented process"
   image: "assets/images/concept/concept3@2x.webp"
   description: |
-    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+    Get access to a mature 180nm mixed-signal process with comprehensive documentation. Perfect for mixed-signal designs, MCUs, sensors, and more. Works with both open-source and proprietary design flows.
 
   lists:
-    - "Aenean eu leo quam ornare."
-    - "Nullam quis risus eget mollis."
-    - "Donec elit non mi porta gravida."
-    - "Fusce dapibus cursus commodo."
+    - "5 metal layers for flexible routing"
+    - "MIM capacitor Type-B (~2.0 fF/µm²)"
+    - "Poly and high-res poly (HRES) resistors"
+    - "Standard-Vt core and I/O devices per PDK"
 
 testimonials:
   enable: false
@@ -132,37 +137,44 @@ testimonials:
 
 pricing_table:
   enable: true
-  title: "Planned Pricing and Configuration"
+  title: "Pricing"
   sub_title: |
-    We're still working on the details of our silicon offering.
-  btn_url: "#"
+    Simple, transparent pricing for real silicon
+  btn_url: "#subscribe"
   description: |
-    <p>The values shown here represent our <em>target range</em>, but they're not guaranteed and may change as we lock in specifics.</p>
-    <p>There will be a single offering which is expected to look similar to <a href="">the Google GF180MCU OpenMPW configuration</a>.</p>
-    <p><em>Unlike</em> the Google program, people will get back raw unpackaged silicon die and thus not requiring the usage of a specific pad frame or Caravel.</p>
-    <p>Packaging <em>may</em> be through a third party at an additional cost.</p>
+    <p><strong>$7,000 USD for ~1,000 parts</strong></p>
+    <p>Flat price per ~20 mm² design slot on a pooled GF180MCU run. Returns ~1,000 bare dies (typical; yield and scribe affect final count).</p>
+    <p>Need more dies? Purchase multiple slots and submit your design multiple times.</p>
+    <p><strong>Optional Services:</strong> Packaging (chip-on-board, QFN wirebond), test services, and IP blocks available through partners.</p>
   plans:
-    - title: "Lowest"
-      monthly_price: "6,000"
+    - title: "Standard Slot"
+      monthly_price: "7,000"
       monthly_currency: "USD"
-      pricing_url: "#"
+      pricing_url: "#subscribe"
       icon: "assets/images/icons/ec-mobile.webp"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+        - "<strong>~20mm<sup>2</sup></strong> silicon area"
+        - "≈ 3.88 × 5.07 mm die size"
+        - "<strong>~1,000 bare dies</strong> delivered"
+        - "Top metal available for pads/inductors"
+        - "Bring your own pad ring and ESD"
 
-    - title: "Highest"
-      monthly_price: "8,000"
-      monthly_currency: "USD"
-      pricing_url: "#"
-      icon: "assets/images/icons/ec-store.webp"
-      features:
-        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+faq_section:
+  enable: true
+  title: "Frequently Asked Questions"
+  sub_title: "Common questions about our silicon manufacturing service"
+  questions:
+    - question: "Do I have to open-source my design?"
+      answer: "No. The PDK is open; your design can be open or closed."
+    - question: "Can you help me with a pad ring?"
+      answer: "No, but the community has created example pad-rings and review for common pitfalls."
+    - question: "How many I/O pads can I use?"
+      answer: "Depends on your pad pitch and die edge budget. Many designs fit 40–120 bonds comfortably in ~20 mm²."
+    - question: "Can I put multiple test chips or multiple macros in one slot?"
+      answer: "Allowed. You own the full ~20 mm²."
+    - question: "Where will my chips be made?"
+      answer: "Fabricated on GF180MCU in Singapore. Logistics and dicing via qualified partners. Final shipping from Singapore or our fulfillment partner."
 
 about_us:
   enable: true
@@ -170,7 +182,7 @@ about_us:
   sub_title: "If you got any questions, don't hesitate to get in touch with us."
   image: "assets/images/concept/concept12@2x.webp"
   description: |
-    
+
   button_text: "Contact Us"
   button_url: "mailto:info@wafer.space"
   bottom_image: "assets/images/art/rocket1.webp"
@@ -535,6 +547,43 @@ subscribe_area:
       {% if page.pricing_table.enable %}
       {% include pricing.html %}
       {% endif %}<!-- pricing_data.enable -->
+
+      {% if page.faq_section.enable %}
+      <div class="faq-wrapper">
+        <div class="space140"></div>
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            {% if page.faq_section.title %}
+             <h2 class="title-color color-gray text-center mb-30">{{page.faq_section.title}}</h2>
+            {% endif %}
+            {% if page.faq_section.sub_title %}
+             <h3 class="display-3 text-center">{{page.faq_section.sub_title}}</h3>
+            {% endif %}
+          </div>
+        </div>
+        <div class="space40"></div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div id="accordion-1" class="accordion-wrapper">
+              {% for item in page.faq_section.questions %}
+              <div class="card shadow">
+                <div class="card-header">
+                  <h3>
+                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapse-1-{{forloop.index}}">{{item.question}}</button>
+                  </h3>
+                </div>
+                <div id="collapse-1-{{forloop.index}}" class="collapse" data-parent="#accordion-1">
+                  <div class="card-body">
+                    <p>{{item.answer}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}<!-- page.faq_section.enable -->
 
     </div>
   </div>

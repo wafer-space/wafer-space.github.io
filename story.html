@@ -1,0 +1,287 @@
+---
+layout: default
+title: "The Story - wafer.space"
+sub_title: |
+  How we're making silicon accessible
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+
+story_content:
+  enable: true
+  title: "The Story"
+  intro: |
+    It has never been easier to **design your own integrated circuit**. What's missing is an affordable, straightforward path to real silicon that **yields enough parts** to build real products. For **US$7,000**, wafer.space delivers **1,000 raw dies** so you can prototype, test, and ship.
+
+    **wafer.space** makes fabrication straightforward: a pooled run on GlobalFoundries' open **GF180MCU** process in Singapore. You get **20 mm²** on the wafer and **1,000 raw dies back** — that's **US$7 per part**. Packaging is optional via recommended third parties. No gimmicks. Just silicon.
+
+    GF180MCU is a mature, well‑documented, open PDK—great for mixed‑signal, MCUs, sensors, and more—and works with both open‑source and proprietary design flows.
+
+personas:
+  enable: true
+  title: "Who this is for"
+  sub_title: "and what changes for them"
+  list:
+    - name: "Aisha, grad student"
+      description: "She tapes out a mixed‑signal IC for her paper and gets **1,000 dies** for characterization and follow‑up experiments and sharing with other interested researchers."
+      icon: "jam jam-graduation-cap"
+      icon_color: "blue"
+
+    - name: "Priya, instructor"
+      description: "**1,000 parts** means real lab kits; each team gets its own dies for bring‑up, not just a shared demo."
+      icon: "jam jam-users"
+      icon_color: "green"
+
+    - name: "Rowan, hardware hacker"
+      description: "Hobby builds become real hardware: **1,000 dies** enable multiple board spins, community kits, and rapid iteration—packaging optional via OSAT."
+      icon: "jam jam-wrench"
+      icon_color: "purple"
+
+    - name: "Diego, startup co‑founder"
+      description: "Uses **1,000 units** for investor demos, EVT boards, and early customer trials—real silicon shortens fundraising and sales cycles."
+      icon: "jam jam-rocket"
+      icon_color: "pink"
+
+    - name: "Alex, independent developer"
+      description: "A seasoned professional going solo—uses **1,000 dies** to build eval boards and seed beta units, winning contracts without big upfront budgets."
+      icon: "jam jam-code"
+      icon_color: "yellow"
+
+highlights:
+  enable: true
+  title: "Key Points"
+  items:
+    - title: "Your chip, not just a shuttle slot"
+      description: "**20 mm²** on GF180MCU and **1,000 dies**"
+    - title: "Skip gatekeeping"
+      description: "Open PDK, open tools, clear terms"
+    - title: "Flat pricing"
+      description: "US$7k fixed price, no surprises"
+    - title: "Singapore fab, global community"
+      description: "Straightforward logistics and support"
+
+problems:
+  enable: true
+  title: "The monsters we slay"
+  items:
+    - title: "Five‑figure NRE"
+      description: "We pool designs so your share is small and fixed."
+      icon: "jam jam-coin"
+      icon_color: "red"
+    - title: "Too few parts"
+      description: "Get **1,000 included** instead of a handful."
+      icon: "jam jam-box"
+      icon_color: "blue"
+
+process_steps:
+  enable: true
+  title: "What happens after you back"
+  steps:
+    - title: "Reserve your area"
+      description: "You commit to ~20 mm² on GF180MCU."
+    - title: "Prepare your GDSII"
+      description: "Use your preferred tools—open‑source or proprietary—and the publicly documented GF180MCU PDK."
+    - title: "We panelize and tape out"
+      description: "Your design rides with peers on a shared wafer."
+    - title: "Fabricated in Singapore"
+      description: "Wafers are processed and diced."
+    - title: "Receive your parts"
+      description: "**1,000 raw dies** by default (packaging optional via third‑party OSATs)."
+
+glance:
+  enable: true
+  title: "At a glance"
+  items:
+    - label: "Process"
+      value: "GlobalFoundries **GF180MCU** (0.18 µm)"
+    - label: "What you get"
+      value: "**20 mm²** die area; **1,000 raw dies included**"
+    - label: "Price"
+      value: "**US$7,000** per slot (**US$7/part**)"
+    - label: "Packaging"
+      value: "Optional, via third parties"
+
+crowdfunding:
+  enable: true
+  title: "Why we're crowdfunding"
+  content: |
+    A pooled wafer only works when enough designs ship together. Your pledge is the signal: when we reach the threshold, we tape out. Hitting the goal locks the fab window and the **US$7/part** pricing. Crowdfunding lets us publish dates and report progress openly—exactly the transparency backers expect on Crowd Supply.
+
+about_team:
+  enable: true
+  title: "Why we'll pull it off"
+  content: |
+    wafer.space is built by people who helped open the very PDK we're using and who've shipped community silicon before. We focus on predictable **per‑part pricing** and frequent pooled runs. We're backed by a network of open‑hardware builders and advisors who care about getting *chips into more hands*, not just onto roadmaps. (See our **About** page for founder and advisor bios.)
+---
+
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<!-- Story Content -->
+{% if page.story_content.enable %}
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {% if page.story_content.title %}
+        <h2 class="section-title mb-40 text-center">{{ page.story_content.title }}</h2>
+        {% endif %}
+        <div class="lead larger">
+          {{ page.story_content.intro | markdownify }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Personas -->
+{% if page.personas.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        {% if page.personas.title %}
+        <h2 class="title-color color-gray text-center mb-30">{{ page.personas.title }}</h2>
+        {% endif %}
+        {% if page.personas.sub_title %}
+        <h3 class="display-3 text-center">{{ page.personas.sub_title }}</h3>
+        {% endif %}
+      </div>
+    </div>
+    <div class="space40"></div>
+    <div class="row">
+      {% for persona in page.personas.list %}
+      <div class="col-md-6 col-lg-4 mb-30">
+        <div class="box bg-white shadow p-30">
+          <div class="icon icon-blob icon-blob-{{persona.icon_color}} color-{{persona.icon_color}} mb-20">
+            <i class="{{persona.icon}}"></i>
+          </div>
+          <h5>{{ persona.name }}</h5>
+          <p>{{ persona.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Highlights -->
+{% if page.highlights.enable %}
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{ page.highlights.title }}</h2>
+    <div class="row text-center gutter-60">
+      {% for item in page.highlights.items %}
+      <div class="col-md-6 col-lg-3">
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Problems We Solve -->
+{% if page.problems.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{ page.problems.title }}</h2>
+    <div class="row">
+      {% for problem in page.problems.items %}
+      <div class="col-md-6">
+        <div class="d-flex flex-row mb-30">
+          <div>
+            <span class="icon icon-blob icon-blob-{{problem.icon_color}} color-{{problem.icon_color}} mr-25">
+              <i class="{{problem.icon}}"></i>
+            </span>
+          </div>
+          <div>
+            <h5>{{ problem.title }}</h5>
+            <p>{{ problem.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Process Steps -->
+{% if page.process_steps.enable %}
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{ page.process_steps.title }}</h2>
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <ol class="process-list">
+          {% for step in page.process_steps.steps %}
+          <li>
+            <h5>{{ step.title }}</h5>
+            <p>{{ step.description | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- At a Glance -->
+{% if page.glance.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{ page.glance.title }}</h2>
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="box bg-white shadow p-30">
+          <ul class="unordered-list list-default">
+            {% for item in page.glance.items %}
+            <li><strong>{{ item.label }}:</strong> {{ item.value | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Crowdfunding -->
+{% if page.crowdfunding.enable %}
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="section-title mb-30">{{ page.crowdfunding.title }}</h2>
+        <div class="lead">
+          {{ page.crowdfunding.content | markdownify }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- About Team -->
+{% if page.about_team.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="section-title mb-30">{{ page.about_team.title }}</h2>
+        <div class="lead">
+          {{ page.about_team.content | markdownify }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="space120"></div>
+
+<!--/.footer Wrapper-->
+{% include layouts/footer/footer-1.html %}
