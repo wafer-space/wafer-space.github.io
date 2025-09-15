@@ -33,16 +33,16 @@ Jekyll::Hooks.register :site, :post_render do |site|
       commit_hash = site.config['git_commit_hash'] || 'unknown'
       
       # Add meta tag if not already present
-      unless doc.output.include?('name="git-commit"')
+      unless doc.output.nil? || doc.output.include?('name="git-commit"')
         meta_tag = %Q(  <meta name="git-commit" content="#{commit_hash}">)
         
         # Try to insert after the first meta tag in head
-        if doc.output.match(/<meta[^>]*>/i)
+        if doc.output && doc.output.match(/<meta[^>]*>/i)
           doc.output = doc.output.sub(/(<meta[^>]*>)/i) do |match|
             "#{match}\n#{meta_tag}"
           end
         # Fallback: insert after <head> tag when no meta tags are present
-        elsif doc.output.match(/<head[^>]*>/i)
+        elsif doc.output && doc.output.match(/<head[^>]*>/i)
           doc.output = doc.output.sub(/(<head[^>]*>)/i) do |match|
             "#{match}\n#{meta_tag}"
           end
