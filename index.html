@@ -142,27 +142,36 @@ pricing_table:
     <p><em>Unlike</em> the Google program, people will get back raw unpackaged silicon die and thus not requiring the usage of a specific pad frame or Caravel.</p>
     <p>Packaging <em>may</em> be through a third party at an additional cost.</p>
   plans:
-    - title: "Lowest"
-      monthly_price: "6,000"
+    - title: "GF180MCU Shuttle Slot<br>Wire-Bonded"
+      monthly_price: "8,500"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "assets/images/icons/ec-mobile.webp"
+      icon: "assets/images/products/wafer-space-chip-on-board.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
         - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+        - "1,000 die wire bonded onto PCBs"
 
-    - title: "Highest"
-      monthly_price: "8,000"
+    - title: "GF180MCU Shuttle Slot<br>Bare Dies"
+      monthly_price: "7,000"
       monthly_currency: "USD"
       pricing_url: "#"
-      icon: "assets/images/icons/ec-store.webp"
+      icon: "assets/images/products/gf180mcu-gelpack-dice.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
         - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+        - "1,000 raw dies"
+
+    - title: "Undiced Full Wafer"
+      monthly_price: "2,000"
+      monthly_currency: "USD"
+      pricing_url: "#"
+      icon: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
+      features:
+        - Undiced 200mm wafer.
+        - Only valid with slot purchase.
 
 about_us:
   enable: true
@@ -533,7 +542,7 @@ subscribe_area:
       {% endif %}<!-- page.testimonials.enable-->
 
       {% if page.pricing_table.enable %}
-      {% include pricing.html %}
+      {% include pricing-3col.html %}
       {% endif %}<!-- pricing_data.enable -->
 
     </div>
