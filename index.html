@@ -140,6 +140,7 @@ pricing_table:
       monthly_price: "8,500"
       monthly_currency: "USD"
       pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
       icon: "assets/images/products/wafer-space-chip-on-board.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
@@ -151,6 +152,7 @@ pricing_table:
       monthly_price: "7,000"
       monthly_currency: "USD"
       pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
       icon: "assets/images/products/gf180mcu-gelpack-dice.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
@@ -162,6 +164,7 @@ pricing_table:
       monthly_price: "2,000"
       monthly_currency: "USD"
       pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
       icon: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
       features:
         - Undiced 200mm wafer.
@@ -338,6 +341,11 @@ subscribe_area:
 </div>
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
+
+{% if page.pricing_table.enable %}
+{% include pricing-3col.html %}
+{% endif %}<!-- pricing_data.enable -->
+
 
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
@@ -536,10 +544,6 @@ subscribe_area:
       <!-- /.grid-view -->
       </div>
       {% endif %}<!-- page.testimonials.enable-->
-
-      {% if page.pricing_table.enable %}
-      {% include pricing-3col.html %}
-      {% endif %}<!-- pricing_data.enable -->
 
     </div>
   </div>

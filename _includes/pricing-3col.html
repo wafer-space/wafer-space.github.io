@@ -1,26 +1,32 @@
-<div class="wrapper">
-  <div class="container inner">
+
+{% if page.pricing_table.enable %}
+<div class="wrapper dark-wrapper inverse-text">
+  <div class="container inner text-center">
     {% if page.pricing_table.title %}
-     <h2 class="title-color color-gray text-center">{{page.pricing_table.title}}</h2>
+     <h2 class="title-color color-white text-center">{{page.pricing_table.title}}</h2>
     {% endif %}
     {% if page.pricing_table.sub_title %}
-     <h3 class="display-3 text-center">{{page.pricing_table.sub_title}}</h3>
+     <h3 class="display-3 mb-0">{{page.pricing_table.sub_title}}</h3>
     {% endif %}
-    {% if page.pricing_table.description %}
-     <div class="text-center">{{page.pricing_table.description}}</div>
-    {% endif %}
+  </div>
+  <!-- /.container -->
+  <div class="space160"></div>
+</div>
+<!-- /.wrapper -->
+{% endif %}
 
-    <div class="space60"></div>
-
+<div class="wrapper overflow-top">
+  <div class="container inner pt-0 pb-30">
+    {% if page.pricing_table.enable %}
     <div class="pricing-wrapper">
       <div class="row g-0">
         {% assign pricings = page.pricing_table.plans %}
         {% for pricing in pricings %}
         <div class="col-md-4 {% if forloop.index == 2 %} popular {% endif %}">
-          <div class="panel pricing box bg-white shadow">
+          <div class="pricing panel box bg-white shadow">
             <div class="panel-heading">
               {% if pricing.icon %}
-              <div class="mb-20">
+              <div class="mb-10">
                 <img src="{{pricing.icon}}" class="img-fluid" alt="{{pricing.title}}"/>
               </div>
               {% endif %}
@@ -38,15 +44,15 @@
               <table class="table">
                 {% for feature in pricing.features %}
                 <tr>
-                  <td class="text-center">{{feature}}</td>
+                  <td>{{feature}}</td>
                 </tr>
                 {% endfor %}
               </table>
             </div>
             <!--/.panel-body -->
-            <div class="panel-footer text-center">
+            <div class="panel-footer">
               {% if pricing.pricing_url %}
-               <a href="{{pricing.pricing_url}}" class="btn btn-rounded btn-default" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
+               <a href="{{pricing.pricing_url}}" class="btn" role="button">{{pricing.button_text}}</a>
               {% endif %}
            </div>
           </div>
@@ -57,6 +63,6 @@
       <!--/.row -->
     </div>
     <!--/.pricing-wrapper -->
-  </div>
-  <!-- /.container -->
+    {% endif %}
 </div>
+<!-- /.wrapper -->
