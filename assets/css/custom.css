@@ -1,0 +1,14 @@
+/* Site-specific CSS overrides */
+
+/* Fix price formatting - remove the automatic "/" before duration */
+.price-duration:before {
+    content: "" !important;
+    padding-right: 0 !important;
+}
+
+/* Additional specificity for pricing components */
+.pricing .price-duration:before,
+.panel.pricing .price-duration:before {
+    content: "" !important;
+    padding-right: 0 !important;
+}
