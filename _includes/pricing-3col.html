@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="container inner">
+    {% if page.pricing_table.title %}
+     <h2 class="title-color color-gray text-center">{{page.pricing_table.title}}</h2>
+    {% endif %}
+    {% if page.pricing_table.sub_title %}
+     <h3 class="display-3 text-center">{{page.pricing_table.sub_title}}</h3>
+    {% endif %}
+    {% if page.pricing_table.description %}
+     <div class="text-center">{{page.pricing_table.description}}</div>
+    {% endif %}
+
+    <div class="space60"></div>
+
+    <div class="pricing-wrapper">
+      <div class="row g-0">
+        {% assign pricings = page.pricing_table.plans %}
+        {% for pricing in pricings %}
+        <div class="col-md-4 {% if forloop.index == 2 %} popular {% endif %}">
+          <div class="panel pricing box bg-white shadow">
+            <div class="panel-heading">
+              {% if pricing.icon %}
+              <div class="mb-20">
+                <img src="{{pricing.icon}}" class="img-fluid" alt="{{pricing.title}}"/>
+              </div>
+              {% endif %}
+              <h4 class="panel-title mb-35">{{pricing.title}}</h4>
+              <div class="prices color-dark">
+                <div class="price price-show">
+                  <span class="price-currency">$</span>
+                  <span class="price-value">{{pricing.monthly_price}}</span>
+                  <span class="price-duration">{{pricing.monthly_currency}}</span>
+                </div>
+              </div>
+            </div>
+            <!--/.panel-heading -->
+            <div class="panel-body">
+              <table class="table">
+                {% for feature in pricing.features %}
+                <tr>
+                  <td class="text-center">{{feature}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <!--/.panel-body -->
+            <div class="panel-footer text-center">
+              {% if pricing.pricing_url %}
+               <a href="{{pricing.pricing_url}}" class="btn btn-rounded btn-default" role="button">CHOOSE PLAN</a>
+              {% endif %}
+           </div>
+          </div>
+          <!--/.pricing -->
+        </div>
+        {% endfor %}
+      </div>
+      <!--/.row -->
+    </div>
+    <!--/.pricing-wrapper -->
+  </div>
+  <!-- /.container -->
+</div>
