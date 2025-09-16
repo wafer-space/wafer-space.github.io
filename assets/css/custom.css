@@ -17,3 +17,8 @@
 .pricing-wrapper .panel.pricing.box {
     padding-top: 3em !important;
 }
+
+/* Make header text in middle column slightly larger */
+.pricing-wrapper .popular h4.panel-title {
+    font-size: 1.3rem !important;
+}
