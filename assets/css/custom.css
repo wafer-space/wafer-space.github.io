@@ -12,3 +12,8 @@
     content: "" !important;
     padding-right: 0 !important;
 }
+
+/* Remove padding-top from all pricing columns */
+.pricing-wrapper .panel.pricing.box {
+    padding-top: 3em !important;
+}
