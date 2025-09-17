@@ -22,3 +22,15 @@
 .pricing-wrapper .popular h4.panel-title {
     font-size: 1.3rem !important;
 }
+
+/* Fix FAQ accordion text alignment when wrapping */
+.accordion-wrapper .card-header button {
+    padding-left: 1.5rem !important;
+    text-indent: -1.5rem !important;
+}
+
+.accordion-wrapper .card-header button:before {
+    display: inline-block !important;
+    width: 1.5rem !important;
+    text-indent: 0 !important;
+}
