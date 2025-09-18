@@ -232,8 +232,12 @@ jobs:
           CSS_ASSETS=$(echo "$CONTENT" | grep -oE 'href="[^"]*\.css"' | grep -oE '"[^"]*"' | tr -d '"')
           JS_ASSETS=$(echo "$CONTENT" | grep -oE 'src="[^"]*\.js"' | grep -oE '"[^"]*"' | tr -d '"')
           IMAGE_ASSETS=$(echo "$CONTENT" | grep -oE '(src|href)="[^"]*\.(png|jpg|jpeg|webp|ico)"' | grep -oE '"[^"]*"' | tr -d '"' | head -5)
-          
-          ALL_HTML_ASSETS="$CSS_ASSETS"$'\n'"$JS_ASSETS"$'\n'"$IMAGE_ASSETS"
+
+          # Extract images from data attributes (data-image-src, data-src, data-background, etc.)
+          # These are commonly used for lazy loading and CSS background images
+          DATA_IMAGE_ASSETS=$(echo "$CONTENT" | grep -oE 'data-[^=]*="[^"]*\.(png|jpg|jpeg|webp|ico)"' | grep -oE '"[^"]*"' | tr -d '"' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -E '\.(png|jpg|jpeg|webp|ico)$' | head -5)
+
+          ALL_HTML_ASSETS="$CSS_ASSETS"$'\n'"$JS_ASSETS"$'\n'"$IMAGE_ASSETS"$'\n'"$DATA_IMAGE_ASSETS"
           
           while IFS= read -r asset_path; do
             if [ -n "$asset_path" ]; then
