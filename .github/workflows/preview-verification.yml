@@ -235,7 +235,7 @@ jobs:
 
           # Extract images from data attributes (data-image-src, data-src, data-background, etc.)
           # These are commonly used for lazy loading and CSS background images
-          DATA_IMAGE_ASSETS=$(echo "$CONTENT" | grep -oE 'data-[^=]*="[^"]*\.(png|jpg|jpeg|webp|ico)"' | grep -oE '"[^"]*"' | tr -d '"' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -E '\.(png|jpg|jpeg|webp|ico)$' | head -5)
+          DATA_IMAGE_ASSETS=$(echo "$CONTENT" | grep -oE 'data-[^=]*="[^"]*"' | grep -E '\.(png|jpg|jpeg|webp|ico)' | grep -oE '"[^"]*"' | tr -d '"' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | head -5)
 
           ALL_HTML_ASSETS="$CSS_ASSETS"$'\n'"$JS_ASSETS"$'\n'"$IMAGE_ASSETS"$'\n'"$DATA_IMAGE_ASSETS"
           
