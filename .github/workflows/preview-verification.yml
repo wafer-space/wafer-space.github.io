@@ -248,12 +248,14 @@ jobs:
             else
               # Handle both relative and absolute paths
               if [[ "$page_path" == /* ]]; then
-                PAGE_URL="$PREVIEW_URL${page_path#/}"
+                # For absolute paths like /pr-46/about.html, use them directly with the domain
+                PAGE_URL="https://preview.wafer.space$page_path"
               else
+                # For relative paths like how.html, append to PREVIEW_URL
                 PAGE_URL="$PREVIEW_URL$page_path"
               fi
               PAGE_NAME="$(basename "$page_path")"
-              echo "Processing page $PAGE_COUNT: $PAGE_NAME ($page_path)" >> $REPORT_FILE
+              echo "Processing page $PAGE_COUNT: $PAGE_NAME ($page_path) -> $PAGE_URL" >> $REPORT_FILE
               PAGE_CONTENT=$(curl -s "$PAGE_URL" 2>/dev/null || echo "")
             fi
 
