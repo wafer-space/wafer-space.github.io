@@ -55,21 +55,45 @@ jobs:
               return;
             }
             
-            // Handle pull_request trigger
+            // Handle pull_request trigger - fetch current PR state from API to avoid stale data
             const prNumber = context.payload.pull_request.number;
             const previewUrl = `https://preview.wafer.space/pr-${prNumber}/`;
-            const prTitle = context.payload.pull_request.title;
-            const headSha = context.payload.pull_request.head.sha;
             
             console.log(`PR Number: ${prNumber}`);
             console.log(`Preview URL: ${previewUrl}`);
-            console.log(`PR Title: ${prTitle}`);
             
-            // Set outputs for subsequent steps
+            // Always fetch current PR data from GitHub API to get the latest commit hash
+            // This avoids issues with stale data in context.payload after force pushes
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+            
+            const currentHeadSha = pullRequest.head.sha;
+            const prTitle = pullRequest.title;
+            
+            console.log(`PR Title: ${prTitle}`);
+            console.log(`Current HEAD SHA from API: ${currentHeadSha}`);
+            console.log(`Original HEAD SHA from payload: ${context.payload.pull_request.head.sha}`);
+            
+            if (currentHeadSha !== context.payload.pull_request.head.sha) {
+              console.log(`⚠️  Detected stale commit hash in payload`);
+              console.log(`Payload hash: ${context.payload.pull_request.head.sha}`);
+              console.log(`Current hash: ${currentHeadSha}`);
+              console.log(`A newer commit has been pushed - aborting this workflow run`);
+              console.log(`A new workflow run should be triggered for the newer commit`);
+              core.setFailed('Workflow aborted due to stale commit hash - newer commit detected');
+              return;
+            }
+            
+            console.log(`✅ Commit hash is current - proceeding with verification`);
+            
+            // Set outputs for subsequent steps using current API data
             core.setOutput('pr_number', prNumber);
             core.setOutput('preview_url', previewUrl);
             core.setOutput('pr_title', prTitle);
-            core.setOutput('head_sha', headSha);
+            core.setOutput('head_sha', currentHeadSha);
       
       - name: Wait for preview deployment to complete
         if: steps.pr-info.outputs.pr_number
