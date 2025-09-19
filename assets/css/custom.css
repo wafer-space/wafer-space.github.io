@@ -1,0 +1,45 @@
+/* Site-specific CSS overrides */
+
+/* Dark mode fixes for Tiny Tapeout section */
+[data-theme="dark"] .tiny-tapeout-section .icon-blob {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .tiny-tapeout-section .icon-blob-blue {
+  background: rgba(74, 144, 226, 0.2) !important;
+  border-color: rgba(74, 144, 226, 0.4) !important;
+}
+
+[data-theme="dark"] .tiny-tapeout-section .icon-blob-green {
+  background: rgba(40, 167, 69, 0.2) !important;
+  border-color: rgba(40, 167, 69, 0.4) !important;
+}
+
+[data-theme="dark"] .tiny-tapeout-section .icon-blob-purple {
+  background: rgba(102, 16, 242, 0.2) !important;
+  border-color: rgba(102, 16, 242, 0.4) !important;
+}
+
+[data-theme="dark"] .tiny-tapeout-section .icon-blob-yellow {
+  background: rgba(255, 193, 7, 0.2) !important;
+  border-color: rgba(255, 193, 7, 0.4) !important;
+}
+
+/* Dark mode button fix */
+[data-theme="dark"] .btn-primary {
+  background-color: #4A90E2 !important;
+  border-color: #4A90E2 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: #357ABD !important;
+  border-color: #357ABD !important;
+  color: #ffffff !important;
+}
+
+/* Ensure proper contrast for icon blob text in dark mode */
+[data-theme="dark"] .tiny-tapeout-section .icon-blob i {
+  color: #ffffff !important;
+}
