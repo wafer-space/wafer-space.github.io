@@ -2,39 +2,14 @@
 layout: default
 title: "How wafer.space works"
 sub_title: |
-  How wafer.space provides budget silicon manufacturing.
+  Low volume manufacturing for prototyping and production.
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 about_area:
   enable: false
-  title: "What We Do?"
-  sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
-  projects_number: 450
-  project_tag: "Completed Projects"
-  image: "/assets/images/art/about7.webp"
-  skills:
-    - title: "Web Development"
-      numbers: 100
-      style: "pink"
-
-    - title: "Product Design"
-      numbers: 80
-      style: "blue"
-
-    - title: "Identity & Branding"
-      numbers: 85
-      style: "green"
-
-    - title: "Mobile Development"
-      numbers: 90
-      style: "purple"
 
 video_area:
   enable: false
-  title: "How We Do It?"
-  sub_title: "Find out everything you need to know <br>about creating a business process model."
-  image: "/assets/images/art/bg10.webp"
-  video_url: "https://www.youtube.com/watch?v=26TbMXXOe0I"
 
 clients_carousel:
   enable: false
@@ -44,12 +19,407 @@ clients_carousel:
 
 <div class="wrapper light-wrapper">
     <div class="container inner">
-        <h2 class="section-title mb-20">How do it work?</h2>
-        <p class="lead larger">This page will describe how wafer.space gets your silicon manufactured.</p>
+        <h2 class="section-title mb-20">How wafer.space works</h2>
+        <p class="lead larger">wafer.space coordinates low volume semiconductor manufacturing - perfect for prototyping and small production runs.</p>
         <div class="space20"></div>
-	<p>There will be more information here.</p>
+        
+        <!-- Star Map Visualization -->
+        <div class="star-map-container">
+            <div class="star-map" id="starMap">
+                <!-- Background stars -->
+                <div class="stars"></div>
+                
+                <!-- Manufacturing locations -->
+                <div class="location earth" data-step="1">
+                    <div class="location-icon">🌍</div>
+                    <div class="location-label">Your Project</div>
+                    <div class="location-sublabel">GDS Files</div>
+                </div>
+                
+                <div class="location wafer-space" data-step="2">
+                    <div class="location-icon">🏢</div>
+                    <div class="location-label">wafer.space</div>
+                    <div class="location-sublabel">Singapore</div>
+                </div>
+                
+                <div class="location globalfoundries" data-step="3">
+                    <div class="location-icon">🏭</div>
+                    <div class="location-label">GlobalFoundries</div>
+                    <div class="location-sublabel">Singapore Foundry</div>
+                </div>
+                
+                <div class="location delivery" data-step="4">
+                    <div class="location-icon">📦</div>
+                    <div class="location-label">Silicon Dies</div>
+                    <div class="location-sublabel">Delivered to You</div>
+                </div>
+                
+                <!-- Animated rockets -->
+                <div class="rocket-route route-1" data-from="earth" data-to="wafer-space">
+                    <svg class="rocket-svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M12 2 L10 6 L10 16 L14 16 L14 6 Z" fill="#4A90E2"/>
+                        <path d="M10 16 L8 20 L10 18 L14 18 L16 20 L14 16 Z" fill="#87CEEB"/>
+                        <circle cx="12" cy="9" r="2" fill="#FFD700"/>
+                        <path d="M12 14 L11 17 L12 16 L13 17 Z" fill="#FF6B6B"/>
+                    </svg>
+                    <div class="route-label">Project GDS</div>
+                </div>
+                
+                <div class="rocket-route route-2" data-from="wafer-space" data-to="globalfoundries">
+                    <svg class="rocket-svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M12 2 L10 6 L10 16 L14 16 L14 6 Z" fill="#4A90E2"/>
+                        <path d="M10 16 L8 20 L10 18 L14 18 L16 20 L14 16 Z" fill="#87CEEB"/>
+                        <circle cx="12" cy="9" r="2" fill="#FFD700"/>
+                        <path d="M12 14 L11 17 L12 16 L13 17 Z" fill="#FF6B6B"/>
+                    </svg>
+                    <div class="route-label">Mask GDS</div>
+                </div>
+                
+                <div class="rocket-route route-3" data-from="globalfoundries" data-to="delivery">
+                    <svg class="rocket-svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M12 2 L10 6 L10 16 L14 16 L14 6 Z" fill="#4A90E2"/>
+                        <path d="M10 16 L8 20 L10 18 L14 18 L16 20 L14 16 Z" fill="#87CEEB"/>
+                        <circle cx="12" cy="9" r="2" fill="#FFD700"/>
+                        <path d="M12 14 L11 17 L12 16 L13 17 Z" fill="#FF6B6B"/>
+                    </svg>
+                    <div class="route-label">Silicon Dies</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Manufacturing Process Steps -->
+        <div class="space40"></div>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h3 class="section-title text-center mb-40">The Manufacturing Journey</h3>
+                
+                <div class="process-step" data-step="1">
+                    <div class="process-icon">📂</div>
+                    <div class="process-content">
+                        <h4>1. Submit Your Design</h4>
+                        <p>Upload your GDS files (Graphic Design System) to wafer.space. These files contain the complete layout of your integrated circuit design.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="2">
+                    <div class="process-icon">🔧</div>
+                    <div class="process-content">
+                        <h4>2. Mask Preparation</h4>
+                        <p>wafer.space processes your design and creates optimized mask GDS files. These are sent to GlobalFoundries for photomask creation.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="3">
+                    <div class="process-icon">🏭</div>
+                    <div class="process-content">
+                        <h4>3. Wafer Fabrication</h4>
+                        <p>GlobalFoundries creates photomasks and fabricates silicon wafers using their advanced 180nm GF180MCU process in Singapore.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="4">
+                    <div class="process-icon">✂️</div>
+                    <div class="process-content">
+                        <h4>4. Die Cutting & Sorting</h4>
+                        <p>Wafers are precision-cut into individual silicon dies, tested for quality, and sorted for packaging and delivery.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="5">
+                    <div class="process-icon">📦</div>
+                    <div class="process-content">
+                        <h4>5. Delivery</h4>
+                        <p>Your finished silicon dies are packaged and delivered directly to you, ready for integration into your products.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Benefits Section -->
+        <div class="space60"></div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 class="section-title mb-30">Why Choose wafer.space?</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-30">
+                        <div class="feature-box">
+                            <div class="feature-icon">💰</div>
+                            <h5>Low Volume Manufacturing</h5>
+                            <p>Perfect for prototyping and small production runs without the overhead of large volume orders.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="feature-box">
+                            <div class="feature-icon">🚀</div>
+                            <h5>Rapid Prototyping</h5>
+                            <p>Get your designs manufactured quickly to validate concepts and iterate on your product development.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="feature-box">
+                            <div class="feature-icon">🏆</div>
+                            <h5>Professional Quality</h5>
+                            <p>Same high-quality GlobalFoundries fabrication process used by major semiconductor companies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.star-map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 40px 0;
+}
+
+.star-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 6s linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.location {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.location:hover {
+    transform: scale(1.1);
+}
+
+.location-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+    animation: pulse 2s infinite;
+}
+
+.location-label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.location-sublabel {
+    color: #ccc;
+    font-size: 12px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.earth {
+    top: 20%;
+    left: 10%;
+}
+
+.wafer-space {
+    top: 40%;
+    left: 40%;
+}
+
+.globalfoundries {
+    top: 25%;
+    right: 25%;
+}
+
+.delivery {
+    bottom: 20%;
+    right: 10%;
+}
+
+.rocket-route {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rocket-svg {
+    animation: rocket-fly 8s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(74, 144, 226, 0.5));
+}
+
+.route-label {
+    color: #87CEEB;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 4px;
+    background: rgba(0,0,0,0.7);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.route-1 {
+    top: 30%;
+    left: 25%;
+    animation: route-1-path 12s linear infinite;
+}
+
+.route-2 {
+    top: 35%;
+    right: 35%;
+    animation: route-2-path 12s linear infinite 4s;
+}
+
+.route-3 {
+    top: 50%;
+    right: 20%;
+    animation: route-3-path 12s linear infinite 8s;
+}
+
+@keyframes route-1-path {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(100px, 50px) rotate(45deg); }
+    50% { transform: translate(200px, 100px) rotate(90deg); }
+    75% { transform: translate(100px, 50px) rotate(225deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes route-2-path {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(50px, -30px) rotate(30deg); }
+    50% { transform: translate(100px, -60px) rotate(60deg); }
+    75% { transform: translate(50px, -30px) rotate(210deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes route-3-path {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-50px, 50px) rotate(-45deg); }
+    50% { transform: translate(-100px, 100px) rotate(-90deg); }
+    75% { transform: translate(-50px, 50px) rotate(135deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes rocket-fly {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    transition: background 0.3s ease;
+}
+
+.process-step:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.process-icon {
+    font-size: 40px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.process-content h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.process-content p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.feature-box {
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.feature-box h5 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.feature-box p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .star-map-container {
+        height: 400px;
+    }
+    
+    .location-icon {
+        font-size: 30px;
+    }
+    
+    .location-label {
+        font-size: 12px;
+    }
+    
+    .location-sublabel {
+        font-size: 10px;
+    }
+    
+    .process-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .process-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+</style>
 
 <!--how wrapper-->
 {% if page.about_area.enable %}

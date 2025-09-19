@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Simplified rocket for small sizes -->
+  <path d="M12 2 L10 6 L10 16 L14 16 L14 6 Z" fill="#4A90E2"/>
+  <path d="M12 2 L10 6 L14 6 Z" fill="#6BA3F5"/>
+  <circle cx="12" cy="9" r="1.5" fill="#87CEEB"/>
+  <path d="M10 16 L8 20 L10 18 Z" fill="#E74C3C"/>
+  <path d="M14 16 L16 20 L14 18 Z" fill="#E74C3C"/>
+  <path d="M11 16 L10 22 L11 20 L12 22 L13 20 L14 22 L13 16 Z" fill="#FF6B35" opacity="0.8"/>
+</svg>
