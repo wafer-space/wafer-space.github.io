@@ -132,37 +132,45 @@ testimonials:
 
 pricing_table:
   enable: true
-  title: "Planned Pricing and Configuration"
+  title: "Our pricing"
   sub_title: |
-    We're still working on the details of our silicon offering.
-  btn_url: "#"
-  description: |
-    <p>The values shown here represent our <em>target range</em>, but they're not guaranteed and may change as we lock in specifics.</p>
-    <p>There will be a single offering which is expected to look similar to <a href="">the Google GF180MCU OpenMPW configuration</a>.</p>
-    <p><em>Unlike</em> the Google program, people will get back raw unpackaged silicon die and thus not requiring the usage of a specific pad frame or Caravel.</p>
-    <p>Packaging <em>may</em> be through a third party at an additional cost.</p>
+    Custom silicon manufactured.<br class="d-none d-lg-block" />Build unique products.
   plans:
-    - title: "Lowest"
-      monthly_price: "6,000"
+    - title: "GF180MCU Shuttle Slot<br>Wire-Bonded"
+      monthly_price: "8,500"
       monthly_currency: "USD"
-      pricing_url: "#"
-      icon: "assets/images/icons/ec-mobile.webp"
+      pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
+      icon: "assets/images/products/wafer-space-chip-on-board.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
         - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+        - "1,000 die wire bonded onto PCBs"
 
-    - title: "Highest"
-      monthly_price: "8,000"
+    - title: "GF180MCU Shuttle Slot<br>Bare Dies"
+      monthly_price: "7,000"
       monthly_currency: "USD"
-      pricing_url: "#"
-      icon: "assets/images/icons/ec-store.webp"
+      pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
+      icon: "assets/images/products/gf180mcu-gelpack-dice.jpg"
       features:
         - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
         - "<strong>~20mm<sup>2</sup></strong> silicon"
         - "3.88mm x 5.07mm die size"
-        - "500 to 1,000 raw dies"
+        - "1,000 raw dies"
+
+    - title: "Undiced<br>Full Wafer"
+      monthly_price: "2,000"
+      monthly_currency: "USD"
+      pricing_url: "https://buy.wafer.space/#products"
+      button_text: '<i class="icofont-shopping-cart"></i> Buy'
+      icon: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
+      features:
+        - Undiced 200mm wafer.
+        - Only valid with slot purchase.
+        - "&nbsp;"
+        - "&nbsp;"
 
 about_us:
   enable: true
@@ -334,6 +342,14 @@ subscribe_area:
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
 
+{% if page.pricing_table.enable %}
+{% include pricing-3col.html %}
+{% endif %}<!-- pricing_data.enable -->
+
+<!-- Countdown Section -->
+{% include components/countdown.html %}
+
+
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
   <div class="container inner pt-100">
@@ -484,10 +500,10 @@ subscribe_area:
 <!-- /.wrapper -->
 {% endif %}<!-- page.features_area.enable -->
 
+  {% if page.testimonials.enable %}
   <div class="wrapper light-wrapper">
     <div class="container inner">
 
-      {% if page.testimonials.enable %}
       <div class="testimonials-wrapper">
       <div class="row">
         <div class="col-md-7 mx-auto">
@@ -530,14 +546,10 @@ subscribe_area:
       </div>
       <!-- /.grid-view -->
       </div>
-      {% endif %}<!-- page.testimonials.enable-->
-
-      {% if page.pricing_table.enable %}
-      {% include pricing.html %}
-      {% endif %}<!-- pricing_data.enable -->
 
     </div>
   </div>
+  {% endif %}<!-- page.testimonials.enable-->
 
   {% if page.subscribe_area.enable %}
   <div class="subscribe-area">
@@ -577,10 +589,10 @@ subscribe_area:
   </div>
   {% endif %}<!-- page.subscribe_area.enable -->
 
+  {% if page.about_us.enable %}
   <div class="wrapper light-wrapper">
     <div class="container inner">
 
-      {% if page.about_us.enable %}
       <div class="about-wrapper">
         <div class="space140"></div>
         <div class="row align-items-center">
@@ -611,10 +623,10 @@ subscribe_area:
         </div>
         <!--/.row -->
       </div>
-      {% endif %}<!-- page.about_us.enable -->
 
     </div>
   </div>
+  {% endif %}<!-- page.about_us.enable -->
 
 <div class="space120"></div>
 <!--/.footer Wrapper-->

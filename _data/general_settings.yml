@@ -72,6 +72,8 @@ external_links:
       text: "How"
     - url: "/help.html"
       text: "Help"
+    - url: "/faq.html"
+      text: "FAQ"
 
 # Site Wide External Links for footer
 #external_links_02:

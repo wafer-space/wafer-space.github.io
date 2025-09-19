@@ -1,0 +1,55 @@
+# wafer.space Manufacturing Runs Data
+# Using ISO 8601 date format (YYYY-MM-DD) for all machine-readable dates
+# Display dates use international format (DD Month YYYY)
+
+runs:
+  gf180mcu_run_1:
+    name: "GF180MCU Run 1"
+    process: "GF180MCU"
+    run_number: 1
+    status: "active"  # active, completed, upcoming
+    featured: true    # highlight this run on main pages
+
+    # Campaign deadline - when slot purchases close
+    campaign_deadline:
+      date: "2025-11-28"  # ISO 8601 format for JavaScript
+      display_date: "28 November 2025"  # Human readable format
+      title: "Campaign Ends Soon!"
+      subtitle: "Reserve your slot in GF180MCU Run 1 before time runs out"
+      button_text: "Reserve Your Slot"
+      button_url: "https://buy.wafer.space/#products"
+      priority: "urgent"
+
+    # Design submission deadline - when GDSII files are due
+    submission_deadline:
+      date: "2025-12-03"
+      display_date: "3 December 2025"
+      title: "Design Submission Deadline"
+      subtitle: "Submit your GDSII files for GF180MCU Run 1"
+      button_text: "Learn About Submission"
+      button_url: "/how.html"
+      priority: "important"
+
+    # Delivery date - when chips are shipped
+    delivery_date:
+      date: "2026-03-15"
+      display_date: "15 March 2026"
+      title: "Estimated Delivery"
+      subtitle: "GF180MCU Run 1 chips will be shipped to customers"
+      priority: "info"
+
+  # Future run example (commented out for now)
+  # gf180mcu_run_2:
+  #   name: "GF180MCU Run 2"
+  #   process: "GF180MCU"
+  #   run_number: 2
+  #   status: "upcoming"
+  #   featured: false
+  #   campaign_deadline:
+  #     date: "2026-06-15"
+  #     display_date: "15 June 2026"
+  #     title: "Next Campaign Opening"
+  #     subtitle: "GF180MCU Run 2 slots will be available soon"
+  #     button_text: "Get Notified"
+  #     button_url: "/subscribe.html"
+  #     priority: "info"

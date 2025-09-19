@@ -1,0 +1,119 @@
+<!-- Multi-Run Countdown Component -->
+{% assign runs_data = site.data.runs.runs %}
+
+{% for run_data in runs_data %}
+  {% assign run = run_data[1] %}
+  {% if run.status == 'active' and run.featured %}
+
+    <!-- Campaign Countdown -->
+    {% if run.campaign_deadline %}
+      {% assign deadline = run.campaign_deadline %}
+      <div class="wrapper light-wrapper">
+        <div class="container inner text-center">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+              <h2 class="section-title mb-20">{{ deadline.title }}</h2>
+              <h3 class="display-4 mb-10">{{ run.name }}</h3>
+              <p class="lead larger mb-40">{{ deadline.subtitle }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+              <div class="countdown" data-date="{{ deadline.date }}">
+                <div class="row text-center">
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-days>0</h3>
+                      <p>days</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-hours>0</h3>
+                      <p>hours</p>
+                    </div>
+                  </div>
+                  <div class="space30 d-none d-md-block d-lg-none"></div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-minutes>0</h3>
+                      <p>minutes</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-seconds>0</h3>
+                      <p>seconds</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% if deadline.button_text and deadline.button_url %}
+                <div class="space40"></div>
+                <a href="{{ deadline.button_url }}" class="btn btn-l btn-default">{{ deadline.button_text }}</a>
+              {% endif %}
+              <div class="space20"></div>
+              <p class="text-muted">Deadline: {{ deadline.display_date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Submission Countdown -->
+    {% if run.submission_deadline %}
+      {% assign deadline = run.submission_deadline %}
+      <div class="wrapper gray-wrapper">
+        <div class="container inner text-center">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+              <h2 class="section-title mb-20">{{ deadline.title }}</h2>
+              <h3 class="display-4 mb-10">{{ run.name }}</h3>
+              <p class="lead larger mb-40">{{ deadline.subtitle }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 offset-xl-2">
+              <div class="countdown" data-date="{{ deadline.date }}">
+                <div class="row text-center">
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-days>0</h3>
+                      <p>days</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-hours>0</h3>
+                      <p>hours</p>
+                    </div>
+                  </div>
+                  <div class="space30 d-none d-md-block d-lg-none"></div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-minutes>0</h3>
+                      <p>minutes</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="box bg-white shadow">
+                      <h3 data-seconds>0</h3>
+                      <p>seconds</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% if deadline.button_text and deadline.button_url %}
+                <div class="space40"></div>
+                <a href="{{ deadline.button_url }}" class="btn btn-l btn-default">{{ deadline.button_text }}</a>
+              {% endif %}
+              <div class="space20"></div>
+              <p class="text-muted">Deadline: {{ deadline.display_date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  {% endif %}
+{% endfor %}

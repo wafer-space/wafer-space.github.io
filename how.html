@@ -2,32 +2,48 @@
 layout: default
 title: "How wafer.space works"
 sub_title: |
-  How wafer.space provides budget silicon manufacturing.
+  From design to delivery: your journey to custom silicon manufacturing.
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
-about_area:
-  enable: false
-  title: "What We Do?"
-  sub_title: "We specialize in web, mobile, brand & product design. We love to turn ideas into beautiful things."
-  projects_number: 450
-  project_tag: "Completed Projects"
-  image: "/assets/images/art/about7.webp"
-  skills:
-    - title: "Web Development"
-      numbers: 100
-      style: "pink"
+user_steps:
+  enable: true
+  title: "Your Steps"
+  sub_title: "What you need to do to get your chip manufactured"
+  steps:
+    - number: "01"
+      title: "Reserve"
+      description: "Join the campaign and secure your manufacturing slot"
+      color: "blue"
+    - number: "02"
+      title: "Design"
+      description: "Create your chip using the open GF180MCU PDK and your preferred tools"
+      color: "green"
+    - number: "03"
+      title: "Sign-off"
+      description: "Complete DRC/LVS/ERC checks and follow our design guidelines"
+      color: "purple"
+    - number: "04"
+      title: "Submit"
+      description: "Provide your tape-in files following our submission checklist"
+      color: "pink"
 
-    - title: "Product Design"
-      numbers: 80
-      style: "blue"
-
-    - title: "Identity & Branding"
-      numbers: 85
-      style: "green"
-
-    - title: "Mobile Development"
-      numbers: 90
-      style: "purple"
+wafer_steps:
+  enable: true
+  title: "We Handle"
+  sub_title: "What wafer.space takes care of for you"
+  steps:
+    - number: "05"
+      title: "Fabrication"
+      description: "We process your design in our pooled multi-project wafer run"
+      color: "orange"
+    - number: "06"
+      title: "Dicing"
+      description: "We dice the wafers and prepare your parts for shipment"
+      color: "yellow"
+    - number: "07"
+      title: "Delivery"
+      description: "We ship your ~1,000 bare dies and any optional packaging"
+      color: "rose"
 
 video_area:
   enable: false
@@ -44,69 +60,61 @@ clients_carousel:
 
 <div class="wrapper light-wrapper">
     <div class="container inner">
-        <h2 class="section-title mb-20">How do it work?</h2>
-        <p class="lead larger">This page will describe how wafer.space gets your silicon manufactured.</p>
-        <div class="space20"></div>
-	<p>There will be more information here.</p>
+        <h2 class="section-title mb-40 text-center">How wafer.space works</h2>
+        <p class="lead larger text-center">Getting from your design to manufactured silicon is a collaborative process. You handle the design and submission, we take care of fabrication and delivery.</p>
+        <div class="space40"></div>
     </div>
 </div>
 
-<!--how wrapper-->
-{% if page.about_area.enable %}
+<!-- User Steps Section -->
+{% if page.user_steps.enable %}
 <div class="wrapper light-wrapper">
-    <div class="container inner">
-        <div class="row align-items-center">
-          <div class="col-lg-6 order-lg-2 text-center">
-            <div class="position-relative">
-              {% if page.about_area.image %}
-              <figure>
-                <img src="{{page.about_area.image}}" alt="{{page.about_area.title}}"/>
-              </figure>
-              {% endif %}
-              <div class="row counter counter-s position-absolute" style="top: 45%; right: 8%;">
-                <div class="col-md-10 text-center">
-                  <div class="box bg-white shadow">
-                    {% if page.about_area.projects_number %}
-                     <h3><span class="value">{{page.about_area.projects_number}}</span>+</h3>
-                    {% endif %}
-                    {% if page.about_area.project_tag %}
-                     <p>{{page.about_area.project_tag}}</p>
-                    {% endif %}
-                  </div>
-                  <!--/.box -->
-                </div>
-                <!--/column -->
-              </div>
-              <!--/.row -->
-            </div>
-          </div>
-          <!--/column -->
-          <div class="space30 d-none d-md-block d-lg-none"></div>
-          <div class="col-lg-6 pr-60 pr-md-15">
-            {% if page.about_area.title %}
-             <h2 class="section-title mb-20">{{ page.about_area.title }}</h2>
-            {% endif %}
-            {% if  page.about_area.sub_title %}
-             <p class="lead larger">{{page.about_area.sub_title}}</p>
-            {% endif %}
-            <div class="space20"></div>
-            <ul class="progress-list">
-              {% for skills in page.about_area.skills %}
-              <li>
-                <p>{{skills.title}}</p>
-                <div class="progressbar line {{skills.style}}" data-value="{{skills.numbers}}"></div>
-              </li>
-              {% endfor %}
-            </ul>
-            <!-- /.progress-list -->
-          </div>
-          <!--/column -->
-        </div>
-        <!--/.row -->
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{page.user_steps.title}}</h2>
+    <p class="lead larger text-center mb-40">{{page.user_steps.sub_title}}</p>
+    <div class="row gutter-50 gutter-md-30 process-wrapper line text-center">
+      {% for step in page.user_steps.steps %}
+      <div class="col-md-3 col-lg-3">
+        <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
+          <span class="number color-{{step.color}}">{{step.number}}</span>
+        </span>
+        <h5>{{step.title}}</h5>
+        <p>{{step.description}}</p>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 {% endif %}
-<!--wrapper how -->
+
+<!-- Transition Section -->
+<div class="wrapper gray-wrapper">
+  <div class="container inner text-center">
+    <h3 class="display-4 mb-30">Once you submit, we take over...</h3>
+    <p class="lead larger">After you complete your design and submission, wafer.space handles all the manufacturing logistics for you.</p>
+  </div>
+</div>
+
+<!-- Wafer.space Steps Section -->
+{% if page.wafer_steps.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{page.wafer_steps.title}}</h2>
+    <p class="lead larger text-center mb-40">{{page.wafer_steps.sub_title}}</p>
+    <div class="row gutter-50 gutter-md-30 process-wrapper line text-center justify-content-center">
+      {% for step in page.wafer_steps.steps %}
+      <div class="col-md-4 col-lg-4">
+        <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
+          <span class="number color-{{step.color}}">{{step.number}}</span>
+        </span>
+        <h5>{{step.title}}</h5>
+        <p>{{step.description}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
 
 <!--wrapper video CTA-->
 {% if page.video_area.enable %}

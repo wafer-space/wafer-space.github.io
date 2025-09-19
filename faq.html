@@ -1,0 +1,174 @@
+---
+layout: default
+title: "Frequently Asked Questions"
+sub_title: |
+  Everything you need to know about wafer.space silicon manufacturing.
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+
+cover_image:
+  enable: false
+  background_image: "/assets/images/art/bg4.webp"
+
+faq_area:
+  enable: true
+  title: "FAQ"
+  sub_title: |
+    Common questions about silicon manufacturing, <br class="d-none d-lg-block">process technology, and our service
+  faq:
+  - question: "Do I have to open-source my design?"
+    answer: "No. The PDK is open; your design can be open or closed."
+  - question: "Can you help me with a pad ring?"
+    answer: "No, but the community has created example pad-rings and review for common pitfalls."
+  - question: "How many I/O pads can I use?"
+    answer: "Depends on your pad pitch and die edge budget. Many designs fit 40–120 bonds comfortably in ~20 mm²."
+  - question: "Can I put multiple test chips or multiple macros in one slot?"
+    answer: "Allowed. You own the full ~20 mm²."
+  - question: "Where will my chips be made?"
+    answer: "Fabricated on GF180MCU; logistics and dicing via qualified partners. Final shipping from Singapore or our fulfillment partner."
+
+contact_area:
+  enable: false
+  action_email: "info@wafer.space"
+  forms_data:
+    - field_type: "input"
+      field_name: "first_name"
+      placeholder: "First Name"
+      error_message: "First Name Is required"
+    - field_type: "input"
+      field_name: "last_name"
+      placeholder: "Last Name"
+      error_message: "Last Name Is required"
+    - field_type: "input"
+      field_name: "user_email"
+      placeholder: "Email"
+      error_message: "Email Is required"
+    - field_type: "textarea"
+      field_name: "user_message"
+      placeholder: "Question or Message"
+      error_message: "Message Is required"
+---
+
+{% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<div class="wrapper light-wrapper">
+    <div class="container inner pb-0">
+
+        {% if page.faq_area.enable %}
+        <h3 class="display-3 text-center">{{page.faq_area.sub_title}}</h3>
+        <div class="space40"></div>
+        <div class="row">
+            <div class="col-lg-6 mb-0">
+                <div id="accordion-1" class="accordion accordion-wrapper">
+                    {% for faq in page.faq_area.faq limit: "3" %}
+                    <div class="accordion-item card">
+                        <div class="accordion-header card-header" id="accordion-heading-1-{{forloop.index}}">
+                            <h5>
+                                <button class="collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-collapse-1-{{forloop.index}}" aria-expanded="false"
+                                    aria-controls="accordion-collapse-1-{{forloop.index}}">{{faq.question}}</button>
+                            </h5>
+                        </div>
+                        <div id="accordion-collapse-1-{{forloop.index}}" class="accordion-collapse collapse"
+                            aria-labelledby="accordion-heading-1-{{forloop.index}}"
+                            data-bs-parent="#accordion-1">
+                            <div class="card-body">
+                                <p>{{faq.answer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!--/column -->
+            <div class="col-lg-6">
+                <div id="accordion-2" class="accordion accordion-wrapper">
+                    {% for faq in page.faq_area.faq limit: "2" offset: "3" %}
+                    <div class="accordion-item card shadow">
+                        <div class="accordion-header card-header" id="accordion-heading-2-{{forloop.index}}">
+                            <h5>
+                                <button class="collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-collapse-2-{{forloop.index}}" aria-expanded="false"
+                                    aria-controls="accordion-collapse-2-{{forloop.index}}">{{faq.question}}</button>
+                            </h5>
+                        </div>
+                        <!-- /.card-header -->
+                        <div id="accordion-collapse-2-{{forloop.index}}" class="collapse"
+                            aria-labelledby="accordion-heading-2-{{forloop.index}}"
+                            data-bs-parent="#accordion-2">
+                            <div class="card-body">
+                                <p>{{faq.answer}}</p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.collapse -->
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- /.accordion-wrapper -->
+            </div>
+            <!--/column -->
+        </div>
+        <!--/.row -->
+        {% endif %}
+
+        <div class="space120"></div>
+        <!--contact form-->
+        {% if page.contact_area.enable %}
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h3 class="display-3 text-center mb-10">Still Have Questions?</h3>
+                <p class="lead text-center mb-10">Can't find what you're looking for? Send us a message and we'll get back to you.</p>
+                <div class="space30"></div>
+                <form id="contact-form" class="fields-white" method="post"
+                    action="https://formsubmit.io/send/{{page.contact_area.action_email}}">
+                    <div class="messages"></div>
+                    <div class="controls">
+                        <div class="row g-3">
+                            {% for forms_data in page.contact_area.forms_data %}
+                            {% if forms_data.field_type == "input" %}
+                            <div class="col-lg-12 col-xl-6">
+                                <div class="form-group">
+                                    <input id="{{forms_data.field_name}}" type="text" name="{{forms_data.field_name}}"
+                                        class="form-control" placeholder="{{forms_data.placeholder}}  *"
+                                        required="required" data-error="{{forms_data.error_message}}">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            {% else if forms_data.field_type == "textarea" %}
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea id="{{forms_data.field_name}}" name="{{forms_data.field_name}}"
+                                        class="form-control" placeholder="{{forms_data.placeholder}} *" rows="4"
+                                        required="required" data-error="{{forms_data.error_message}}"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-send" value="Send message">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- /form -->
+            </div>
+            <!--/column -->
+        </div>
+        <!--/.row -->
+
+        {% endif %}
+        <!--/.contact form-->
+    </div>
+</div>
+
+{% include layouts/footer/footer-1.html %}

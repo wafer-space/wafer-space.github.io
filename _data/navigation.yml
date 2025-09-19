@@ -20,3 +20,7 @@ main_menu:
     url: "/news"
     menu_type: "simple"
 
+  - text: "FAQ"
+    url: "/faq.html"
+    menu_type: "simple"
+
