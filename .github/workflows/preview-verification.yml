@@ -224,22 +224,30 @@ jobs:
           fi
           echo "" >> $REPORT_FILE
           
-          # 3. Asset verification - extract actual asset URLs from HTML
-          echo "## 3. Asset Verification" >> $REPORT_FILE
+          # 3. Comprehensive Multi-Page Asset Verification
+          echo "## 3. Multi-Page Asset Verification" >> $REPORT_FILE
           ASSETS_FAILED=0
           ASSETS_TOTAL=0
-          
-          # Extract CSS and JS assets from HTML
-          echo "Extracting asset URLs from HTML..." >> $REPORT_FILE
-          
-          # Test critical predefined assets
+
+          # Extract all internal pages from homepage
+          echo "Discovering all pages in the site..." >> $REPORT_FILE
+          DISCOVERED_PAGES=$(echo "$CONTENT" | grep -oE 'href="[^"#]*\.html"' | grep -oE '"[^"]*"' | tr -d '"' | grep -v "^http" | sort -u)
+
+          # Add homepage (empty string) and all discovered pages
+          ALL_PAGES=$(echo -e "\n$DISCOVERED_PAGES")
+
+          # Debug: Log discovered pages
+          echo "Found pages: $(echo "$DISCOVERED_PAGES" | wc -l) discovered + homepage" >> $REPORT_FILE
+
+          # Test critical predefined assets from homepage
+          echo "Testing critical assets..." >> $REPORT_FILE
           CRITICAL_ASSETS=(
             "favicon.png"
             "assets/css/style.css"
             "assets/js/jquery.min.js"
             "assets/images/logo-light.webp"
           )
-          
+
           for asset in "${CRITICAL_ASSETS[@]}"; do
             ASSET_URL="$PREVIEW_URL$asset"
             ASSETS_TOTAL=$((ASSETS_TOTAL + 1))
@@ -250,34 +258,66 @@ jobs:
               ASSETS_FAILED=$((ASSETS_FAILED + 1))
             fi
           done
-          
-          # Extract and test actual CSS/JS assets referenced in HTML
-          echo "Checking HTML-referenced assets..." >> $REPORT_FILE
-          CSS_ASSETS=$(echo "$CONTENT" | grep -oE 'href="[^"]*\.css"' | grep -oE '"[^"]*"' | tr -d '"')
-          JS_ASSETS=$(echo "$CONTENT" | grep -oE 'src="[^"]*\.js"' | grep -oE '"[^"]*"' | tr -d '"')
-          IMAGE_ASSETS=$(echo "$CONTENT" | grep -oE '(src|href)="[^"]*\.(png|jpg|jpeg|webp|ico)"' | grep -oE '"[^"]*"' | tr -d '"' | head -5)
-          
-          ALL_HTML_ASSETS="$CSS_ASSETS"$'\n'"$JS_ASSETS"$'\n'"$IMAGE_ASSETS"
-          
-          while IFS= read -r asset_path; do
-            if [ -n "$asset_path" ]; then
-              # Handle relative vs absolute paths
-              if [[ "$asset_path" == /* ]]; then
-                FULL_ASSET_URL="https://preview.wafer.space$asset_path"
+
+          # Check assets on all discovered pages
+          echo "Checking assets across all pages..." >> $REPORT_FILE
+          PAGE_COUNT=0
+          while IFS= read -r page_path; do
+            PAGE_COUNT=$((PAGE_COUNT + 1))
+            if [ -z "$page_path" ]; then
+              PAGE_URL="$PREVIEW_URL"
+              PAGE_NAME="homepage"
+              PAGE_CONTENT="$CONTENT"
+              echo "Processing page $PAGE_COUNT: $PAGE_NAME" >> $REPORT_FILE
+            else
+              # Handle both relative and absolute paths
+              if [[ "$page_path" == /* ]]; then
+                # For absolute paths like /pr-46/about.html, use them directly with the domain
+                PAGE_URL="https://preview.wafer.space$page_path"
               else
-                FULL_ASSET_URL="$PREVIEW_URL$asset_path"
+                # For relative paths like how.html, append to PREVIEW_URL
+                PAGE_URL="$PREVIEW_URL$page_path"
               fi
-              
-              ASSETS_TOTAL=$((ASSETS_TOTAL + 1))
-              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$FULL_ASSET_URL")
-              if [ "$HTTP_CODE" = "200" ]; then
-                echo "- ✅ $(basename "$asset_path") (HTML-referenced)" >> $REPORT_FILE
-              else
-                echo "- ❌ $(basename "$asset_path") (HTTP $HTTP_CODE) - $asset_path" >> $REPORT_FILE
-                ASSETS_FAILED=$((ASSETS_FAILED + 1))
-              fi
+              PAGE_NAME="$(basename "$page_path")"
+              echo "Processing page $PAGE_COUNT: $PAGE_NAME ($page_path) -> $PAGE_URL" >> $REPORT_FILE
+              PAGE_CONTENT=$(curl -s "$PAGE_URL" 2>/dev/null || echo "")
             fi
-          done <<< "$ALL_HTML_ASSETS"
+
+            if [ -n "$PAGE_CONTENT" ]; then
+              # Extract assets from this page
+              CSS_ASSETS=$(echo "$PAGE_CONTENT" | grep -oE 'href="[^"]*\.css"' | grep -oE '"[^"]*"' | tr -d '"')
+              JS_ASSETS=$(echo "$PAGE_CONTENT" | grep -oE 'src="[^"]*\.js"' | grep -oE '"[^"]*"' | tr -d '"')
+              IMAGE_ASSETS=$(echo "$PAGE_CONTENT" | grep -oE '(src|href)="[^"]*\.(png|jpg|jpeg|webp|ico)"' | grep -oE '"[^"]*"' | tr -d '"')
+              DATA_IMAGE_ASSETS=$(echo "$PAGE_CONTENT" | grep -oE 'data-[^=]*="[^"]*"' | grep -E '\.(png|jpg|jpeg|webp|ico)' | grep -oE '"[^"]*"' | tr -d '"' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+              ALL_PAGE_ASSETS="$CSS_ASSETS"$'\n'"$JS_ASSETS"$'\n'"$IMAGE_ASSETS"$'\n'"$DATA_IMAGE_ASSETS"
+
+              # Process assets found on this page
+              while IFS= read -r asset_path; do
+                if [ -n "$asset_path" ]; then
+                  # Handle relative vs absolute paths
+                  if [[ "$asset_path" == /* ]]; then
+                    FULL_ASSET_URL="https://preview.wafer.space$asset_path"
+                  else
+                    FULL_ASSET_URL="$PREVIEW_URL$asset_path"
+                  fi
+
+                  ASSETS_TOTAL=$((ASSETS_TOTAL + 1))
+                  HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$FULL_ASSET_URL")
+                  if [ "$HTTP_CODE" = "200" ]; then
+                    echo "- ✅ $(basename "$asset_path") ($PAGE_NAME)" >> $REPORT_FILE
+                  else
+                    echo "- ❌ $(basename "$asset_path") (HTTP $HTTP_CODE) on $PAGE_NAME - $asset_path" >> $REPORT_FILE
+                    ASSETS_FAILED=$((ASSETS_FAILED + 1))
+                  fi
+                fi
+              done <<< "$ALL_PAGE_ASSETS"
+            else
+              echo "- ⚠️  Could not fetch $PAGE_NAME" >> $REPORT_FILE
+            fi
+          done <<< "$ALL_PAGES"
+
+          echo "Checked $PAGE_COUNT pages total." >> $REPORT_FILE
           
           echo "**Asset Summary:** $ASSETS_FAILED/$ASSETS_TOTAL failed" >> $REPORT_FILE
           
