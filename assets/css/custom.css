@@ -34,3 +34,36 @@
     width: 1.5rem !important;
     text-indent: 0 !important;
 }
+
+/* Timeline table styling */
+.timeline-row {
+    transition: background-color 0.2s ease;
+}
+
+.timeline-row:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.timeline-critical td:first-child {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.timeline-milestone td:first-child {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.timeline-delivery td:first-child {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}

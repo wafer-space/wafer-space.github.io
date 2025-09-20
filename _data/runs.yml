@@ -38,6 +38,34 @@ runs:
       subtitle: "GF180MCU Run 1 chips will be shipped to customers"
       priority: "info"
 
+    # Complete timeline for manufacturing process
+    timeline:
+      - title: "Purchase Deadline"
+        date: "2025-11-28"
+        display_date: "28 November 2025"
+        description: "Final deadline to purchase manufacturing slots"
+        status: "critical"
+      - title: "Design Submission"
+        date: "2025-12-03"
+        display_date: "3 December 2025"
+        description: "Final deadline to submit GDS files for fabrication"
+        status: "critical"
+      - title: "Tape-out to GlobalFoundries"
+        date: "2025-12-05"
+        display_date: "5 December 2025"
+        description: "GDS files delivered to GlobalFoundries for fabrication"
+        status: "milestone"
+      - title: "Fabrication Complete"
+        date: "2026-02-15"
+        display_date: "February 2026"
+        description: "Wafers returned from GlobalFoundries fabrication"
+        status: "milestone"
+      - title: "Delivery to Customers"
+        date: "2026-03-15"
+        display_date: "15 March 2026"
+        description: "Finished dies shipped to customers worldwide"
+        status: "delivery"
+
   # Future run example (commented out for now)
   # gf180mcu_run_2:
   #   name: "GF180MCU Run 2"

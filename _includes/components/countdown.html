@@ -141,6 +141,36 @@
             </div>
           {% endif %}
 
+          <!-- Timeline Table -->
+          {% if run.timeline %}
+            <div class="space60"></div>
+            <div class="row">
+              <div class="col-lg-10 offset-lg-1">
+                <h4 class="text-center mb-30">Complete Timeline</h4>
+                <div class="table-responsive">
+                  <table class="table table-hover table-borderless">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col" class="font-weight-bold">Milestone</th>
+                        <th scope="col" class="font-weight-bold">Date</th>
+                        <th scope="col" class="font-weight-bold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for milestone in run.timeline %}
+                        <tr class="text-center timeline-row timeline-{{ milestone.status }}">
+                          <td class="font-weight-600">{{ milestone.title }}</td>
+                          <td class="text-muted">{{ milestone.display_date }}</td>
+                          <td class="text-muted">{{ milestone.description }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
         </div>
       </div>
     {% endif %}
