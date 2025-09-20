@@ -183,10 +183,47 @@ about_us:
   button_url: "mailto:info@wafer.space"
   bottom_image: "assets/images/art/rocket1.webp"
 
+technical_specs:
+  enable: true
+  title: "Technical Specifications"
+  sub_title: "GF180MCU Process Technology Details"
+  image: "assets/images/products/gf180mcu-wafer-isometric.jpg"
+  specs:
+    - title: "Die Dimensions"
+      value: "19.67 mm²"
+      detail: "3.88mm × 5.07mm"
+      icon: "jam jam-crop"
+      color: "blue"
+    - title: "Process Node"
+      value: "180nm MCU"
+      detail: '<a href="https://gf180mcu-pdk.readthedocs.io/" target="_blank" class="text-decoration-none">GlobalFoundries GF180MCU</a>'
+      icon: "jam jam-cog"
+      color: "green"
+    - title: "Metal Layers"
+      value: "5 Layers"
+      detail: "Full routing capability"
+      icon: "jam jam-layers"
+      color: "purple"
+    - title: "Quantity"
+      value: "1,000 dies"
+      detail: "Per manufacturing slot"
+      icon: "jam jam-box"
+      color: "orange"
+    - title: "Capacitors"
+      value: "MIM & PIP"
+      detail: "Metal-insulator-metal available"
+      icon: "jam jam-battery"
+      color: "pink"
+    - title: "Resistors"
+      value: "Poly & High-Res"
+      detail: "Multiple resistor types"
+      icon: "jam jam-thunder"
+      color: "yellow"
+
 subscribe_area:
   enable: true
   title: "Get notified!"
-  sub_title: "We’ll email you when details are confirmed."
+  sub_title: "We'll email you when details are confirmed."
   action_email: "tim@wafer.space"
   button_text: "Analyze"
 
@@ -349,6 +386,49 @@ subscribe_area:
 <!-- Countdown Section -->
 {% include components/countdown.html %}
 
+<!-- Technical Specifications Section -->
+{% if page.technical_specs.enable %}
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-md-8 mx-auto text-center">
+        <h2 class="title-color color-gray">{{page.technical_specs.title}}</h2>
+        <h3 class="display-3">{{page.technical_specs.sub_title}}</h3>
+        <div class="space40"></div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      {% if page.technical_specs.image %}
+      <div class="col-lg-6">
+        <figure>
+          <img src="{{page.technical_specs.image}}" alt="{{page.technical_specs.title}}" class="img-fluid"/>
+        </figure>
+      </div>
+      {% endif %}
+
+      <div class="col-lg-6">
+        <div class="row gutter-30">
+          {% for spec in page.technical_specs.specs %}
+          <div class="col-md-6 mb-30">
+            <div class="d-flex align-items-start">
+              <div class="icon icon-blob icon-blob-{{spec.color}} color-{{spec.color}} mr-20 mt-5" style="min-width: 60px;">
+                <i class="{{spec.icon}}"></i>
+              </div>
+              <div>
+                <h6 class="mb-5">{{spec.title}}</h6>
+                <p class="mb-0 font-weight-600 color-dark">{{spec.value}}</p>
+                <p class="mb-0 text-muted small">{{spec.detail}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
