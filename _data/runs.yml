@@ -16,7 +16,7 @@ runs:
       display_date: "28 November 2025"  # Human readable format
       title: "Campaign Ends Soon!"
       subtitle: "Reserve your slot in GF180MCU Run 1 before time runs out"
-      button_text: "Reserve Your Slot"
+      button_text: "Reserve"
       button_url: "https://buy.wafer.space/#products"
       priority: "urgent"
 
@@ -26,7 +26,7 @@ runs:
       display_date: "3 December 2025"
       title: "Design Submission Deadline"
       subtitle: "Submit your GDSII files for GF180MCU Run 1"
-      button_text: "Learn About Submission"
+      button_text: "Submit"
       button_url: "/how.html"
       priority: "important"
 
