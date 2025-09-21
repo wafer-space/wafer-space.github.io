@@ -55,7 +55,7 @@
                   {% if deadline.button_text and deadline.button_url %}
                     <div class="countdown-button ml-4">
                       <div class="countdown-button-wrapper">
-                        <a href="{{ deadline.button_url }}" class="countdown-box-btn box shadow">
+                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
                           {% if deadline.button_text == "Reserve" %}
                             <i class="jam jam-shopping-cart btn-icon"></i>
                             <span class="btn-text">BUY</span>
@@ -119,7 +119,7 @@
                   {% if deadline.button_text and deadline.button_url %}
                     <div class="countdown-button ml-4">
                       <div class="countdown-button-wrapper">
-                        <a href="{{ deadline.button_url }}" class="countdown-box-btn box shadow">
+                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
                           {% if deadline.button_text == "Reserve" %}
                             <i class="jam jam-shopping-cart btn-icon"></i>
                             <span class="btn-text">BUY</span>
