@@ -1,0 +1,69 @@
+/* Site-specific CSS overrides */
+
+/* Fix price formatting - remove the automatic "/" before duration */
+.price-duration:before {
+    content: "" !important;
+    padding-right: 0 !important;
+}
+
+/* Additional specificity for pricing components */
+.pricing .price-duration:before,
+.panel.pricing .price-duration:before {
+    content: "" !important;
+    padding-right: 0 !important;
+}
+
+/* Remove padding-top from all pricing columns */
+.pricing-wrapper .panel.pricing.box {
+    padding-top: 3em !important;
+}
+
+/* Make header text in middle column slightly larger */
+.pricing-wrapper .popular h4.panel-title {
+    font-size: 1.3rem !important;
+}
+
+/* Fix FAQ accordion text alignment when wrapping */
+.accordion-wrapper .card-header button {
+    padding-left: 1.5rem !important;
+    text-indent: -1.5rem !important;
+}
+
+.accordion-wrapper .card-header button:before {
+    display: inline-block !important;
+    width: 1.5rem !important;
+    text-indent: 0 !important;
+}
+
+/* Timeline table styling */
+.timeline-row {
+    transition: background-color 0.2s ease;
+}
+
+.timeline-row:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.timeline-critical td:first-child {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.timeline-milestone td:first-child {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.timeline-delivery td:first-child {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}

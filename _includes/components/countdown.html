@@ -1,0 +1,178 @@
+<!-- Multi-Run Countdown Component -->
+{% assign runs_data = site.data.runs.runs %}
+
+{% for run_data in runs_data %}
+  {% assign run = run_data[1] %}
+  {% if run.status == 'active' and run.featured %}
+    {% if run.campaign_deadline or run.submission_deadline %}
+      <!-- Combined Countdown Section -->
+      <div class="wrapper white-wrapper">
+        <div class="container inner text-center">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+              <h2 class="title-color color-gray text-center">Deadlines</h2>
+              <h3 class="display-3 text-center">
+                <a href="https://buy.wafer.space" class="text-decoration-none">wafer.space {{ run.name }}</a>
+              </h3>
+              <div class="space40"></div>
+            </div>
+          </div>
+
+          <!-- Campaign Countdown -->
+          {% if run.campaign_deadline %}
+            {% assign deadline = run.campaign_deadline %}
+            <div class="row">
+              <div class="col-xl-10 offset-xl-1">
+                <div class="countdown-wrapper d-flex align-items-center justify-content-center">
+                  <div class="countdown" data-date="{{ deadline.date }}">
+                    <div class="row text-center">
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-days>0</h3>
+                          <p>days</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-hours>0</h3>
+                          <p>hours</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-minutes>0</h3>
+                          <p>minutes</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-seconds>0</h3>
+                          <p>seconds</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% if deadline.button_text and deadline.button_url %}
+                    <div class="countdown-button ml-4">
+                      <div class="countdown-button-wrapper">
+                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
+                          {% if deadline.button_text == "Reserve" %}
+                            <i class="jam jam-shopping-cart btn-icon"></i>
+                            <span class="btn-text">BUY</span>
+                          {% elsif deadline.button_text == "Submit" %}
+                            <i class="jam jam-rocket btn-icon"></i>
+                            <span class="btn-text">SUBMIT</span>
+                          {% else %}
+                            <span class="btn-text">{{ deadline.button_text }}</span>
+                          {% endif %}
+                        </a>
+                        <p class="text-muted text-center mt-3 mb-0 button-label">
+                          {{ deadline.display_date }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- Spacer between countdowns -->
+          {% if run.campaign_deadline and run.submission_deadline %}
+            <div class="space40"></div>
+          {% endif %}
+
+          <!-- Submission Countdown -->
+          {% if run.submission_deadline %}
+            {% assign deadline = run.submission_deadline %}
+            <div class="row">
+              <div class="col-xl-10 offset-xl-1">
+                <div class="countdown-wrapper d-flex align-items-center justify-content-center">
+                  <div class="countdown" data-date="{{ deadline.date }}">
+                    <div class="row text-center">
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-days>0</h3>
+                          <p>days</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-hours>0</h3>
+                          <p>hours</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-minutes>0</h3>
+                          <p>minutes</p>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="box bg-white shadow">
+                          <h3 data-seconds>0</h3>
+                          <p>seconds</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% if deadline.button_text and deadline.button_url %}
+                    <div class="countdown-button ml-4">
+                      <div class="countdown-button-wrapper">
+                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
+                          {% if deadline.button_text == "Reserve" %}
+                            <i class="jam jam-shopping-cart btn-icon"></i>
+                            <span class="btn-text">BUY</span>
+                          {% elsif deadline.button_text == "Submit" %}
+                            <i class="jam jam-rocket btn-icon"></i>
+                            <span class="btn-text">SUBMIT</span>
+                          {% else %}
+                            <span class="btn-text">{{ deadline.button_text }}</span>
+                          {% endif %}
+                        </a>
+                        <p class="text-muted text-center mt-3 mb-0 button-label">
+                          {{ deadline.display_date }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- Timeline Table -->
+          {% if run.timeline %}
+            <div class="space60"></div>
+            <div class="row">
+              <div class="col-lg-10 offset-lg-1">
+                <h4 class="text-center mb-30">Complete Timeline</h4>
+                <div class="table-responsive">
+                  <table class="table table-hover table-borderless">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col" class="font-weight-bold">Milestone</th>
+                        <th scope="col" class="font-weight-bold">Date</th>
+                        <th scope="col" class="font-weight-bold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for milestone in run.timeline %}
+                        <tr class="text-center timeline-row timeline-{{ milestone.status }}">
+                          <td class="font-weight-600">{{ milestone.title }}</td>
+                          <td class="text-muted">{{ milestone.display_date }}</td>
+                          <td class="text-muted">{{ milestone.description }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}
