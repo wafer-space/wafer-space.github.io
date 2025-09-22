@@ -4,6 +4,7 @@ title: "ChipFlow"
 sub_title: "ASIC Design Platform & Services"
 category: "professional"
 avatar: "assets/images/design-help/chipflow-logo.png"
+website: "https://www.chipflow.io/"
 social_accounts:
   - icon: "jam jam-globe"
     url: "https://www.chipflow.io/"

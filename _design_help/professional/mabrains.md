@@ -4,6 +4,7 @@ title: "Mabrains"
 sub_title: "AI & Chip Design Consultancy"
 category: "professional"
 avatar: "assets/images/design-help/mabrains-logo.png"
+website: "https://mabrains.com/"
 social_accounts:
   - icon: "jam jam-globe"
     url: "https://mabrains.com/"
