@@ -1,0 +1,99 @@
+---
+layout: default
+title: "Design Help"
+sub_title: "Get assistance with your GF180MCU chip designs"
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+---
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<!-- Introduction -->
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h2 class="section-title text-center">Getting Help with Your Design</h2>
+        <p class="lead text-center mb-40">
+          Whether you need professional services or community support,
+          find the right resources to help bring your chip design to life on GF180MCU.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Professional Services Section -->
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <h3 class="section-title text-center mb-20">Professional Services</h3>
+    <p class="text-center mb-40">
+      Independent companies offering professional design, consulting, and implementation services for GF180MCU projects.
+      <br><small class="text-muted"><em>Note: These services are not affiliated with or endorsed by wafer.space.
+      Please contact them directly to discuss your project needs.</em></small>
+    </p>
+  </div>
+</div>
+
+{% assign professional_help = site.design_help | where: "category", "professional" %}
+{% if professional_help.size > 0 %}
+  {% include posts/author.html boxed=true check_author=professional_help %}
+{% endif %}
+
+<!-- Community Help Section -->
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h3 class="section-title text-center mb-20">Community Resources</h3>
+    <p class="text-center mb-40">
+      Free community forums, documentation, and open-source resources for GF180MCU designs.
+    </p>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="box bg-white shadow p-30">
+          <div class="icon mb-20">
+            <i class="jam jam-messages-alt" style="font-size: 48px; color: #4f66d0;"></i>
+          </div>
+          <h4>Community Forums</h4>
+          <p class="mb-0">Coming soon - Discussion forums for design questions and peer support.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box bg-white shadow p-30">
+          <div class="icon mb-20">
+            <i class="jam jam-document" style="font-size: 48px; color: #4f66d0;"></i>
+          </div>
+          <h4>Documentation</h4>
+          <p class="mb-0">Coming soon - Tutorials, guides, and technical documentation for GF180MCU.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box bg-white shadow p-30">
+          <div class="icon mb-20">
+            <i class="jam jam-github" style="font-size: 48px; color: #4f66d0;"></i>
+          </div>
+          <h4>Open Source Tools</h4>
+          <p class="mb-0">Coming soon - Links to open-source tools and example designs for GF180MCU.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Additional Resources -->
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <h3 class="mb-20">Want to be listed here?</h3>
+        <p class="mb-30">
+          If you offer professional design services or community resources for GF180MCU projects,
+          please <a href="mailto:info@wafer.space">contact us</a> to be considered for inclusion on this page.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="space120"></div>
+
+<!--/.footer Wrapper-->
+{% include layouts/footer/footer-1.html %}
