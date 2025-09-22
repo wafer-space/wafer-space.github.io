@@ -1,50 +1,45 @@
-<div class="wrapper light-wrapper">
-  <div class="container inner">
-    <div class="box bg-white shadow">
-      <div class="row">
-        {% if include.provider.avatar %}
-        <div class="col-md-4">
-          <figure class="rounded">
-            {% if include.provider.website %}
-            <a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer">
-              <img alt="{{include.provider.title}}" src="{{include.provider.avatar | relative_url}}" />
-            </a>
-            {% else %}
-            <img alt="{{include.provider.title}}" src="{{include.provider.avatar | relative_url}}" />
-            {% endif %}
-          </figure>
-        </div>
-        <!--/column -->
+<div class="box bg-white shadow mb-30">
+  <div class="row">
+    {% if include.provider.avatar %}
+    <div class="col-md-4">
+      <figure class="rounded">
+        {% if include.provider.website %}
+        <a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer">
+          <img alt="{{include.provider.title}}" src="{{include.provider.avatar | relative_url}}" />
+        </a>
+        {% else %}
+        <img alt="{{include.provider.title}}" src="{{include.provider.avatar | relative_url}}" />
         {% endif %}
-        <div class="col-md-8">
-          {% if include.provider.website %}
-          <h3><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a></h3>
-          {% else %}
-          <h3>{{include.provider.title}}</h3>
-          {% endif %}
-          <h4>{{include.provider.sub_title}}</h4>
-          {% if include.provider.content %}
-          <p class="mb-10">{{include.provider.content | markdownify }}</p>
-          {% endif %}
-          {% if include.provider.social_accounts %}
-          <ul class="social">
-            {% for social in include.provider.social_accounts %}
-            <li><a href="{{social.url}}" target="_blank" rel="noopener noreferrer"><i class="{{social.icon}}"></i></a></li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% if include.provider.website %}
-          <div class="mt-3">
-            <a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
-              Visit Website
-            </a>
-          </div>
-          {% endif %}
-        </div>
-        <!--/column -->
-      </div>
-      <!-- /.row -->
+      </figure>
     </div>
+    <!--/column -->
+    {% endif %}
+    <div class="col-md-8">
+      {% if include.provider.website %}
+      <h3><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a></h3>
+      {% else %}
+      <h3>{{include.provider.title}}</h3>
+      {% endif %}
+      <h4>{{include.provider.sub_title}}</h4>
+      {% if include.provider.content %}
+      <p class="mb-10">{{include.provider.content | markdownify }}</p>
+      {% endif %}
+      {% if include.provider.social_accounts %}
+      <ul class="social">
+        {% for social in include.provider.social_accounts %}
+        <li><a href="{{social.url}}" target="_blank" rel="noopener noreferrer"><i class="{{social.icon}}"></i></a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if include.provider.website %}
+      <div class="mt-3">
+        <a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+          Visit Website
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    <!--/column -->
   </div>
+  <!-- /.row -->
 </div>
-<!-- /.wrapper -->

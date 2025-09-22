@@ -31,13 +31,13 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
       <br><small class="text-muted"><em>Note: These services are not affiliated with or endorsed by wafer.space.
       Please contact them directly to discuss your project needs.</em></small>
     </p>
+
+    {% assign professional_help = site.design_help | where: "category", "professional" %}
+    {% for provider in professional_help %}
+      {% include design_help/provider.html provider=provider %}
+    {% endfor %}
   </div>
 </div>
-
-{% assign professional_help = site.design_help | where: "category", "professional" %}
-{% for provider in professional_help %}
-  {% include design_help/provider.html provider=provider %}
-{% endfor %}
 
 <!-- Community Help Section -->
 <div class="wrapper gray-wrapper">
