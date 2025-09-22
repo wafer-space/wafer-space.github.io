@@ -35,9 +35,9 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 </div>
 
 {% assign professional_help = site.design_help | where: "category", "professional" %}
-{% if professional_help.size > 0 %}
-  {% include posts/author.html boxed=true check_author=professional_help %}
-{% endif %}
+{% for provider in professional_help %}
+  {% include design_help/provider.html provider=provider %}
+{% endfor %}
 
 <!-- Community Help Section -->
 <div class="wrapper gray-wrapper">
