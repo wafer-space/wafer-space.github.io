@@ -8,6 +8,10 @@ main_menu:
     url: "/about.html"
     menu_type: "simple"
 
+  - text: "Design Help"
+    url: "/design-help.html"
+    menu_type: "simple"
+
   - text: "How"
     url: "/how.html"
     menu_type: "simple"

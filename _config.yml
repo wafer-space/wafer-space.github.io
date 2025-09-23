@@ -20,6 +20,8 @@ collections:
       permalink: /portfolio/:name
   advisors:
     output: true
+  design_help:
+    output: true
 
 include:
   - .well-known
