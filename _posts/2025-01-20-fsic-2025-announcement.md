@@ -4,7 +4,7 @@ date: 2025-01-20
 categories: [news, conferences]
 tags: [fsic-2025, tiny-tapeout, matt-venn, collaboration, gf180mcu]
 author: tim-ansell
-post_image: /assets/images/fsic-2025-announcement.jpg
+post_image: /assets/images/tiny-tapeout-wafer-space.jpg
 badge_color: success
 slider_post: true
 trending: true
