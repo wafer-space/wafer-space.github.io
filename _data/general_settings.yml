@@ -66,6 +66,8 @@ external_links:
       text: "Home"
     - url: "/about.html"
       text: "About"
+    - url: "/design-help.html"
+      text: "Design Help"
     - url: "/news"
       text: "News"
     - url: "/how.html"
