@@ -14,7 +14,7 @@ social_accounts:
     url: "https://www.linkedin.com/company/mabrains/"
 ---
 
-**[Mabrains](https://mabrains.com/)** is an Egypt-based AI and chip design consultancy that provides comprehensive semiconductor design services and advanced technology solutions with over 25 years of aggregate experience in that domain. With expertise spanning both hardware and software domains, they offer end-to-end support for chip development projects from 1 micron down to 5nm technologies. Mabrains offers AI-driven chip design tooling around the open-source echo system.
+**[Mabrains](https://mabrains.com/)** is an Egypt-based AI and chip design consultancy that provides comprehensive semiconductor design services and advanced technology solutions with over 25 years of aggregate experience in that domain. With expertise spanning both hardware and software domains, they offer end-to-end support for chip development projects from 1 micron down to 5nm technologies. Mabrains offers AI-driven chip design tooling around the open-source ecosystem.
 
 Their semiconductor design services include:
 
