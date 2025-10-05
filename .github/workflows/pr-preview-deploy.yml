@@ -14,10 +14,10 @@ permissions:
   deployments: write
   actions: read  # Needed to download artifacts
 
-# Prevent concurrent deployments
+# Prevent concurrent deployments - cancel old runs when new commits pushed
 concurrency:
   group: pr-preview-deployment-${{ github.event.workflow_run.pull_requests[0].number }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy-preview:
@@ -36,19 +36,43 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
 
-      - name: Read PR metadata
+      - name: Read and validate PR metadata
         id: pr
         run: |
           echo "📦 Reading PR metadata..."
           cat pr-context.json | jq .
 
-          # Extract values and set outputs
-          echo "number=$(jq -r .number pr-context.json)" >> $GITHUB_OUTPUT
-          echo "sha=$(jq -r .sha pr-context.json)" >> $GITHUB_OUTPUT
-          echo "title=$(jq -r .title pr-context.json | head -c 100)" >> $GITHUB_OUTPUT
-          echo "is_fork=$(jq -r .is_fork pr-context.json)" >> $GITHUB_OUTPUT
+          # Extract and validate PR number (must be positive integer)
+          PR_NUMBER=$(jq -r .number pr-context.json)
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]] || [ "$PR_NUMBER" -lt 1 ] || [ "$PR_NUMBER" -gt 99999 ]; then
+            echo "❌ Invalid PR number: $PR_NUMBER"
+            exit 1
+          fi
 
-          echo "✅ PR #$(jq -r .number pr-context.json) from $(jq -r .repo pr-context.json)"
+          # Extract and validate SHA (must be 40-character hex)
+          PR_SHA=$(jq -r .sha pr-context.json)
+          if ! [[ "$PR_SHA" =~ ^[a-f0-9]{40}$ ]]; then
+            echo "❌ Invalid SHA format: $PR_SHA"
+            exit 1
+          fi
+
+          # Extract title (truncate to 100 chars, sanitize)
+          PR_TITLE=$(jq -r .title pr-context.json | head -c 100 | tr -d '\n\r')
+
+          # Extract is_fork boolean
+          IS_FORK=$(jq -r .is_fork pr-context.json)
+          if [ "$IS_FORK" != "true" ] && [ "$IS_FORK" != "false" ]; then
+            echo "❌ Invalid is_fork value: $IS_FORK"
+            exit 1
+          fi
+
+          # Set validated outputs
+          echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "sha=$PR_SHA" >> $GITHUB_OUTPUT
+          echo "title=$PR_TITLE" >> $GITHUB_OUTPUT
+          echo "is_fork=$IS_FORK" >> $GITHUB_OUTPUT
+
+          echo "✅ Validated PR #$PR_NUMBER from $(jq -r .repo pr-context.json)"
 
       - name: Checkout PR code from git
         uses: actions/checkout@v4
@@ -106,7 +130,7 @@ jobs:
 
       - name: Build Jekyll site with private theme
         run: |
-          export PATH=$PATH:~/.local/share/gem/ruby/3.2.0/bin
+          export PATH=$PATH:~/.local/share/gem/ruby/3.1.0/bin
           echo "🔨 Building Jekyll site..."
           bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}"
           echo "✅ Site built successfully"
@@ -174,9 +198,7 @@ jobs:
 
           git commit -m "Deploy preview for PR #${{ steps.pr.outputs.number }} - ${{ steps.pr.outputs.sha }}"
 
-          # Re-setup SSH for push
-          eval $(ssh-agent -s)
-          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+          # SSH agent is still active from earlier setup
           git push origin main
 
           echo "✅ Deployment complete"
