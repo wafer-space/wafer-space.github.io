@@ -18,7 +18,14 @@ jobs:
     steps:
       - name: Save PR metadata
         run: |
-          cat > pr-context.json << 'EOF'
+          # Determine if this is a fork PR
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            IS_FORK="true"
+          else
+            IS_FORK="false"
+          fi
+
+          cat > pr-context.json << EOF
           {
             "number": ${{ github.event.pull_request.number }},
             "sha": "${{ github.event.pull_request.head.sha }}",
@@ -27,7 +34,7 @@ jobs:
             "repo": "${{ github.event.pull_request.head.repo.full_name }}",
             "base_ref": "${{ github.event.pull_request.base.ref }}",
             "user": "${{ github.event.pull_request.user.login }}",
-            "is_fork": ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+            "is_fork": $IS_FORK
           }
           EOF
 
