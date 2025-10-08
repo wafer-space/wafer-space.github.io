@@ -80,6 +80,31 @@ jobs:
           ref: ${{ steps.pr.outputs.sha }}
           submodules: false  # We'll handle submodules separately
 
+      - name: Use trusted Gemfile for fork PRs (security)
+        if: steps.pr.outputs.is_fork == 'true'
+        id: gemfile-check
+        run: |
+          echo "🔒 Fork PR detected - using trusted Gemfile from main branch"
+
+          # Check if Gemfile was modified in this PR
+          git fetch origin main
+          if ! git diff --quiet origin/main HEAD -- Gemfile Gemfile.lock; then
+            echo "gemfile_modified=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Gemfile changes detected in fork PR"
+          else
+            echo "gemfile_modified=false" >> $GITHUB_OUTPUT
+          fi
+
+          # Checkout trusted Gemfile and Gemfile.lock from main branch
+          git show origin/main:Gemfile > Gemfile.trusted
+          git show origin/main:Gemfile.lock > Gemfile.lock.trusted
+
+          # Replace PR's Gemfile with trusted version
+          mv Gemfile.trusted Gemfile
+          mv Gemfile.lock.trusted Gemfile.lock
+
+          echo "✅ Using trusted dependencies for security"
+
       - name: Initialize private theme submodule with SSH
         run: |
           echo "🔐 Checking out private theme submodule..."
@@ -297,8 +322,15 @@ jobs:
             const previewUrl = '${{ steps.verify-deployment.outputs.preview_url }}';
             const commitSha = '${{ steps.pr.outputs.sha }}'.substring(0, 7);
             const isFork = ${{ steps.pr.outputs.is_fork }};
+            const gemfileModified = '${{ steps.gemfile-check.outputs.gemfile_modified }}' === 'true';
 
             const forkBadge = isFork ? '🌍 **External Contributor** (fork PR)' : '🏠 Internal PR';
+
+            // Add Gemfile security notice for fork PRs with dependency changes
+            let securityNotice = '';
+            if (isFork && gemfileModified) {
+              securityNotice = `\n\n> **🔒 Security Notice:** This PR includes changes to \`Gemfile\` or \`Gemfile.lock\`. For security, the preview was built using the trusted dependencies from the \`main\` branch. If you need to update dependencies, please work with a maintainer to submit those changes separately from an internal branch.\n`;
+            }
 
             const commentBody = `## ✅ Preview Deployment Ready!
 
@@ -310,7 +342,7 @@ ${forkBadge}
 
 **🎉 Your preview has been deployed successfully!**
 
-The preview site is available at: ${previewUrl}
+The preview site is available at: ${previewUrl}${securityNotice}
 
 ---
 <sub>⚡ Deployed via workflow_run (two-stage deployment) • Preview will be removed when PR is closed</sub>`;
