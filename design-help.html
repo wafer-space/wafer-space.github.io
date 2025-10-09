@@ -17,10 +17,80 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
       Please contact them directly to discuss your project needs.</em></small>
     </p>
 
-    {% assign professional_help = site.design_help | where: "category", "professional" %}
-    {% for provider in professional_help %}
-      {% include design_help/provider.html provider=provider %}
-    {% endfor %}
+    <div id="provider-list" style="display: flex; flex-direction: column;">
+      {% assign professional_help = site.design_help | where: "category", "professional" %}
+      {% for provider in professional_help %}
+        {% include design_help/provider.html provider=provider %}
+      {% endfor %}
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+
+        // Seeded Random Number Generator (Linear Congruential Generator)
+        function SeededRandom(seed) {
+          this.seed = seed % 2147483647;
+          if (this.seed <= 0) this.seed += 2147483646;
+        }
+
+        SeededRandom.prototype.next = function() {
+          this.seed = (this.seed * 16807) % 2147483647;
+          return (this.seed - 1) / 2147483646;
+        };
+
+        // Fisher-Yates shuffle with seeded random
+        function shuffleArray(array, random) {
+          var shuffled = array.slice();
+          for (var i = shuffled.length - 1; i > 0; i--) {
+            var j = Math.floor(random.next() * (i + 1));
+            var temp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = temp;
+          }
+          return shuffled;
+        }
+
+        // Get or create seed from localStorage
+        var SEED_KEY = 'designHelpProviderSeed';
+        var seed;
+
+        try {
+          seed = localStorage.getItem(SEED_KEY);
+          if (!seed) {
+            seed = Math.floor(Math.random() * 2147483647);
+            localStorage.setItem(SEED_KEY, seed);
+          } else {
+            seed = parseInt(seed, 10);
+          }
+        } catch (e) {
+          // localStorage not available (private mode, etc.)
+          seed = Math.floor(Math.random() * 2147483647);
+        }
+
+        // Get all provider items
+        var container = document.getElementById('provider-list');
+        if (!container) return;
+
+        var providers = container.querySelectorAll('.provider-item');
+        if (providers.length <= 1) return; // No need to shuffle if 0 or 1 items
+
+        // Create array of indices
+        var indices = [];
+        for (var i = 0; i < providers.length; i++) {
+          indices.push(i);
+        }
+
+        // Shuffle indices using seeded random
+        var random = new SeededRandom(seed);
+        var shuffledIndices = shuffleArray(indices, random);
+
+        // Apply CSS order to each provider
+        for (var i = 0; i < providers.length; i++) {
+          providers[shuffledIndices[i]].style.order = i;
+        }
+      })();
+    </script>
   </div>
 </div>
 
