@@ -67,3 +67,9 @@
 .table-hover tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.03);
 }
+
+/* Fix hash link scrolling to account for fixed navigation bar */
+/* Adds scroll margin to provider boxes so they don't get hidden under the header */
+.box.bg-white.shadow.mb-30[id] {
+    scroll-margin-top: 100px;
+}
