@@ -10,6 +10,8 @@ social_accounts:
     url: "https://www.chipflow.io/"
   - icon: "jam jam-gitlab"
     url: "https://gitlab.com/ChipFlow"
+  - icon: "jam jam-linkedin"
+    url: "https://www.linkedin.com/company/chipflow"
   - icon: "jam jam-document"
     url: "https://docs.chipflow.io/"
 ---
