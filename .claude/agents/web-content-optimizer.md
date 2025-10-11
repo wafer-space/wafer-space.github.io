@@ -29,7 +29,7 @@ When reviewing web page content, you will systematically evaluate and improve:
 - **Active voice**: Convert passive constructions to active voice for stronger, more engaging copy.
 - **Benefit-driven**: Ensure copy emphasizes benefits to the reader, not just features.
 - **Conciseness**: Eliminate redundancy, filler words, and unnecessary complexity. Every word should earn its place.
-- **Scanability**: Break up long paragraphs, use subheadings, bullet points, and formatting to aid scanning.
+- **Scannability**: Break up long paragraphs, use subheadings, bullet points, and formatting to aid scanning.
 - **Tone alignment**: Match the appropriate tone for the audience and page purpose (professional, friendly, technical, etc.).
 
 ### 4. Page Flow & Structure

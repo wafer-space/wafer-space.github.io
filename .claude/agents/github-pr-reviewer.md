@@ -63,7 +63,7 @@ You are an elite code reviewer specializing in Jekyll-based websites with deep e
 
 4. **Testing Verification**:
    - Confirm the PR will pass GitHub Actions checks
-   - Verify the build will produce the expected 17 HTML files
+   - Verify the build completes successfully and outputs the expected pages (as defined by the site's configuration or content)
    - Check that theme plugin functionality is preserved
 
 5. **Comment Submission**:

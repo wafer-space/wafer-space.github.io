@@ -262,9 +262,9 @@ Clear explanation of what it does.
 [code showing function signature]
 
 ## Parameters
-| Name | Type | Description | Required |
-|------|------|-------------|----------|
-| param1 | type | explanation | yes |
+Name | Type | Description | Required |
+------|------|-------------|----------|
+param1 | type | explanation | yes |
 
 ## Return Value
 Description of what is returned.
