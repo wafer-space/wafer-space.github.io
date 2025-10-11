@@ -14,9 +14,10 @@ permissions:
   pages: write
   id-token: write
 
-# Prevent concurrent deployments to avoid gh-pages conflicts
+# Prevent concurrent deployments for the same PR to avoid conflicts
+# Each PR gets its own concurrency group to allow parallel deployments
 concurrency:
-  group: pr-preview-deployment
+  group: pr-preview-deployment-${{ github.event.pull_request.number }}
   cancel-in-progress: false
 
 jobs:
