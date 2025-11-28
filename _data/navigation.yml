@@ -16,6 +16,10 @@ main_menu:
     url: "/how.html"
     menu_type: "simple"
 
+  - text: "Tiny Tapeout"
+    url: "/tiny-tapeout.html"
+    menu_type: "simple"
+
   - text: "Help"
     url: "/help.html"
     menu_type: "simple"
