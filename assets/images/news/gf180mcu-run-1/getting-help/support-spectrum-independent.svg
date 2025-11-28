@@ -1,0 +1,17 @@
+<svg width="280" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="280" height="280" fill="#ffffff"/>
+
+  <!-- Independent Section -->
+  <rect x="10" y="10" width="260" height="260" fill="#e8f5e9" stroke="#28a745" stroke-width="3" rx="8"/>
+  <text x="140" y="45" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Independent</text>
+  <text x="140" y="73" text-anchor="middle" fill="#495057" font-family="Arial, sans-serif" font-size="16" font-weight="bold">You do the work</text>
+
+  <text x="30" y="110" text-anchor="start" fill="#495057" font-family="Arial, sans-serif" font-size="15">• Open-source tools</text>
+  <text x="30" y="138" text-anchor="start" fill="#495057" font-family="Arial, sans-serif" font-size="15">• Documentation</text>
+  <text x="30" y="166" text-anchor="start" fill="#495057" font-family="Arial, sans-serif" font-size="15">• Community examples</text>
+  <text x="30" y="194" text-anchor="start" fill="#495057" font-family="Arial, sans-serif" font-size="15">• Discord/Matrix</text>
+
+  <text x="140" y="230" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Cost: Your time</text>
+  <text x="140" y="254" text-anchor="middle" fill="#6c757d" font-family="Arial, sans-serif" font-size="13" font-style="italic">Fully viable</text>
+</svg>
