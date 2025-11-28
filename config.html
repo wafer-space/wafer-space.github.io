@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GF180MCU PDK Configuration</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #4CAF50, transparent);
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>GF180MCU PDK Configuration</h1>
+
+    <h2>Feature Configuration</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature Group</th>
+                <th>Feature Name</th>
+                <th>Model Name</th>
+                <th>Mask #</th>
+                <th>GDS Layer #</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Always Included</td>
+                <td>Base features for 0.18u MCU</td>
+                <td></td>
+                <td>10,05,18,38,60,61,11,64,65,70,68,75</td>
+                <td>22,21,204,55,30,47,15,10,32,31,49,33</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>Metal stack 5LM</td>
+                <td>Top Metal Thickness 11kÅ, 5-layers</td>
+                <td></td>
+                <td>80,85,88,91,93,94,96,97,98</td>
+                <td>34,35,36,38,42,40,46,41,53</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>Diode</td>
+                <td>5V/6V N+/LPWELL Diode (Outside DNWELL)</td>
+                <td><code>np_6p0</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Diode</td>
+                <td>5V/6V P+/Nwell Diode (Outside DNWELL)</td>
+                <td><code>pn_6p0</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>MOSFET</td>
+                <td>5V NMOS (Outside DNWELL)</td>
+                <td><code>nmos_5p0</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MOSFET</td>
+                <td>5V NMOS (Inside DNWELL)</td>
+                <td><code>nmos_5p0_dw</code></td>
+                <td>06</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>MOSFET</td>
+                <td>5V PMOS (Outside DNWELL)</td>
+                <td><code>pmos_5p0</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MOSFET</td>
+                <td>5V PMOS (Inside DNWELL)</td>
+                <td><code>pmos_5p0_dw</code></td>
+                <td>06</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>ESD (SAB MOSFET)</td>
+                <td>5V SAB NMOS (Outside DNWELL)</td>
+                <td><code>nmos_5p0_sab</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ESD (SAB MOSFET)</td>
+                <td>5V SAB NMOS (Inside DNWELL)</td>
+                <td><code>nmos_5p0_dw_sab</code></td>
+                <td>06</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>ESD (SAB MOSFET)</td>
+                <td>5V SAB PMOS (Outside DNWELL)</td>
+                <td><code>pmos_5p0_sab</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ESD (SAB MOSFET)</td>
+                <td>5V SAB PMOS (Inside DNWELL)</td>
+                <td><code>pmos_5p0_dw_sab</code></td>
+                <td>06</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>RESISTOR</td>
+                <td>N+ Poly Unsalicided Rs</td>
+                <td><code>npolyf_u</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>RESISTOR</td>
+                <td>P+ Poly Unsalicided Rs</td>
+                <td><code>ppolyf_u</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Resistor (HRES)</td>
+                <td>1K P+ HRS</td>
+                <td><code>ppolyf_u_1k</code>, <code>ppolyf_u_1k_6p0</code></td>
+                <td>63</td>
+                <td>62</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>CAPACITOR (MOS)</td>
+                <td>5V/6V NMOS capacitor (Outside DNWELL)</td>
+                <td><code>nmoscap_6p0</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>MIM Capacitor</td>
+                <td>Type B (Plate between n-1) TM / TM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>MIM Capacitor</td>
+                <td>2.0fF/um2 MIM capacitor</td>
+                <td><code>mim_single_2p0fF</code></td>
+                <td>92</td>
+                <td>75</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>Passivation</td>
+                <td>Single passivation</td>
+                <td><code>Single_passivation</code></td>
+                <td>95</td>
+                <td>37</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Layer Mapping</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mask #</th>
+                <th>Layer Name (GF180MCU)</th>
+                <th>Used By Feature Group(s)</th>
+                <th>GDS Layer #</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>05</td>
+                <td>NWELL</td>
+                <td>Always Included</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>06</td>
+                <td>DNWELL (Deep N-well)</td>
+                <td>MOSFET (Inside DNWELL), ESD (Inside DNWELL)</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>COMP</td>
+                <td>Always Included</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>AD (Planarization Aid)</td>
+                <td>Always Included</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>LVPWELL</td>
+                <td>Always Included</td>
+                <td>204</td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td>DualGate</td>
+                <td>Always Included</td>
+                <td>55</td>
+            </tr>
+            <tr>
+                <td>60</td>
+                <td>POLY2</td>
+                <td>Always Included</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>61</td>
+                <td>TN (NMOS implant)</td>
+                <td>Always Included</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>63</td>
+                <td>Resistor layer</td>
+                <td>Resistor (HRES)</td>
+                <td>62</td>
+            </tr>
+            <tr>
+                <td>64</td>
+                <td>TP (PMOS implant)</td>
+                <td>Always Included</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>65</td>
+                <td>N+ implant</td>
+                <td>Always Included</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>68</td>
+                <td>SAB (Salicide block)</td>
+                <td>Always Included, ESD (SAB MOSFET)</td>
+                <td>49</td>
+            </tr>
+            <tr>
+                <td>70</td>
+                <td>P+ implant</td>
+                <td>Always Included</td>
+                <td>31</td>
+            </tr>
+            <tr>
+                <td>75</td>
+                <td>Contact</td>
+                <td>Always Included</td>
+                <td>33</td>
+            </tr>
+            <tr>
+                <td>80</td>
+                <td>Metal1</td>
+                <td>Metal stack 5LM</td>
+                <td>34</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td>Via1</td>
+                <td>Metal stack 5LM</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>88</td>
+                <td>Metal2</td>
+                <td>Metal stack 5LM</td>
+                <td>36</td>
+            </tr>
+            <tr>
+                <td>91</td>
+                <td>Via2</td>
+                <td>Metal stack 5LM</td>
+                <td>38</td>
+            </tr>
+            <tr>
+                <td>93</td>
+                <td>Metal3</td>
+                <td>Metal stack 5LM</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>94</td>
+                <td>Via3</td>
+                <td>Metal stack 5LM</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>96</td>
+                <td>Metal4</td>
+                <td>Metal stack 5LM</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td>97</td>
+                <td>Via4</td>
+                <td>Metal stack 5LM</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>98</td>
+                <td>MetalTop</td>
+                <td>Metal stack 5LM</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>92</td>
+                <td>MIM Top Plate</td>
+                <td>MIM Capacitor (2.0 fF/µm²)</td>
+                <td>75</td>
+            </tr>
+            <tr>
+                <td>95</td>
+                <td>Pad / Passivation</td>
+                <td>Passivation</td>
+                <td>37</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Unused Layers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mask #</th>
+                <th>Layer Name</th>
+                <th>Description</th>
+                <th>GDS Layer #</th>
+                <th>Optional (per PDK)</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1L</td>
+                <td>MVNVT</td>
+                <td>5V or 6V NLDD</td>
+                <td>205</td>
+                <td>No</td>
+                <td>High-voltage NMOS LDD implant</td>
+            </tr>
+            <tr>
+                <td>2E</td>
+                <td>MVPVT</td>
+                <td>MTP Cell Implant</td>
+                <td>206</td>
+                <td>No</td>
+                <td>For OTP / MTP cells</td>
+            </tr>
+            <tr>
+                <td>67</td>
+                <td>ESD</td>
+                <td>ESD implant</td>
+                <td>24</td>
+                <td>Yes</td>
+                <td>Dedicated ESD implant layer</td>
+            </tr>
+            <tr>
+                <td>9Z</td>
+                <td>POLYFUSE</td>
+                <td>POLY FUSE Window</td>
+                <td>220</td>
+                <td>Yes</td>
+                <td>Poly fuse mask</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>9E</td>
+                <td>Metal5</td>
+                <td>Metal5</td>
+                <td>81</td>
+                <td>No</td>
+                <td>Extra metal layer above M4</td>
+            </tr>
+            <tr>
+                <td>9D</td>
+                <td>Via5</td>
+                <td>Via5</td>
+                <td>82</td>
+                <td>No</td>
+                <td>Via between Metal4 and Metal5</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="section-divider"></td>
+            </tr>
+            <tr>
+                <td>99</td>
+                <td>PIB</td>
+                <td>Bond / Passivation opening</td>
+                <td>50</td>
+                <td>Yes</td>
+                <td>Bond & passivation openings</td>
+            </tr>
+            <tr>
+                <td>9A</td>
+                <td>FuseWindow</td>
+                <td>Metal FuseWindow (Optional)</td>
+                <td>96</td>
+                <td>Yes</td>
+                <td>Metal fuse window</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
