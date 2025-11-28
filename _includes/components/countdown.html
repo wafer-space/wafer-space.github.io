@@ -23,55 +23,69 @@
             {% assign deadline = run.campaign_deadline %}
             <div class="row">
               <div class="col-xl-10 offset-xl-1">
-                <div class="countdown-wrapper d-flex align-items-center justify-content-center">
-                  <div class="countdown" data-date="{{ deadline.date }}">
-                    <div class="row text-center">
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-days>0</h3>
-                          <p>days</p>
+                <div class="countdown-section" data-expired-message="{{ deadline.expired_message | default: 'Deadline passed' }}">
+                  <div class="countdown-wrapper d-flex align-items-center justify-content-center">
+                    <div class="countdown" data-date="{{ deadline.date }}">
+                      <div class="row text-center">
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-days>0</h3>
+                            <p>days</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-hours>0</h3>
+                            <p>hours</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-minutes>0</h3>
+                            <p>minutes</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-seconds>0</h3>
+                            <p>seconds</p>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-hours>0</h3>
-                          <p>hours</p>
+                    </div>
+                    {% if deadline.button_text and deadline.button_url %}
+                      <div class="countdown-button ml-4">
+                        <div class="countdown-button-wrapper">
+                          <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
+                            {% if deadline.button_text == "Reserve" %}
+                              <i class="jam jam-shopping-cart btn-icon"></i>
+                              <span class="btn-text">BUY</span>
+                            {% elsif deadline.button_text == "Submit" %}
+                              <i class="jam jam-rocket btn-icon"></i>
+                              <span class="btn-text">SUBMIT</span>
+                            {% else %}
+                              <span class="btn-text">{{ deadline.button_text }}</span>
+                            {% endif %}
+                          </a>
+                          <p class="text-muted text-center mt-3 mb-0 button-label">
+                            {{ deadline.display_date }}
+                            {% if deadline.timezone %}
+                              <a href="{{ deadline.timezone_link }}" target="_blank" rel="noopener" class="text-decoration-none">{{ deadline.timezone }}</a>
+                            {% endif %}
+                            {% if deadline.local_time_link %}
+                              (<a href="{{ deadline.local_time_link }}" target="_blank" rel="noopener" class="text-decoration-none">see in your timezone</a>)
+                            {% endif %}
+                          </p>
                         </div>
                       </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-minutes>0</h3>
-                          <p>minutes</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-seconds>0</h3>
-                          <p>seconds</p>
-                        </div>
-                      </div>
+                    {% endif %}
+                  </div>
+                  <!-- Expired message - shown when countdown reaches zero -->
+                  <div class="countdown-expired text-center" style="display: none;">
+                    <div class="box bg-white shadow p-4">
+                      <h3 class="mb-0 text-danger"><i class="jam jam-rocket mr-2"></i>{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
                     </div>
                   </div>
-                  {% if deadline.button_text and deadline.button_url %}
-                    <div class="countdown-button ml-4">
-                      <div class="countdown-button-wrapper">
-                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
-                          {% if deadline.button_text == "Reserve" %}
-                            <i class="jam jam-shopping-cart btn-icon"></i>
-                            <span class="btn-text">BUY</span>
-                          {% elsif deadline.button_text == "Submit" %}
-                            <i class="jam jam-rocket btn-icon"></i>
-                            <span class="btn-text">SUBMIT</span>
-                          {% else %}
-                            <span class="btn-text">{{ deadline.button_text }}</span>
-                          {% endif %}
-                        </a>
-                        <p class="text-muted text-center mt-3 mb-0 button-label">
-                          {{ deadline.display_date }}
-                        </p>
-                      </div>
-                    </div>
-                  {% endif %}
                 </div>
               </div>
             </div>
@@ -87,55 +101,69 @@
             {% assign deadline = run.submission_deadline %}
             <div class="row">
               <div class="col-xl-10 offset-xl-1">
-                <div class="countdown-wrapper d-flex align-items-center justify-content-center">
-                  <div class="countdown" data-date="{{ deadline.date }}">
-                    <div class="row text-center">
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-days>0</h3>
-                          <p>days</p>
+                <div class="countdown-section" data-expired-message="{{ deadline.expired_message | default: 'Deadline passed' }}">
+                  <div class="countdown-wrapper d-flex align-items-center justify-content-center">
+                    <div class="countdown" data-date="{{ deadline.date }}">
+                      <div class="row text-center">
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-days>0</h3>
+                            <p>days</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-hours>0</h3>
+                            <p>hours</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-minutes>0</h3>
+                            <p>minutes</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-seconds>0</h3>
+                            <p>seconds</p>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-hours>0</h3>
-                          <p>hours</p>
+                    </div>
+                    {% if deadline.button_text and deadline.button_url %}
+                      <div class="countdown-button ml-4">
+                        <div class="countdown-button-wrapper">
+                          <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
+                            {% if deadline.button_text == "Reserve" %}
+                              <i class="jam jam-shopping-cart btn-icon"></i>
+                              <span class="btn-text">BUY</span>
+                            {% elsif deadline.button_text == "Submit" %}
+                              <i class="jam jam-rocket btn-icon"></i>
+                              <span class="btn-text">SUBMIT</span>
+                            {% else %}
+                              <span class="btn-text">{{ deadline.button_text }}</span>
+                            {% endif %}
+                          </a>
+                          <p class="text-muted text-center mt-3 mb-0 button-label">
+                            {{ deadline.display_date }}
+                            {% if deadline.timezone %}
+                              <a href="{{ deadline.timezone_link }}" target="_blank" rel="noopener" class="text-decoration-none">{{ deadline.timezone }}</a>
+                            {% endif %}
+                            {% if deadline.local_time_link %}
+                              (<a href="{{ deadline.local_time_link }}" target="_blank" rel="noopener" class="text-decoration-none">see in your timezone</a>)
+                            {% endif %}
+                          </p>
                         </div>
                       </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-minutes>0</h3>
-                          <p>minutes</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="box bg-white shadow">
-                          <h3 data-seconds>0</h3>
-                          <p>seconds</p>
-                        </div>
-                      </div>
+                    {% endif %}
+                  </div>
+                  <!-- Expired message - shown when countdown reaches zero -->
+                  <div class="countdown-expired text-center" style="display: none;">
+                    <div class="box bg-white shadow p-4">
+                      <h3 class="mb-0 text-warning">{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
                     </div>
                   </div>
-                  {% if deadline.button_text and deadline.button_url %}
-                    <div class="countdown-button ml-4">
-                      <div class="countdown-button-wrapper">
-                        <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
-                          {% if deadline.button_text == "Reserve" %}
-                            <i class="jam jam-shopping-cart btn-icon"></i>
-                            <span class="btn-text">BUY</span>
-                          {% elsif deadline.button_text == "Submit" %}
-                            <i class="jam jam-rocket btn-icon"></i>
-                            <span class="btn-text">SUBMIT</span>
-                          {% else %}
-                            <span class="btn-text">{{ deadline.button_text }}</span>
-                          {% endif %}
-                        </a>
-                        <p class="text-muted text-center mt-3 mb-0 button-label">
-                          {{ deadline.display_date }}
-                        </p>
-                      </div>
-                    </div>
-                  {% endif %}
                 </div>
               </div>
             </div>
@@ -176,3 +204,76 @@
     {% endif %}
   {% endif %}
 {% endfor %}
+
+<!-- Countdown expiration handler -->
+<script>
+(function() {
+  'use strict';
+
+  // Function to handle countdown expiration
+  function handleCountdownExpiration($section) {
+    var $wrapper = $section.find('.countdown-wrapper');
+    var $expired = $section.find('.countdown-expired');
+    var $button = $section.find('.countdown-button');
+
+    // Hide the countdown timer and button, show expired message
+    $wrapper.fadeOut(300, function() {
+      $expired.fadeIn(300);
+    });
+  }
+
+  // Function to check if a countdown has ended
+  function checkCountdownExpired($countdown) {
+    var $section = $countdown.closest('.countdown-section');
+    if (!$section.length) return false;
+
+    var days = parseInt($countdown.find('[data-days]').text()) || 0;
+    var hours = parseInt($countdown.find('[data-hours]').text()) || 0;
+    var minutes = parseInt($countdown.find('[data-minutes]').text()) || 0;
+    var seconds = parseInt($countdown.find('[data-seconds]').text()) || 0;
+
+    return days === 0 && hours === 0 && minutes === 0 && seconds === 0;
+  }
+
+  // Initialize countdown expiration handling after DOM and countdown plugin are ready
+  $(document).ready(function() {
+    // Wait a short moment for the countdown plugin to initialize
+    setTimeout(function() {
+      $('.countdown-section').each(function() {
+        var $section = $(this);
+        var $countdown = $section.find('.countdown');
+
+        if (!$countdown.length) return;
+
+        // Check if already expired on page load
+        var dateStr = $countdown.data('date');
+        if (dateStr) {
+          var deadline = new Date(dateStr);
+          var now = new Date();
+
+          if (now >= deadline) {
+            // Already expired - show message immediately
+            $section.find('.countdown-wrapper').hide();
+            $section.find('.countdown-expired').show();
+            return;
+          }
+        }
+
+        // Set up monitoring for active countdowns
+        // Use MutationObserver to detect when countdown values change to 0
+        var observer = new MutationObserver(function(mutations) {
+          if (checkCountdownExpired($countdown)) {
+            observer.disconnect();
+            handleCountdownExpiration($section);
+          }
+        });
+
+        // Observe changes to the countdown text
+        $countdown.find('[data-seconds]').each(function() {
+          observer.observe(this, { childList: true, characterData: true, subtree: true });
+        });
+      });
+    }, 100);
+  });
+})();
+</script>

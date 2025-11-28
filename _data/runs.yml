@@ -11,24 +11,34 @@ runs:
     featured: true    # highlight this run on main pages
 
     # Campaign deadline - when slot purchases close
+    # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Nov 28 = Nov 29 11:59 UTC
     campaign_deadline:
-      date: "2025-11-28"  # ISO 8601 format for JavaScript
-      display_date: "28 November 2025"  # Human readable format
-      title: "Campaign Ends Soon!"
+      date: "2025-11-29T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Nov 28
+      display_date: "28 November 2025 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20251128T2359&p1=3399"
+      title: "Purchase Deadline"
       subtitle: "Reserve your slot in GF180MCU Run 1 before time runs out"
       button_text: "Reserve"
       button_url: "https://buy.wafer.space/#products"
       priority: "urgent"
+      expired_message: "Too late, catch the next shuttle!"
 
     # Design submission deadline - when GDSII files are due
+    # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Dec 3 = Dec 4 11:59 UTC
     submission_deadline:
-      date: "2025-12-03"
-      display_date: "3 December 2025"
+      date: "2025-12-04T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Dec 3
+      display_date: "3 December 2025 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20251203T2359&p1=3399"
       title: "Design Submission Deadline"
       subtitle: "Submit your GDSII files for GF180MCU Run 1"
       button_text: "Submit"
       button_url: "/how.html"
       priority: "important"
+      expired_message: "Submissions closed"
 
     # Delivery date - when chips are shipped
     delivery_date:
@@ -42,12 +52,12 @@ runs:
     timeline:
       - title: "Purchase Deadline"
         date: "2025-11-28"
-        display_date: "28 November 2025"
+        display_date: "28 November 2025 @ 11:59 PM AoE"
         description: "Final deadline to purchase manufacturing slots"
         status: "critical"
       - title: "Design Submission"
         date: "2025-12-03"
-        display_date: "3 December 2025"
+        display_date: "3 December 2025 @ 11:59 PM AoE"
         description: "Final deadline to submit GDS files for fabrication"
         status: "critical"
       - title: "Tape-out to GlobalFoundries"
