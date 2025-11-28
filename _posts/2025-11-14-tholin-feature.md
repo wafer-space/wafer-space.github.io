@@ -21,7 +21,7 @@ Our first shuttle run includes a number of incredible projects, and we wanted to
 
 ## Tholin & Avalon Semiconductors
 
-![Tholin's custom silicon designs showcase what's possible with open tooling](/assets/images/news/gf180mcu-run-1/tholin-feature/ic1.png)
+![Tholin's custom silicon designs showcase what's possible with open tooling]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/ic1.png)
 
 *Tholin's custom silicon designs showcase what's possible with open tooling*
 
@@ -31,7 +31,7 @@ Our first shuttle run includes a number of incredible projects, and we wanted to
 
 ### AS2650 and AS2650-2
 
-![The AS2650(-2) is inspired by retro CPUs like the Signetics 2650](/assets/images/news/gf180mcu-run-1/tholin-feature/as2650.png)
+![The AS2650(-2) is inspired by retro CPUs like the Signetics 2650]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/as2650.png)
 
 *The AS2650(-2) is inspired by retro CPUs like the Signetics 2650*
 
@@ -68,13 +68,13 @@ Tholin has also created a companion repository,
 
 True to her style, the project includes **artwork integrated directly into the silicon layout**, reflecting the creative potential unlocked when advanced design tools are accessible and open.
 
-![Tholin's logo, adapted for silicon artwork](/assets/images/news/gf180mcu-run-1/tholin-feature/logo_bw.png)
+![Tholin's logo, adapted for silicon artwork]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/logo_bw.png)
 
 *Tholin's logo, adapted for silicon artwork*
 
 Additionally, Tholin developed a [**Python script**](https://github.com/AvalonSemiconductors/ws-submission-2025/blob/main/padout_gen.py) that **automatically generates padout diagrams** from a [LibreLane](https://librelane.rtfd.io/) configuration file thereby simplifying visualization and documentation of pad assignments.
 
-![Padout diagram generated from Python and LibreLane configuration](/assets/images/news/gf180mcu-run-1/tholin-feature/padout.png)
+![Padout diagram generated from Python and LibreLane configuration]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/padout.png)
 
 *Padout diagram generated from Python and LibreLane configuration*
 
@@ -85,8 +85,8 @@ Additionally, Tholin developed a [**Python script**](https://github.com/AvalonSe
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tholin-feature/multidie.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tholin-feature/multilayout.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/multidie.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/multilayout.png" alt="" /></td>
   </tr>
   <tr>
     <td colspan="2"><em>Multi-project die strategy - integrating multiple designs onto a single die to maximize wafer utilization</em></td>
@@ -107,7 +107,7 @@ This approach reflects the open ethos of wafer.space — making silicon explorat
 Tholin has been an early adopter of [**LibreLane**](https://librelane.rtfd.io/), the open-source ASIC flow used by wafer.space. Their feedback and experiments with padframes, padrings, and packaging have helped refine the ecosystem for everyone.
 From RTL through layout and DRC, to bonding and board testing, Tholin's work demonstrates that open tooling can now carry a chip from idea to reality — no closed vendor stack required.
 
-![Standard cells are a key component of RTL to GDSII flows.](/assets/images/news/gf180mcu-run-1/tholin-feature/3d_view.png)
+![Standard cells are a key component of RTL to GDSII flows.]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/3d_view.png)
 
 *Standard cells are a key component of RTL to GDSII flows.*
 
@@ -137,8 +137,8 @@ Beyond her silicon designs, **Tholin** has also developed a range of PCB project
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tholin-feature/dip40.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tholin-feature/dip40_wirebond.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/dip40.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tholin-feature/dip40_wirebond.png" alt="" /></td>
   </tr>
   <tr>
     <td colspan="2"><em>DIP40 breakout board and wirebonding setup - making custom silicon accessible through standard packages</em></td>

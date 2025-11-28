@@ -25,10 +25,10 @@ Last month at [ORConf 2025](https://orconf.org/) in Valencia, Mohamed Gaber and 
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step1-design.svg" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step2-config.svg" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step3-run.svg" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step4-gds.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step1-design.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step2-config.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step3-run.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/librelane-template/librelane-step4-gds.svg" alt="" /></td>
   </tr>
   <tr>
     <td colspan="4"><em>Simple LibreLane Workflow - Synthesis → Floorplan → Placement → Routing → Verification — all automated</em></td>

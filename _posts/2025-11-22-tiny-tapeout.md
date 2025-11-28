@@ -17,13 +17,13 @@ crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates
 
 ## Tiny Tapeout
 
-![Tiny Tapeout - Democratizing chip design](/assets/images/news/gf180mcu-run-1/tiny-tapeout/tinytapeout-logo.png)
+![Tiny Tapeout - Democratizing chip design]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tinytapeout-logo.png)
 
 *Tiny Tapeout - Democratizing chip design*
 
 [wafer.space](https://wafer.space/) is excited to collaborate with [Tiny Tapeout](https://tinytapeout.com/) to port their infrastructure to GF180MCU. Founded by [Matt Venn](https://zerotoasiccourse.com/), Tiny Tapeout has become a cornerstone of the open-silicon movement, empowering students, hobbyists, and even industry professionals to design and fabricate their own ASICs through approachable tools and collaborative workflows. Our collaboration provides an easy and affordable pathway from initial ideas and prototyping to building real products.
 
-![With Tiny Tapeout, you get a ready-to-go development board](/assets/images/news/gf180mcu-run-1/tiny-tapeout/previous-tt-version.jpeg)
+![With Tiny Tapeout, you get a ready-to-go development board]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/previous-tt-version.jpeg)
 
 *With Tiny Tapeout, you get a ready-to-go development board*
 
@@ -32,14 +32,14 @@ Tiny Tapeout has already proven that accessible chip design works. By dramatical
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt03-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt05-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt06-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt07-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt09-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttihp0p1-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttsky25a-gds.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttsky25b-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt03-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt05-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt06-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt07-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tt09-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttihp0p1-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttsky25a-gds.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/ttsky25b-gds.png" alt="" /></td>
   </tr>
   <tr>
     <td colspan="8"><em>GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)</em></td>
@@ -79,7 +79,7 @@ Both Tiny Tapeout and wafer.space have been thrilled by the community response. 
 
 The project tiles are filling up fast:
 
-![Project tiles already allocated on the GF0p2 run](/assets/images/news/gf180mcu-run-1/tiny-tapeout/current-run.png)
+![Project tiles already allocated on the GF0p2 run]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/current-run.png)
 
 *Project tiles already allocated on the GF0p2 run*
 
@@ -97,7 +97,7 @@ With Tiny Tapeout, anyone can get started with just a web browser and a few hour
 
 ## Don't Miss Your Chance to Join the First Shuttle
 
-![wafer.space bringing open accessible custom silicon fabrication](/assets/images/news/gf180mcu-run-1/tiny-tapeout/waferspace-rainbow-open.png)
+![wafer.space bringing open accessible custom silicon fabrication]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/waferspace-rainbow-open.png)
 
 *wafer.space bringing open accessible custom silicon fabrication*
 
@@ -117,8 +117,8 @@ Reserve your slot, finish your design, and join us in shaping the future of acce
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/tillitis-logo-std.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/tiny-tapeout/witcom-logo-std.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tillitis-logo-std.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/witcom-logo-std.png" alt="" /></td>
   </tr>
   <tr>
     <td colspan="2"><em>Sponsored by [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/)</em></td>

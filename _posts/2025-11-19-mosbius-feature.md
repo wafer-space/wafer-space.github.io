@@ -21,7 +21,7 @@ Through wafer.space, MOSbius gains 3.3V compatible I/Os, high part counts, and C
 
 ## [MOSbius](https://mosbius.org/)
 
-![MOSbius platform enables hands-on exploration of transistor-level MOS circuits on breadboard](/assets/images/news/gf180mcu-run-1/mosbius-feature/mosbius_flow.png)
+![MOSbius platform enables hands-on exploration of transistor-level MOS circuits on breadboard]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/mosbius-feature/mosbius_flow.png)
 
 *MOSbius platform enables hands-on exploration of transistor-level MOS circuits on breadboard*
 
@@ -29,7 +29,7 @@ Through wafer.space, MOSbius gains 3.3V compatible I/Os, high part counts, and C
 
 The goal of [MOSbius](https://mosbius.org/) is to give learners hands-on experience with **transistor-level design**, including circuit debugging, measurement, and the full "chip bring-up" process. The platform allows users to compare calculations, simulations, and real measurements using provided **[LTspice](https://wiki.analog.com/resources/tools-software/ltspice) models**, bridging the gap between theory and silicon.
 
-![MOSbius – A Field Programmable Transistor Array for Chip Designers (Interview with Peter Kinget)](/assets/images/news/gf180mcu-run-1/mosbius-feature/mosbius_interview.png)
+![MOSbius – A Field Programmable Transistor Array for Chip Designers (Interview with Peter Kinget)]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/mosbius-feature/mosbius_interview.png)
 
 *MOSbius – A Field Programmable Transistor Array for Chip Designers (Interview with Peter Kinget)*
 
@@ -49,8 +49,8 @@ Their application prioritizes **a high number of I/O connections** over power an
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/mosbius-feature/mos_pcb.png" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/mosbius-feature/mos_3d.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/mosbius-feature/mos_pcb.png" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/mosbius-feature/mos_3d.png" alt="" /></td>
   </tr>
   <tr>
     <td colspan="2"><em>MOSbius custom COB package design - PCB layout and 3D visualization</em></td>
@@ -67,7 +67,7 @@ Their current board design requires numerous passive components due to varying p
 
 ## Don't Miss Your Chance to Join the First Shuttle
 
-![wafer.space - Accessible custom silicon fabrication](/assets/images/news/gf180mcu-run-1/mosbius-feature/rainbow_narrow2.svg)
+![wafer.space - Accessible custom silicon fabrication]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/mosbius-feature/rainbow_narrow2.svg)
 
 *wafer.space - Accessible custom silicon fabrication*
 

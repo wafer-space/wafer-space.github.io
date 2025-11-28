@@ -21,7 +21,7 @@ With the **December 3rd GDS submission deadline** getting closer, I wanted to ta
 
 Whether you've already [reserved a slot](https://buy.wafer.space/) or you're still on the fence because of timeline concerns, this update is for you. The short version: you have options. Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design.
 
-![timeline](/assets/images/news/gf180mcu-run-1/getting-help/timeline.svg)
+![timeline]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/timeline.svg)
 
 ## Two Important Things Up Front
 
@@ -51,7 +51,7 @@ Four companies are offering paid professional services specifically for [wafer.s
 
 ---
 
-![chipflow-logo-std-rounded](/assets/images/news/gf180mcu-run-1/getting-help/chipflow-logo-std-rounded.png)
+![chipflow-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/chipflow-logo-std-rounded.png)
 
 #### [ChipFlow](https://wafer.space/design-help.html#chipflow) · *Spain*
 
@@ -62,7 +62,7 @@ Full-service ASIC development platform with cloud-based design tools, collaborat
 
 ---
 
-![mabrains-logo-std-rounded](/assets/images/news/gf180mcu-run-1/getting-help/mabrains-logo-std-rounded.png)
+![mabrains-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/mabrains-logo-std-rounded.png)
 
 #### [Mabrains](https://wafer.space/design-help.html#mabrains) · *Egypt*
 
@@ -73,7 +73,7 @@ PDK development, analog &amp; digital design, physical design &amp; layout, desi
 
 ---
 
-![precision-logo-std-rounded](/assets/images/news/gf180mcu-run-1/getting-help/precision-logo-std-rounded.png)
+![precision-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/precision-logo-std-rounded.png)
 
 #### [Precision Innovations](https://wafer.space/design-help.html#precision-innovations) · *USA*
 
@@ -84,7 +84,7 @@ Primary developers of OpenROAD, offering commercial support, custom development,
 
 ---
 
-![slice-logo-std-rounded](/assets/images/news/gf180mcu-run-1/getting-help/slice-logo-std-rounded.png)
+![slice-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/slice-logo-std-rounded.png)
 
 #### [SLICE Semiconductor](https://wafer.space/design-help.html#slice-semiconductor) · *Ireland*
 
@@ -101,9 +101,9 @@ Think of professional services as part of a spectrum of options, not an all-or-n
 
 <table>
   <tr>
-    <td><img src="/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-independent.svg" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-hybrid.svg" alt="" /></td>
-    <td><img src="/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-fullservice.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-independent.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-hybrid.svg" alt="" /></td>
+    <td><img src="{{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/support-spectrum-fullservice.svg" alt="" /></td>
   </tr>
 </table>
 
