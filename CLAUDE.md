@@ -118,6 +118,35 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
 
+## PR Preview Verification
+
+### Critical: Verification Errors are Real
+
+**NEVER assume verification failures are "timing issues" or "deployment lag".** The preview site verification (`verify-preview` workflow) runs comprehensive checks including muffet link validation. If muffet reports 404 errors or broken links, they are **real bugs** that need to be fixed.
+
+Common causes of verification failures:
+1. **Absolute paths without baseurl**: Using `/assets/...` instead of `{{ site.baseurl }}/assets/...` or relative paths
+2. **Missing images**: Images referenced but not committed/pushed
+3. **Broken internal links**: Links to pages that don't exist
+4. **External link issues**: External URLs that return errors (may need exclusion rules if legitimate)
+
+### Asset and Link Path Requirements
+
+For the preview site (served at `/pr-{number}/`), all asset and link paths must be relative or use Jekyll's `{{ site.baseurl }}` variable:
+
+```markdown
+<!-- WRONG - will 404 on preview site -->
+![Image](/assets/images/example.png)
+
+<!-- CORRECT - works on both preview and production -->
+![Image]({{ site.baseurl }}/assets/images/example.png)
+
+<!-- Also correct for posts - relative to site root -->
+![Image](../assets/images/example.png)
+```
+
+In Markdown files, prefer using the `{{ site.baseurl }}` approach or proper relative paths to ensure compatibility with PR preview deployments.
+
 ## Git Workflow
 
 Make sure you are on the right branch before doing any work.
