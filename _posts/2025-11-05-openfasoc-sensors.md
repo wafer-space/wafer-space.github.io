@@ -47,7 +47,7 @@ What's exciting is they used the exact same open-source toolchain you have acces
 - [KLayout](https://www.klayout.de/) and [Magic](https://github.com/RTimothyEdwards/magic) for layout
 - Standard DRC/LVS checks
 
-They've published their designs on GitHub in the [OpenFASoC-Tapeouts repository](https://github.com/idea-fasoc/openfasoc-tapeouts?tab=readme-ov-file#analog-front-end-and-mixed-signal), and the [final submission is available on foss-eda-tools](https://foss-eda-tools.googlesource.com/third_party/shuttle/gf180mcu/mpw-18h1/slot-004/+/refs/heads/main), which means you can actually look at exactly how they did it.
+They've published their designs on GitHub in the [OpenFASoC-Tapeouts repository](https://github.com/idea-fasoc/openfasoc-tapeouts?tab=readme-ov-file#user-content-analog-front-end-and-mixed-signal), and the [final submission is available on foss-eda-tools](https://foss-eda-tools.googlesource.com/third_party/shuttle/gf180mcu/mpw-18h1/slot-004/+/refs/heads/main), which means you can actually look at exactly how they did it.
 
 ![The complete open-source analog design flow used for this project]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/openfasoc-sensors/analog_flow.png)
 

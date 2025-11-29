@@ -75,7 +75,7 @@ PDK development, analog &amp; digital design, physical design &amp; layout, desi
 
 ![precision-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/precision-logo-std-rounded.png)
 
-#### [Precision Innovations](https://wafer.space/design-help.html#precision-innovations) · *USA*
+#### [Precision Innovations](https://wafer.space/design-help.html#precision) · *USA*
 
 Primary developers of OpenROAD, offering commercial support, custom development, training &amp; education, and rapid turnaround design flows. If you're using OpenROAD and need expert tool support, these are the people who built it.
 
@@ -86,7 +86,7 @@ Primary developers of OpenROAD, offering commercial support, custom development,
 
 ![slice-logo-std-rounded]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/getting-help/slice-logo-std-rounded.png)
 
-#### [SLICE Semiconductor](https://wafer.space/design-help.html#slice-semiconductor) · *Ireland*
+#### [SLICE Semiconductor](https://wafer.space/design-help.html#slicesemi) · *Ireland*
 
 Low-cost ASIC development, mixed-signal IC design contracting, and consulting across technology nodes from 180nm to 3nm.
 
