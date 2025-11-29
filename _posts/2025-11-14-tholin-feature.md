@@ -39,8 +39,7 @@ Tholin's flagship projects are the **AS2650** and **AS2650-2**, re-implementatio
 You can explore the repositories here:
 
 * [AS2650 GitHub Repository](https://github.com/AvalonSemiconductors/AS2650)
-* [AS2650-2 Repository](https://github.com/AvalonSemiconductors/AS2650-2)
-* [AS2650-2 Documentation](https://avalonsemiconductors.github.io/AS2650/)
+* [AS2650 Documentation](https://avalonsemiconductors.github.io/AS2650/)
 
 These chips aren’t just nostalgic exercises — they’re fully functional processors that have been designed, simulated, taped-out, and brought back to life with custom test boards and firmware. The AS2650-2 introduces expanded peripherals, enhanced bus control, and improved debug accessibility. All implemented with a custom cell library for GF180MCU.
 
