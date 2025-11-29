@@ -130,6 +130,16 @@ Common causes of verification failures:
 3. **Broken internal links**: Links to pages that don't exist
 4. **External link issues**: External URLs that return errors (may need exclusion rules if legitimate)
 
+### NEVER Add Muffet Exclusions Without Confirmation
+
+**NEVER add exclusions to `.github/workflows/preview-verification.yml` without first asking the user for confirmation using the AskUserQuestion tool.** Exclusions hide potential problems and should be deliberate decisions, not automatic fixes.
+
+Before proposing an exclusion, you MUST:
+1. Investigate the root cause of the failure
+2. Attempt to fix the actual problem (broken URL, missing anchor, etc.)
+3. If an exclusion is truly needed, use AskUserQuestion to explain the situation and get explicit approval
+4. Document why the exclusion is necessary in the commit message
+
 ### Asset and Link Path Requirements
 
 For the preview site (served at `/pr-{number}/`), all asset and link paths must be relative or use Jekyll's `{{ site.baseurl }}` variable:
