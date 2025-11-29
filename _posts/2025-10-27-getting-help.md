@@ -144,5 +144,3 @@ Remember: community members can offer guidance and share their experiences, but 
 These professional service companies extend that mission by making silicon accessible in another way: offering the option to pay for expertise when you need it. Not everyone has unlimited time to climb the learning curve. Having professional engineering services available means more people can participate in open silicon manufacturing.
 
 Your idea deserves to become real silicon. Whether you get there independently, with community help, with targeted professional help, or through full-service design, what matters is that you get there.
-
-- Tim 'mithro' Ansell

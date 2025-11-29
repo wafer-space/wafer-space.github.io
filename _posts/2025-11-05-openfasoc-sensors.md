@@ -83,8 +83,8 @@ With [GF180MCU's](https://gf180mcu-pdk.readthedocs.io/) 5 metal layers, MIM capa
 
 Check out the [full paper](https://siliconprawn.org/archive/lib/exe/fetch.php?media=mcmaster:efabless:gf180mcu-mpw18h1-18100004:rapid-prototyping-of-laser-induced-graphene-sensors-with-open-source-silicon-paving-the-way-small.pdf) to see detailed schematics, measurement results, and their complete design flow. This is real silicon, designed with open tools, doing real work — exactly what we're enabling with this pooled run.
 
-Questions about the campaign or getting started with GF180MCU? Hit reply or join our community discussions!
+For questions about the campaign or getting started with GF180MCU, join the community on [Discord](https://discord.gg/43y2t53jpE) or [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org).
 
-- Tim "mithro" Ansell
+---
 
-*P.S. — If you haven't reserved your slot yet, head over to [buy.wafer.space](https://buy.wafer.space/) before November 28th. After that, you'll be waiting for Run 2!*
+*Reserve your slot at [buy.wafer.space](https://buy.wafer.space/) before November 28th to be part of Run 1.*

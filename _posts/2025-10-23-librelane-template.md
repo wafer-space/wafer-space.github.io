@@ -170,5 +170,3 @@ Your time should go into designing your chip, not fighting your tools.
 LibreLane handles the flow. The template handles the setup. You handle the innovation.
 
 Whether you're targeting the December 3rd deadline or planning for a future run, these tools are here to help you go from idea to silicon faster and with less friction.
-
-- Tim 'mithro' Ansell

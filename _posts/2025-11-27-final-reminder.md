@@ -32,5 +32,3 @@ If you run into issues, join the [wafer.space Discord](https://discord.gg/43y2t5
 ![wafer.space bringing open accessible custom silicon fabrication]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/final-reminder/waferspace-rainbow-open.png)
 
 *wafer.space bringing open accessible custom silicon fabrication*
-
-**— Tim 'mithro' Ansell and the wafer.space Team**

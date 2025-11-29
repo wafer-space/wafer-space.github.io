@@ -97,7 +97,3 @@ Future updates will provide hands-on learning:
 When custom silicon costs $7 per chip instead of requiring $70,000 minimum orders, different people with different projects can participate. Students can learn chip design alongside programming. Hardware startups can prototype with custom ASICs instead of compromising with FPGAs. Retro computing enthusiasts can recreate vintage chips. Small production runs become viable.
 
 The conversations above explore this shift from multiple angles—technical, economic, and practical. They document not just what [wafer.space](https://wafer.space/) offers, but why rebuilding accessible fabrication infrastructure matters for hardware innovation.
-
-Thanks for taking the time to learn about this mission. Whether you join Run 1 or future runs, understanding why this infrastructure matters is the first step.
-
-- Tim 'mithro' Ansell
