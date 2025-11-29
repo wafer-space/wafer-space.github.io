@@ -71,7 +71,7 @@ LibreLane addresses all of this while maintaining backwards compatibility - your
 LibreLane isn't experimental - it's already in production use:
 
 - **[Tiny Tapeout](https://tinytapeout.com/)** has adopted LibreLane for their automated tapeout service
-- **[ChipFoundry](https://chipfoundry.com/)** is using it for their fab pooling platform
+- **[ChipFoundry](https://chipfoundry.io/)** is using it for their fab pooling platform
 - **[wafer.space](https://wafer.space/)** uses it for their gf180mcu project template
 
 The shift from OpenLane 1 to LibreLane mirrors what happened in the fabrication world: when Efabless shut down, the community rebuilt better infrastructure. wafer.space rebuilt affordable fabrication access. LibreLane rebuilt the design flow. Both are about making open silicon sustainable.
