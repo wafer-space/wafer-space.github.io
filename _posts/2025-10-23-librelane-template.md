@@ -15,8 +15,6 @@ crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates
 
 *This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template).*
 
-Hey everyone,
-
 If you've been following open silicon over the past few years, you know the story: Google's [open PDK program](https://developers.google.com/silicon) changed everything, but when [Efabless](https://efabless.com/) shut down earlier this year, a lot of infrastructure disappeared. That's part of why [wafer.space](https://wafer.space/) exists - to rebuild accessible fabrication services.
 
 But fabrication is only half the equation. You also need tools to actually design your chip. That's where **[LibreLane](https://librelane.rtfd.io/)** comes in.

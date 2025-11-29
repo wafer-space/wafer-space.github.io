@@ -15,8 +15,6 @@ crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates
 
 *This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help).*
 
-Hey everyone,
-
 With the **December 3rd GDS submission deadline** getting closer, I wanted to talk about something that might be on your mind: completing your design on time.
 
 Whether you've already [reserved a slot](https://buy.wafer.space/) or you're still on the fence because of timeline concerns, this update is for you. The short version: you have options. Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design.

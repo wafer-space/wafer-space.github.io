@@ -15,8 +15,6 @@ crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates
 
 *This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/openfasoc).*
 
-Hey everyone! 👋
-
 As we get closer to our **December 3rd tape-in deadline** (that's coming up fast!), I wanted to share something that really shows the power of what you can build with the [GF180MCU process](https://gf180mcu-pdk.readthedocs.io/) we're pooling together.
 
 ## Real Silicon, Real Applications
