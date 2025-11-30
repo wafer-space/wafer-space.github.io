@@ -13,8 +13,6 @@ permalink: "/news/chip-on-board"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board).*
-
 ## Community Progress on Chip-on-Board Packaging Strategy
 
 Today we have a guest post from **[Andrew Wingate](https://www.crowdsupply.com/evezor-inc)** (of Evezor Inc), sharing his perspective on the progress the [wafer.space](https://wafer.space/) community has been making in developing a chip-on-board packaging strategy. This work includes contributions from **[Tiny Tapeout](https://tinytapeout.com/)**, **[MosBius](https://mosbius.org/)** ([Columbia University](https://peterkinget.github.io/)), and community members like **[@Tholin](https://github.com/AvalonSemiconductors)** and **@xianglin_pu**.
@@ -284,3 +282,7 @@ Together, the community can make custom silicon as easy and affordable as PCB de
 ---
 
 **Thanks to Andrew Wingate for this guest post!** If you're interested in chip-on-board packaging, join the **#cob channel** on the [wafer.space Discord](https://discord.gg/43y2t53jpE) to discuss designs, share feedback, and help contribute to making COB packaging accessible for everyone.
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board).*

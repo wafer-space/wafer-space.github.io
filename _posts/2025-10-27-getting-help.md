@@ -13,8 +13,6 @@ permalink: "/news/getting-help"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help).*
-
 With the **December 3rd GDS submission deadline** getting closer, I wanted to talk about something that might be on your mind: completing your design on time.
 
 Whether you've already [reserved a slot](https://buy.wafer.space/) or you're still on the fence because of timeline concerns, this update is for you. The short version: you have options. Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design.
@@ -142,3 +140,7 @@ Remember: community members can offer guidance and share their experiences, but 
 These professional service companies extend that mission by making silicon accessible in another way: offering the option to pay for expertise when you need it. Not everyone has unlimited time to climb the learning curve. Having professional engineering services available means more people can participate in open silicon manufacturing.
 
 Your idea deserves to become real silicon. Whether you get there independently, with community help, with targeted professional help, or through full-service design, what matters is that you get there.
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help).*

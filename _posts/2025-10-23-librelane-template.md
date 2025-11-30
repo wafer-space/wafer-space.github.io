@@ -13,8 +13,6 @@ permalink: "/news/librelane-template"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template).*
-
 If you've been following open silicon over the past few years, you know the story: Google's [open PDK program](https://developers.google.com/silicon) changed everything, but when [Efabless](https://efabless.com/) shut down earlier this year, a lot of infrastructure disappeared. That's part of why [wafer.space](https://wafer.space/) exists - to rebuild accessible fabrication services.
 
 But fabrication is only half the equation. You also need tools to actually design your chip. That's where **[LibreLane](https://librelane.rtfd.io/)** comes in.
@@ -168,3 +166,7 @@ Your time should go into designing your chip, not fighting your tools.
 LibreLane handles the flow. The template handles the setup. You handle the innovation.
 
 Whether you're targeting the December 3rd deadline or planning for a future run, these tools are here to help you go from idea to silicon faster and with less friction.
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template).*

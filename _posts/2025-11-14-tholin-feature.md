@@ -13,8 +13,6 @@ permalink: "/news/tholin-feature"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature).*
-
 Our first shuttle run includes a number of incredible projects, and we wanted to take a moment to highlight one of them.
 
 ---
@@ -152,6 +150,8 @@ Tholin has also contributed extensively to the **wafer.space standard padframe**
 
 Tholin represents the kind of creative, self-driven engineering that wafer.space exists to empower. Her work with the AS2650 family, open flows, and multi-project dies captures the spirit of the growing open-silicon movement — one where innovation comes from curiosity, not corporate budgets.
 
-We’re thrilled to have **Tholin & Avalon Semiconductors** among the first wave of wafer.space participants and can’t wait to see what they build next.
+We're thrilled to have **Tholin & Avalon Semiconductors** among the first wave of wafer.space participants and can't wait to see what they build next.
 
+---
 
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature).*

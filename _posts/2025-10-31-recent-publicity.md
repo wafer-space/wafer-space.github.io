@@ -13,8 +13,6 @@ permalink: "/news/recent-publicity"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/recent-publicity"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/recent-publicity).*
-
 When Efabless shut down earlier this year, it left a critical gap: affordable access to custom silicon disappeared overnight. [wafer.space](https://wafer.space/) exists to fill that gap by providing pooled fabrication services that make custom silicon accessible at $7 per chip.
 
 ![wafer.space - Making custom silicon accessible]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/recent-publicity/shiny_sticker.svg)
@@ -95,3 +93,7 @@ Future updates will provide hands-on learning:
 When custom silicon costs $7 per chip instead of requiring $70,000 minimum orders, different people with different projects can participate. Students can learn chip design alongside programming. Hardware startups can prototype with custom ASICs instead of compromising with FPGAs. Retro computing enthusiasts can recreate vintage chips. Small production runs become viable.
 
 The conversations above explore this shift from multiple angles—technical, economic, and practical. They document not just what [wafer.space](https://wafer.space/) offers, but why rebuilding accessible fabrication infrastructure matters for hardware innovation.
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/recent-publicity).*

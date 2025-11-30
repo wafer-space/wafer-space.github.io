@@ -13,8 +13,6 @@ permalink: "/news/mosbius-feature"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/mosbius"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/mosbius).*
-
 Our first shuttle run spans from solo makers like Tholin to universities. This week we highlight [MOSbius](https://mosbius.org/), an educational platform from Columbia University bringing hands-on silicon learning to students worldwide.
 
 Through wafer.space, MOSbius gains 3.3V compatible I/Os, high part counts, and COB packaging—all for a low cost. What was once an expensive demonstration can now equip every student in a classroom with their own chip, for less than the cost of a textbook.
@@ -82,3 +80,7 @@ We're rapidly approaching the final milestones for this shuttle run, and now is 
 If you’ve been thinking about getting your own silicon made — whether it’s your first chip or your fiftieth — this is your moment. The tools are ready, the ecosystem is growing, and we’re here to help you every step of the way.
 
 [Reserve your slot](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1), finish your design, and join us in shaping the future of accessible custom silicon.
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/mosbius).*

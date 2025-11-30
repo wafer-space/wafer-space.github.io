@@ -13,8 +13,6 @@ permalink: "/news/openfasoc-sensors"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/openfasoc"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/openfasoc).*
-
 As we get closer to our **December 3rd tape-in deadline** (that's coming up fast!), I wanted to share something that really shows the power of what you can build with the [GF180MCU process](https://gf180mcu-pdk.readthedocs.io/) we're pooling together.
 
 ## Real Silicon, Real Applications
@@ -86,3 +84,7 @@ For questions about the campaign or getting started with GF180MCU, join the comm
 ---
 
 *Reserve your slot at [buy.wafer.space](https://buy.wafer.space/) before November 28th to be part of Run 1.*
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/openfasoc).*

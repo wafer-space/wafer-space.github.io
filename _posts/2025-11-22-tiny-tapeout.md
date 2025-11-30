@@ -13,8 +13,6 @@ permalink: "/news/tiny-tapeout"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout"
 ---
 
-*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout).*
-
 ## Tiny Tapeout
 
 ![Tiny Tapeout - Democratizing chip design]({{ site.baseurl }}/assets/images/news/gf180mcu-run-1/tiny-tapeout/tinytapeout-logo.png)
@@ -126,3 +124,7 @@ Reserve your slot, finish your design, and join us in shaping the future of acce
 </table>
 
 [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/) generously sponsored the work to bring Tiny Tapeout to GF180MCU, its third process technology. This funding is enabling the [improved multiplexer](https://www.youtube.com/watch?v=30emLKLpq50), [power gating, analog support](https://www.youtube.com/watch?v=_m_jK7twymM), and [more](https://www.youtube.com/watch?v=cCbTyfewaCw) (designed by [Sylvain "tnt" Munaut](https://github.com/smunaut)) to be ported to GF180MCU. Thank you for making this happen!
+
+---
+
+*This update was originally published on [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout).*
