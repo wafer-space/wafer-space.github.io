@@ -73,3 +73,22 @@
 .box.bg-white.shadow.mb-30[id] {
     scroll-margin-top: 100px;
 }
+
+/* Make images in blog posts responsive */
+/* Images from markdown don't have Bootstrap's img-fluid class, so we add the same behavior */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure tables in posts don't overflow */
+.post-content table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Make images inside table cells scale properly */
+.post-content table img {
+    max-width: 100%;
+    height: auto;
+}
