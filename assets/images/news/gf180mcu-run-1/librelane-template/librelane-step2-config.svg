@@ -1,0 +1,18 @@
+<svg width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="220" height="220" fill="#ffffff"/>
+
+  <!-- Main box -->
+  <rect x="10" y="40" width="200" height="170" fill="#fff3e0" stroke="#fd7e14" stroke-width="3" rx="8"/>
+
+  <!-- Title -->
+  <text x="110" y="30" text-anchor="middle" fill="#fd7e14" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Step 2</text>
+  <text x="110" y="75" text-anchor="middle" fill="#fd7e14" font-family="Arial, sans-serif" font-size="20" font-weight="bold">config.yaml</text>
+
+  <!-- Code box -->
+  <rect x="25" y="100" width="170" height="90" fill="#ffffff" stroke="#6c757d" stroke-width="2" rx="4"/>
+  <text x="35" y="122" fill="#495057" font-family="Courier New, monospace" font-size="13">DESIGN_NAME:</text>
+  <text x="35" y="140" fill="#495057" font-family="Courier New, monospace" font-size="13">  counter</text>
+  <text x="35" y="162" fill="#495057" font-family="Courier New, monospace" font-size="13">CLOCK_PERIOD:</text>
+  <text x="35" y="180" fill="#495057" font-family="Courier New, monospace" font-size="13">  10 # ns</text>
+</svg>
