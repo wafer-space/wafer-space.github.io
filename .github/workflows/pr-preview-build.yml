@@ -1,0 +1,61 @@
+# PR Preview Build (Stage 1 - Untrusted Context)
+# This workflow runs for ALL pull requests, including those from forks
+# It has NO access to secrets and only collects PR metadata
+name: PR Preview Build
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  actions: write  # Needed to upload artifacts
+
+jobs:
+  collect-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save PR metadata
+        run: |
+          # Determine if this is a fork PR
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            IS_FORK="true"
+          else
+            IS_FORK="false"
+          fi
+
+          cat > pr-context.json << EOF
+          {
+            "number": ${{ github.event.pull_request.number }},
+            "sha": "${{ github.event.pull_request.head.sha }}",
+            "ref": "${{ github.event.pull_request.head.ref }}",
+            "title": "${{ github.event.pull_request.title }}",
+            "repo": "${{ github.event.pull_request.head.repo.full_name }}",
+            "base_ref": "${{ github.event.pull_request.base.ref }}",
+            "user": "${{ github.event.pull_request.user.login }}",
+            "is_fork": $IS_FORK
+          }
+          EOF
+
+          echo "📦 Saved PR metadata:"
+          cat pr-context.json | jq .
+
+      - name: Upload PR context artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-context-${{ github.event.pull_request.number }}
+          path: pr-context.json
+          retention-days: 1
+
+      - name: Summary
+        run: |
+          echo "✅ PR metadata collected successfully"
+          echo "📊 PR #${{ github.event.pull_request.number }}"
+          echo "🔗 From: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "🎯 SHA: ${{ github.event.pull_request.head.sha }}"
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "🌍 External contributor (fork PR)"
+          else
+            echo "🏠 Internal contributor"
+          fi
