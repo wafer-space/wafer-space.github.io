@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/mosbius-feature"
+post_image: "/assets/images/news/gf180mcu-run-1/mosbius-feature/mosbius_flow.png"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/mosbius"
 ---
 

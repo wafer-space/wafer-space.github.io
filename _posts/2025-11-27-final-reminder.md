@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/final-reminder"
+post_image: "/assets/images/news/gf180mcu-run-1/final-reminder/waferspace-rainbow-open.png"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/less-than-48-hours"
 ---
 

@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/chip-on-board"
+post_image: "/assets/images/news/gf180mcu-run-1/chip-on-board/padframes-cob-tt-cob.jpg"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board"
 ---
 

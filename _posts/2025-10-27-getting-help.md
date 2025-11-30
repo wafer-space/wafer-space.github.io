@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/getting-help"
+post_image: "/assets/images/news/gf180mcu-run-1/getting-help/timeline.svg"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help"
 ---
 

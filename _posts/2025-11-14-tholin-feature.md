@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/tholin-feature"
+post_image: "/assets/images/news/gf180mcu-run-1/tholin-feature/ic1.png"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature"
 ---
 

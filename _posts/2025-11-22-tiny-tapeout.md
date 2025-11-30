@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/tiny-tapeout"
+post_image: "/assets/images/news/gf180mcu-run-1/tiny-tapeout/previous-tt-version.jpeg"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout"
 ---
 

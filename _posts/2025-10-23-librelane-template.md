@@ -10,6 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/librelane-template"
+post_image: "/assets/images/header/mpw-one-partial-dice-isometric.jpg"
 crowdsupply_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template"
 ---
 
