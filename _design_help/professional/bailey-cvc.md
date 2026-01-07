@@ -3,7 +3,7 @@ layout: author_page
 title: "D. Mitch Bailey"
 sub_title: "Physical Verification Support for GF180MCU Designs"
 category: "professional"
-avatar: "assets/images/design-help/bailey-cvc.svg"
+avatar: "assets/images/design-help/bailey-cvc-logo.svg"
 website: "https://www.linkedin.com/in/mitch-bailey-cvc"
 social_accounts:
   - icon: "jam jam-github"
@@ -37,5 +37,5 @@ He's the developer of **CVC-RV**, an open-source verification system for full-ch
 - Or tag @d-m-bailey in a GitHub discussion with a brief description of the issue
 
 ### Examples
-- GF180MCU: https://github.com/d-m-bailey/cvc/discussions/269
-- SKY130: https://github.com/d-m-bailey/extra_be_checks/discussions/39
+- GF180MCU: [CVC-RV examples](https://github.com/d-m-bailey/cvc/discussions/269)
+- SKY130: [LVS/CVC-RV examples](https://github.com/d-m-bailey/extra_be_checks/discussions/39)
