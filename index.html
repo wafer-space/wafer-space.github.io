@@ -130,48 +130,6 @@ testimonials:
       name: "Jackie Sanders"
       designation: "Sales Specialist"
 
-pricing_table:
-  enable: true
-  title: "Our pricing"
-  sub_title: |
-    Custom silicon manufactured.<br class="d-none d-lg-block" />Build unique products.
-  plans:
-    - title: "GF180MCU Shuttle Slot<br>Wire-Bonded"
-      monthly_price: "8,500"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/wafer-space-chip-on-board.jpg"
-      features:
-        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "1,000 die wire bonded onto PCBs"
-
-    - title: "GF180MCU Shuttle Slot<br>Bare Dies"
-      monthly_price: "7,000"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/gf180mcu-gelpack-dice.jpg"
-      features:
-        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "1,000 raw dies"
-
-    - title: "Undiced<br>Full Wafer"
-      monthly_price: "2,000"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
-      features:
-        - Undiced 200mm wafer.
-        - Only valid with slot purchase.
-        - "&nbsp;"
-        - "&nbsp;"
-
 about_us:
   enable: true
   title: "Let's Talk"
@@ -189,9 +147,9 @@ technical_specs:
   sub_title: "GF180MCU Process Technology Details"
   image: "assets/images/products/gf180mcu-wafer-isometric.jpg"
   specs:
-    - title: "Die Dimensions"
-      value: "19.67 mm²"
-      detail: "3.88mm × 5.07mm"
+    - title: "Slot Options"
+      value: "3 Sizes"
+      detail: "Full, Half Width, Half Height"
       icon: "jam jam-crop"
       color: "blue"
     - title: "Process Node"
@@ -379,12 +337,55 @@ subscribe_area:
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
 
-{% if page.pricing_table.enable %}
-{% include pricing-3col.html %}
-{% endif %}<!-- pricing_data.enable -->
+<!-- Half Slot Marketing Banner -->
+{% include components/half-slot-banner.html %}
+
+<!-- Per-Slot Pricing Sections -->
+{% for slot in site.data.slots.slot_types %}
+  {% include pricing-2col-slot.html slot=slot %}
+{% endfor %}
+
+<!-- Add-ons Section (COB + Wafer) -->
+{% include components/addons-section.html %}
+
+<!-- Slot Comparison Table -->
+{% include components/slot-comparison-table.html %}
+
+<!-- Silicon Density & Capacity -->
+{% include components/silicon-density.html %}
+
+<!-- Run 1 Design Showcase -->
+{% include components/run1-showcase.html %}
+
+<!-- Call to Action -->
+{% include components/cta-design-help.html %}
 
 <!-- Countdown Section -->
 {% include components/countdown.html %}
+
+<!-- Early Bird Pricing Switcher -->
+<script>
+(function() {
+  'use strict';
+  var deadlineStr = '{{ site.data.slots.early_bird_deadline }}';
+  if (!deadlineStr) return;
+  var deadline = new Date(deadlineStr);
+  var now = new Date();
+  var isEarlyBird = now < deadline;
+
+  document.querySelectorAll('.earlybird-col').forEach(function(col) {
+    var normalCol = col.nextElementSibling;
+    if (!normalCol) return;
+    if (isEarlyBird) {
+      col.classList.add('popular');
+      normalCol.classList.remove('popular');
+    } else {
+      normalCol.classList.add('popular');
+      col.classList.remove('popular');
+    }
+  });
+})();
+</script>
 
 <!-- Technical Specifications Section -->
 {% if page.technical_specs.enable %}

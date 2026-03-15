@@ -73,3 +73,102 @@
 .box.bg-white.shadow.mb-30[id] {
     scroll-margin-top: 100px;
 }
+
+/* Slot pricing sections — anchor scroll offset */
+[id^="slot-"] {
+    scroll-margin-top: 80px;
+}
+
+/* Early bird / normal pricing transition */
+.pricing-wrapper [class*="col-"] {
+    transition: all 0.3s ease;
+}
+
+/* Slot badge styling */
+.slot-badge {
+    display: inline-block;
+    background: #f0ad4e;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+/* Comparison table in dark wrapper */
+.dark-wrapper .table {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.dark-wrapper .table thead th {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.dark-wrapper .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Density cards */
+.density-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.density-card .density-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+}
+
+.density-card .density-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Run 1 showcase cards */
+.run1-card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.run1-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.run1-card .card-img-top {
+    height: 160px;
+    object-fit: cover;
+    background: #f0f0f0;
+}
+
+.run1-card .badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* CTA section */
+.cta-section .btn-lg {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Footnote styling for tables */
+.table-footnote {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.dark-wrapper .table-footnote {
+    color: rgba(255, 255, 255, 0.6);
+}
