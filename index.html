@@ -373,9 +373,9 @@ subscribe_area:
   var now = new Date();
   var isEarlyBird = now < deadline;
 
-  document.querySelectorAll('.earlybird-col').forEach(function(col) {
+  document.querySelectorAll('.early-bird-panel').forEach(function(col) {
     var normalCol = col.nextElementSibling;
-    if (!normalCol) return;
+    if (!normalCol || !normalCol.classList.contains('normal-panel')) return;
     if (isEarlyBird) {
       col.classList.add('popular');
       normalCol.classList.remove('popular');

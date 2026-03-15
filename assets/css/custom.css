@@ -98,6 +98,12 @@
     text-transform: uppercase;
 }
 
+/* Ensure table-responsive works in dark wrapper */
+.dark-wrapper .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 /* Comparison table in dark wrapper */
 .dark-wrapper .table {
     color: rgba(255, 255, 255, 0.85);

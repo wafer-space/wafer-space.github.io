@@ -15,7 +15,7 @@ designs:
     category: "RISC-V"
     description: "RISC-V SoC running Linux on GF180MCU"
     repo_url: "https://github.com/splinedrive/gf180mcu-kianv-rv32ima-sv32/"
-    image: "assets/images/run1/kianv.jpg"
+    # image: "assets/images/run1/kianv.jpg"
 
   - code: "MOLE"
     name: "FABulous FPGA"
@@ -24,7 +24,7 @@ designs:
     category: "FPGA"
     description: "Open-source FPGA fabric implemented in silicon"
     repo_url: "https://github.com/mole99/gf180mcu-fabulous-fpga"
-    image: "assets/images/run1/fabulous-fpga.jpg"
+    # image: "assets/images/run1/fabulous-fpga.jpg"
 
   - code: "RBOY"
     name: "RISCBoy-180"
@@ -33,7 +33,7 @@ designs:
     category: "Mixed-Signal"
     description: "RISC-V gaming SoC with display controller"
     repo_url: "https://github.com/wren6991/riscboy-180"
-    image: "assets/images/run1/riscboy.jpg"
+    # image: "assets/images/run1/riscboy.jpg"
 
   - code: "RZ80"
     name: "FOSSi Z80"
@@ -42,7 +42,7 @@ designs:
     category: "Retro CPU"
     description: "Classic Z80 processor reimplemented in open silicon"
     repo_url: "https://github.com/rejunity/ws0-z80-open-silicon-gf180mcu"
-    image: "assets/images/run1/z80.jpg"
+    # image: "assets/images/run1/z80.jpg"
 
   - code: "GD03"
     name: "Racquet"
@@ -51,7 +51,7 @@ designs:
     category: "RISC-V"
     description: "23-core RISC-V SoC multiprocessor"
     repo_url: "https://github.com/gregdavill/gf180mcu-racquet/"
-    image: "assets/images/run1/racquet.jpg"
+    # image: "assets/images/run1/racquet.jpg"
 
   - code: "CHES"
     name: "Chess Move Generator"
@@ -60,7 +60,7 @@ designs:
     category: "Digital"
     description: "Specialised hardware for chess move generation"
     repo_url: "https://github.com/Ravenslofty/gf180mcu-chess"
-    image: "assets/images/run1/chess.jpg"
+    # image: "assets/images/run1/chess.jpg"
 
   - code: "TTP2"
     name: "Tiny Tapeout GF"
@@ -69,7 +69,7 @@ designs:
     category: "Multi-Project"
     description: "Multi-project aggregator with dozens of tiny designs"
     repo_url: "https://github.com/TinyTapeout/tinytapeout-gf-0p2"
-    image: "assets/images/run1/tinytapeout.jpg"
+    # image: "assets/images/run1/tinytapeout.jpg"
 
   - code: "2975"
     name: "Cloneless1"
@@ -78,7 +78,7 @@ designs:
     category: "Crypto"
     description: "Cryptographic ASIC for hardware security"
     repo_url: "https://github.com/ThorbenMoos/Cloneless1"
-    image: "assets/images/run1/cloneless.jpg"
+    # image: "assets/images/run1/cloneless.jpg"
 
   - code: "ISHI"
     name: "ISHI-KAI"
@@ -87,7 +87,7 @@ designs:
     category: "Analog"
     description: "Community analog circuits project from Japan"
     repo_url: "https://github.com/ishi-kai/ISHI-KAI_Multiple_Projects_WaferSapce-GF180-1"
-    image: "assets/images/run1/ishikai.jpg"
+    # image: "assets/images/run1/ishikai.jpg"
 
   - code: "WSLG"
     name: "Wafer.Space Logo"
@@ -96,4 +96,4 @@ designs:
     category: "Art"
     description: "Decorative die art — the wafer.space logo in silicon"
     repo_url: "https://github.com/89Mods/ws-logo-die"
-    image: "assets/images/run1/logo-die.jpg"
+    # image: "assets/images/run1/logo-die.jpg"
