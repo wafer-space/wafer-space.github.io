@@ -18,6 +18,77 @@
             </div>
           </div>
 
+          <!-- Early Bird Countdown -->
+          {% if run.early_bird_deadline %}
+            {% assign deadline = run.early_bird_deadline %}
+            <div class="row">
+              <div class="col-xl-10 offset-xl-1">
+                <div class="countdown-section" data-expired-message="{{ deadline.expired_message | default: 'Early bird deadline passed' }}">
+                  <div class="countdown-wrapper d-flex align-items-center justify-content-center">
+                    <div class="countdown" data-date="{{ deadline.date }}">
+                      <div class="row text-center">
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-days>0</h3>
+                            <p>days</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-hours>0</h3>
+                            <p>hours</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-minutes>0</h3>
+                            <p>minutes</p>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="box bg-white shadow">
+                            <h3 data-seconds>0</h3>
+                            <p>seconds</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% if deadline.button_text and deadline.button_url %}
+                      <div class="countdown-button ml-4">
+                        <div class="countdown-button-wrapper">
+                          <a href="{{ deadline.button_url | relative_url }}" class="countdown-box-btn box shadow">
+                            <i class="jam jam-shopping-cart btn-icon"></i>
+                            <span class="btn-text">BUY</span>
+                          </a>
+                          <p class="text-muted text-center mt-3 mb-0 button-label">
+                            {{ deadline.display_date }}
+                            {% if deadline.timezone %}
+                              <a href="{{ deadline.timezone_link }}" target="_blank" rel="noopener" class="text-decoration-none">{{ deadline.timezone }}</a>
+                            {% endif %}
+                            {% if deadline.local_time_link %}
+                              (<a href="{{ deadline.local_time_link }}" target="_blank" rel="noopener" class="text-decoration-none">see in your timezone</a>)
+                            {% endif %}
+                          </p>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <!-- Expired message - shown when countdown reaches zero -->
+                  <div class="countdown-expired text-center" style="display: none;">
+                    <div class="box bg-white shadow p-4">
+                      <h3 class="mb-0 text-warning"><i class="jam jam-shopping-cart mr-2"></i>{{ deadline.expired_message | default: 'Early bird deadline passed' }}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- Spacer between early bird and campaign countdowns -->
+          {% if run.early_bird_deadline and run.campaign_deadline %}
+            <div class="space40"></div>
+          {% endif %}
+
           <!-- Campaign Countdown -->
           {% if run.campaign_deadline %}
             {% assign deadline = run.campaign_deadline %}

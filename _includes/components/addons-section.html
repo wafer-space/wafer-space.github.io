@@ -1,0 +1,58 @@
+<!-- Add-ons Section -->
+<div class="wrapper light-wrapper">
+  <div class="container inner text-center">
+    <h2 class="title-color color-gray text-center">Add-ons</h2>
+    <h3 class="display-3 mb-0">Optional extras for your slot purchase</h3>
+  </div>
+  <!-- /.container -->
+  <div class="space40"></div>
+  <div class="container inner pt-0 pb-30">
+    <div class="pricing-wrapper">
+      <div class="row g-0 justify-content-center">
+        {% for addon in site.data.slots.addons %}
+        <div class="col-md-5">
+          <div class="pricing panel box bg-white shadow">
+            <div class="panel-heading">
+              {% if addon.image %}
+              <div class="mb-20">
+                <img src="{{ addon.image | relative_url }}" class="img-fluid rounded" alt="{{ addon.name }}" />
+              </div>
+              {% endif %}
+              <h4 class="panel-title mb-35">{{ addon.name }}</h4>
+              <div class="prices color-dark">
+                <div class="price price-show">
+                  <span class="price-currency">$</span>
+                  <span class="price-value">{{ addon.price | divided_by: 1000 }},{{ addon.price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+                  <span class="price-duration">USD</span>
+                </div>
+              </div>
+              {% if addon.per_die != "" %}
+              <p class="mb-0"><small>${{ addon.per_die }} per die</small></p>
+              {% endif %}
+            </div>
+            <!--/.panel-heading -->
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <td>{{ addon.description }}</td>
+                </tr>
+                <tr>
+                  <td><em>{{ addon.note }}</em></td>
+                </tr>
+              </table>
+            </div>
+            <!--/.panel-body -->
+            <div class="panel-footer">
+              <a href="{{ site.data.slots.buy_url }}" class="btn" role="button">Buy Now</a>
+            </div>
+          </div>
+          <!--/.pricing -->
+        </div>
+        {% endfor %}
+      </div>
+      <!--/.row -->
+    </div>
+    <!--/.pricing-wrapper -->
+  </div>
+</div>
+<!-- /.wrapper -->

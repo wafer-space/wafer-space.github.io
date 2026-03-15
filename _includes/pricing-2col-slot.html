@@ -1,0 +1,128 @@
+<!-- Pricing 2-Column Slot Section -->
+{% assign slot = include.slot %}
+
+<div id="slot-{{ slot.id }}"></div>
+
+<div class="wrapper dark-wrapper inverse-text">
+  <div class="container inner text-center">
+    <h2 class="title-color color-white text-center">
+      {{ slot.name }}
+      {% if slot.badge != "" %}
+        <span class="badge badge-warning ml-2">{{ slot.badge }}</span>
+      {% endif %}
+    </h2>
+    <h3 class="display-3 mb-0">{{ slot.die_width_mm }} mm &times; {{ slot.die_height_mm }} mm &mdash; {{ slot.die_area_mm2 }} mm&sup2;</h3>
+  </div>
+  <!-- /.container -->
+  <div class="space160"></div>
+</div>
+<!-- /.wrapper -->
+
+<div class="wrapper overflow-top">
+  <div class="container inner pt-0 pb-30">
+    <div class="pricing-wrapper">
+      <div class="row g-0 justify-content-center">
+        <!-- Early Bird Pricing -->
+        <div class="col-md-5 early-bird-panel">
+          <div class="pricing panel box bg-white shadow">
+            <div class="panel-heading">
+              <span class="badge badge-success mb-10">Early Bird</span>
+              <h4 class="panel-title mb-35">{{ slot.short_name }}</h4>
+              <div class="prices color-dark">
+                <div class="price price-show">
+                  <span class="price-currency">$</span>
+                  <span class="price-value">{{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+                  <span class="price-duration">USD</span>
+                </div>
+              </div>
+              <p class="mb-0"><small>${{ slot.per_die_early_bird }} per die</small></p>
+            </div>
+            <!--/.panel-heading -->
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <td><strong>{{ slot.quantity }}</strong> packaged, tested dies</td>
+                </tr>
+                <tr>
+                  <td>Die size: {{ slot.die_width_mm }} &times; {{ slot.die_height_mm }} mm</td>
+                </tr>
+                <tr>
+                  <td>Usable area: {{ slot.usable_area_mm2 }} mm&sup2; <small>(custom pad ring)</small></td>
+                </tr>
+                <tr>
+                  <td>Core area: {{ slot.core_area_mm2 }} mm&sup2; <small>(default pad ring)</small></td>
+                </tr>
+                <tr>
+                  <td>{{ slot.io_count }} I/O ({{ slot.total_pads }} total pads)</td>
+                </tr>
+                <tr>
+                  <td><a href="{{ slot.docs_url }}" target="_blank" rel="noopener">Slot documentation</a></td>
+                </tr>
+                <tr>
+                  <td><em>Before 30 April 2026</em></td>
+                </tr>
+              </table>
+            </div>
+            <!--/.panel-body -->
+            <div class="panel-footer">
+              <a href="{{ site.data.slots.buy_url }}" class="btn" role="button">Buy Now</a>
+            </div>
+          </div>
+          <!--/.pricing -->
+        </div>
+
+        <!-- Normal Pricing -->
+        <div class="col-md-5 normal-panel">
+          <div class="pricing panel box bg-white shadow">
+            <div class="panel-heading">
+              <div class="mb-10"><span class="badge badge-secondary">Normal</span></div>
+              <h4 class="panel-title mb-35">{{ slot.short_name }}</h4>
+              <div class="prices color-dark">
+                <div class="price price-show">
+                  <span class="price-currency">$</span>
+                  <span class="price-value">{{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+                  <span class="price-duration">USD</span>
+                </div>
+              </div>
+              <p class="mb-0"><small>${{ slot.per_die_normal }} per die</small></p>
+            </div>
+            <!--/.panel-heading -->
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <td><strong>{{ slot.quantity }}</strong> packaged, tested dies</td>
+                </tr>
+                <tr>
+                  <td>Die size: {{ slot.die_width_mm }} &times; {{ slot.die_height_mm }} mm</td>
+                </tr>
+                <tr>
+                  <td>Usable area: {{ slot.usable_area_mm2 }} mm&sup2; <small>(custom pad ring)</small></td>
+                </tr>
+                <tr>
+                  <td>Core area: {{ slot.core_area_mm2 }} mm&sup2; <small>(default pad ring)</small></td>
+                </tr>
+                <tr>
+                  <td>{{ slot.io_count }} I/O ({{ slot.total_pads }} total pads)</td>
+                </tr>
+                <tr>
+                  <td><a href="{{ slot.docs_url }}" target="_blank" rel="noopener">Slot documentation</a></td>
+                </tr>
+                <tr>
+                  <td><em>After 30 April 2026</em></td>
+                </tr>
+              </table>
+            </div>
+            <!--/.panel-body -->
+            <div class="panel-footer">
+              <a href="{{ site.data.slots.buy_url }}" class="btn" role="button">Buy Now</a>
+            </div>
+          </div>
+          <!--/.pricing -->
+        </div>
+      </div>
+      <!--/.row -->
+    </div>
+    <!--/.pricing-wrapper -->
+  </div>
+</div>
+<!-- /.wrapper -->
