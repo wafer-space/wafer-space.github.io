@@ -7,8 +7,8 @@ runs:
     name: "GF180MCU Run 1"
     process: "GF180MCU"
     run_number: 1
-    status: "active"  # active, completed, upcoming
-    featured: true    # highlight this run on main pages
+    status: "active"  # still in production, expected delivery mid-April 2026
+    featured: false   # Run 2 is now the featured run
 
     # Campaign deadline - when slot purchases close
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Nov 28 = Nov 29 11:59 UTC
@@ -42,10 +42,10 @@ runs:
 
     # Delivery date - when chips are shipped
     delivery_date:
-      date: "2026-03-15"
-      display_date: "15 March 2026"
+      date: "2026-04-28"
+      display_date: "28 April 2026"
       title: "Estimated Delivery"
-      subtitle: "GF180MCU Run 1 chips will be shipped to customers"
+      subtitle: "GF180MCU Run 1 chips shipped to customers"
       priority: "info"
 
     # Complete timeline for manufacturing process
@@ -61,33 +61,105 @@ runs:
         description: "Final deadline to submit GDS files for fabrication"
         status: "critical"
       - title: "Tape-out to GlobalFoundries"
-        date: "2025-12-05"
-        display_date: "5 December 2025"
+        date: "2026-01-08"
+        display_date: "8 January 2026"
         description: "GDS files delivered to GlobalFoundries for fabrication"
         status: "milestone"
       - title: "Fabrication Complete"
-        date: "2026-02-15"
-        display_date: "February 2026"
+        date: "2026-03-31"
+        display_date: "31 March 2026"
         description: "Wafers returned from GlobalFoundries fabrication"
         status: "milestone"
-      - title: "Delivery to Customers"
-        date: "2026-03-15"
-        display_date: "15 March 2026"
-        description: "Finished dies shipped to customers worldwide"
+      - title: "Bare Dies Shipped"
+        date: "2026-04-28"
+        display_date: "28 April 2026"
+        description: "Bare dies shipped to customers"
+        status: "delivery"
+      - title: "Packaged Parts Shipped"
+        date: "2026-05-12"
+        display_date: "12 May 2026"
+        description: "Chip-on-board packaged parts shipped"
         status: "delivery"
 
-  # Future run example (commented out for now)
-  # gf180mcu_run_2:
-  #   name: "GF180MCU Run 2"
-  #   process: "GF180MCU"
-  #   run_number: 2
-  #   status: "upcoming"
-  #   featured: false
-  #   campaign_deadline:
-  #     date: "2026-06-15"
-  #     display_date: "15 June 2026"
-  #     title: "Next Campaign Opening"
-  #     subtitle: "GF180MCU Run 2 slots will be available soon"
-  #     button_text: "Get Notified"
-  #     button_url: "/subscribe.html"
-  #     priority: "info"
+  gf180mcu_run_2:
+    name: "GF180MCU Run 2"
+    process: "GF180MCU"
+    run_number: 2
+    status: "active"
+    featured: true
+
+    # Early bird pricing deadline
+    # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Apr 30 = May 1 11:59 UTC
+    early_bird_deadline:
+      date: "2026-05-01T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Apr 30
+      display_date: "30 April 2026 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260430T2359&p1=3399"
+      title: "Early Bird Deadline"
+      subtitle: "Lock in early bird pricing for GF180MCU Run 2"
+      button_text: "Reserve"
+      button_url: "https://buy.wafer.space/#products"
+      priority: "urgent"
+      expired_message: "Early bird pricing has ended — normal pricing now applies"
+
+    # Campaign and submission deadline (same date for Run 2)
+    # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Jun 30 = Jul 1 11:59 UTC
+    campaign_deadline:
+      date: "2026-07-01T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Jun 30
+      display_date: "30 June 2026 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260630T2359&p1=3399"
+      title: "Purchase & Submission Deadline"
+      subtitle: "Final deadline to purchase a slot and submit your GDS"
+      button_text: "Reserve"
+      button_url: "https://buy.wafer.space/#products"
+      priority: "urgent"
+      expired_message: "Too late, catch the next shuttle!"
+
+    # Delivery date - when bare dies are shipped
+    delivery_date:
+      date: "2026-10-16"
+      display_date: "16 October 2026"
+      title: "Estimated Delivery"
+      subtitle: "GF180MCU Run 2 bare dies shipped to customers"
+      priority: "info"
+
+    # Complete timeline for manufacturing process
+    timeline:
+      - title: "Campaign Opens"
+        date: "2026-03-01"
+        display_date: "1 March 2026"
+        description: "Run 2 slots available for purchase on Crowd Supply"
+        status: "milestone"
+      - title: "Early Bird Deadline"
+        date: "2026-04-30"
+        display_date: "30 April 2026 @ 11:59 PM AoE"
+        description: "Last day to purchase at early bird pricing"
+        status: "critical"
+      - title: "Purchase & Submission Deadline"
+        date: "2026-06-30"
+        display_date: "30 June 2026 @ 11:59 PM AoE"
+        description: "Final deadline to purchase slots and submit GDS files"
+        status: "critical"
+      - title: "Tape-out to GlobalFoundries"
+        date: "2026-07-10"
+        display_date: "10 July 2026"
+        description: "GDS files delivered to GlobalFoundries for fabrication"
+        status: "milestone"
+      - title: "Fabrication Complete"
+        date: "2026-10-02"
+        display_date: "2 October 2026"
+        description: "Wafers returned from GlobalFoundries fabrication"
+        status: "milestone"
+      - title: "Bare Dies Shipped"
+        date: "2026-10-16"
+        display_date: "16 October 2026"
+        description: "Bare dies shipped to customers"
+        status: "delivery"
+      - title: "Packaged Parts Shipped"
+        date: "2026-10-30"
+        display_date: "30 October 2026"
+        description: "Chip-on-board packaged parts shipped"
+        status: "delivery"
