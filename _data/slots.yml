@@ -27,7 +27,7 @@ slot_types:
     normal_price: 7500
     per_die_early_bird: "7.00"
     per_die_normal: "7.50"
-    image: "assets/images/slots/1x1_white.png"
+    image: "assets/images/slots/1x1_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
   - id: "0p5x1"
@@ -50,7 +50,7 @@ slot_types:
     normal_price: 4500
     per_die_early_bird: "4.00"
     per_die_normal: "4.50"
-    image: "assets/images/slots/0p5x1_white.png"
+    image: "assets/images/slots/0p5x1_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
   - id: "1x0p5"
@@ -73,7 +73,7 @@ slot_types:
     normal_price: 4500
     per_die_early_bird: "4.00"
     per_die_normal: "4.50"
-    image: "assets/images/slots/1x0p5_white.png"
+    image: "assets/images/slots/1x0p5_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
 addons:
