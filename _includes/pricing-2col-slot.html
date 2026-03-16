@@ -1,128 +1,139 @@
-<!-- Pricing 2-Column Slot Section -->
+<!-- Pricing Section for Slot: {{ include.slot.name }} -->
 {% assign slot = include.slot %}
+{% assign is_dark = false %}
+{% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
 
-<div id="slot-{{ slot.id }}"></div>
+<div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
+  <div class="container inner">
+    <div class="row align-items-center">
 
-<div class="wrapper dark-wrapper inverse-text">
-  <div class="container inner text-center">
-    <h2 class="title-color color-white text-center">
-      {{ slot.name }}
-      {% if slot.badge != "" %}
-        <span class="badge badge-warning ml-2">{{ slot.badge }}</span>
-      {% endif %}
-    </h2>
-    <h3 class="display-3 mb-0">{{ slot.die_width_mm }} mm &times; {{ slot.die_height_mm }} mm &mdash; {{ slot.die_area_mm2 }} mm&sup2;</h3>
+      <!-- Left: Two image-focused pricing boxes -->
+      <div class="col-lg-6">
+        <div class="pricing-wrapper">
+          <div class="row g-0">
+
+            <!-- Early Bird Box -->
+            <div class="col-6 early-bird-panel">
+              <div class="pricing panel box bg-white shadow">
+                <div class="panel-heading">
+                  {% if slot.image %}
+                  <div class="mb-10">
+                    <img src="{{ slot.image | relative_url }}" class="img-fluid" alt="{{ slot.name }} - Early Bird"/>
+                  </div>
+                  {% endif %}
+                  <h4 class="panel-title mb-35">
+                    {{ slot.short_name }}<br>
+                    <small>Early Bird</small>
+                  </h4>
+                  <div class="prices color-dark">
+                    <div class="price price-show">
+                      <span class="price-currency">$</span>
+                      <span class="price-value">{{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+                      <span class="price-duration">USD</span>
+                    </div>
+                  </div>
+                </div>
+                <!--/.panel-heading -->
+                <div class="panel-body">
+                  <table class="table">
+                    <tr><td><strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> Process</td></tr>
+                    <tr><td><strong>{{ slot.die_area_mm2 }}mm&sup2;</strong> silicon</td></tr>
+                    <tr><td>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm die</td></tr>
+                    <tr><td><strong>{{ slot.quantity }}</strong> bare dies</td></tr>
+                  </table>
+                </div>
+                <!--/.panel-body -->
+                <div class="panel-footer">
+                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
+                </div>
+              </div>
+              <!--/.pricing -->
+            </div>
+
+            <!-- Normal Price Box -->
+            <div class="col-6 normal-panel">
+              <div class="pricing panel box bg-white shadow">
+                <div class="panel-heading">
+                  {% if slot.image %}
+                  <div class="mb-10">
+                    <img src="{{ slot.image | relative_url }}" class="img-fluid" alt="{{ slot.name }}"/>
+                  </div>
+                  {% endif %}
+                  <h4 class="panel-title mb-35">
+                    {{ slot.short_name }}<br>
+                    <small>Normal</small>
+                  </h4>
+                  <div class="prices color-dark">
+                    <div class="price price-show">
+                      <span class="price-currency">$</span>
+                      <span class="price-value">{{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+                      <span class="price-duration">USD</span>
+                    </div>
+                  </div>
+                </div>
+                <!--/.panel-heading -->
+                <div class="panel-body">
+                  <table class="table">
+                    <tr><td><strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> Process</td></tr>
+                    <tr><td><strong>{{ slot.die_area_mm2 }}mm&sup2;</strong> silicon</td></tr>
+                    <tr><td>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm die</td></tr>
+                    <tr><td><strong>{{ slot.quantity }}</strong> bare dies</td></tr>
+                  </table>
+                </div>
+                <!--/.panel-body -->
+                <div class="panel-footer">
+                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
+                </div>
+              </div>
+              <!--/.pricing -->
+            </div>
+
+          </div>
+          <!--/.row -->
+        </div>
+        <!--/.pricing-wrapper -->
+      </div>
+
+      <!-- Spacers for tablet/mobile stacking -->
+      <div class="space20 d-md-none"></div>
+      <div class="space50 d-none d-md-block d-lg-none"></div>
+
+      <!-- Right: Slot description and specs -->
+      <div class="col-lg-6 pl-60 pl-md-15">
+        <h2 class="title-color {% if is_dark %}color-white{% else %}color-gray{% endif %}">
+          {{ slot.name }}
+          {% if slot.badge != "" %}
+            <span class="slot-badge">{{ slot.badge }}</span>
+          {% endif %}
+        </h2>
+        <h3 class="display-3">{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm &mdash; {{ slot.quantity }} dies per slot</h3>
+        <div class="space20"></div>
+        <p>
+          {% if slot.id == "1x1" %}
+            The full-size slot gives you the largest die area and maximum I/O count. Ideal for complex SoCs, full mixed-signal designs, or projects that need the most routing and core area.
+          {% elsif slot.id == "0p5x1" %}
+            The half-width slot gives you a tall, narrow die &mdash; perfect for designs that need many I/O on two edges. Great for medium-complexity digital or mixed-signal projects at nearly half the cost of a full slot.
+          {% elsif slot.id == "1x0p5" %}
+            The half-height slot gives you a wide, short die &mdash; ideal for designs that benefit from a wider core. Offers slightly more core area than the half-width slot at the same price.
+          {% endif %}
+        </p>
+        <ul class="icon-list bullet-default">
+          <li><i class="icofont-verification-check"></i> Die area: <strong>{{ slot.die_area_mm2 }} mm&sup2;</strong></li>
+          <li><i class="icofont-verification-check"></i> Usable silicon: <strong>{{ slot.usable_area_mm2 }} mm&sup2;</strong> <small>(custom pad ring)</small></li>
+          <li><i class="icofont-verification-check"></i> Core area: <strong>{{ slot.core_area_mm2 }} mm&sup2;</strong> <small>(default pad ring)</small></li>
+          <li><i class="icofont-verification-check"></i> {{ slot.io_count }} I/O pads ({{ slot.total_pads }} total)</li>
+          <li><i class="icofont-verification-check"></i> 5 metal layers, MIM capacitors, poly &amp; high-res resistors</li>
+        </ul>
+        <div class="space10"></div>
+        <a href="{{ slot.docs_url }}" target="_blank" rel="noopener" class="btn btn-default btn-sm">
+          <i class="jam jam-document"></i> Slot Documentation
+        </a>
+      </div>
+      <!--/column -->
+
+    </div>
+    <!--/.row -->
   </div>
   <!-- /.container -->
-  <div class="space160"></div>
-</div>
-<!-- /.wrapper -->
-
-<div class="wrapper overflow-top">
-  <div class="container inner pt-0 pb-30">
-    <div class="pricing-wrapper">
-      <div class="row g-0 justify-content-center">
-        <!-- Early Bird Pricing -->
-        <div class="col-md-5 early-bird-panel">
-          <div class="pricing panel box bg-white shadow">
-            <div class="panel-heading">
-              <span class="badge badge-success mb-10">Early Bird</span>
-              <h4 class="panel-title mb-35">{{ slot.short_name }}</h4>
-              <div class="prices color-dark">
-                <div class="price price-show">
-                  <span class="price-currency">$</span>
-                  <span class="price-value">{{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
-                  <span class="price-duration">USD</span>
-                </div>
-              </div>
-              <p class="mb-0"><small>${{ slot.per_die_early_bird }} per die</small></p>
-            </div>
-            <!--/.panel-heading -->
-            <div class="panel-body">
-              <table class="table">
-                <tr>
-                  <td><strong>{{ slot.quantity }}</strong> packaged, tested dies</td>
-                </tr>
-                <tr>
-                  <td>Die size: {{ slot.die_width_mm }} &times; {{ slot.die_height_mm }} mm</td>
-                </tr>
-                <tr>
-                  <td>Usable area: {{ slot.usable_area_mm2 }} mm&sup2; <small>(custom pad ring)</small></td>
-                </tr>
-                <tr>
-                  <td>Core area: {{ slot.core_area_mm2 }} mm&sup2; <small>(default pad ring)</small></td>
-                </tr>
-                <tr>
-                  <td>{{ slot.io_count }} I/O ({{ slot.total_pads }} total pads)</td>
-                </tr>
-                <tr>
-                  <td><a href="{{ slot.docs_url }}" target="_blank" rel="noopener">Slot documentation</a></td>
-                </tr>
-                <tr>
-                  <td><em>Before 30 April 2026</em></td>
-                </tr>
-              </table>
-            </div>
-            <!--/.panel-body -->
-            <div class="panel-footer">
-              <a href="{{ site.data.slots.buy_url }}" class="btn" role="button">Buy Now</a>
-            </div>
-          </div>
-          <!--/.pricing -->
-        </div>
-
-        <!-- Normal Pricing -->
-        <div class="col-md-5 normal-panel">
-          <div class="pricing panel box bg-white shadow">
-            <div class="panel-heading">
-              <div class="mb-10"><span class="badge badge-secondary">Normal</span></div>
-              <h4 class="panel-title mb-35">{{ slot.short_name }}</h4>
-              <div class="prices color-dark">
-                <div class="price price-show">
-                  <span class="price-currency">$</span>
-                  <span class="price-value">{{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
-                  <span class="price-duration">USD</span>
-                </div>
-              </div>
-              <p class="mb-0"><small>${{ slot.per_die_normal }} per die</small></p>
-            </div>
-            <!--/.panel-heading -->
-            <div class="panel-body">
-              <table class="table">
-                <tr>
-                  <td><strong>{{ slot.quantity }}</strong> packaged, tested dies</td>
-                </tr>
-                <tr>
-                  <td>Die size: {{ slot.die_width_mm }} &times; {{ slot.die_height_mm }} mm</td>
-                </tr>
-                <tr>
-                  <td>Usable area: {{ slot.usable_area_mm2 }} mm&sup2; <small>(custom pad ring)</small></td>
-                </tr>
-                <tr>
-                  <td>Core area: {{ slot.core_area_mm2 }} mm&sup2; <small>(default pad ring)</small></td>
-                </tr>
-                <tr>
-                  <td>{{ slot.io_count }} I/O ({{ slot.total_pads }} total pads)</td>
-                </tr>
-                <tr>
-                  <td><a href="{{ slot.docs_url }}" target="_blank" rel="noopener">Slot documentation</a></td>
-                </tr>
-                <tr>
-                  <td><em>After 30 April 2026</em></td>
-                </tr>
-              </table>
-            </div>
-            <!--/.panel-body -->
-            <div class="panel-footer">
-              <a href="{{ site.data.slots.buy_url }}" class="btn" role="button">Buy Now</a>
-            </div>
-          </div>
-          <!--/.pricing -->
-        </div>
-      </div>
-      <!--/.row -->
-    </div>
-    <!--/.pricing-wrapper -->
-  </div>
 </div>
 <!-- /.wrapper -->

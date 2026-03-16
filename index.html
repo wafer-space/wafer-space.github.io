@@ -342,7 +342,10 @@ subscribe_area:
 
 <!-- Per-Slot Pricing Sections -->
 {% for slot in site.data.slots.slot_types %}
-  {% include pricing-2col-slot.html slot=slot %}
+  {% assign wrapper = "light-wrapper" %}
+  {% assign mod = forloop.index | modulo: 2 %}
+  {% if mod == 0 %}{% assign wrapper = "dark-wrapper inverse-text" %}{% endif %}
+  {% include pricing-2col-slot.html slot=slot wrapper_class=wrapper %}
 {% endfor %}
 
 <!-- Add-ons Section (COB + Wafer) -->
