@@ -1,13 +1,13 @@
 <!-- Run 1 Showcase Carousel -->
 {% assign run1 = site.data.run1_designs %}
 {% if run1 %}
-<div class="wrapper dark-wrapper inverse-text">
-  <div class="container inner text-center">
+<div class="wrapper light-wrapper">
+  <div class="container inner">
     <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <h2 class="title-color color-gray text-center">Run 1: {{ run1.total_designs }} Designs on a Single Reticle</h2>
-        <h3 class="display-3 text-center">{{ run1.open_source_designs }} open-source designs from universities, startups, and hobbyists worldwide</h3>
-        <p class="lead text-center">Silicon currently in fabrication &mdash; expected delivery mid-April 2026</p>
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <h2 class="title-color color-gray">Run 1: {{ run1.total_designs }} Designs on a Single Reticle</h2>
+        <h3 class="display-3">{{ run1.open_source_designs }} open-source designs from universities, startups, and hobbyists worldwide</h3>
+        <p class="lead">Silicon currently in fabrication &mdash; expected delivery mid-April 2026</p>
         <div class="space20"></div>
       </div>
     </div>
@@ -17,29 +17,26 @@
         {% for design in run1.designs %}
         <div class="item">
           <div class="item-inner">
-            <div class="bg-white shadow rounded p-3 text-left" style="min-height: 320px;">
-              {% if design.image %}
-                <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" class="img-fluid rounded mb-3" style="width: 100%; height: 160px; object-fit: cover;" />
-              {% else %}
-                <div class="rounded mb-3 d-flex align-items-center justify-content-center" style="width: 100%; height: 160px; background: #e9ecef;">
-                  <i class="jam jam-layout text-muted" style="font-size: 3rem;"></i>
+            <div class="box bg-white shadow">
+              <blockquote>
+                <p>{{ design.description }}</p>
+                <div class="blockquote-details">
+                  <div class="info pl-0">
+                    <h6 class="mb-0">{{ design.name }}</h6>
+                    <span class="meta mb-0">{{ design.author }} &middot; {{ design.slot_size }}</span>
+                  </div>
                 </div>
-              {% endif %}
-              {% if design.category %}
-                <span class="badge badge-primary text-uppercase mb-2">{{ design.category }}</span>
-              {% endif %}
-              <h6 class="mb-1 text-dark">{{ design.name }}</h6>
-              <p class="text-muted mb-1" style="font-size: 0.85rem;">{{ design.author }}</p>
-              <p class="text-muted mb-2" style="font-size: 0.8rem;">Slot size: {{ design.slot_size }}</p>
-              {% if design.description %}
-                <p class="text-muted mb-2" style="font-size: 0.85rem; line-height: 1.3;">{{ design.description | truncate: 100 }}</p>
-              {% endif %}
-              {% if design.repo_url %}
-                <a href="{{ design.repo_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
-                  <i class="jam jam-github mr-1"></i> View Source
-                </a>
-              {% endif %}
+              </blockquote>
+              <div class="d-flex align-items-center justify-content-between mt-10">
+                <span class="slot-badge">{{ design.category }}</span>
+                {% if design.repo_url %}
+                  <a href="{{ design.repo_url }}" target="_blank" rel="noopener" class="text-decoration-none small">
+                    <i class="jam jam-github"></i> Source
+                  </a>
+                {% endif %}
+              </div>
             </div>
+            <!-- /.box -->
           </div>
         </div>
         <!-- /.item -->
@@ -52,7 +49,7 @@
     <div class="space30"></div>
     <div class="row">
       <div class="col-12 text-center">
-        <a href="{{ run1.repo_url }}" target="_blank" rel="noopener" class="btn btn-white btn-outline-light">
+        <a href="{{ run1.repo_url }}" target="_blank" rel="noopener" class="btn btn-default">
           See all {{ run1.open_source_designs }} open-source designs &rarr;
         </a>
       </div>

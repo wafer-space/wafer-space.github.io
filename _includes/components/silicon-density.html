@@ -1,11 +1,11 @@
 <!-- Silicon Density Section -->
-<div class="wrapper light-wrapper">
+<div class="wrapper dark-wrapper inverse-text">
   <div class="container inner">
 
     <!-- Part A: What fits on 1 mm² -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-gray">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?</h2>
+        <h2 class="title-color color-white">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?</h2>
         <h3 class="display-3">Standard cell density at a glance</h3>
         <div class="space40"></div>
       </div>
@@ -13,34 +13,23 @@
 
     <div class="row text-center gutter-30 justify-content-center">
       {% for cell in site.data.slots.density.cells %}
-        <div class="col-md-6 col-lg-3 mb-30">
+        <div class="col-md-6 col-lg-4 mb-30">
           <div class="box bg-white shadow p-30">
-            <div class="icon icon-blob icon-blob-blue color-blue mb-20">
+            <div class="icon icon-blob icon-blob-{% cycle 'blue', 'green', 'purple' %} color-{% cycle 'blue', 'green', 'purple' %} mb-20">
               {% if cell.name contains "Flip-Flop" %}
-                <i class="jam jam-refresh"></i>
+                <i class="jam jam-alert"></i>
               {% elsif cell.name contains "Buffer" %}
-                <i class="jam jam-arrow-right"></i>
+                <i class="jam jam-chevrons-right"></i>
               {% elsif cell.name contains "AND" %}
-                <i class="jam jam-cog"></i>
+                <i class="jam jam-merge"></i>
               {% endif %}
             </div>
             <h3 class="mb-5 color-dark">~{{ cell.per_mm2 | divided_by: 1000 }},{{ cell.per_mm2 | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</h3>
-            <p class="mb-0 font-weight-600">{{ cell.name }}</p>
+            <p class="mb-0 font-weight-600 color-dark">{{ cell.name }}</p>
             <p class="mb-0 small text-muted">per mm&sup2;</p>
           </div>
         </div>
       {% endfor %}
-
-      <div class="col-md-6 col-lg-3 mb-30">
-        <div class="box bg-white shadow p-30">
-          <div class="icon icon-blob icon-blob-purple color-purple mb-20">
-            <i class="jam jam-layout"></i>
-          </div>
-          <h3 class="mb-5 color-dark">~{{ site.data.slots.density.sites_per_mm2 | divided_by: 1000 }},{{ site.data.slots.density.sites_per_mm2 | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</h3>
-          <p class="mb-0 font-weight-600">Standard Cell Sites</p>
-          <p class="mb-0 small text-muted">per mm&sup2;</p>
-        </div>
-      </div>
     </div>
 
     <div class="space60"></div>
@@ -48,7 +37,7 @@
     <!-- Part B: What fits in each slot -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-gray">What fits in each slot?</h2>
+        <h2 class="title-color color-white">What fits in each slot?</h2>
         <h3 class="display-3">Logic and memory capacity by slot type</h3>
         <div class="space40"></div>
       </div>
@@ -57,14 +46,17 @@
     <!-- Logic Capacity Table -->
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h4 class="text-center mb-30">Logic Capacity <small class="text-muted">(with default pad ring)</small></h4>
+        <h4 class="text-center mb-30">Logic Capacity <small>(with default pad ring)</small></h4>
         <div class="table-responsive">
-          <table class="table table-hover text-center">
+          <table class="table table-striped text-center ws-table-dark">
             <thead>
               <tr>
                 <th scope="col" class="text-left font-weight-bold">Cell Type</th>
                 {% for slot in site.data.slots.slot_types %}
-                  <th scope="col" class="font-weight-bold">{{ slot.short_name }}</th>
+                  <th scope="col" class="font-weight-bold">
+                    {% if slot.badge != "" %}<span class="slot-badge mb-5">{{ slot.badge }}</span><br>{% endif %}
+                    {{ slot.short_name }}
+                  </th>
                 {% endfor %}
               </tr>
             </thead>
@@ -78,13 +70,6 @@
                   {% endfor %}
                 </tr>
               {% endfor %}
-              <tr>
-                <td class="text-left font-weight-600">Standard Cell Sites</td>
-                {% for slot in site.data.slots.slot_types %}
-                  {% assign count = site.data.slots.density.sites_per_mm2 | times: slot.core_area_mm2 | round %}
-                  <td>~{{ count | divided_by: 1000000 }},{{ count | modulo: 1000000 | divided_by: 1000 | prepend: '000' | slice: -3, 3 }},{{ count | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</td>
-                {% endfor %}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -98,7 +83,7 @@
       <div class="col-lg-10 offset-lg-1">
         <h4 class="text-center mb-30">SRAM Capacity</h4>
         <div class="table-responsive">
-          <table class="table table-hover text-center">
+          <table class="table table-striped text-center ws-table-dark">
             <thead>
               <tr>
                 <th scope="col" class="text-left font-weight-bold">SRAM Type</th>
@@ -129,10 +114,10 @@
 
     <!-- Notes -->
     <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <p class="small text-muted mb-5">Numbers shown use core area (with default pad ring). Using your own pad ring or no pad ring increases available area.</p>
-        <p class="small text-muted mb-5">These are theoretical maximums &mdash; real designs use a mix of cell types plus routing overhead.</p>
-        <p class="small text-muted mb-0">3.3V SRAM blocks from Tim Edwards/Tholin, introduced on Run 1.</p>
+      <div class="col-lg-10 offset-lg-1 table-footnote">
+        <p class="mb-5">Numbers shown use core area (with default pad ring). Using your own pad ring or no pad ring increases available area.</p>
+        <p class="mb-5">These are theoretical maximums &mdash; real designs use a mix of cell types plus routing overhead.</p>
+        <p class="mb-0">3.3V SRAM blocks from Tim Edwards/Tholin, introduced on Run 1.</p>
       </div>
     </div>
 

@@ -1,9 +1,9 @@
 <!-- Slot Comparison Table -->
-<div class="wrapper dark-wrapper inverse-text">
+<div class="wrapper light-wrapper">
   <div class="container inner">
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-white">Slot Comparison</h2>
+        <h2 class="title-color color-gray">Slot Comparison</h2>
         <h3 class="display-3">Choose the size that fits your design</h3>
         <div class="space40"></div>
       </div>
@@ -12,16 +12,16 @@
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <div class="table-responsive">
-          <table class="table table-hover text-center text-light">
+          <table class="table table-striped text-center slot-comparison-table">
             <thead>
               <tr>
                 <th scope="col" class="text-left font-weight-bold">Feature</th>
                 {% for slot in site.data.slots.slot_types %}
                   <th scope="col" class="font-weight-bold">
-                    {{ slot.short_name }}
                     {% if slot.badge != "" %}
-                      <br><span class="badge badge-warning">{{ slot.badge }}</span>
+                      <span class="slot-badge mb-5">{{ slot.badge }}</span><br>
                     {% endif %}
+                    {{ slot.short_name }}
                   </th>
                 {% endfor %}
               </tr>
@@ -52,13 +52,13 @@
                 {% endfor %}
               </tr>
               <tr>
-                <td class="text-left font-weight-600">I/O Count</td>
+                <td class="text-left font-weight-600">Default I/O Count</td>
                 {% for slot in site.data.slots.slot_types %}
                   <td>{{ slot.io_count }}</td>
                 {% endfor %}
               </tr>
               <tr>
-                <td class="text-left font-weight-600">Total Pads</td>
+                <td class="text-left font-weight-600">Default Total Pads</td>
                 {% for slot in site.data.slots.slot_types %}
                   <td>{{ slot.total_pads }}</td>
                 {% endfor %}
@@ -70,7 +70,7 @@
                 {% endfor %}
               </tr>
               <tr>
-                <td class="text-left font-weight-600">Normal Price</td>
+                <td class="text-left font-weight-600">Standard Price</td>
                 {% for slot in site.data.slots.slot_types %}
                   <td>${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</td>
                 {% endfor %}
@@ -86,9 +86,9 @@
         </div>
 
         <div class="space20"></div>
-        <div class="text-left">
-          <p class="small mb-5">&dagger;Usable silicon = die area minus seal ring (~26&micro;m each side). Available if you bring your own pad ring or use none.</p>
-          <p class="small mb-0">*Core area = area inside the default pad ring.</p>
+        <div class="text-left table-footnote">
+          <p class="mb-5">&dagger;Usable silicon = die area minus seal ring (~26&micro;m each side). Available if you bring your own pad ring or use none.</p>
+          <p class="mb-0">*Core area = area inside the default pad ring.</p>
         </div>
       </div>
     </div>
