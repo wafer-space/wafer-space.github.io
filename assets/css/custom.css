@@ -84,6 +84,23 @@
     transition: all 0.3s ease;
 }
 
+/* Consistent slot image sizing in pricing boxes */
+.slot-image-wrapper {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slot-image {
+    max-height: 170px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
 /* Slot badge styling */
 .slot-badge {
     display: inline-block;

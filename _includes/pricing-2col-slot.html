@@ -14,17 +14,13 @@
 
             <!-- Early Bird Box -->
             <div class="col-6 early-bird-panel">
-              <div class="pricing panel box bg-white shadow">
+              <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
-                  <div class="mb-10">
-                    <img src="{{ slot.image | relative_url }}" class="img-fluid" alt="{{ slot.name }} - Early Bird"/>
+                  <div class="mb-10 slot-image-wrapper">
+                    <img src="{{ slot.image | relative_url }}" class="img-fluid slot-image" alt="{{ slot.name }}"/>
                   </div>
                   {% endif %}
-                  <h4 class="panel-title mb-35">
-                    {{ slot.short_name }}<br>
-                    <small>Early Bird</small>
-                  </h4>
                   <div class="prices color-dark">
                     <div class="price price-show">
                       <span class="price-currency">$</span>
@@ -32,17 +28,10 @@
                       <span class="price-duration">USD</span>
                     </div>
                   </div>
+                  <p class="mb-0 text-muted"><small>${{ slot.per_die_early_bird }} per die</small></p>
+                  <h4 class="panel-title mt-10 mb-0">Early Bird</h4>
                 </div>
                 <!--/.panel-heading -->
-                <div class="panel-body">
-                  <table class="table">
-                    <tr><td><strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> Process</td></tr>
-                    <tr><td><strong>{{ slot.die_area_mm2 }}mm&sup2;</strong> silicon</td></tr>
-                    <tr><td>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm die</td></tr>
-                    <tr><td><strong>{{ slot.quantity }}</strong> bare dies</td></tr>
-                  </table>
-                </div>
-                <!--/.panel-body -->
                 <div class="panel-footer">
                   <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
                 </div>
@@ -50,19 +39,15 @@
               <!--/.pricing -->
             </div>
 
-            <!-- Normal Price Box -->
+            <!-- Standard Price Box -->
             <div class="col-6 normal-panel">
-              <div class="pricing panel box bg-white shadow">
+              <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
-                  <div class="mb-10">
-                    <img src="{{ slot.image | relative_url }}" class="img-fluid" alt="{{ slot.name }}"/>
+                  <div class="mb-10 slot-image-wrapper">
+                    <img src="{{ slot.image | relative_url }}" class="img-fluid slot-image" alt="{{ slot.name }}"/>
                   </div>
                   {% endif %}
-                  <h4 class="panel-title mb-35">
-                    {{ slot.short_name }}<br>
-                    <small>Normal</small>
-                  </h4>
                   <div class="prices color-dark">
                     <div class="price price-show">
                       <span class="price-currency">$</span>
@@ -70,17 +55,10 @@
                       <span class="price-duration">USD</span>
                     </div>
                   </div>
+                  <p class="mb-0 text-muted"><small>${{ slot.per_die_normal }} per die</small></p>
+                  <h4 class="panel-title mt-10 mb-0">Standard</h4>
                 </div>
                 <!--/.panel-heading -->
-                <div class="panel-body">
-                  <table class="table">
-                    <tr><td><strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> Process</td></tr>
-                    <tr><td><strong>{{ slot.die_area_mm2 }}mm&sup2;</strong> silicon</td></tr>
-                    <tr><td>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm die</td></tr>
-                    <tr><td><strong>{{ slot.quantity }}</strong> bare dies</td></tr>
-                  </table>
-                </div>
-                <!--/.panel-body -->
                 <div class="panel-footer">
                   <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
                 </div>
@@ -106,7 +84,7 @@
             <span class="slot-badge">{{ slot.badge }}</span>
           {% endif %}
         </h2>
-        <h3 class="display-3">{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm &mdash; {{ slot.quantity }} dies per slot</h3>
+        <h3 class="display-3">{{ slot.short_name }} &mdash; {{ slot.quantity }} dies per slot</h3>
         <div class="space20"></div>
         <p>
           {% if slot.id == "1x1" %}
@@ -118,11 +96,13 @@
           {% endif %}
         </p>
         <ul class="icon-list bullet-default">
-          <li><i class="icofont-verification-check"></i> Die area: <strong>{{ slot.die_area_mm2 }} mm&sup2;</strong></li>
+          <li><i class="icofont-verification-check"></i> <strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> process &mdash; 180nm mixed-signal</li>
+          <li><i class="icofont-verification-check"></i> Die size: <strong>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm</strong> ({{ slot.die_area_mm2 }} mm&sup2;)</li>
           <li><i class="icofont-verification-check"></i> Usable silicon: <strong>{{ slot.usable_area_mm2 }} mm&sup2;</strong> <small>(custom pad ring)</small></li>
           <li><i class="icofont-verification-check"></i> Core area: <strong>{{ slot.core_area_mm2 }} mm&sup2;</strong> <small>(default pad ring)</small></li>
           <li><i class="icofont-verification-check"></i> {{ slot.io_count }} I/O pads ({{ slot.total_pads }} total)</li>
           <li><i class="icofont-verification-check"></i> 5 metal layers, MIM capacitors, poly &amp; high-res resistors</li>
+          <li><i class="icofont-verification-check"></i> Early bird pricing available until <strong>30 April 2026</strong></li>
         </ul>
         <div class="space10"></div>
         <a href="{{ slot.docs_url }}" target="_blank" rel="noopener" class="btn btn-default btn-sm">
