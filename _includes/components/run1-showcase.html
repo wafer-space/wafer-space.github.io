@@ -27,7 +27,19 @@
               </figcaption>
             </figure>
             {% else %}
-            <figure class="rounded mb-20 text-center" style="background: linear-gradient(135deg, #2c3e50, #3498db); padding: 2.5rem 1rem; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+            {% assign grad_index = forloop.index | modulo: 10 %}
+            {% if grad_index == 1 %}{% assign grad = "#667eea, #764ba2" %}
+            {% elsif grad_index == 2 %}{% assign grad = "#11998e, #38ef7d" %}
+            {% elsif grad_index == 3 %}{% assign grad = "#ee0979, #ff6a00" %}
+            {% elsif grad_index == 4 %}{% assign grad = "#2c3e50, #4ca1af" %}
+            {% elsif grad_index == 5 %}{% assign grad = "#834d9b, #d04ed6" %}
+            {% elsif grad_index == 6 %}{% assign grad = "#fc4a1a, #f7b733" %}
+            {% elsif grad_index == 7 %}{% assign grad = "#4568dc, #b06ab3" %}
+            {% elsif grad_index == 8 %}{% assign grad = "#0f2027, #2c5364" %}
+            {% elsif grad_index == 9 %}{% assign grad = "#16a085, #f4d03f" %}
+            {% elsif grad_index == 0 %}{% assign grad = "#e44d26, #f16529" %}
+            {% endif %}
+            <figure class="rounded mb-20 text-center" style="background: linear-gradient(135deg, {{ grad }}); padding: 2.5rem 1rem; min-height: 140px; display: flex; align-items: center; justify-content: center;">
               <div>
                 <h4 class="text-white mb-5" style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px;">{{ design.code }}</h4>
                 <p class="text-white-50 mb-0" style="font-size: 0.8rem;">{{ design.slot_size }} slot</p>
