@@ -13,10 +13,10 @@ slot_types:
     badge: ""
     die_width_mm: 3.93
     die_height_mm: 5.12
-    die_area_mm2: 20.14
+    die_area_mm2: 20.12
     usable_width_mm: 3.878
     usable_height_mm: 5.068
-    usable_area_mm2: 19.66
+    usable_area_mm2: 19.65
     core_width_mm: 3.05
     core_height_mm: 4.24
     core_area_mm2: 12.92
@@ -101,7 +101,7 @@ density:
   site_width_um: 0.56
   site_height_um: 3.92
   site_area_um2: 2.1952
-  sites_per_mm2: 455568
+  sites_per_mm2: 455539
 
   # Standard cell sizes (in sites wide) and max cells per reference tile
   # Per mm² is computed as: (1,000,000 / tile_area_um2) * per_tile
@@ -123,6 +123,8 @@ density:
 # Computed using: floor(avail_width / block_width) × floor(avail_height / block_height)
 # Available area = die dimensions minus seal ring (26µm each side)
 sram:
+  # 5V SRAM from GlobalFoundries PDK
+  # Block counts: floor((die_width-52)/block_width) × floor((die_height-52)/block_height)
   - name: "GF 5V sram512x8"
     voltage: "5V"
     bytes_per_block: 512
@@ -130,14 +132,14 @@ sram:
     block_height_um: 484.88
     capacity:
       "1x1":
-        blocks: 72
-        total_kb: 36
+        blocks: 80    # 8×10
+        total_kb: 40
       "0p5x1":
-        blocks: 36
-        total_kb: 18
+        blocks: 40    # 4×10
+        total_kb: 20
       "1x0p5":
-        blocks: 36
-        total_kb: 18
+        blocks: 40    # 8×5
+        total_kb: 20
 
   - name: "GF 5V sram256x8"
     voltage: "5V"
@@ -146,14 +148,14 @@ sram:
     block_height_um: 340.88
     capacity:
       "1x1":
-        blocks: 108
-        total_kb: 27
+        blocks: 112   # 8×14
+        total_kb: 28
       "0p5x1":
-        blocks: 54
-        total_kb: 13
+        blocks: 56    # 4×14
+        total_kb: 14
       "1x0p5":
-        blocks: 54
-        total_kb: 13
+        blocks: 56    # 8×7
+        total_kb: 14
 
   - name: "3.3V sram1024x8"
     voltage: "3.3V"
@@ -178,14 +180,14 @@ sram:
     block_height_um: 321.89
     capacity:
       "1x1":
-        blocks: 180
+        blocks: 180   # 12×15
         total_kb: 90
       "0p5x1":
-        blocks: 90
+        blocks: 90    # 6×15
         total_kb: 45
       "1x0p5":
-        blocks: 72
-        total_kb: 36
+        blocks: 84    # 12×7
+        total_kb: 42
 
   - name: "3.3V sram256x8"
     voltage: "3.3V"
@@ -194,11 +196,11 @@ sram:
     block_height_um: 224.93
     capacity:
       "1x1":
-        blocks: 264
+        blocks: 264   # 12×22
         total_kb: 66
       "0p5x1":
-        blocks: 132
+        blocks: 132   # 6×22
         total_kb: 33
       "1x0p5":
-        blocks: 108
-        total_kb: 27
+        blocks: 132   # 12×11
+        total_kb: 33
