@@ -90,7 +90,7 @@
           {% if slot.id == "1x1" %}
             The full-size slot gives you the largest die area and maximum I/O count. Ideal for complex SoCs, full mixed-signal designs, or projects that need the most routing and core area.
           {% elsif slot.id == "0p5x1" %}
-            The half-width slot gives you a tall, narrow die &mdash; perfect for designs that need many I/O on two edges. Great for medium-complexity digital or mixed-signal projects at nearly half the cost of a full slot.
+            The half-width slot delivers a tall, narrow die &mdash; ideal for I/O-heavy designs where signals concentrate along the long edges. Perfect for medium-complexity digital or mixed-signal projects, at just over half the cost of a full slot.
           {% elsif slot.id == "1x0p5" %}
             The half-height slot gives you a wide, short die &mdash; ideal for designs that benefit from a wider core. Offers slightly more core area than the half-width slot at the same price.
           {% endif %}
@@ -102,7 +102,7 @@
           <li><i class="icofont-verification-check"></i> Core area: <strong>{{ slot.core_area_mm2 }} mm&sup2;</strong> <small>(default pad ring)</small></li>
           <li><i class="icofont-verification-check"></i> {{ slot.io_count }} I/O pads ({{ slot.total_pads }} total)</li>
           <li><i class="icofont-verification-check"></i> 5 metal layers, MIM capacitors, poly &amp; high-res resistors</li>
-          <li><i class="icofont-verification-check"></i> Early bird pricing available until <strong>30 April 2026</strong></li>
+          <li><i class="icofont-verification-check"></i> Early Bird pricing available through <strong>30 April 2026</strong></li>
         </ul>
         <div class="space10"></div>
         <a href="{{ slot.docs_url }}" target="_blank" rel="noopener" class="btn btn-default btn-sm">

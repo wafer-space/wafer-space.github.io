@@ -58,7 +58,7 @@ designs:
     author: "Ravenslofty"
     slot_size: "1×1"
     category: "Digital"
-    description: "Specialised hardware for chess move generation"
+    description: "Specialized hardware for chess move generation"
     repo_url: "https://github.com/Ravenslofty/gf180mcu-chess"
     # image: "assets/images/run1/chess.jpg"
 

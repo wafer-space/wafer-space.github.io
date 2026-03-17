@@ -1,16 +1,13 @@
 <!-- Add-ons Section -->
 <div class="wrapper dark-wrapper inverse-text">
   <div class="container inner text-center">
-    <h2 class="title-color color-white text-center">Add-ons</h2>
-    <h3 class="display-3 mb-0">Optional extras for your slot purchase</h3>
-  </div>
-  <!-- /.container -->
-  <div class="space40"></div>
-  <div class="container inner pt-0 pb-30">
+    <h2 class="title-color color-white text-center">Enhance Your Order</h2>
+    <h3 class="display-3 mb-0">Get your chips packaged and ready to test, or take home an entire wafer</h3>
+    <div class="space40"></div>
     <div class="pricing-wrapper">
-      <div class="row g-0 justify-content-center">
+      <div class="row justify-content-center g-4">
         {% for addon in site.data.slots.addons %}
-        <div class="col-md-5">
+        <div class="col-md-5 col-lg-4">
           <div class="pricing panel box bg-white shadow">
             <div class="panel-heading">
               {% if addon.image %}
