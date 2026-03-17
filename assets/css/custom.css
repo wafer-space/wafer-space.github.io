@@ -212,28 +212,27 @@
     margin-top: 0.5rem;
 }
 
-/* Run 1 showcase cards */
-.run1-card {
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Run 1 showcase carousel cards */
+.grid-view .box.bg-white .post-content .post-title a {
+    color: #333;
+    text-decoration: none;
 }
 
-.run1-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+.grid-view .box.bg-white .post-content .post-title a:hover {
+    color: #3f78e0;
 }
 
-.run1-card .card-img-top {
-    height: 160px;
-    object-fit: cover;
-    background: #f0f0f0;
-}
-
-.run1-card .badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-}
+/* Varied gradient backgrounds for project placeholders */
+.grid-view .item:nth-child(1) figure[style*="gradient"] { background: linear-gradient(135deg, #667eea, #764ba2) !important; }
+.grid-view .item:nth-child(2) figure[style*="gradient"] { background: linear-gradient(135deg, #11998e, #38ef7d) !important; }
+.grid-view .item:nth-child(3) figure[style*="gradient"] { background: linear-gradient(135deg, #ee0979, #ff6a00) !important; }
+.grid-view .item:nth-child(4) figure[style*="gradient"] { background: linear-gradient(135deg, #2c3e50, #4ca1af) !important; }
+.grid-view .item:nth-child(5) figure[style*="gradient"] { background: linear-gradient(135deg, #834d9b, #d04ed6) !important; }
+.grid-view .item:nth-child(6) figure[style*="gradient"] { background: linear-gradient(135deg, #fc4a1a, #f7b733) !important; }
+.grid-view .item:nth-child(7) figure[style*="gradient"] { background: linear-gradient(135deg, #4568dc, #b06ab3) !important; }
+.grid-view .item:nth-child(8) figure[style*="gradient"] { background: linear-gradient(135deg, #0f2027, #2c5364) !important; }
+.grid-view .item:nth-child(9) figure[style*="gradient"] { background: linear-gradient(135deg, #16a085, #f4d03f) !important; }
+.grid-view .item:nth-child(10) figure[style*="gradient"] { background: linear-gradient(135deg, #e44d26, #f16529) !important; }
 
 /* CTA section */
 .cta-section .btn-lg {

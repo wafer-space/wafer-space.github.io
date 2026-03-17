@@ -1,7 +1,7 @@
-<!-- Run 1 Showcase Carousel -->
+<!-- Run 1 Design Showcase Carousel -->
 {% assign run1 = site.data.run1_designs %}
 {% if run1 %}
-<div class="wrapper light-wrapper">
+<div class="wrapper gray-wrapper">
   <div class="container inner">
     <div class="row">
       <div class="col-lg-10 offset-lg-1 text-center">
@@ -13,30 +13,57 @@
     </div>
 
     <div class="grid-view">
-      <div class="carousel owl-carousel gap-small" data-margin="0" data-dots="true" data-autoplay="false" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "2"}, "1140":{"items": "3"}}'>
+      <div class="carousel owl-carousel" data-margin="30" data-dots="true" data-autoplay="true" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "3"}}'>
         {% for design in run1.designs %}
         <div class="item">
-          <div class="item-inner">
-            <div class="box bg-white shadow">
-              <blockquote>
-                <p>{{ design.description }}</p>
-                <div class="blockquote-details">
-                  <div class="info pl-0">
-                    <h6 class="mb-0">{{ design.name }}</h6>
-                    <span class="meta mb-0">{{ design.author }} &middot; {{ design.slot_size }}</span>
-                  </div>
-                </div>
-              </blockquote>
-              <div class="d-flex align-items-center justify-content-between mt-10">
-                <span class="slot-badge">{{ design.category }}</span>
+          <div class="box bg-white shadow p-30">
+            {% if design.image %}
+            <figure class="overlay overlay1 rounded mb-20">
+              <a href="{{ design.repo_url }}" target="_blank" rel="noopener">
+                <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" />
+              </a>
+              <figcaption>
+                <h5 class="from-top mb-0">View Source</h5>
+              </figcaption>
+            </figure>
+            {% else %}
+            <figure class="rounded mb-20 text-center" style="background: linear-gradient(135deg, #2c3e50, #3498db); padding: 2.5rem 1rem; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+              <div>
+                <h4 class="text-white mb-5" style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px;">{{ design.code }}</h4>
+                <p class="text-white-50 mb-0" style="font-size: 0.8rem;">{{ design.slot_size }} slot</p>
+              </div>
+            </figure>
+            {% endif %}
+            <div class="post-content">
+              <div class="category mb-10">
+                {% assign badge_color = "bg-blue" %}
+                {% if design.category == "RISC-V" %}{% assign badge_color = "bg-purple" %}
+                {% elsif design.category == "FPGA" %}{% assign badge_color = "bg-green" %}
+                {% elsif design.category == "Mixed-Signal" %}{% assign badge_color = "bg-meander" %}
+                {% elsif design.category == "Retro CPU" %}{% assign badge_color = "bg-orange" %}
+                {% elsif design.category == "Digital" %}{% assign badge_color = "bg-blue" %}
+                {% elsif design.category == "Multi-Project" %}{% assign badge_color = "bg-pink" %}
+                {% elsif design.category == "Crypto" %}{% assign badge_color = "bg-violet" %}
+                {% elsif design.category == "Analog" %}{% assign badge_color = "bg-teal" %}
+                {% elsif design.category == "Art" %}{% assign badge_color = "bg-yellow" %}
+                {% endif %}
+                <span class="badge rounded-pill {{ badge_color }}">{{ design.category }}</span>
+              </div>
+              <h5 class="post-title mb-5">
                 {% if design.repo_url %}
-                  <a href="{{ design.repo_url }}" target="_blank" rel="noopener" class="text-decoration-none small">
-                    <i class="jam jam-github"></i> Source
-                  </a>
+                  <a href="{{ design.repo_url }}" target="_blank" rel="noopener">{{ design.name }}</a>
+                {% else %}
+                  {{ design.name }}
+                {% endif %}
+              </h5>
+              <p class="mb-10 text-muted small">{{ design.description }}</p>
+              <div class="meta mb-0">
+                <span><i class="jam jam-user"></i> {{ design.author }}</span>
+                {% if design.repo_url %}
+                  <span><a href="{{ design.repo_url }}" target="_blank" rel="noopener"><i class="jam jam-github"></i> Source</a></span>
                 {% endif %}
               </div>
             </div>
-            <!-- /.box -->
           </div>
         </div>
         <!-- /.item -->
