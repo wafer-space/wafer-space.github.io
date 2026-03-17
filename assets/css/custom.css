@@ -18,13 +18,7 @@
     padding-top: 3rem;
 }
 
-/* Override theme's popular "raised" effect — it breaks alignment with our layout */
-.pricing-wrapper .popular .panel.pricing.box {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 3rem;
-}
+/* Keep theme's popular "raised" effect (taller box, negative margin) */
 
 /* Tighten panel-footer spacing around buy button */
 .pricing-wrapper .panel.pricing .panel-footer {
@@ -130,9 +124,9 @@
     margin: -3rem -2rem 15px -2rem;
 }
 
-/* Popular box image bleeds flush to top edge */
+/* Popular box: theme adds padding-top:4rem, so bleed needs -4rem */
 .popular .slot-image-wrapper {
-    margin-top: -3rem;
+    margin-top: -4rem;
 }
 
 .slot-image {

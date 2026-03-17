@@ -396,10 +396,10 @@ subscribe_area:
     if (diff <= 0) return null;
     var days = Math.floor(diff / 86400000);
     var hours = Math.floor((diff % 86400000) / 3600000);
+    if (days > 0) return days + 'd ' + hours + 'h';
     var mins = Math.floor((diff % 3600000) / 60000);
-    if (days > 0) return days + 'd ' + hours + 'h remaining';
-    if (hours > 0) return hours + 'h ' + mins + 'm remaining';
-    return mins + 'm remaining';
+    if (hours > 0) return hours + 'h ' + mins + 'm';
+    return mins + 'm';
   }
 
   function updateInlineCountdowns() {

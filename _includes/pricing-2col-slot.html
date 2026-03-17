@@ -33,7 +33,7 @@
                   <p class="per-die-price">${{ slot.per_die_early_bird }} per die</p>
                   <h4 class="panel-title mb-0">Early Bird</h4>
                   {% if eb_deadline %}
-                  <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends in">
+                  <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends">
                     <span class="countdown-inline"></span>
                   </p>
                   {% endif %}
@@ -65,7 +65,7 @@
                   <p class="per-die-price">${{ slot.per_die_normal }} per die</p>
                   <h4 class="panel-title mb-0">Standard</h4>
                   {% if campaign_deadline %}
-                  <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes in">
+                  <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes">
                     <span class="countdown-inline"></span>
                   </p>
                   {% endif %}
