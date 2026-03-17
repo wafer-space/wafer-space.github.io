@@ -184,13 +184,23 @@
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Logic gate SVG icons inside icon-blob containers */
+/* Logic gate SVG icons inside icon-blob containers.
+   SVGs are replaced elements that don't work with table-cell centering.
+   Constrain the blob container and absolutely-position the SVG inside. */
+.icon-blob:has(.gate-icon) {
+    max-width: 4rem;
+    max-height: 4rem;
+    overflow: visible;
+}
+
 .icon-blob .gate-icon {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    width: 2.8rem;
-    height: 2.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    z-index: 1;
 }
 
 /* Density cards use .box.bg-white with theme classes — no custom CSS needed */
