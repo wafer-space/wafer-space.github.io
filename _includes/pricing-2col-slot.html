@@ -26,7 +26,7 @@
                   <div class="price-hero color-dark">
                     <span class="price-hero-currency">$</span>{{ slot.per_die_early_bird }}<span class="price-hero-unit"> / die</span>
                   </div>
-                  <p class="price-total">${{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }} USD</p>
+                  <p class="price-total"><small class="text-muted">USD</small> ${{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
                   <h4 class="panel-title">Early Bird</h4>
                   {% if eb_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends">
@@ -54,7 +54,7 @@
                   <div class="price-hero color-dark">
                     <span class="price-hero-currency">$</span>{{ slot.per_die_normal }}<span class="price-hero-unit"> / die</span>
                   </div>
-                  <p class="price-total">${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }} USD</p>
+                  <p class="price-total"><small class="text-muted">USD</small> ${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
                   <h4 class="panel-title">Standard</h4>
                   {% if campaign_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes">
