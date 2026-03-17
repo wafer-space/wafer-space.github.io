@@ -26,7 +26,8 @@
 
 .pricing-wrapper .popular .panel.pricing.box {
     margin-top: 0;
-    padding-bottom: 2.5rem;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
 }
 
 /* Distribute vertical space to text, not below the button */
@@ -169,9 +170,9 @@
     margin: -3rem -2rem 15px -2rem;
 }
 
-/* Popular box: theme adds padding-top:4rem, so bleed needs -4rem */
+/* Popular box: bleed image to top edge */
 .popular .slot-image-wrapper {
-    margin-top: -4rem;
+    margin-top: -4.5rem;
 }
 
 .slot-image {
