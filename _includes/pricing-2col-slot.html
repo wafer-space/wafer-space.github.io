@@ -2,6 +2,8 @@
 {% assign slot = include.slot %}
 {% assign is_dark = false %}
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
+{% assign eb_deadline = site.data.runs.runs.gf180mcu_run_2.early_bird_deadline %}
+{% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_2.campaign_deadline %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">
@@ -10,14 +12,14 @@
       <!-- Left: Two image-focused pricing boxes -->
       <div class="col-lg-6">
         <div class="pricing-wrapper">
-          <div class="row g-0">
+          <div class="row g-0 align-items-start">
 
             <!-- Early Bird Box (popular by default; JS swaps if deadline passed) -->
             <div class="col-12 col-sm-6 early-bird-panel popular">
               <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
-                  <div class="mb-10 slot-image-wrapper">
+                  <div class="slot-image-wrapper">
                     <img src="{{ slot.image | relative_url }}" class="img-fluid slot-image" alt="{{ slot.name }}"/>
                   </div>
                   {% endif %}
@@ -28,8 +30,13 @@
                       <span class="price-duration">USD</span>
                     </div>
                   </div>
-                  <p class="mb-0 text-muted"><small>${{ slot.per_die_early_bird }} per die</small></p>
-                  <h4 class="panel-title mt-10 mb-0">Early Bird</h4>
+                  <p class="per-die-price">${{ slot.per_die_early_bird }} per die</p>
+                  <h4 class="panel-title mb-0">Early Bird</h4>
+                  {% if eb_deadline %}
+                  <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends in">
+                    <span class="countdown-inline"></span>
+                  </p>
+                  {% endif %}
                 </div>
                 <!--/.panel-heading -->
                 <div class="panel-footer">
@@ -44,7 +51,7 @@
               <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
-                  <div class="mb-10 slot-image-wrapper">
+                  <div class="slot-image-wrapper">
                     <img src="{{ slot.image | relative_url }}" class="img-fluid slot-image" alt="{{ slot.name }}"/>
                   </div>
                   {% endif %}
@@ -55,8 +62,13 @@
                       <span class="price-duration">USD</span>
                     </div>
                   </div>
-                  <p class="mb-0 text-muted"><small>${{ slot.per_die_normal }} per die</small></p>
-                  <h4 class="panel-title mt-10 mb-0">Standard</h4>
+                  <p class="per-die-price">${{ slot.per_die_normal }} per die</p>
+                  <h4 class="panel-title mb-0">Standard</h4>
+                  {% if campaign_deadline %}
+                  <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes in">
+                    <span class="countdown-inline"></span>
+                  </p>
+                  {% endif %}
                 </div>
                 <!--/.panel-heading -->
                 <div class="panel-footer">

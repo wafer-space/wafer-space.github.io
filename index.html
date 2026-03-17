@@ -366,7 +366,7 @@ subscribe_area:
 <!-- Call to Action — final conversion point after all proof -->
 {% include components/cta-design-help.html %}
 
-<!-- Early Bird Pricing Switcher -->
+<!-- Early Bird Pricing Switcher + Inline Countdowns -->
 <script>
 (function() {
   'use strict';
@@ -376,6 +376,7 @@ subscribe_area:
   var now = new Date();
   var isEarlyBird = now < deadline;
 
+  // Switch popular class based on whether early bird is active
   document.querySelectorAll('.early-bird-panel').forEach(function(col) {
     var normalCol = col.nextElementSibling;
     if (!normalCol || !normalCol.classList.contains('normal-panel')) return;
@@ -387,6 +388,38 @@ subscribe_area:
       col.classList.remove('popular');
     }
   });
+
+  // Inline countdown updater for pricing boxes
+  function formatCountdown(target) {
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) return null;
+    var days = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    if (days > 0) return days + 'd ' + hours + 'h remaining';
+    if (hours > 0) return hours + 'h ' + mins + 'm remaining';
+    return mins + 'm remaining';
+  }
+
+  function updateInlineCountdowns() {
+    document.querySelectorAll('.pricing-deadline').forEach(function(el) {
+      var dl = el.getAttribute('data-deadline');
+      var label = el.getAttribute('data-label') || '';
+      var span = el.querySelector('.countdown-inline');
+      if (!dl || !span) return;
+      var text = formatCountdown(new Date(dl));
+      if (text) {
+        span.textContent = label + ' ' + text;
+      } else {
+        span.textContent = 'Deadline passed';
+        span.style.color = '#dc3545';
+      }
+    });
+  }
+
+  updateInlineCountdowns();
+  setInterval(updateInlineCountdowns, 60000);
 })();
 </script>
 
