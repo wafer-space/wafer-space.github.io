@@ -232,7 +232,11 @@
 
 /* ── Dark-mode tables ── */
 .ws-table-dark,
-.dark-wrapper .table {
+.ws-table-dark td,
+.ws-table-dark th,
+.dark-wrapper .table,
+.dark-wrapper .table td,
+.dark-wrapper .table th {
     color: rgba(255, 255, 255, 0.9);
 }
 
