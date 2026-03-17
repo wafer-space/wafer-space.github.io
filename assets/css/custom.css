@@ -184,6 +184,15 @@
     background-color: rgba(255, 255, 255, 0.03);
 }
 
+/* Logic gate SVG icons inside icon-blob containers */
+.icon-blob .gate-icon {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
 /* Density cards */
 .density-card {
     text-align: center;

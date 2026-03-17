@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- D Flip-Flop: rectangle body with clock triangle, D input, Q output -->
+  <!-- Body -->
+  <rect x="16" y="10" width="32" height="44" rx="1" fill="none"/>
+  <!-- D input -->
+  <line x1="2" y1="22" x2="16" y2="22"/>
+  <text x="20" y="26" fill="currentColor" stroke="none" font-size="10" font-family="sans-serif" font-weight="bold">D</text>
+  <!-- Clock input with triangle -->
+  <line x1="2" y1="42" x2="16" y2="42"/>
+  <polygon points="16,37 24,42 16,47" fill="none"/>
+  <!-- Q output -->
+  <line x1="48" y1="22" x2="62" y2="22"/>
+  <text x="36" y="26" fill="currentColor" stroke="none" font-size="10" font-family="sans-serif" font-weight="bold">Q</text>
+  <!-- Q-bar output with bubble -->
+  <line x1="52" y1="42" x2="62" y2="42"/>
+  <circle cx="50" cy="42" r="2.5" fill="none"/>
+</svg>
