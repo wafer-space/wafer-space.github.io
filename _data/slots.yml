@@ -81,17 +81,25 @@ addons:
     name: "Chip on Board Packaging"
     price: 1500
     per_die: "1.50"
-    description: "Dies wire-bonded onto small PCBs"
+    description: "Receive your dies wire-bonded onto small PCBs, ready for testing and integration."
     note: "Add-on to any slot purchase"
     image: "assets/images/products/wafer-space-chip-on-board.jpg"
+    features:
+      - "Wire-bonded onto individual PCBs"
+      - "Ready to power up and test immediately"
+      - "No additional packaging equipment needed"
 
   - id: "wafer"
     name: "Full Undiced Wafer"
     price: 2000
     per_die: ""
-    description: "Undiced 200mm wafer"
-    note: "Requires slot purchase. Wafer includes other designs from this run."
+    description: "Take home a complete 200mm wafer with your design alongside other Run 2 projects."
+    note: "Requires slot purchase"
     image: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
+    features:
+      - "Complete 200mm wafer, uncut"
+      - "Includes all designs from this run"
+      - "Perfect for custom dicing or display"
 
 # Silicon density reference data
 # Source: Tiny Tapeout tile spreadsheet (GF180 column)

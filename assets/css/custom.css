@@ -239,6 +239,43 @@
 /* Gradient placeholders are applied inline via Liquid forloop.index
    to avoid nth-child issues with owl-carousel item cloning */
 
+/* ── Add-on product cards ── */
+.addon-card {
+    padding: 1.5rem !important;
+    text-align: left;
+}
+
+.addon-image-wrapper {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.addon-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.addon-badge {
+    display: inline-block;
+    background: var(--color-orange, #fb9d7e);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15em 0.6em;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.addon-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
 /* CTA section */
 .cta-section .btn-lg {
     padding: 0.8rem 2.5rem;
