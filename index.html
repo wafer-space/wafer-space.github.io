@@ -377,13 +377,7 @@ subscribe_area:
 <!-- ═══════════════════════════════════════════ -->
 {% include components/section-divider.html title="Technology" subtitle="GF180MCU process details and what you can build" %}
 
-<!-- Run 1 Design Showcase -->
-{% include components/run1-showcase.html %}
-
-<!-- Silicon Density & Capacity -->
-{% include components/silicon-density.html %}
-
-<!-- Technical Specifications Section -->
+<!-- GF180MCU Process Technology Details -->
 {% if page.technical_specs.enable %}
 <div class="wrapper light-wrapper">
   <div class="container inner">
@@ -399,7 +393,7 @@ subscribe_area:
       {% if page.technical_specs.image %}
       <div class="col-lg-6">
         <figure>
-          <img src="{{page.technical_specs.image}}" alt="{{page.technical_specs.title}}" class="img-fluid"/>
+          <img src="{{ page.technical_specs.image | relative_url }}" alt="{{page.technical_specs.title}}" class="img-fluid"/>
         </figure>
       </div>
       {% endif %}
@@ -426,6 +420,12 @@ subscribe_area:
   </div>
 </div>
 {% endif %}
+
+<!-- Past run designs for reference -->
+{% include components/run1-showcase.html %}
+
+<!-- Silicon capacity -->
+{% include components/silicon-density.html %}
 
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">
