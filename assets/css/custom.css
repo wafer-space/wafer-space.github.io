@@ -18,9 +18,14 @@
     padding-top: 3rem;
 }
 
-/* Center the pricing row so popular box overhangs equally top and bottom */
+/* Center the pricing row so popular box overhangs equally top and bottom.
+   Override theme's margin-top:-1rem which shifts popular upward after centering. */
 .pricing-wrapper > .row {
     align-items: center;
+}
+
+.pricing-wrapper .popular .panel.pricing.box {
+    margin-top: 0;
 }
 
 /* Add vertical breathing room inside pricing boxes */
