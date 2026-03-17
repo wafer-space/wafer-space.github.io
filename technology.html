@@ -4,6 +4,46 @@ title: "Technology"
 sub_title: "GF180MCU process details and what you can build"
 background_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
+user_steps:
+  enable: true
+  title: "Your Steps"
+  sub_title: "What you need to do to get your chip manufactured"
+  steps:
+    - number: "01"
+      title: "Reserve"
+      description: "Join the campaign and secure your manufacturing slot"
+      color: "blue"
+    - number: "02"
+      title: "Design"
+      description: "Create your chip using the open GF180MCU PDK and your preferred tools"
+      color: "green"
+    - number: "03"
+      title: "Sign-off"
+      description: "Complete DRC/LVS/ERC checks and follow our design guidelines"
+      color: "purple"
+    - number: "04"
+      title: "Submit"
+      description: "Provide your tape-in files following our submission checklist"
+      color: "pink"
+
+wafer_steps:
+  enable: true
+  title: "We Handle"
+  sub_title: "What wafer.space takes care of for you"
+  steps:
+    - number: "05"
+      title: "Fabrication"
+      description: "We process your design in our pooled multi-project wafer run"
+      color: "orange"
+    - number: "06"
+      title: "Dicing"
+      description: "We dice the wafers and prepare your parts for shipment"
+      color: "yellow"
+    - number: "07"
+      title: "Delivery"
+      description: "We ship your ~1,000 bare dies and any optional packaging"
+      color: "rose"
+
 technical_specs:
   enable: true
   title: "Technical Specifications"
@@ -41,6 +81,65 @@ technical_specs:
       icon: "jam jam-thunder"
       color: "yellow"
 ---
+
+<!-- How It Works -->
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">How wafer.space works</h2>
+    <p class="lead larger text-center">Getting from your design to manufactured silicon is a collaborative process. You handle the design and submission, we take care of fabrication and delivery.</p>
+    <div class="space40"></div>
+  </div>
+</div>
+
+<!-- User Steps -->
+{% if page.user_steps.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{page.user_steps.title}}</h2>
+    <p class="lead larger text-center mb-40">{{page.user_steps.sub_title}}</p>
+    <div class="row gutter-50 gutter-md-30 process-wrapper line text-center">
+      {% for step in page.user_steps.steps %}
+      <div class="col-md-3 col-lg-3">
+        <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
+          <span class="number color-{{step.color}}">{{step.number}}</span>
+        </span>
+        <h5>{{step.title}}</h5>
+        <p>{{step.description}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Transition -->
+<div class="wrapper light-wrapper">
+  <div class="container inner text-center">
+    <h3 class="display-4 mb-30">Once you submit, we take over...</h3>
+    <p class="lead larger">After you complete your design and submission, wafer.space handles all the manufacturing logistics for you.</p>
+  </div>
+</div>
+
+<!-- Wafer.space Steps -->
+{% if page.wafer_steps.enable %}
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">{{page.wafer_steps.title}}</h2>
+    <p class="lead larger text-center mb-40">{{page.wafer_steps.sub_title}}</p>
+    <div class="row gutter-50 gutter-md-30 process-wrapper line text-center justify-content-center">
+      {% for step in page.wafer_steps.steps %}
+      <div class="col-md-4 col-lg-4">
+        <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
+          <span class="number color-{{step.color}}">{{step.number}}</span>
+        </span>
+        <h5>{{step.title}}</h5>
+        <p>{{step.description}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
 
 <!-- Technical Specifications -->
 {% if page.technical_specs.enable %}
