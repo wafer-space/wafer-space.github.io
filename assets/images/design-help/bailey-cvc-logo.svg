@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chip with check">
+  <!-- Pins -->
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+    <!-- Left -->
+    <path d="M10 18h-6"/>
+    <path d="M10 28h-6"/>
+    <path d="M10 36h-6"/>
+    <path d="M10 46h-6"/>
+    <!-- Right -->
+    <path d="M60 18h-6"/>
+    <path d="M60 28h-6"/>
+    <path d="M60 36h-6"/>
+    <path d="M60 46h-6"/>
+    <!-- Top -->
+    <path d="M18 10v-6"/>
+    <path d="M28 10v-6"/>
+    <path d="M36 10v-6"/>
+    <path d="M46 10v-6"/>
+    <!-- Bottom -->
+    <path d="M18 60v-6"/>
+    <path d="M28 60v-6"/>
+    <path d="M36 60v-6"/>
+    <path d="M46 60v-6"/>
+  </g>
+
+  <!-- Chip body -->
+  <rect x="12" y="12" width="40" height="40" rx="6"
+        fill="none" stroke="currentColor" stroke-width="3"/>
+
+  <!-- Inner border (optional detail; comment out if you want simpler) -->
+  <rect x="18" y="18" width="28" height="28" rx="4"
+        fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
+
+  <!-- Check mark -->
+  <path d="M25.5 34.0l5.2 5.2L40.5 29.4"
+        fill="none" stroke="currentColor" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
