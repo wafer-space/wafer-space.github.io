@@ -189,8 +189,8 @@
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.8rem;
+    height: 2.8rem;
 }
 
 /* Density cards */
@@ -213,13 +213,47 @@
 }
 
 /* Run 1 showcase carousel cards */
-.grid-view .box.bg-white .post-content .post-title a {
+.grid-view .box .post-content .post-title {
+    font-size: 1rem;
+}
+
+.grid-view .box .post-content .post-title a {
     color: #333;
     text-decoration: none;
 }
 
-.grid-view .box.bg-white .post-content .post-title a:hover {
+.grid-view .box .post-content .post-title a:hover {
     color: #3f78e0;
+}
+
+/* Carousel card title contrast for dark mode */
+.inverse-text .grid-view .box .post-content .post-title a,
+.gray-wrapper .grid-view .box .post-content .post-title a,
+.dark-wrapper .grid-view .box .post-content .post-title a {
+    color: #e0e0e0;
+}
+
+.inverse-text .grid-view .box .post-content .post-title a:hover,
+.gray-wrapper .grid-view .box .post-content .post-title a:hover,
+.dark-wrapper .grid-view .box .post-content .post-title a:hover {
+    color: #5fa8ff;
+}
+
+/* Carousel card description text in dark mode */
+.gray-wrapper .grid-view .box .post-content .mb-10,
+.dark-wrapper .grid-view .box .post-content .mb-10 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Early bird pricing emphasis */
+.pricing-wrapper .early-bird-panel.popular .pricing.panel.box {
+    border: 2px solid #3f78e0;
+    box-shadow: 0 0 20px rgba(63, 120, 224, 0.15);
+}
+
+.pricing-wrapper .normal-panel.popular .pricing.panel.box {
+    border: 2px solid #28a745;
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.15);
 }
 
 /* Varied gradient backgrounds for project placeholders */
