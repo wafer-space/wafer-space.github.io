@@ -13,31 +13,59 @@
     padding-right: 0 !important;
 }
 
-/* Pricing box default padding — no !important so .popular can override */
+/* Pricing box padding and vertical centering */
 .pricing-wrapper .panel.pricing.box {
     padding-top: 3rem;
 }
 
-/* Keep theme's popular "raised" effect (taller box, negative margin) */
+/* Center the pricing row so popular box overhangs equally top and bottom */
+.pricing-wrapper > .row {
+    align-items: center;
+}
 
-/* Tighten panel-footer spacing around buy button */
-.pricing-wrapper .panel.pricing .panel-footer {
-    padding-top: 1rem;
+/* Add vertical breathing room inside pricing boxes */
+.pricing-wrapper .panel-heading {
     padding-bottom: 0.5rem;
 }
 
-/* Bigger per-die price text */
-.pricing-wrapper .per-die-price {
-    font-size: 0.95rem;
+.pricing-wrapper .panel.pricing .panel-footer {
+    padding-top: 0.75rem;
+    padding-bottom: 0;
+}
+
+/* Per-die cost is now the hero number */
+.pricing-wrapper .price-hero {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 0.15rem;
+}
+
+.pricing-wrapper .price-hero .price-hero-currency {
+    font-size: 0.7em;
+    font-weight: 400;
+    vertical-align: baseline;
+}
+
+.pricing-wrapper .price-hero .price-hero-unit {
+    font-size: 0.45em;
+    font-weight: 400;
+    color: #888;
+}
+
+/* Total cost is the secondary number (~75% of hero) */
+.pricing-wrapper .price-total {
+    font-size: 1.1rem;
     color: #666;
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
 }
 
 /* Countdown text inside pricing boxes */
 .pricing-deadline {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #888;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     margin-bottom: 0;
     line-height: 1.4;
 }
