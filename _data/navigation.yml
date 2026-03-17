@@ -20,10 +20,6 @@ main_menu:
     url: "/design-help.html"
     menu_type: "simple"
 
-  - text: "Help"
-    url: "/help.html"
-    menu_type: "simple"
-
   - text: "News"
     url: "/news"
     menu_type: "simple"
