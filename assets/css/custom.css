@@ -235,15 +235,35 @@
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Early bird pricing emphasis */
+/* ── Current (popular) pricing option: prominent ── */
 .pricing-wrapper .early-bird-panel.popular .pricing.panel.box {
-    border: 2px solid #3f78e0;
-    box-shadow: 0 0 20px rgba(63, 120, 224, 0.15);
+    border: 3px solid #3f78e0;
+    box-shadow: 0 0 30px rgba(63, 120, 224, 0.25);
 }
 
 .pricing-wrapper .normal-panel.popular .pricing.panel.box {
-    border: 2px solid #28a745;
-    box-shadow: 0 0 20px rgba(40, 167, 69, 0.15);
+    border: 3px solid #28a745;
+    box-shadow: 0 0 30px rgba(40, 167, 69, 0.25);
+}
+
+/* Popular box: image bleeds all the way to top edge */
+.popular .slot-image-wrapper {
+    margin-top: -4rem;
+}
+
+/* ── Future (non-popular) pricing option: de-emphasised ── */
+.pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box {
+    background-color: #f5f5f5;
+}
+
+.pricing-wrapper [class*="col-"]:not(.popular) .slot-image {
+    filter: grayscale(50%) opacity(0.7);
+}
+
+/* Dark wrapper variant */
+.dark-wrapper .pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box,
+.inverse-text .pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box {
+    background-color: rgba(255, 255, 255, 0.88);
 }
 
 /* Gradient placeholders are applied inline via Liquid forloop.index
