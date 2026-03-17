@@ -13,9 +13,9 @@
     padding-right: 0 !important;
 }
 
-/* Remove padding-top from all pricing columns */
+/* Pricing box default padding — no !important so .popular can override */
 .pricing-wrapper .panel.pricing.box {
-    padding-top: 3em !important;
+    padding-top: 3rem;
 }
 
 /* Make header text in middle column slightly larger */
@@ -41,7 +41,7 @@
 }
 
 .timeline-row:hover {
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .timeline-critical td:first-child {
@@ -193,24 +193,7 @@
     height: 2.8rem;
 }
 
-/* Density cards */
-.density-card {
-    text-align: center;
-    padding: 1.5rem;
-}
-
-.density-card .density-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #333;
-    line-height: 1.2;
-}
-
-.density-card .density-label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.5rem;
-}
+/* Density cards use .box.bg-white with theme classes — no custom CSS needed */
 
 /* Run 1 showcase carousel cards */
 .grid-view .box .post-content .post-title {
@@ -226,21 +209,18 @@
     color: #3f78e0;
 }
 
-/* Carousel card title contrast for dark mode */
+/* Carousel card title contrast for dark mode (not gray-wrapper — it's light) */
 .inverse-text .grid-view .box .post-content .post-title a,
-.gray-wrapper .grid-view .box .post-content .post-title a,
 .dark-wrapper .grid-view .box .post-content .post-title a {
     color: #e0e0e0;
 }
 
 .inverse-text .grid-view .box .post-content .post-title a:hover,
-.gray-wrapper .grid-view .box .post-content .post-title a:hover,
 .dark-wrapper .grid-view .box .post-content .post-title a:hover {
     color: #5fa8ff;
 }
 
 /* Carousel card description text in dark mode */
-.gray-wrapper .grid-view .box .post-content .mb-10,
 .dark-wrapper .grid-view .box .post-content .mb-10 {
     color: rgba(255, 255, 255, 0.7) !important;
 }

@@ -176,6 +176,8 @@
             {% assign deadline = run.submission_deadline %}
             <div class="row">
               <div class="col-xl-10 offset-xl-1">
+                <h4 class="mb-20"><i class="jam jam-upload mr-10"></i>{{ deadline.title | default: "Submission Deadline" }}</h4>
+                {% if deadline.subtitle %}<p class="text-muted mb-20">{{ deadline.subtitle }}</p>{% endif %}
                 <div class="countdown-section" data-expired-message="{{ deadline.expired_message | default: 'Deadline passed' }}">
                   <div class="countdown-wrapper d-flex align-items-center justify-content-center">
                     <div class="countdown" data-date="{{ deadline.date }}">
