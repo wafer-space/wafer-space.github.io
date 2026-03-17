@@ -337,92 +337,51 @@ subscribe_area:
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
 
-<!-- Half Slot Marketing Banner -->
+<!-- ═══════════════════════════════════════════ -->
+<!-- TOP: Hook + Urgency + Action              -->
+<!-- ═══════════════════════════════════════════ -->
+
+<!-- (1) Half Slot Marketing Banner -->
 {% include components/half-slot-banner.html %}
 
-<!-- Per-Slot Pricing Sections -->
-{% for slot in site.data.slots.slot_types %}
-  {% assign wrapper = "light-wrapper" %}
-  {% assign mod = forloop.index | modulo: 2 %}
-  {% if mod == 0 %}{% assign wrapper = "dark-wrapper inverse-text" %}{% endif %}
-  {% include pricing-2col-slot.html slot=slot wrapper_class=wrapper %}
-{% endfor %}
+<!-- (2) Deadlines -->
+{% include components/countdown.html %}
 
-<!-- Add-ons Section (COB + Wafer) -->
-{% include components/addons-section.html %}
+<!-- (3) Call to Action -->
+{% include components/cta-design-help.html %}
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SALES INFO                                 -->
+<!-- ═══════════════════════════════════════════ -->
+{% include components/section-divider.html title="Pricing" subtitle="Choose the slot that fits your design and budget" %}
 
 <!-- Slot Comparison Table -->
 {% include components/slot-comparison-table.html %}
 
-<!-- Countdown Section — urgency right after pricing info -->
-{% include components/countdown.html %}
+<!-- Per-Slot Pricing: half-width, half-height, full -->
+{% assign slot_half_w = site.data.slots.slot_types[1] %}
+{% assign slot_half_h = site.data.slots.slot_types[2] %}
+{% assign slot_full = site.data.slots.slot_types[0] %}
 
-<!-- Silicon Density & Capacity -->
-{% include components/silicon-density.html %}
+{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
+{% include pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
+
+<!-- Add-ons -->
+{% include components/addons-section.html %}
+
+{% include components/pricing-switcher-js.html %}
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TECH INFO                                  -->
+<!-- ═══════════════════════════════════════════ -->
+{% include components/section-divider.html title="Technology" subtitle="GF180MCU process details and what you can build" %}
 
 <!-- Run 1 Design Showcase -->
 {% include components/run1-showcase.html %}
 
-<!-- Call to Action — final conversion point after all proof -->
-{% include components/cta-design-help.html %}
-
-<!-- Early Bird Pricing Switcher + Inline Countdowns -->
-<script>
-(function() {
-  'use strict';
-  var deadlineStr = '{{ site.data.slots.early_bird_deadline }}';
-  if (!deadlineStr) return;
-  var deadline = new Date(deadlineStr);
-  var now = new Date();
-  var isEarlyBird = now < deadline;
-
-  // Switch popular class based on whether early bird is active
-  document.querySelectorAll('.early-bird-panel').forEach(function(col) {
-    var normalCol = col.nextElementSibling;
-    if (!normalCol || !normalCol.classList.contains('normal-panel')) return;
-    if (isEarlyBird) {
-      col.classList.add('popular');
-      normalCol.classList.remove('popular');
-    } else {
-      normalCol.classList.add('popular');
-      col.classList.remove('popular');
-    }
-  });
-
-  // Inline countdown updater for pricing boxes
-  function formatCountdown(target) {
-    var now = new Date();
-    var diff = target - now;
-    if (diff <= 0) return null;
-    var days = Math.floor(diff / 86400000);
-    if (days > 1) return days + ' days';
-    if (days === 1) return '1 day';
-    var hours = Math.floor((diff % 86400000) / 3600000);
-    if (hours > 0) return hours + ' hours';
-    var mins = Math.floor((diff % 3600000) / 60000);
-    return mins + ' min';
-  }
-
-  function updateInlineCountdowns() {
-    document.querySelectorAll('.pricing-deadline').forEach(function(el) {
-      var dl = el.getAttribute('data-deadline');
-      var label = el.getAttribute('data-label') || '';
-      var span = el.querySelector('.countdown-inline');
-      if (!dl || !span) return;
-      var text = formatCountdown(new Date(dl));
-      if (text) {
-        span.textContent = label + ' ' + text;
-      } else {
-        span.textContent = 'Deadline passed';
-        span.style.color = '#dc3545';
-      }
-    });
-  }
-
-  updateInlineCountdowns();
-  setInterval(updateInlineCountdowns, 60000);
-})();
-</script>
+<!-- Silicon Density & Capacity -->
+{% include components/silicon-density.html %}
 
 <!-- Technical Specifications Section -->
 {% if page.technical_specs.enable %}

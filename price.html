@@ -1,0 +1,29 @@
+---
+layout: page-2
+title: "Pricing"
+sub_title: "Choose the slot that fits your design and budget"
+background_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+---
+
+<!-- Slot Comparison Table -->
+{% include components/slot-comparison-table.html %}
+
+<!-- Per-Slot Pricing: half-width, half-height, full -->
+{% assign slot_half_w = site.data.slots.slot_types[1] %}
+{% assign slot_half_h = site.data.slots.slot_types[2] %}
+{% assign slot_full = site.data.slots.slot_types[0] %}
+
+{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
+{% include pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
+
+<!-- Add-ons -->
+{% include components/addons-section.html %}
+
+<!-- Countdown Section -->
+{% include components/countdown.html %}
+
+<!-- Call to Action -->
+{% include components/cta-design-help.html %}
+
+{% include components/pricing-switcher-js.html %}
