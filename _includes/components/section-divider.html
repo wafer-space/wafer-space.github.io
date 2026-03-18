@@ -1,4 +1,4 @@
-<!-- Section Divider -->
+<!-- Section Divider with SVG wave transition -->
 <div id="{{ include.title | slugify }}" class="wrapper dark-wrapper inverse-text">
   <div class="container inner text-center py-3">
     <h2 class="title-color color-white mb-0">{{ include.title }}</h2>
@@ -6,4 +6,8 @@
     <h3 class="display-3 mb-0">{{ include.subtitle }}</h3>
     {% endif %}
   </div>
+  {% if include.fill_next %}
+  <div class="divider"><svg xmlns="http://www.w3.org/2000/svg" class="{{ include.fill_next }}" preserveAspectRatio="none" viewBox="0 0 1070 39.07">
+    <path d="M1070,39.07H0V21a6818.1,6818.1,0,0,1,1070,0Z" /></svg></div>
+  {% endif %}
 </div>
