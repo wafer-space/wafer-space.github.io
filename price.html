@@ -1,9 +1,11 @@
 ---
-layout: page-2
+layout: default
 title: "Pricing"
 sub_title: "Choose the slot that fits your design and budget"
-background_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 ---
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
 
 <!-- Slot Comparison Table -->
 {% include components/slot-comparison-table.html %}
@@ -27,3 +29,5 @@ background_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 {% include components/cta-design-help.html %}
 
 {% include components/pricing-switcher-js.html %}
+
+{% include layouts/footer/footer-1.html %}

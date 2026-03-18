@@ -1,8 +1,8 @@
 ---
-layout: page-2
+layout: default
 title: "Technology"
 sub_title: "GF180MCU process details and what you can build"
-background_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 
 user_steps:
   enable: true
@@ -81,6 +81,9 @@ technical_specs:
       icon: "jam jam-thunder"
       color: "yellow"
 ---
+
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
 
 <!-- How It Works -->
 <div class="wrapper light-wrapper">
@@ -193,3 +196,5 @@ technical_specs:
 
 <!-- Call to Action -->
 {% include components/cta-design-help.html %}
+
+{% include layouts/footer/footer-1.html %}
