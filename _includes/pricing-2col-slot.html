@@ -24,10 +24,10 @@
                   </div>
                   {% endif %}
                   <div class="price-hero color-dark">
-                    <span class="price-hero-currency">$</span>{{ slot.per_die_early_bird }}<span class="price-hero-unit"> / die</span>
+                    <span class="price-hero-currency">$</span>{{ slot.per_die_early_bird }}<span class="price-hero-unit">&nbsp;/&nbsp;die</span>
                   </div>
-                  <p class="price-total"><small class="text-muted">USD</small> ${{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
-                  <h4 class="panel-title">Early Bird</h4>
+                  <p class="price-total"><small class="text-muted">USD</small>&nbsp;${{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
+                  <h4 class="panel-title">Early&nbsp;Bird</h4>
                   {% if eb_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends">
                     <span class="countdown-inline"></span>
@@ -52,9 +52,9 @@
                   </div>
                   {% endif %}
                   <div class="price-hero color-dark">
-                    <span class="price-hero-currency">$</span>{{ slot.per_die_normal }}<span class="price-hero-unit"> / die</span>
+                    <span class="price-hero-currency">$</span>{{ slot.per_die_normal }}<span class="price-hero-unit">&nbsp;/&nbsp;die</span>
                   </div>
-                  <p class="price-total"><small class="text-muted">USD</small> ${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
+                  <p class="price-total"><small class="text-muted">USD</small>&nbsp;${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
                   <h4 class="panel-title">Standard</h4>
                   {% if campaign_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes">
@@ -88,7 +88,7 @@
             <span class="slot-badge">{{ slot.badge }}</span>
           {% endif %}
         </h2>
-        <h3 class="display-3">{{ slot.short_name }} &mdash; {{ slot.quantity }} dies per slot</h3>
+        <h3 class="display-3">{{ slot.short_name }} &mdash;&nbsp;{{ slot.quantity }}&nbsp;dies&nbsp;per&nbsp;slot</h3>
         <div class="space20"></div>
         <p>
           {% if slot.id == "1x1" %}
