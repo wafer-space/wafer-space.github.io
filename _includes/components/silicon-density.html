@@ -217,7 +217,7 @@
                   <td>{{ sram.voltage }}</td>
                   {% for slot in site.data.slots.slot_types %}
                     {% assign cap = sram.capacity[slot.id] %}
-                    <td>{{ cap.blocks }} blocks ({{ cap.total_kb }}&nbsp;KB)</td>
+                    <td>{{ cap.blocks }} blocks ({{ cap.total_kb }}&nbsp;kilobytes)</td>
                   {% endfor %}
                 </tr>
               {% endfor %}
