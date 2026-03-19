@@ -12,8 +12,8 @@
       </div>
     </div>
 
-    <div class="grid-view">
-      <div class="carousel owl-carousel" data-margin="30" data-dots="true" data-autoplay="true" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "3"}}'>
+    <div class="grid-view position-relative">
+      <div class="carousel owl-carousel" id="run1-carousel" data-margin="30" data-dots="true" data-autoplay="true" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "3"}}'>
         {% for design in run1.designs %}
         <div class="item">
           <div class="box bg-white shadow p-30">
@@ -82,10 +82,12 @@
         {% endfor %}
       </div>
       <!-- /.owl-carousel -->
+      <button class="carousel-nav-btn carousel-prev" aria-label="Previous"><i class="jam jam-chevron-left"></i></button>
+      <button class="carousel-nav-btn carousel-next" aria-label="Next"><i class="jam jam-chevron-right"></i></button>
     </div>
     <!-- /.grid-view -->
 
-    <div class="space60"></div>
+    <div class="space80"></div>
     <div class="row">
       <div class="col-12 text-center">
         <a href="{{ run1.repo_url }}" target="_blank" rel="noopener" class="btn btn-default">
@@ -96,4 +98,17 @@
 
   </div>
 </div>
+<script>
+(function() {
+  var prev = document.querySelector('#run1 .carousel-prev');
+  var next = document.querySelector('#run1 .carousel-next');
+  if (prev && next && typeof jQuery !== 'undefined') {
+    jQuery(document).ready(function() {
+      var $c = jQuery('#run1-carousel');
+      prev.addEventListener('click', function() { $c.trigger('prev.owl.carousel'); });
+      next.addEventListener('click', function() { $c.trigger('next.owl.carousel'); });
+    });
+  }
+})();
+</script>
 {% endif %}
