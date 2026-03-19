@@ -22,6 +22,8 @@ slot_types:
     core_area_mm2: 12.92
     io_count: 56
     total_pads: 72
+    max_pads: 200
+    max_io: 168
     quantity: 1000
     early_bird_price: 7000
     normal_price: 7500
@@ -45,6 +47,8 @@ slot_types:
     core_area_mm2: 4.46
     io_count: 56
     total_pads: 72
+    max_pads: 146
+    max_io: 122
     quantity: 1000
     early_bird_price: 4000
     normal_price: 4500
@@ -68,6 +72,8 @@ slot_types:
     core_area_mm2: 5.02
     io_count: 56
     total_pads: 72
+    max_pads: 130
+    max_io: 108
     quantity: 1000
     early_bird_price: 4000
     normal_price: 4500
@@ -82,12 +88,12 @@ addons:
     price: 1500
     per_die: "1.50"
     description: "Receive your dies wire-bonded onto small PCBs, ready for testing and integration."
-    note: "Add-on to any slot purchase"
+    note: "Add-on to any slot purchase. Requires the default pad ring."
     image: "assets/images/products/wafer-space-chip-on-board.jpg"
     features:
       - "Wire-bonded onto individual PCBs"
       - "Ready to power up and test immediately"
-      - "No additional packaging equipment needed"
+      - "Requires the default pad ring for wire bonding"
 
   - id: "wafer"
     name: "Full Undiced Wafer"

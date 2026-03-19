@@ -102,9 +102,9 @@
         <ul class="icon-list bullet-default">
           <li><i class="icofont-verification-check"></i> <strong><a href="https://gf180mcu-pdk.readthedocs.io/">GF180MCU</a></strong> process &mdash; 180nm mixed-signal</li>
           <li><i class="icofont-verification-check"></i> Die size: <strong>{{ slot.die_width_mm }}mm &times; {{ slot.die_height_mm }}mm</strong> ({{ slot.die_area_mm2 }} mm&sup2;)</li>
-          <li><i class="icofont-verification-check"></i> Usable silicon: <strong>{{ slot.usable_area_mm2 }} mm&sup2;</strong> <small>(custom pad ring)</small></li>
-          <li><i class="icofont-verification-check"></i> Core area: <strong>{{ slot.core_area_mm2 }} mm&sup2;</strong> <small>(default pad ring)</small></li>
-          <li><i class="icofont-verification-check"></i> {{ slot.io_count }} I/O pads ({{ slot.total_pads }} total)</li>
+          <li><i class="icofont-verification-check"></i> Usable silicon: <strong>{{ slot.usable_area_mm2 }}&nbsp;mm&sup2;</strong> <small>(custom pad ring or none)</small></li>
+          <li><i class="icofont-verification-check"></i> Core area: <strong>{{ slot.core_area_mm2 }}&nbsp;mm&sup2;</strong> <small>(default pad ring, required for COB)</small></li>
+          <li><i class="icofont-verification-check"></i> Default: {{ slot.io_count }}&nbsp;I/O pads &mdash; max: up to {{ slot.max_io }}&nbsp;I/O with <a href="https://mithro.github.io/gf180mcu-project-template/" target="_blank" rel="noopener">custom pad ring</a></li>
           <li><i class="icofont-verification-check"></i> 5 metal layers, MIM capacitors, poly &amp; high-res resistors</li>
           <li><i class="icofont-verification-check"></i> Early Bird pricing available through <strong>30 April 2026</strong></li>
         </ul>

@@ -52,15 +52,15 @@
                 {% endfor %}
               </tr>
               <tr>
-                <td class="text-left font-weight-600">Default I/O Count</td>
+                <td class="text-left font-weight-600">Default I/O&nbsp;Pads&dagger;</td>
                 {% for slot in site.data.slots.slot_types %}
                   <td>{{ slot.io_count }}</td>
                 {% endfor %}
               </tr>
               <tr>
-                <td class="text-left font-weight-600">Default Total Pads</td>
+                <td class="text-left font-weight-600">Max I/O&nbsp;Pads&Dagger;</td>
                 {% for slot in site.data.slots.slot_types %}
-                  <td>{{ slot.total_pads }}</td>
+                  <td>{{ slot.max_io }}</td>
                 {% endfor %}
               </tr>
               <tr>
@@ -87,7 +87,9 @@
 
         <div class="space20"></div>
         <div class="text-left table-footnote">
-          <p class="mb-5">&dagger;Usable silicon = die area minus seal ring (~26&micro;m each side). Available if you bring your own pad ring or use none.</p>
+          <p class="mb-5">&dagger;Default pad ring I/O count. The default pad ring is only required if you purchase the <a href="#addons">Chip&nbsp;on&nbsp;Board packaging</a> add-on.</p>
+          <p class="mb-5">&Dagger;Maximum I/O with a custom pad ring from the <a href="https://mithro.github.io/gf180mcu-project-template/" target="_blank" rel="noopener">LibreLane pad ring generator</a>. You are free to use any pad ring configuration &mdash; or no pad ring at all.</p>
+          <p class="mb-5">*Usable silicon = die area minus seal ring (~26&micro;m each side). Available with a custom pad ring or no pad ring.</p>
           <p class="mb-0">*Core area = area inside the default pad ring.</p>
         </div>
       </div>
