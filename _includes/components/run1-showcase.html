@@ -99,16 +99,16 @@
   </div>
 </div>
 <script>
-(function() {
-  var prev = document.querySelector('#run1 .carousel-prev');
-  var next = document.querySelector('#run1 .carousel-next');
-  if (prev && next && typeof jQuery !== 'undefined') {
-    jQuery(document).ready(function() {
-      var $c = jQuery('#run1-carousel');
-      prev.addEventListener('click', function() { $c.trigger('prev.owl.carousel'); });
-      next.addEventListener('click', function() { $c.trigger('next.owl.carousel'); });
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    var $c = jQuery('#run1-carousel');
+    document.querySelector('#run1 .carousel-prev').addEventListener('click', function() {
+      $c.trigger('prev.owl.carousel');
     });
-  }
-})();
+    document.querySelector('#run1 .carousel-next').addEventListener('click', function() {
+      $c.trigger('next.owl.carousel');
+    });
+  }, 500);
+});
 </script>
 {% endif %}
