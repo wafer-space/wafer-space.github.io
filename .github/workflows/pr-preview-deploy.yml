@@ -275,6 +275,7 @@ jobs:
       - name: Build Jekyll site with private theme
         if: steps.security-check.outputs.deployment_allowed == 'true'
         run: |
+          BASEURL="${{ steps.pr-directory.outputs.baseurl_path }}"
           export PATH=$PATH:~/.local/share/gem/ruby/3.1.0/bin
           echo "🔨 Building Jekyll site..."
           # For fork PRs, stack security config to override dangerous settings
@@ -283,7 +284,7 @@ jobs:
             CONFIG_FLAG="--config _config.yml,_config_security.yml"
             echo "🔒 Using security config override"
           fi
-          bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}" $CONFIG_FLAG
+          bundle exec jekyll build --baseurl "$BASEURL" $CONFIG_FLAG
           echo "✅ Site built successfully"
         env:
           JEKYLL_ENV: production
@@ -291,13 +292,20 @@ jobs:
       - name: Save built site for deployment
         if: steps.security-check.outputs.deployment_allowed == 'true'
         run: |
+          DIR_NAME="${{ steps.pr-directory.outputs.directory_name }}"
           # Save to temp location
-          cp -r _site /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}
-          cp -r .github /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}
+          cp -r _site "/tmp/pr-site-${DIR_NAME}"
+          cp -r .github "/tmp/pr-github-${DIR_NAME}"
 
       - name: Clone preview repository and deploy
         if: steps.security-check.outputs.deployment_allowed == 'true'
         run: |
+          # Assign outputs to shell variables for safe quoting
+          DIR_NAME="${{ steps.pr-directory.outputs.directory_name }}"
+          SLUG_NAME="${{ steps.pr-directory.outputs.slugified_name }}"
+          PR_NUM="${{ steps.pr.outputs.number }}"
+          PR_SHA="${{ steps.pr.outputs.sha }}"
+
           echo "🚀 Deploying to preview.wafer.space..."
 
           # Setup SSH for preview repo
@@ -317,15 +325,15 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
           # Create PR directory and copy built site
-          mkdir -p ${{ steps.pr-directory.outputs.directory_name }}
-          cp -r /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}/* ${{ steps.pr-directory.outputs.directory_name }}/
+          mkdir -p "$DIR_NAME"
+          cp -r "/tmp/pr-site-${DIR_NAME}/"* "$DIR_NAME/"
 
           # Create redirect page for slugified URL if different
-          if [ "${{ steps.pr-directory.outputs.slugified_name }}" != "${{ steps.pr-directory.outputs.directory_name }}" ]; then
-            mkdir -p ${{ steps.pr-directory.outputs.slugified_name }}
-            cp /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/redirect-template.html ${{ steps.pr-directory.outputs.slugified_name }}/index.html
-            sed -i "s|{{TARGET_URL}}|/${{ steps.pr-directory.outputs.directory_name }}|g" ${{ steps.pr-directory.outputs.slugified_name }}/index.html
-            echo "Created redirect from ${{ steps.pr-directory.outputs.slugified_name }} to ${{ steps.pr-directory.outputs.directory_name }}"
+          if [ "$SLUG_NAME" != "$DIR_NAME" ]; then
+            mkdir -p "$SLUG_NAME"
+            cp "/tmp/pr-github-${DIR_NAME}/templates/redirect-template.html" "$SLUG_NAME/index.html"
+            sed -i "s|{{TARGET_URL}}|/${DIR_NAME}|g" "$SLUG_NAME/index.html"
+            echo "Created redirect from $SLUG_NAME to $DIR_NAME"
           fi
 
           # Ensure CNAME file exists
@@ -334,10 +342,10 @@ jobs:
           fi
 
           # Generate preview index page
-          if [ -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ]; then
-            cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ./
+          if [ -f "/tmp/pr-github-${DIR_NAME}/scripts/generate-preview-index.sh" ]; then
+            cp "/tmp/pr-github-${DIR_NAME}/scripts/generate-preview-index.sh" ./
             mkdir -p .github/templates
-            cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" .github/templates/
+            cp "/tmp/pr-github-${DIR_NAME}/templates/preview-index.html" .github/templates/
             chmod +x generate-preview-index.sh
             ./generate-preview-index.sh
           fi
@@ -349,7 +357,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Deploy preview for PR #${{ steps.pr.outputs.number }} - ${{ steps.pr.outputs.sha }}"
+          git commit -m "Deploy preview for PR #${PR_NUM} - ${PR_SHA}"
 
           # SSH agent is still active from earlier setup
           git push origin main
