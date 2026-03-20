@@ -144,8 +144,42 @@ jobs:
         if: steps.security-check.outputs.deployment_allowed == 'true'
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.pr.outputs.sha }}
+          # Use API-verified SHA (not artifact SHA) to close the trust chain
+          ref: ${{ steps.security-check.outputs.pr_sha }}
           submodules: false  # We'll handle submodules separately
+
+      # SECURITY: For fork PRs, replace executable files with trusted
+      # versions from main. This prevents two attack vectors:
+      # 1. _config.yml redirecting plugins_dir to execute attacker code
+      # 2. Pre-existing fork modifications to .github/scripts/ that don't
+      #    appear in the PR diff but are present in the checked-out code
+      - name: Apply security overrides for fork PRs
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.security-check.outputs.is_fork == 'true'
+        run: |
+          echo "🔒 Applying security overrides for fork PR..."
+
+          # Force plugins_dir to _plugins to prevent _config.yml redirection
+          # (a malicious _config.yml could set plugins_dir to a directory
+          # containing attacker-supplied Ruby code outside _plugins/)
+          cat > _config_security.yml << 'SECURITY_EOF'
+          # Security overrides for fork PR builds - do not modify
+          plugins_dir: _plugins
+          SECURITY_EOF
+
+          # Replace executable scripts with trusted versions from main
+          # to prevent pre-existing fork modifications from executing
+          git fetch origin main
+          for script in \
+            .github/scripts/generate-pr-directory-name.js \
+            .github/scripts/generate-preview-index.sh \
+            .github/scripts/comment-verification-results.js; do
+            if git cat-file -e "origin/main:$script" 2>&1; then
+              git show "origin/main:$script" > "$script"
+              echo "✅ Replaced $script with trusted version from main"
+            fi
+          done
+
+          echo "✅ Security overrides applied"
 
       # Use API-verified is_fork (not artifact) for security decisions
       - name: Use trusted Gemfile for fork PRs (security)
@@ -203,11 +237,15 @@ jobs:
         if: steps.security-check.outputs.deployment_allowed == 'true'
         id: pr-directory
         uses: actions/github-script@v7
+        # Pass title via env to prevent expression injection (title is
+        # artifact-sourced and attacker-controlled for fork PRs)
+        env:
+          PR_TITLE: ${{ steps.pr.outputs.title }}
         with:
           script: |
             const generatePrDirectoryName = require('./.github/scripts/generate-pr-directory-name.js');
             const prNumber = ${{ steps.pr.outputs.number }};
-            const prTitle = `${{ steps.pr.outputs.title }}`;
+            const prTitle = process.env.PR_TITLE;
 
             // Main directory uses just PR number for simplicity
             const directoryName = `pr-${prNumber}`;
@@ -229,7 +267,13 @@ jobs:
         run: |
           export PATH=$PATH:~/.local/share/gem/ruby/3.1.0/bin
           echo "🔨 Building Jekyll site..."
-          bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}"
+          # For fork PRs, stack security config to override dangerous settings
+          CONFIG_FLAG=""
+          if [ -f _config_security.yml ]; then
+            CONFIG_FLAG="--config _config.yml,_config_security.yml"
+            echo "🔒 Using security config override"
+          fi
+          bundle exec jekyll build --baseurl "${{ steps.pr-directory.outputs.baseurl_path }}" $CONFIG_FLAG
           echo "✅ Site built successfully"
         env:
           JEKYLL_ENV: production
@@ -470,10 +514,12 @@ The preview site is available at: ${previewUrl}${securityNotice}
       - name: Comment on PR about blocked deployment
         if: steps.security-check.outputs.deployment_allowed == 'false'
         uses: actions/github-script@v7
+        env:
+          DANGEROUS_FILES: ${{ steps.security-check.outputs.dangerous_files }}
         with:
           script: |
             const prNumber = ${{ steps.pr.outputs.number }};
-            const dangerousFiles = `${{ steps.security-check.outputs.dangerous_files }}`;
+            const dangerousFiles = process.env.DANGEROUS_FILES;
 
             const commentBody = `## 🚫 Preview Deployment Blocked
 
