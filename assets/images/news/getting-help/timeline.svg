@@ -1,0 +1,36 @@
+<svg width="450" height="320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="450" height="320" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="225" y="20" text-anchor="middle" fill="#495057" font-family="Arial, sans-serif" font-size="18" font-weight="bold">GF180MCU Run 1 Timeline</text>
+
+  <!-- Timeline line -->
+  <line x1="225" y1="40" x2="225" y2="305" stroke="#6c757d" stroke-width="3"/>
+
+  <!-- Today marker -->
+  <circle cx="225" cy="52" r="10" fill="#0d6efd"/>
+  <rect x="245" y="40" width="70" height="24" fill="#0d6efd" rx="3"/>
+  <text x="280" y="57" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Today</text>
+
+  <!-- November 28 marker -->
+  <circle cx="225" cy="110" r="10" fill="#dc3545"/>
+  <line x1="225" y1="110" x2="310" y2="110" stroke="#dc3545" stroke-width="2"/>
+  <rect x="315" y="90" width="120" height="40" fill="#ffffff" stroke="#dc3545" stroke-width="2" rx="5"/>
+  <text x="375" y="107" text-anchor="middle" fill="#dc3545" font-family="Arial, sans-serif" font-size="15" font-weight="bold">November 28</text>
+  <text x="375" y="123" text-anchor="middle" fill="#343a40" font-family="Arial, sans-serif" font-size="12">Purchase Deadline</text>
+
+  <!-- December 3 marker -->
+  <circle cx="225" cy="180" r="10" fill="#fd7e14"/>
+  <line x1="225" y1="180" x2="140" y2="180" stroke="#fd7e14" stroke-width="2"/>
+  <rect x="15" y="160" width="120" height="40" fill="#ffffff" stroke="#fd7e14" stroke-width="2" rx="5"/>
+  <text x="75" y="177" text-anchor="middle" fill="#fd7e14" font-family="Arial, sans-serif" font-size="15" font-weight="bold">December 3</text>
+  <text x="75" y="193" text-anchor="middle" fill="#343a40" font-family="Arial, sans-serif" font-size="12">GDS Submission</text>
+
+  <!-- March 15 marker -->
+  <circle cx="225" cy="250" r="10" fill="#28a745"/>
+  <line x1="225" y1="250" x2="310" y2="250" stroke="#28a745" stroke-width="2"/>
+  <rect x="315" y="230" width="120" height="40" fill="#ffffff" stroke="#28a745" stroke-width="2" rx="5"/>
+  <text x="375" y="247" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="15" font-weight="bold">March 15</text>
+  <text x="375" y="263" text-anchor="middle" fill="#343a40" font-family="Arial, sans-serif" font-size="12">Dies Delivered</text>
+</svg>
