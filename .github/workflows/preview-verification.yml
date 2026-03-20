@@ -153,10 +153,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y lynx html-xml-utils python3-pip jq bc
           
-          # Install muffet - comprehensive link and asset checker
-          wget -qO- https://github.com/raviqqe/muffet/releases/latest/download/muffet_linux_amd64.tar.gz | tar -xzf - -C /tmp
-          sudo mv /tmp/muffet /usr/local/bin/
-          
+          # Install muffet at pinned version with checksum verification
+          MUFFET_VERSION="v2.11.2"
+          MUFFET_SHA256="97d69581cf90c932be3b5622877bc3a60e50b0ea05d1609aaa6b2efdae15acd3"
+          MUFFET_URL="https://github.com/raviqqe/muffet/releases/download/${MUFFET_VERSION}/muffet_linux_amd64.tar.gz"
+
+          wget -q -O muffet.tar.gz "$MUFFET_URL"
+          echo "${MUFFET_SHA256}  muffet.tar.gz" | sha256sum --check --strict
+          tar -xzf muffet.tar.gz muffet
+          sudo mv muffet /usr/local/bin/
+          rm muffet.tar.gz
+
           # Verify installation
           muffet --version
       
