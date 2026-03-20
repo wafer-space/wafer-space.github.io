@@ -1,10 +1,10 @@
 ---
 layout: posts/post-boxed
-title: "Untitled Update"
+title: "Community Progress on Chip-on-Board Packaging Strategy"
 date: 2025-11-10 12:00:00 +0000
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
-author: "Tim 'mithro' Ansell"
+author: "Andrew Wingate"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
@@ -13,8 +13,6 @@ permalink: "/news/chip-on-board-strategy"
 post_image: "/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-front.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board"
 ---
-
-## Community Progress on Chip-on-Board Packaging Strategy
 
 Today we have a guest post from **[Andrew Wingate](https://www.crowdsupply.com/evezor-inc)** (of Evezor Inc), sharing his perspective on the progress the [wafer.space](https://wafer.space/) community has been making in developing a chip-on-board packaging strategy. This work includes contributions from **[Tiny Tapeout](https://tinytapeout.com/)**, **[MosBius](https://mosbius.org/)** ([Columbia University](https://peterkinget.github.io/)), and community members like **[@Tholin](https://github.com/AvalonSemiconductors)** and **@xianglin_pu**.
 
