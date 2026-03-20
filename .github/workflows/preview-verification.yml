@@ -42,12 +42,16 @@ jobs:
       - name: Get PR information
         id: pr-info
         uses: actions/github-script@v7
+        # Pass workflow_dispatch inputs via env to prevent expression injection
+        env:
+          INPUT_PR_NUMBER: ${{ github.event.inputs.pr_number }}
+          INPUT_PREVIEW_URL: ${{ github.event.inputs.preview_url }}
         with:
           script: |
             // Handle manual workflow dispatch
             if (context.eventName === 'workflow_dispatch') {
-              const prNumber = '${{ github.event.inputs.pr_number }}';
-              const previewUrl = '${{ github.event.inputs.preview_url }}';
+              const prNumber = process.env.INPUT_PR_NUMBER;
+              const previewUrl = process.env.INPUT_PREVIEW_URL;
 
               console.log(`Manual trigger - PR Number: ${prNumber}`);
               console.log(`Manual trigger - Preview URL: ${previewUrl}`);
@@ -418,14 +422,15 @@ jobs:
           script: |
             const commentVerificationResults = require('./.github/scripts/comment-verification-results.js');
             const result = await commentVerificationResults(github, context, core);
-            
-            const prNumber = context.payload.pull_request?.number || 'unknown';
+
+            const prNumber = process.env.PR_NUMBER;
             console.log(`Posted verification results to PR #${prNumber}`);
             console.log(`Comment ID: ${result.commentId}, Archived: ${result.archivedCount} previous comments`);
         env:
           VERIFICATION_STATUS: ${{ steps.verification.outputs.verification_status }}
           REPORT_CONTENT: ${{ steps.verification.outputs.report_content }}
           GITHUB_RUN_ID: ${{ github.run_id }}
+          PR_NUMBER: ${{ steps.pr-info.outputs.pr_number }}
       
       - name: Fail workflow if verification failed
         if: steps.verification.outputs.verification_status == 'failed'
