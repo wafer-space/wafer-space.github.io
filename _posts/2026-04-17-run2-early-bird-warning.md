@@ -5,6 +5,7 @@ date: 2026-04-17 12:00:00 +0000
 categories: [news]
 tags: [gf180mcu, run2, pricing]
 author: "Tim 'mithro' Ansell"
+post_image: "/assets/images/news/gf180mcu-gelpack-dice.jpg"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
