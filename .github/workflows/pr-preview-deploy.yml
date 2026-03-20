@@ -469,20 +469,22 @@ jobs:
               securityNotice = `\n\n> **🔒 Security Notice:** This PR includes changes to \`Gemfile\` or \`Gemfile.lock\`. For security, the preview was built using the trusted dependencies from the \`main\` branch. If you need to update dependencies, please work with a maintainer to submit those changes separately from an internal branch.\n`;
             }
 
-            const commentBody = `## ✅ Preview Deployment Ready!
-
-${forkBadge}
-
-| Preview URL | Commit |
-|-------------|--------|
-| [View Preview](${previewUrl}) | \`${commitSha}\` |
-
-**🎉 Your preview has been deployed successfully!**
-
-The preview site is available at: ${previewUrl}${securityNotice}
-
----
-<sub>⚡ Deployed via workflow_run (two-stage deployment) • Preview will be removed when PR is closed</sub>`;
+            const commentBody = [
+              '## ✅ Preview Deployment Ready!',
+              '',
+              forkBadge,
+              '',
+              '| Preview URL | Commit |',
+              '|-------------|--------|',
+              `| [View Preview](${previewUrl}) | \`${commitSha}\` |`,
+              '',
+              '**🎉 Your preview has been deployed successfully!**',
+              '',
+              `The preview site is available at: ${previewUrl}${securityNotice}`,
+              '',
+              '---',
+              '<sub>⚡ Deployed via workflow_run (two-stage deployment) • Preview will be removed when PR is closed</sub>',
+            ].join('\n');
 
             // Find and update existing comment or create new one
             const { data: comments } = await github.rest.issues.listComments({
@@ -539,22 +541,24 @@ The preview site is available at: ${previewUrl}${securityNotice}
             const prNumber = ${{ steps.pr.outputs.number }};
             const dangerousFiles = process.env.DANGEROUS_FILES;
 
-            const commentBody = `## 🚫 Preview Deployment Blocked
-
-This pull request modifies executable code that runs during the preview build:
-
-\`\`\`
-${dangerousFiles}
-\`\`\`
-
-**Why?** For security, fork PRs that modify files in \`_plugins/\` or \`.github/\` cannot receive automatic preview deployments. These files execute during the build process with access to repository secrets.
-
-**What to do:**
-- If you only need content changes previewed, please move executable code changes to a separate PR
-- A maintainer can review the executable changes and deploy a preview manually
-
----
-<sub>🔒 Blocked by security gate (two-stage deployment)</sub>`;
+            const commentBody = [
+              '## 🚫 Preview Deployment Blocked',
+              '',
+              'This pull request modifies executable code that runs during the preview build:',
+              '',
+              '```',
+              dangerousFiles,
+              '```',
+              '',
+              '**Why?** For security, fork PRs that modify files in `_plugins/` or `.github/` cannot receive automatic preview deployments. These files execute during the build process with access to repository secrets.',
+              '',
+              '**What to do:**',
+              '- If you only need content changes previewed, please move executable code changes to a separate PR',
+              '- A maintainer can review the executable changes and deploy a preview manually',
+              '',
+              '---',
+              '<sub>🔒 Blocked by security gate (two-stage deployment)</sub>',
+            ].join('\n');
 
             // Find and update existing comment or create new one
             const { data: comments } = await github.rest.issues.listComments({
