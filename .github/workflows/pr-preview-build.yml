@@ -17,7 +17,6 @@ on:
 permissions:
   contents: read
   pull-requests: read  # Needed to list PR changed files
-  actions: write  # Needed to upload artifacts
 
 jobs:
   collect-metadata:
@@ -59,31 +58,48 @@ jobs:
             }
 
       - name: Save PR metadata
+        # Pass attacker-controlled values via env to prevent shell injection
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_REF: ${{ github.event.pull_request.head.ref }}
+          PR_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+          DANGEROUS_FILES: ${{ steps.security-check.outputs.dangerous_files }}
         run: |
           # Determine if this is a fork PR
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
-            IS_FORK="true"
+          if [ "$PR_REPO" != "${{ github.repository }}" ]; then
+            IS_FORK=true
           else
-            IS_FORK="false"
+            IS_FORK=false
           fi
 
-          cat > pr-context.json << EOF
-          {
-            "number": ${{ github.event.pull_request.number }},
-            "sha": "${{ github.event.pull_request.head.sha }}",
-            "ref": "${{ github.event.pull_request.head.ref }}",
-            "title": "${{ github.event.pull_request.title }}",
-            "repo": "${{ github.event.pull_request.head.repo.full_name }}",
-            "base_ref": "${{ github.event.pull_request.base.ref }}",
-            "user": "${{ github.event.pull_request.user.login }}",
-            "is_fork": $IS_FORK,
-            "has_dangerous_changes": ${{ steps.security-check.outputs.has_dangerous_changes }},
-            "dangerous_files": "${{ steps.security-check.outputs.dangerous_files }}"
-          }
-          EOF
+          # Use jq to construct JSON safely (prevents injection via PR title etc.)
+          jq -n \
+            --argjson number "${{ github.event.pull_request.number }}" \
+            --arg sha "${{ github.event.pull_request.head.sha }}" \
+            --arg ref "$PR_REF" \
+            --arg title "$PR_TITLE" \
+            --arg repo "$PR_REPO" \
+            --arg base_ref "${{ github.event.pull_request.base.ref }}" \
+            --arg user "$PR_USER" \
+            --argjson is_fork "$IS_FORK" \
+            --argjson has_dangerous_changes "${{ steps.security-check.outputs.has_dangerous_changes }}" \
+            --arg dangerous_files "$DANGEROUS_FILES" \
+            '{
+              number: $number,
+              sha: $sha,
+              ref: $ref,
+              title: $title,
+              repo: $repo,
+              base_ref: $base_ref,
+              user: $user,
+              is_fork: $is_fork,
+              has_dangerous_changes: $has_dangerous_changes,
+              dangerous_files: $dangerous_files
+            }' > pr-context.json
 
           echo "📦 Saved PR metadata:"
-          cat pr-context.json | jq .
+          cat pr-context.json
 
       - name: Upload PR context artifact
         uses: actions/upload-artifact@v4
