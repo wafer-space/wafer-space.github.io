@@ -4,13 +4,13 @@ title: "GF180MCU Linux/XV6 RISC-V SoC"
 date: 2026-04-10 12:00:00 +0000
 categories: [news]
 tags: [gf180mcu, run1, featured-project, risc-v, kianv]
-author: "Tim 'mithro' Ansell"
+author: "Hirosh Dabui"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/kianv-riscv-soc"
-post_image: "/assets/images/news/kianv-riscv-soc/soc-overview.svg"
+post_image: "/assets/images/news/kianv-riscv-soc/chip_top_white.png"
 ---
 
 ## Introduction
@@ -22,7 +22,7 @@ The project was developed as part of the **wafer.space GF180MCU Run 1**.
 In addition to the ASIC, a compact bring-up PCB was designed to enable hardware
 validation and early software development.
 
-Repository: https://github.com/splinedrive/kianRiscV
+Repository: [github.com/splinedrive/kianRiscV](https://github.com/splinedrive/kianRiscV)
 
 ---
 
@@ -166,6 +166,7 @@ hardware platform.
 - **Sylvain Munaut** – Tiny Tapeout
 - **Tim Ansell** – founder of wafer.space
 - **Uri Shaked** – Tiny Tapeout
+
 ---
 
 ## Conclusion
@@ -176,10 +177,10 @@ an **open-source ASIC flow** on **GF180MCU**, manufactured through **wafer.space
 
 ## Additional Resources
 
-- Carl Karsten - Direct access to the KianV uLinux ASIC SoC: https://ps1.fpgas.online/fpgas/tt6.html
-- Matt Venn, RISC-V/Open Source Silicon Stream updates: https://www.linkedin.com/posts/matt-venn_riscv-opensourcesiliconstream-activity-7290765655132274690-Hfgw
-- Matt Venn, Tiny Tapeout ASIC/Open Source development: https://www.linkedin.com/posts/matt-venn_asic-opensource-riscv-activity-7279556029233704960-d5ZO
-- Uri Shaked — Tiny Tapeout project update (LinkedIn): https://www.linkedin.com/feed/update/urn:li:activity:7312742011252490240/
-- Zero to ASIC Course 2024 Highlights: https://www.zerotoasiccourse.com/post/year_update_2024/#2024-highlights
-- PCB Design: https://github.com/splinedrive/gf180mcu-kianv-pcb
-- ASIC Design: https://github.com/splinedrive/gf180mcu-kianv-rv32ima-sv32
+- Carl Karsten - [Direct access to the KianV uLinux ASIC SoC](https://ps1.fpgas.online/fpgas/tt6.html)
+- Matt Venn - [RISC-V/Open Source Silicon Stream updates](https://www.linkedin.com/posts/matt-venn_riscv-opensourcesiliconstream-activity-7290765655132274690-Hfgw)
+- Matt Venn - [Tiny Tapeout ASIC/Open Source development](https://www.linkedin.com/posts/matt-venn_asic-opensource-riscv-activity-7279556029233704960-d5ZO)
+- Uri Shaked — [Tiny Tapeout project update (LinkedIn)](https://www.linkedin.com/feed/update/urn:li:activity:7312742011252490240/)
+- [Zero to ASIC Course 2024 Highlights](https://www.zerotoasiccourse.com/post/year_update_2024/#2024-highlights)
+- [PCB Design](https://github.com/splinedrive/gf180mcu-kianv-pcb)
+- [ASIC Design](https://github.com/splinedrive/gf180mcu-kianv-rv32ima-sv32)

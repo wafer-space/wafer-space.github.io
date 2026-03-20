@@ -5,6 +5,7 @@ date: 2026-05-01 12:00:00 +0000
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
 author: "Tim 'mithro' Ansell"
+post_image: "/assets/images/news/gf180mcu-gelpack-dice.jpg"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
