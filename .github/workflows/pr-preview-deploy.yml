@@ -148,14 +148,17 @@ jobs:
           ref: ${{ steps.security-check.outputs.pr_sha }}
           submodules: false  # We'll handle submodules separately
 
-      # SECURITY: For fork PRs, replace executable files with trusted
-      # versions from main. This prevents two attack vectors:
+      # SECURITY: For fork PRs, replace all executable files with trusted
+      # versions from main. This prevents three attack vectors:
       # 1. _config.yml redirecting plugins_dir to execute attacker code
       # 2. Pre-existing fork modifications to .github/scripts/ that don't
       #    appear in the PR diff but are present in the checked-out code
+      # 3. Pre-existing fork modifications to _plugins/ (Ruby code executed
+      #    by Jekyll during build) that don't appear in the PR diff
       - name: Apply security overrides for fork PRs
         if: steps.security-check.outputs.deployment_allowed == 'true' && steps.security-check.outputs.is_fork == 'true'
         run: |
+          set -e
           echo "🔒 Applying security overrides for fork PR..."
 
           # Force plugins_dir to _plugins to prevent _config.yml redirection
@@ -166,13 +169,20 @@ jobs:
           plugins_dir: _plugins
           SECURITY_EOF
 
+          git fetch origin main
+
+          # Completely replace _plugins/ with trusted version from main.
+          # This prevents both modifications to existing plugins AND
+          # addition of new malicious plugin files by the fork.
+          rm -rf _plugins/
+          git checkout origin/main -- _plugins/
+          echo "✅ Replaced _plugins/ with trusted version from main"
+
           # Replace executable scripts with trusted versions from main
           # to prevent pre-existing fork modifications from executing
-          git fetch origin main
           for script in \
             .github/scripts/generate-pr-directory-name.js \
-            .github/scripts/generate-preview-index.sh \
-            .github/scripts/comment-verification-results.js; do
+            .github/scripts/generate-preview-index.sh; do
             if git cat-file -e "origin/main:$script" 2>&1; then
               git show "origin/main:$script" > "$script"
               echo "✅ Replaced $script with trusted version from main"
