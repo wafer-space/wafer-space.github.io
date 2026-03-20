@@ -1,6 +1,12 @@
 # PR Preview Build (Stage 1 - Untrusted Context)
 # This workflow runs for ALL pull requests, including those from forks
 # It has NO access to secrets and only collects PR metadata
+#
+# SECURITY NOTE: This workflow runs the FORK's version of this file.
+# A malicious fork can modify this workflow arbitrarily. Therefore:
+# - The artifact produced here is UNTRUSTED data
+# - Stage 2 must independently verify all security-critical claims
+# - The security check here is informational only (for logging/summaries)
 name: PR Preview Build
 
 on:
@@ -10,12 +16,48 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read  # Needed to list PR changed files
   actions: write  # Needed to upload artifacts
 
 jobs:
   collect-metadata:
     runs-on: ubuntu-latest
     steps:
+      - name: Check for executable code changes
+        id: security-check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                per_page: 100
+              }
+            );
+
+            const dangerousPatterns = [
+              /^_plugins\//,
+              /^\.github\//,
+            ];
+
+            const dangerousFiles = files
+              .map(f => f.filename)
+              .filter(f => dangerousPatterns.some(p => p.test(f)));
+
+            const hasDangerousChanges = dangerousFiles.length > 0;
+
+            core.setOutput('has_dangerous_changes', hasDangerousChanges.toString());
+            core.setOutput('dangerous_files', dangerousFiles.join(', '));
+
+            if (hasDangerousChanges) {
+              core.warning(`Executable code modified: ${dangerousFiles.join(', ')}`);
+            } else {
+              console.log('No executable code changes detected');
+            }
+
       - name: Save PR metadata
         run: |
           # Determine if this is a fork PR
@@ -34,7 +76,9 @@ jobs:
             "repo": "${{ github.event.pull_request.head.repo.full_name }}",
             "base_ref": "${{ github.event.pull_request.base.ref }}",
             "user": "${{ github.event.pull_request.user.login }}",
-            "is_fork": $IS_FORK
+            "is_fork": $IS_FORK,
+            "has_dangerous_changes": ${{ steps.security-check.outputs.has_dangerous_changes }},
+            "dangerous_files": "${{ steps.security-check.outputs.dangerous_files }}"
           }
           EOF
 
@@ -58,4 +102,9 @@ jobs:
             echo "🌍 External contributor (fork PR)"
           else
             echo "🏠 Internal contributor"
+          fi
+          if [ "${{ steps.security-check.outputs.has_dangerous_changes }}" = "true" ]; then
+            echo "⚠️  Executable code changes: ${{ steps.security-check.outputs.dangerous_files }}"
+          else
+            echo "✅ No executable code changes"
           fi
