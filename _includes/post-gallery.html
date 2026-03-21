@@ -1,0 +1,55 @@
+{% comment %}
+  Post image gallery with lightbox support.
+  Usage in a post:
+    {% include post-gallery.html gallery="gallery_name" %}
+  where gallery_name matches a key in the post's front matter `galleries:` hash.
+
+  Front matter example:
+    galleries:
+      librelane_steps:
+        caption: "LibreLane workflow steps"
+        images:
+          - img: "/assets/images/news/example/step1.svg"
+            alt: "Step 1"
+          - img: "/assets/images/news/example/step2.svg"
+            alt: "Step 2"
+{% endcomment %}
+
+{% assign gallery_data = page.galleries[include.gallery] %}
+{% if gallery_data and gallery_data.images.size > 0 %}
+<div class="post-gallery light-gallery-wrapper mb-30">
+  {% if gallery_data.caption %}
+  <p class="text-center text-muted mb-10"><small>{{ gallery_data.caption }}</small></p>
+  {% endif %}
+  <div class="tiles tiles-s">
+    <div class="items row">
+      {% assign image_count = gallery_data.images | size %}
+      {% for item in gallery_data.images %}
+        {% if image_count <= 2 %}
+          <div class="item col-md-6">
+        {% elsif image_count <= 4 %}
+          <div class="item col-md-{{ 12 | divided_by: image_count }}">
+        {% else %}
+          {% if forloop.index <= 2 %}
+            <div class="item col-md-6">
+          {% else %}
+            <div class="item col-md-4">
+          {% endif %}
+        {% endif %}
+            <figure class="overlay overlay1 rounded">
+              <a href="{{ item.img | relative_url }}" class="lightbox">
+                <span class="bg"></span>
+                <img src="{{ item.img | relative_url }}" alt="{{ item.alt | default: 'Gallery image' }}">
+              </a>
+              {% if item.caption %}
+              <figcaption>
+                <h5 class="from-top mb-0">{{ item.caption }}</h5>
+              </figcaption>
+              {% endif %}
+            </figure>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}

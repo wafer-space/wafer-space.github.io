@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "Easier Design Flow: LibreLane & the gf180mcu Project Template"
-date: 2025-10-23 12:00:00 +0000
+date: "2025-10-23 12:00:00 +0000"
 excerpt: "Get started faster with the LibreLane gf180mcu template: ready-to-use tooling so you can focus on what your chip does, not build infrastructure."
 categories: [news]
 tags: [gf180mcu, run1, librelane, tooling]
@@ -13,6 +13,18 @@ sidebar: true
 permalink: "/news/librelane-template"
 post_image: "/assets/images/news/librelane-template/librelane-step1-design.svg"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/librelane-template"
+galleries:
+  librelane_steps:
+    caption: "Simple LibreLane Workflow: Design, Configure, Run, GDS"
+    images:
+      - img: "/assets/images/news/librelane-template/librelane-step1-design.svg"
+        alt: "LibreLane Step 1: Design your chip in Verilog"
+      - img: "/assets/images/news/librelane-template/librelane-step2-config.svg"
+        alt: "LibreLane Step 2: Configure the flow"
+      - img: "/assets/images/news/librelane-template/librelane-step3-run.svg"
+        alt: "LibreLane Step 3: Run the automated flow"
+      - img: "/assets/images/news/librelane-template/librelane-step4-gds.svg"
+        alt: "LibreLane Step 4: Get your GDS output"
 ---
 
 Hey everyone,
@@ -23,13 +35,8 @@ But fabrication is only half the equation. You also need tools to actually desig
 
 Last month at [ORConf 2025](https://orconf.org/) in Valencia, Mohamed Gaber and Leo Moser presented LibreLane - the next-generation design flow for open silicon. And there's now a ready-to-use [gf180mcu project template](https://github.com/wafer-space/gf180mcu-project-template) that makes starting your wafer.space design even easier.
 
-![LibreLane Step 1: Design your chip in Verilog](/assets/images/news/librelane-template/librelane-step1-design.svg)
+{% include post-gallery.html gallery="librelane_steps" %}
 
-![LibreLane Step 2: Configure the flow](/assets/images/news/librelane-template/librelane-step2-config.svg)
-
-![LibreLane Step 3: Run the automated flow](/assets/images/news/librelane-template/librelane-step3-run.svg)
-
-![LibreLane Step 4: Get your GDS output](/assets/images/news/librelane-template/librelane-step4-gds.svg)
 
 ## What is LibreLane?
 
