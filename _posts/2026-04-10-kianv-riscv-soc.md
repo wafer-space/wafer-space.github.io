@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "GF180MCU Linux/XV6 RISC-V SoC"
-date: 2026-04-10 12:00:00 +0000
+date: "2026-04-10 12:00:00 +0000"
 excerpt: "KianV is a custom GF180MCU-based RISC-V SoC capable of running uLinux, Linux, and XV6 using a fully open-source ASIC flow."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, risc-v, kianv]
@@ -12,6 +12,14 @@ trending: false
 sidebar: true
 permalink: "/news/kianv-riscv-soc"
 post_image: "/assets/images/news/kianv-riscv-soc/soc-overview.svg"
+galleries:
+  pcb_views:
+    caption: "KianV GF180MCU ASIC bring-up PCB"
+    images:
+      - img: "/assets/images/news/kianv-riscv-soc/pcb_top.png"
+        alt: "KianV GF180MCU ASIC bring-up PCB - top view"
+      - img: "/assets/images/news/kianv-riscv-soc/pcb_bottom.png"
+        alt: "KianV GF180MCU ASIC bring-up PCB - bottom view"
 ---
 
 ## Introduction
@@ -137,9 +145,8 @@ A small bring-up PCB was designed to support validation and software bring-up.
 The board provides **32 MiB SDRAM**, **SPI-based Ethernet**,
 **SPI flash / SPI card**, **UART**, power regulation.
 
-![KianV GF180MCU ASIC bring-up PCB - top view](/assets/images/news/kianv-riscv-soc/pcb_top.png)
+{% include post-gallery.html gallery="pcb_views" %}
 
-![KianV GF180MCU ASIC bring-up PCB - bottom view](/assets/images/news/kianv-riscv-soc/pcb_bottom.png)
 
 ---
 

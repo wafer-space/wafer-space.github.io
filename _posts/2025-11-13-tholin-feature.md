@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "We Have Some Amazing Projects This Run"
-date: 2025-11-13 12:00:00 +0000
+date: "2025-11-13 12:00:00 +0000"
 excerpt: "Our first shuttle run includes incredible projects. We highlight Tholin and Avalon Semiconductors: an open reimplementation of the historic Signetics 2650 microprocessor."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, tholin]
@@ -13,6 +13,21 @@ sidebar: true
 permalink: "/news/tholin-feature"
 post_image: "/assets/images/news/tholin-feature/ic1.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature"
+galleries:
+  multi_project:
+    caption: "Multi-project die strategy"
+    images:
+      - img: "/assets/images/news/tholin-feature/multidie.png"
+        alt: "Multi-project die layout combining multiple designs on one die"
+      - img: "/assets/images/news/tholin-feature/multilayout.png"
+        alt: "Multi-project die floorplan showing design placement"
+  dip40_breakout:
+    caption: "DIP40 breakout board and wirebonding"
+    images:
+      - img: "/assets/images/news/tholin-feature/dip40.png"
+        alt: "DIP40 breakout board for custom silicon"
+      - img: "/assets/images/news/tholin-feature/dip40_wirebond.png"
+        alt: "DIP40 wirebonding setup connecting die pads to package pins"
 ---
 
 Our first shuttle run includes a number of incredible projects, and we wanted to take a moment to highlight one of them.
@@ -75,9 +90,8 @@ Additionally, Tholin developed a [**Python script**](https://github.com/AvalonSe
 
 ### Multi-Project Die Exploration
 
-![Multi-project die layout combining multiple designs on one die](/assets/images/news/tholin-feature/multidie.png)
+{% include post-gallery.html gallery="multi_project" %}
 
-![Multi-project die floorplan showing design placement](/assets/images/news/tholin-feature/multilayout.png)
 
 Tholin is also pioneering **multi-project die (MPD)** strategies, maximizing wafer area by integrating multiple small designs onto a single die.
 Projects such as [`gfmpw-1-multi`](https://github.com/AvalonSemiconductors/gfmpw1-multi) and [`AS2650-bring-up`](https://github.com/AvalonSemiconductors/AS2650-bring-up) demonstrate how careful planning and padframe reuse make it possible to test multiple subsystems in one run.
@@ -119,9 +133,8 @@ Each of these designs exemplifies the open-hardware spirit: compact, educational
 
 Beyond her silicon designs, **Tholin** has also developed a range of PCB projects and breakout boards that make working with custom dies more accessible.
 
-![DIP40 breakout board for custom silicon](/assets/images/news/tholin-feature/dip40.png)
+{% include post-gallery.html gallery="dip40_breakout" %}
 
-![DIP40 wirebonding setup connecting die pads to package pins](/assets/images/news/tholin-feature/dip40_wirebond.png)
 
 Tholin has also contributed extensively to the **wafer.space standard padframe**, helping shape the mechanical and electrical layout used across multiple projects.
 

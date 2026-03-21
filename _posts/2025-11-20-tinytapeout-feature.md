@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "Tiny Tapeout"
-date: 2025-11-20 12:00:00 +0000
+date: "2025-11-20 12:00:00 +0000"
 excerpt: "wafer.space is excited to have a Tiny Tapeout test design on our first shuttle! Tiny Tapeout has enabled thousands of people to create their own digital and analog designs."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, tiny-tapeout]
@@ -13,6 +13,33 @@ sidebar: true
 permalink: "/news/tinytapeout-feature"
 post_image: "/assets/images/news/tinytapeout-feature/tinytapeout-logo.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout"
+galleries:
+  gds_renders:
+    caption: "GDS renders from Tiny Tapeout shuttles"
+    images:
+      - img: "/assets/images/news/tinytapeout-feature/tt03-gds.png"
+        alt: "GDS render of Tiny Tapeout TT03"
+      - img: "/assets/images/news/tinytapeout-feature/tt05-gds.png"
+        alt: "GDS render of Tiny Tapeout TT05"
+      - img: "/assets/images/news/tinytapeout-feature/tt06-gds.png"
+        alt: "GDS render of Tiny Tapeout TT06"
+      - img: "/assets/images/news/tinytapeout-feature/tt07-gds.png"
+        alt: "GDS render of Tiny Tapeout TT07"
+      - img: "/assets/images/news/tinytapeout-feature/tt09-gds.png"
+        alt: "GDS render of Tiny Tapeout TT09"
+      - img: "/assets/images/news/tinytapeout-feature/ttihp0p1-gds.png"
+        alt: "GDS render of Tiny Tapeout IHP 0.1"
+      - img: "/assets/images/news/tinytapeout-feature/ttsky25a-gds.png"
+        alt: "GDS render of Tiny Tapeout Sky130 25a"
+      - img: "/assets/images/news/tinytapeout-feature/ttsky25b-gds.png"
+        alt: "GDS render of Tiny Tapeout Sky130 25b"
+  sponsors:
+    caption: "Sponsored by Tillitis and WIT.com"
+    images:
+      - img: "/assets/images/news/tinytapeout-feature/tillitis-logo-std.png"
+        alt: "Tillitis logo"
+      - img: "/assets/images/news/tinytapeout-feature/witcom-logo-std.png"
+        alt: "WIT.com logo"
 ---
 
 ![Tiny Tapeout - Democratizing chip design](/assets/images/news/tinytapeout-feature/tinytapeout-logo.png)
@@ -24,21 +51,8 @@ external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/ti
 
 Tiny Tapeout has already proven that accessible chip design works. By dramatically lowering the barrier to entry, they've enabled thousands of participants to bring their digital and analog designs to life. Now, our collaboration aims to take that further, helping designs move from prototype to product. The track record speaks for itself:
 
-![GDS render of Tiny Tapeout TT03](/assets/images/news/tinytapeout-feature/tt03-gds.png)
+{% include post-gallery.html gallery="gds_renders" %}
 
-![GDS render of Tiny Tapeout TT05](/assets/images/news/tinytapeout-feature/tt05-gds.png)
-
-![GDS render of Tiny Tapeout TT06](/assets/images/news/tinytapeout-feature/tt06-gds.png)
-
-![GDS render of Tiny Tapeout TT07](/assets/images/news/tinytapeout-feature/tt07-gds.png)
-
-![GDS render of Tiny Tapeout TT09](/assets/images/news/tinytapeout-feature/tt09-gds.png)
-
-![GDS render of Tiny Tapeout IHP 0.1](/assets/images/news/tinytapeout-feature/ttihp0p1-gds.png)
-
-![GDS render of Tiny Tapeout Sky130 25a](/assets/images/news/tinytapeout-feature/ttsky25a-gds.png)
-
-![GDS render of Tiny Tapeout Sky130 25b](/assets/images/news/tinytapeout-feature/ttsky25b-gds.png)
 
 Building on this experience, **Tiny Tapeout** now joins wafer.space to bring GF180MCU into the mix. Our collaboration has enabled Tiny Tapeout to get exactly what they need from the [standard wafer.space padframe](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board), ensuring full compatibility, consistent manufacturability, and reliable integration with COB-based packaging workflows.
 
@@ -105,8 +119,7 @@ Reserve your slot, finish your design, and join us in shaping the future of acce
 
 ### Special Thanks
 
-![Tillitis logo](/assets/images/news/tinytapeout-feature/tillitis-logo-std.png)
+{% include post-gallery.html gallery="sponsors" %}
 
-![WIT.com logo](/assets/images/news/tinytapeout-feature/witcom-logo-std.png)
 
 [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/) generously sponsored the work to bring Tiny Tapeout to GF180MCU, its third process technology. This funding is enabling the [improved multiplexer](https://www.youtube.com/watch?v=30emLKLpq50), [power gating, analog support](https://www.youtube.com/watch?v=_m_jK7twymM), and [more](https://www.youtube.com/watch?v=cCbTyfewaCw) (designed by [Sylvain "tnt" Munaut](https://github.com/smunaut)) to be ported to GF180MCU. Thank you for making this happen!
