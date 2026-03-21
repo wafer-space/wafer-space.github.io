@@ -457,6 +457,11 @@
     flex: 1;
 }
 
+/* ── News listing: prevent author byline from wrapping mid-phrase ── */
+.blog.grid .meta .author {
+    white-space: nowrap;
+}
+
 /* Footnote styling for tables */
 .table-footnote {
     font-size: 0.8rem;
