@@ -19,7 +19,7 @@ Hey everyone,
 
 When Efabless shut down earlier this year, it left a critical gap: affordable access to custom silicon disappeared overnight. [wafer.space](https://wafer.space/) exists to fill that gap by providing pooled fabrication services that make custom silicon accessible at $7 per chip.
 
-![wafer.space - Making custom silicon accessible](/assets/images/news/recent-publicity/shiny_sticker.png)
+<img src="{{ "/assets/images/news/recent-publicity/shiny_sticker.png" | relative_url }}" alt="wafer.space - Making custom silicon accessible" class="img-fluid rounded">
 
 Since launching our campaign, we've had the opportunity to explain this mission across various platforms. Each conversation reveals different aspects of why accessible silicon matters and how we're making it happen. Here's your guide to learning more.
 

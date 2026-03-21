@@ -23,7 +23,7 @@ As we get closer to our **December 3rd tape-in deadline** (that's coming up fast
 
 [Saligane](https://vivo.brown.edu/display/msaligan)'s group at the University of Michigan - now at Brown University - recently published [a paper in IEEE Solid-State Circuits Magazine](https://ieeexplore.ieee.org/document/10584418) showing off an analog front-end (AFE) chip they designed entirely with open-source tools on GF180MCU. And it's not just a test chip — they're using it to read out flexible laser-induced graphene sensors for wearables!
 
-![The fabricated GF180MCU chip showing OPAMP blocks, SAR ADC, and switched-capacitance circuits](/assets/images/news/openfasoc-sensor/annotated_shot.png)
+<img src="{{ "/assets/images/news/openfasoc-sensor/annotated_shot.png" | relative_url }}" alt="The fabricated GF180MCU chip showing OPAMP blocks, SAR ADC, and switched-capacitance circuits" class="img-fluid rounded">
 
 ([View high-resolution die photography on Silicon Prawn](https://siliconprawn.org/archive/doku.php?id=mcmaster:efabless:gf180mcu-mpw18h1-18100004))
 
@@ -33,7 +33,7 @@ The chip integrates operational amplifiers, a 14-bit SAR ADC, and a capacitive D
 - **Temperature sensors** (tracking body temperature with 0.9989 R² accuracy)
 - **Multi-modal sensing** (combining different sensor types on one platform)
 
-![The fabricated chip wire-bonded to a PCB, ready to interface with flexible sensor patches](/assets/images/news/openfasoc-sensor/test_setup.png)
+<img src="{{ "/assets/images/news/openfasoc-sensor/test_setup.png" | relative_url }}" alt="The fabricated chip wire-bonded to a PCB, ready to interface with flexible sensor patches" class="img-fluid rounded">
 
 ## The Open Source Flow Works!
 
@@ -45,7 +45,7 @@ What's exciting is they used the exact same open-source toolchain you have acces
 
 They've published their designs on GitHub in the [OpenFASoC-Tapeouts repository](https://github.com/idea-fasoc/openfasoc-tapeouts?tab=readme-ov-file#analog-front-end-and-mixed-signal), and the [final submission is available on foss-eda-tools](https://foss-eda-tools.googlesource.com/third_party/shuttle/gf180mcu/mpw-18h1/slot-004/+/refs/heads/main), which means you can actually look at exactly how they did it.
 
-![The complete open-source analog design flow used for this project](/assets/images/news/openfasoc-sensor/analog_flow.png)
+<img src="{{ "/assets/images/news/openfasoc-sensor/analog_flow.png" | relative_url }}" alt="The complete open-source analog design flow used for this project" class="img-fluid rounded">
 
 ## Reuse, Don't Reinvent!
 
@@ -58,7 +58,7 @@ This is where it gets really interesting for your designs. The [OpenFASoC projec
 
 You can literally take their [GDSII files](https://github.com/idea-fasoc/openfasoc-tapeouts/tree/main/mpw18h1/gds), study their layout techniques, and adapt their circuits for your own sensor applications. Need to read out a resistive sensor? Temperature probe? Custom transducer? The hard work of building reliable analog blocks is already done.
 
-![Real-time flex sensor demonstration showing finger bending detection with the AFE chip](/assets/images/news/openfasoc-sensor/testing.png)
+<img src="{{ "/assets/images/news/openfasoc-sensor/testing.png" | relative_url }}" alt="Real-time flex sensor demonstration showing finger bending detection with the AFE chip" class="img-fluid rounded">
 
 ## What Could You Build?
 
