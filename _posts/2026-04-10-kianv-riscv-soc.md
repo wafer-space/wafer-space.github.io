@@ -56,7 +56,7 @@ The SoC integrates a minimal peripheral set connected via an internal system bus
 The system boots from an **SD card**, provides **network connectivity**, and
 operates at **3.3 V** on a mature **180 nm technology node**.
 
-![Block diagram of the KianV RV32 SV32-capable RISC-V SoC.](/assets/images/news/kianv-riscv-soc/soc-overview.svg)
+<img src="{{ "/assets/images/news/kianv-riscv-soc/soc-overview.svg" | relative_url }}" alt="Block diagram of the KianV RV32 SV32-capable RISC-V SoC." class="img-fluid rounded">
 
 ---
 
@@ -67,7 +67,7 @@ In total, the chip provides **74 pads**, including **power** and **ground** conn
 The external IO supports **SDRAM**, **SPI flash**, **SD card**, **Ethernet**, and **UART**.
 
 
-![KianV SoC external IO pinout.](/assets/images/news/kianv-riscv-soc/chip_symbol.png)
+<img src="{{ "/assets/images/news/kianv-riscv-soc/chip_symbol.png" | relative_url }}" alt="KianV SoC external IO pinout." class="img-fluid rounded">
 
 | Interface | Signals                       | Dir | Description        |
 |:---------:|-------------------------------|:---:|--------------------|
@@ -102,7 +102,7 @@ is **mentioned in a FOSSi Foundation article**
 Solid-State Circuits Magazine publication**
 (https://ieeexplore.ieee.org/document/10584359).
 
-![SkyWater 130 nm die layout of the Tiny Tapeout KianV uLinux (no-MMU) SoC.](/assets/images/news/kianv-riscv-soc/tt_ulinux_soc_kianv.png)
+<img src="{{ "/assets/images/news/kianv-riscv-soc/tt_ulinux_soc_kianv.png" | relative_url }}" alt="SkyWater 130 nm die layout of the Tiny Tapeout KianV uLinux (no-MMU) SoC." class="img-fluid rounded">
 
 ---
 
@@ -134,7 +134,7 @@ Key metrics:
 
 ## ASIC GF180MCU Layout
 
-![KianV SoC ASIC layout. Cache SRAM blocks surround the central core, with peripherals and IO placed around the perimeter.](/assets/images/news/kianv-riscv-soc/chip_top_white.png)
+<img src="{{ "/assets/images/news/kianv-riscv-soc/chip_top_white.png" | relative_url }}" alt="KianV SoC ASIC layout. Cache SRAM blocks surround the central core, with peripherals and IO placed around the perimeter." class="img-fluid rounded">
 
 
 ---
@@ -159,7 +159,7 @@ the **Linux kernel**. Only **minimal driver adaptations** were required to boot
 In addition to Linux, the system also runs **uLinux** and **XV6** on the same
 hardware platform.
 
-![Linux mainline (6.19.0-rc1) booting on the KianV RISC-V SoC.](/assets/images/news/kianv-riscv-soc/console.png)
+<img src="{{ "/assets/images/news/kianv-riscv-soc/console.png" | relative_url }}" alt="Linux mainline (6.19.0-rc1) booting on the KianV RISC-V SoC." class="img-fluid rounded">
 
 ---
 

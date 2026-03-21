@@ -42,11 +42,11 @@ galleries:
         alt: "WIT.com logo"
 ---
 
-![Tiny Tapeout - Democratizing chip design](/assets/images/news/tinytapeout-feature/tinytapeout-logo.png)
+<img src="{{ "/assets/images/news/tinytapeout-feature/tinytapeout-logo.png" | relative_url }}" alt="Tiny Tapeout - Democratizing chip design" class="img-fluid rounded">
 
 [wafer.space](https://wafer.space/) is excited to collaborate with [Tiny Tapeout](https://tinytapeout.com/) to port their infrastructure to GF180MCU. Founded by [Matt Venn](https://zerotoasiccourse.com/), Tiny Tapeout has become a cornerstone of the open-silicon movement, empowering students, hobbyists, and even industry professionals to design and fabricate their own ASICs through approachable tools and collaborative workflows. Our collaboration provides an easy and affordable pathway from initial ideas and prototyping to building real products.
 
-![With Tiny Tapeout, you get a ready-to-go development board](/assets/images/news/tinytapeout-feature/previous-tt-version.jpeg)
+<img src="{{ "/assets/images/news/tinytapeout-feature/previous-tt-version.jpeg" | relative_url }}" alt="With Tiny Tapeout, you get a ready-to-go development board" class="img-fluid rounded">
 
 
 Tiny Tapeout has already proven that accessible chip design works. By dramatically lowering the barrier to entry, they've enabled thousands of participants to bring their digital and analog designs to life. Now, our collaboration aims to take that further, helping designs move from prototype to product. The track record speaks for itself:
@@ -87,7 +87,7 @@ Both Tiny Tapeout and wafer.space have been thrilled by the community response. 
 
 The project tiles are filling up fast:
 
-![Project tiles already allocated on the GF0p2 run](/assets/images/news/tinytapeout-feature/current-run.png)
+<img src="{{ "/assets/images/news/tinytapeout-feature/current-run.png" | relative_url }}" alt="Project tiles already allocated on the GF0p2 run" class="img-fluid rounded">
 
 ## Join Us!
 
@@ -103,7 +103,7 @@ With Tiny Tapeout, anyone can get started with just a web browser and a few hour
 
 ## Don't Miss Your Chance to Join the First Shuttle
 
-![wafer.space bringing open accessible custom silicon fabrication](/assets/images/news/tinytapeout-feature/waferspace-rainbow-open.png)
+<img src="{{ "/assets/images/news/tinytapeout-feature/waferspace-rainbow-open.png" | relative_url }}" alt="wafer.space bringing open accessible custom silicon fabrication" class="img-fluid rounded">
 
 We’re rapidly approaching the final milestones for this shuttle run, and now is the time to secure your spot:
 

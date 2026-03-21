@@ -29,6 +29,6 @@ Run [gf180mcu-precheck](https://github.com/wafer-space/gf180mcu-precheck) locall
 
 If you run into issues, join the [wafer.space Discord](https://discord.gg/43y2t53jpE). Many people are putting the finishing touches on their designs right now, and problems you encounter have likely been solved by others who can offer guidance.
 
-![wafer.space bringing open accessible custom silicon fabrication](/assets/images/news/final-reminder/waferspace-rainbow-open.png)
+<img src="{{ "/assets/images/news/final-reminder/waferspace-rainbow-open.png" | relative_url }}" alt="wafer.space bringing open accessible custom silicon fabrication" class="img-fluid rounded">
 
 **— Tim 'mithro' Ansell and the wafer.space Team**
