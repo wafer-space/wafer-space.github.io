@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Community Progress on Chip-on-Board Packaging Strategy"
 date: 2025-11-10 12:00:00 +0000
+excerpt: "The wafer.space community is developing a flexible chip-on-board packaging strategy, so you won't need specialised equipment or expensive packaging services to use your chips."
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
 author: "Andrew Wingate"

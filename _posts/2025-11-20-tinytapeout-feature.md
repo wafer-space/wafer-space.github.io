@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Untitled Update"
 date: 2025-11-20 12:00:00 +0000
+excerpt: "wafer.space is excited to have a Tiny Tapeout test design on our first shuttle! Tiny Tapeout has enabled thousands of people to create their own digital and analog designs."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, tiny-tapeout]
 author: "Tim 'mithro' Ansell"

@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "GF180MCU Linux/XV6 RISC-V SoC"
 date: 2026-04-10 12:00:00 +0000
+excerpt: "KianV is a custom GF180MCU-based RISC-V SoC capable of running uLinux, Linux, and XV6 using a fully open-source ASIC flow."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, risc-v, kianv]
 author: "Hirosh Dabui"

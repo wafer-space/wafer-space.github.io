@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Easier Design Flow: LibreLane & the gf180mcu Project Template"
 date: 2025-10-23 12:00:00 +0000
+excerpt: "Get started faster with the LibreLane gf180mcu template: ready-to-use tooling so you can focus on what your chip does, not build infrastructure."
 categories: [news]
 tags: [gf180mcu, run1, librelane, tooling]
 author: "Tim 'mithro' Ansell"

@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "We Have Some Amazing Projects This Run"
 date: 2025-11-13 12:00:00 +0000
+excerpt: "Our first shuttle run includes incredible projects. We highlight Tholin and Avalon Semiconductors: an open reimplementation of the historic Signetics 2650 microprocessor."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, tholin]
 author: "Tim 'mithro' Ansell"

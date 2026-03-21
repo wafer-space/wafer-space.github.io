@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Two Weeks Left for Early Bird Pricing"
 date: 2026-04-17 12:00:00 +0000
+excerpt: "Early bird pricing for GF180MCU Run 2 ends on 30 April 2026. After that, prices go up."
 categories: [news]
 tags: [gf180mcu, run2, pricing]
 author: "Tim 'mithro' Ansell"

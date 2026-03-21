@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Less than 48 hours to go!"
 date: 2025-11-24 12:00:00 +0000
+excerpt: "Less than 48 hours remain in the first shuttle campaign! If you hope to be on this shuttle, place your order now."
 categories: [news]
 tags: [gf180mcu, run1, deadline]
 author: "Tim 'mithro' Ansell"

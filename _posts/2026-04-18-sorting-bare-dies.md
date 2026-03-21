@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Die Sorting in Progress"
 date: 2026-04-18 12:00:00 +0000
+excerpt: "The Run 1 wafers have been diced and we are now sorting individual dies for shipping."
 categories: [news]
 tags: [gf180mcu, run1, manufacturing]
 author: "Tim 'mithro' Ansell"

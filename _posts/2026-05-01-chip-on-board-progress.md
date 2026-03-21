@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Chip-on-Board Packaging Progress"
 date: 2026-05-01 12:00:00 +0000
+excerpt: "Run 1 bare dies have shipped. Now we are working through chip-on-board packaging for customers who ordered that add-on."
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
 author: "Tim 'mithro' Ansell"

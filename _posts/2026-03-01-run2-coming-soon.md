@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "GF180MCU Run 2 is Coming!"
 date: 2026-03-01 12:00:00 +0000
+excerpt: "GF180MCU Run 2 is coming! Multiple slot sizes, improved DRC, better tooling, and early-bird pricing for Run 1 backers."
 categories: [news]
 tags: [gf180mcu, run2, crowd-supply]
 author: "Tim 'mithro' Ansell"

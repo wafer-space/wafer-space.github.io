@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Run 1 Wafers Have Arrived"
 date: 2026-04-03 12:00:00 +0000
+excerpt: "After 12 weeks at GlobalFoundries, the Run 1 wafers have been manufactured and returned. Your designs are now real silicon."
 categories: [news]
 tags: [gf180mcu, run1, manufacturing]
 author: "Tim 'mithro' Ansell"
