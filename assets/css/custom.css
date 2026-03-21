@@ -428,6 +428,35 @@
     font-size: 1.1rem;
 }
 
+/* ── News listing grid: equal card heights ── */
+/* Constrain hero image thumbnails to consistent aspect ratio */
+.blog.grid .post figure.main {
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog.grid .post figure.main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ensure isotope grid items stretch to equal row height */
+.blog.grid .item.post {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog.grid .item.post > .box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.blog.grid .item.post .post-content {
+    flex: 1;
+}
+
 /* Footnote styling for tables */
 .table-footnote {
     font-size: 0.8rem;
