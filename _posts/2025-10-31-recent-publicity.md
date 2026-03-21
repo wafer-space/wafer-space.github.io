@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Understanding wafer.space: Resources to Learn More About Our Mission"
 date: 2025-10-31 12:00:00 +0000
+excerpt: "A collection of interviews, articles, and podcasts that explain the wafer.space mission."
 categories: [news]
 tags: [gf180mcu, run1, press]
 author: "Tim 'mithro' Ansell"

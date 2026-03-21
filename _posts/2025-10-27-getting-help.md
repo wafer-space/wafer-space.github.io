@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Professional Design Support: Your Options for GF180MCU Success"
 date: 2025-10-27 12:00:00 +0000
+excerpt: "Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design."
 categories: [news]
 tags: [gf180mcu, run1, design-help]
 author: "Tim 'mithro' Ansell"
