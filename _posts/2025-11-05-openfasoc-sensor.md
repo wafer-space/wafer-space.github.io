@@ -2,6 +2,7 @@
 layout: posts/post-boxed
 title: "Campaign Update: Building Real Sensors with GF180MCU — See What's Possible!"
 date: 2025-11-05 12:00:00 +0000
+excerpt: "Wonder what you can do with GF180MCU? Mehdi's OpenFASoC design creates a finger flex sensor, complete with an IEEE paper containing real silicon characteristics and analog blocks reusable for your own design!"
 categories: [news]
 tags: [gf180mcu, run1, openfasoc, analog]
 author: "Tim 'mithro' Ansell"
