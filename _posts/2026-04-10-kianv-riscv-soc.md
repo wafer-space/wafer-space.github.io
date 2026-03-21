@@ -10,7 +10,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/kianv-riscv-soc"
-post_image: "/assets/images/news/kianv-riscv-soc/chip_top_white.png"
+post_image: "/assets/images/news/kianv-riscv-soc/soc-overview.svg"
 ---
 
 ## Introduction
