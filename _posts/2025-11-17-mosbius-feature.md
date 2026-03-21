@@ -1,6 +1,6 @@
 ---
 layout: posts/post-boxed
-title: "We Have Some Amazing Projects This Run: [MOSbius](https://mosbius.org/)"
+title: "We Have Some Amazing Projects This Run: MOSbius"
 date: 2025-11-17 12:00:00 +0000
 excerpt: "This week we highlight MOSbius, an educational platform from Columbia University bringing hands-on silicon learning to students worldwide."
 categories: [news]
@@ -43,9 +43,9 @@ Given the unique requirements of the MOSbius project, the team is designing thei
 
 Their application prioritizes **a high number of I/O connections** over power and ground pads, allowing for the maximum number of accessible signals from their transistor array.
 
-![MOSbius custom COB package design - PCB layout and 3D visualization](/assets/images/news/mosbius-feature/mos_pcb.png)
+![MOSbius custom COB PCB layout](/assets/images/news/mosbius-feature/mos_pcb.png)
 
-![MOSbius custom COB package design - PCB layout and 3D visualization](/assets/images/news/mosbius-feature/mos_3d.png)
+![MOSbius custom COB 3D board visualisation](/assets/images/news/mosbius-feature/mos_3d.png)
 
 **Peter's student, @xianglin_pui**, has taken the lead on this effort and developed derivative designs that extend the wafer.space COB standard for MOSbius's specialized needs.
 
