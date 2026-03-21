@@ -23,13 +23,13 @@ But fabrication is only half the equation. You also need tools to actually desig
 
 Last month at [ORConf 2025](https://orconf.org/) in Valencia, Mohamed Gaber and Leo Moser presented LibreLane - the next-generation design flow for open silicon. And there's now a ready-to-use [gf180mcu project template](https://github.com/wafer-space/gf180mcu-project-template) that makes starting your wafer.space design even easier.
 
-![Simple LibreLane Workflow - Synthesis → Floorplan → Placement → Routing → Verification — all automated](/assets/images/news/librelane-template/librelane-step1-design.svg)
+![LibreLane Step 1: Design your chip in Verilog](/assets/images/news/librelane-template/librelane-step1-design.svg)
 
-![Simple LibreLane Workflow - Synthesis → Floorplan → Placement → Routing → Verification — all automated](/assets/images/news/librelane-template/librelane-step2-config.svg)
+![LibreLane Step 2: Configure the flow](/assets/images/news/librelane-template/librelane-step2-config.svg)
 
-![Simple LibreLane Workflow - Synthesis → Floorplan → Placement → Routing → Verification — all automated](/assets/images/news/librelane-template/librelane-step3-run.svg)
+![LibreLane Step 3: Run the automated flow](/assets/images/news/librelane-template/librelane-step3-run.svg)
 
-![Simple LibreLane Workflow - Synthesis → Floorplan → Placement → Routing → Verification — all automated](/assets/images/news/librelane-template/librelane-step4-gds.svg)
+![LibreLane Step 4: Get your GDS output](/assets/images/news/librelane-template/librelane-step4-gds.svg)
 
 ## What is LibreLane?
 

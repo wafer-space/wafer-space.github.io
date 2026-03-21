@@ -137,9 +137,9 @@ A small bring-up PCB was designed to support validation and software bring-up.
 The board provides **32 MiB SDRAM**, **SPI-based Ethernet**,
 **SPI flash / SPI card**, **UART**, power regulation.
 
-![KianV GF180MCU ASIC bring-up PCB (top and bottom views).](/assets/images/news/kianv-riscv-soc/pcb_top.png)
+![KianV GF180MCU ASIC bring-up PCB - top view](/assets/images/news/kianv-riscv-soc/pcb_top.png)
 
-![KianV GF180MCU ASIC bring-up PCB (top and bottom views).](/assets/images/news/kianv-riscv-soc/pcb_bottom.png)
+![KianV GF180MCU ASIC bring-up PCB - bottom view](/assets/images/news/kianv-riscv-soc/pcb_bottom.png)
 
 ---
 
