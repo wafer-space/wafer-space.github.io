@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "We Have Some Amazing Projects This Run: MOSbius"
-date: 2025-11-17 12:00:00 +0000
+date: "2025-11-17 12:00:00 +0000"
 excerpt: "This week we highlight MOSbius, an educational platform from Columbia University bringing hands-on silicon learning to students worldwide."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, mosbius]
@@ -13,6 +13,14 @@ sidebar: true
 permalink: "/news/mosbius-feature"
 post_image: "/assets/images/news/mosbius-feature/mosbius_flow.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/mosbius"
+galleries:
+  cob_design:
+    caption: "MOSbius custom COB package design"
+    images:
+      - img: "/assets/images/news/mosbius-feature/mos_pcb.png"
+        alt: "MOSbius custom COB PCB layout"
+      - img: "/assets/images/news/mosbius-feature/mos_3d.png"
+        alt: "MOSbius custom COB 3D board visualisation"
 ---
 
 Our first shuttle run spans from solo makers like Tholin to universities. This week we highlight [MOSbius](https://mosbius.org/), an educational platform from Columbia University bringing hands-on silicon learning to students worldwide.
@@ -43,9 +51,8 @@ Given the unique requirements of the MOSbius project, the team is designing thei
 
 Their application prioritizes **a high number of I/O connections** over power and ground pads, allowing for the maximum number of accessible signals from their transistor array.
 
-![MOSbius custom COB PCB layout](/assets/images/news/mosbius-feature/mos_pcb.png)
+{% include post-gallery.html gallery="cob_design" %}
 
-![MOSbius custom COB 3D board visualisation](/assets/images/news/mosbius-feature/mos_3d.png)
 
 **Peter's student, @xianglin_pui**, has taken the lead on this effort and developed derivative designs that extend the wafer.space COB standard for MOSbius's specialized needs.
 

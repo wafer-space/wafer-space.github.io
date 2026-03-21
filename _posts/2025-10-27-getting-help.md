@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "Professional Design Support: Your Options for GF180MCU Success"
-date: 2025-10-27 12:00:00 +0000
+date: "2025-10-27 12:00:00 +0000"
 excerpt: "Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design."
 categories: [news]
 tags: [gf180mcu, run1, design-help]
@@ -13,6 +13,16 @@ sidebar: true
 permalink: "/news/getting-help"
 post_image: "/assets/images/news/getting-help/timeline.svg"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/getting-help"
+galleries:
+  support_spectrum:
+    caption: "Professional support options: independent, hybrid, and full-service"
+    images:
+      - img: "/assets/images/news/getting-help/support-spectrum-independent.svg"
+        alt: "Independent design with community support"
+      - img: "/assets/images/news/getting-help/support-spectrum-hybrid.svg"
+        alt: "Hybrid approach with selective expert help"
+      - img: "/assets/images/news/getting-help/support-spectrum-fullservice.svg"
+        alt: "Full-service professional design support"
 ---
 
 Hey everyone,
@@ -99,11 +109,8 @@ Low-cost ASIC development, mixed-signal IC design contracting, and consulting ac
 
 Think of professional services as part of a spectrum of options, not an all-or-nothing choice:
 
-![support-spectrum-independent](/assets/images/news/getting-help/support-spectrum-independent.svg)
+{% include post-gallery.html gallery="support_spectrum" %}
 
-![support-spectrum-hybrid](/assets/images/news/getting-help/support-spectrum-hybrid.svg)
-
-![support-spectrum-fullservice](/assets/images/news/getting-help/support-spectrum-fullservice.svg)
 
 You might handle 90% of your design independently and bring in expert review for critical analog sections. Or maybe you want someone to handle the entire physical design while you focus on verification. The approach you choose depends on your timeline, budget, and where you want to spend your effort.
 

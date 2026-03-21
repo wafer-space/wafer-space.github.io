@@ -1,7 +1,7 @@
 ---
-layout: posts/post-boxed
+layout: "posts/post-boxed"
 title: "Community Progress on Chip-on-Board Packaging Strategy"
-date: 2025-11-10 12:00:00 +0000
+date: "2025-11-10 12:00:00 +0000"
 excerpt: "The wafer.space community is developing a flexible chip-on-board packaging strategy, so you won't need specialised equipment or expensive packaging services to use your chips."
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
@@ -13,6 +13,28 @@ sidebar: true
 permalink: "/news/chip-on-board-strategy"
 post_image: "/assets/images/news/chip-on-board-strategy/padframes-cob-die-padring.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board"
+galleries:
+  mezzanine_views:
+    caption: "Mezzanine COB board design"
+    images:
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-front.png"
+        alt: "Mezzanine COB board - front view"
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-back.png"
+        alt: "Mezzanine COB board - back view"
+  mezzanine_panels:
+    caption: "Mezzanine panel for wirebonding assembly"
+    images:
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-front.png"
+        alt: "Mezzanine panel - front view for wirebonding assembly"
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-rear.png"
+        alt: "Mezzanine panel - rear view"
+  dip_designs:
+    caption: "DIP package designs"
+    images:
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-dip.png"
+        alt: "DIP package design - standard through-hole format"
+      - img: "/assets/images/news/chip-on-board-strategy/padframes-cob-dip1.png"
+        alt: "DIP package design - alternative layout"
 ---
 
 Today we have a guest post from **[Andrew Wingate](https://www.crowdsupply.com/evezor-inc)** (of Evezor Inc), sharing his perspective on the progress the [wafer.space](https://wafer.space/) community has been making in developing a chip-on-board packaging strategy. This work includes contributions from **[Tiny Tapeout](https://tinytapeout.com/)**, **[MosBius](https://mosbius.org/)** ([Columbia University](https://peterkinget.github.io/)), and community members like **[@Tholin](https://github.com/AvalonSemiconductors)** and **@xianglin_pu**.
@@ -81,16 +103,13 @@ So what does this standard look like in practice? Let's walk through the actual 
 
 The centerpiece of the standard is a 70-pin mezzanine COB board that connects your wirebonded die to a standard connector.
 
-![Mezzanine COB board - front view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-front.png)
-
-![Mezzanine COB board - back view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-back.png)
+{% include post-gallery.html gallery="mezzanine_views" %}
 
 
 Panelized for efficient handling and assembly by wirebonding partners:
 
-![Mezzanine panel - front view for wirebonding assembly](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-front.png)
+{% include post-gallery.html gallery="mezzanine_panels" %}
 
-![Mezzanine panel - rear view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-rear.png)
 
 The standard configuration can be found in the [GitHub repository](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml). For easier viewing, it's also available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1pI2BAEWEexXcXN3vah3SR85zPIV6eAXPGXc2bcvoSGU/edit?gid=0#gid=0) that shows the complete pad mapping.
 
@@ -177,9 +196,8 @@ Before settling on the mezzanine connector as the standard, the community explor
 
 #### DIP
 
-![DIP package design - standard through-hole format](/assets/images/news/chip-on-board-strategy/padframes-cob-dip.png)
+{% include post-gallery.html gallery="dip_designs" %}
 
-![DIP package design - alternative layout](/assets/images/news/chip-on-board-strategy/padframes-cob-dip1.png)
 
 #### Castellated
 
