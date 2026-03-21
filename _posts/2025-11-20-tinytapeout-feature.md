@@ -1,6 +1,6 @@
 ---
 layout: posts/post-boxed
-title: "Untitled Update"
+title: "Tiny Tapeout"
 date: 2025-11-20 12:00:00 +0000
 excerpt: "wafer.space is excited to have a Tiny Tapeout test design on our first shuttle! Tiny Tapeout has enabled thousands of people to create their own digital and analog designs."
 categories: [news]
@@ -15,8 +15,6 @@ post_image: "/assets/images/news/tinytapeout-feature/tinytapeout-logo.png"
 external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tiny-tapeout"
 ---
 
-## Tiny Tapeout
-
 ![Tiny Tapeout - Democratizing chip design](/assets/images/news/tinytapeout-feature/tinytapeout-logo.png)
 
 [wafer.space](https://wafer.space/) is excited to collaborate with [Tiny Tapeout](https://tinytapeout.com/) to port their infrastructure to GF180MCU. Founded by [Matt Venn](https://zerotoasiccourse.com/), Tiny Tapeout has become a cornerstone of the open-silicon movement, empowering students, hobbyists, and even industry professionals to design and fabricate their own ASICs through approachable tools and collaborative workflows. Our collaboration provides an easy and affordable pathway from initial ideas and prototyping to building real products.
@@ -26,21 +24,21 @@ external_url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/ti
 
 Tiny Tapeout has already proven that accessible chip design works. By dramatically lowering the barrier to entry, they've enabled thousands of participants to bring their digital and analog designs to life. Now, our collaboration aims to take that further, helping designs move from prototype to product. The track record speaks for itself:
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/tt03-gds.png)
+![GDS render of Tiny Tapeout TT03](/assets/images/news/tinytapeout-feature/tt03-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/tt05-gds.png)
+![GDS render of Tiny Tapeout TT05](/assets/images/news/tinytapeout-feature/tt05-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/tt06-gds.png)
+![GDS render of Tiny Tapeout TT06](/assets/images/news/tinytapeout-feature/tt06-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/tt07-gds.png)
+![GDS render of Tiny Tapeout TT07](/assets/images/news/tinytapeout-feature/tt07-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/tt09-gds.png)
+![GDS render of Tiny Tapeout TT09](/assets/images/news/tinytapeout-feature/tt09-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/ttihp0p1-gds.png)
+![GDS render of Tiny Tapeout IHP 0.1](/assets/images/news/tinytapeout-feature/ttihp0p1-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/ttsky25a-gds.png)
+![GDS render of Tiny Tapeout Sky130 25a](/assets/images/news/tinytapeout-feature/ttsky25a-gds.png)
 
-![GDS renders from Tiny Tapeout shuttles [TT03](https://tinytapeout.com/chips/tt03/), [TT05](https://tinytapeout.com/chips/tt05/), [TT06](https://tinytapeout.com/chips/tt06/), [TT07](https://tinytapeout.com/chips/tt07/), [TT09](https://tinytapeout.com/chips/tt09/), [IHP 0.1](https://app.tinytapeout.com/shuttles/ttihp0p1), [Sky130 25a](https://tinytapeout.com/chips/ttsky25a/), and [Sky130 25b](https://tinytapeout.com/chips/ttsky25b/)](/assets/images/news/tinytapeout-feature/ttsky25b-gds.png)
+![GDS render of Tiny Tapeout Sky130 25b](/assets/images/news/tinytapeout-feature/ttsky25b-gds.png)
 
 Building on this experience, **Tiny Tapeout** now joins wafer.space to bring GF180MCU into the mix. Our collaboration has enabled Tiny Tapeout to get exactly what they need from the [standard wafer.space padframe](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/chip-on-board), ensuring full compatibility, consistent manufacturability, and reliable integration with COB-based packaging workflows.
 
@@ -107,8 +105,8 @@ Reserve your slot, finish your design, and join us in shaping the future of acce
 
 ### Special Thanks
 
-![Sponsored by [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/)](/assets/images/news/tinytapeout-feature/tillitis-logo-std.png)
+![Tillitis logo](/assets/images/news/tinytapeout-feature/tillitis-logo-std.png)
 
-![Sponsored by [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/)](/assets/images/news/tinytapeout-feature/witcom-logo-std.png)
+![WIT.com logo](/assets/images/news/tinytapeout-feature/witcom-logo-std.png)
 
 [Tillitis](https://www.tillitis.se/) and [WIT.com](https://wit.com/) generously sponsored the work to bring Tiny Tapeout to GF180MCU, its third process technology. This funding is enabling the [improved multiplexer](https://www.youtube.com/watch?v=30emLKLpq50), [power gating, analog support](https://www.youtube.com/watch?v=_m_jK7twymM), and [more](https://www.youtube.com/watch?v=cCbTyfewaCw) (designed by [Sylvain "tnt" Munaut](https://github.com/smunaut)) to be ported to GF180MCU. Thank you for making this happen!

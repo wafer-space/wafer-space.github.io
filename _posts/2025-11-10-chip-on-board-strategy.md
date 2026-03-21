@@ -81,16 +81,16 @@ So what does this standard look like in practice? Let's walk through the actual 
 
 The centerpiece of the standard is a 70-pin mezzanine COB board that connects your wirebonded die to a standard connector.
 
-![70-pin mezzanine COB front and back views](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-front.png)
+![Mezzanine COB board - front view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-front.png)
 
-![70-pin mezzanine COB front and back views](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-back.png)
+![Mezzanine COB board - back view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-back.png)
 
 
 Panelized for efficient handling and assembly by wirebonding partners:
 
-![Mezzanine panel front and rear for efficient wirebonding assembly](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-front.png)
+![Mezzanine panel - front view for wirebonding assembly](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-front.png)
 
-![Mezzanine panel front and rear for efficient wirebonding assembly](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-rear.png)
+![Mezzanine panel - rear view](/assets/images/news/chip-on-board-strategy/padframes-cob-mezzanine-panel-rear.png)
 
 The standard configuration can be found in the [GitHub repository](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml). For easier viewing, it's also available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1pI2BAEWEexXcXN3vah3SR85zPIV6eAXPGXc2bcvoSGU/edit?gid=0#gid=0) that shows the complete pad mapping.
 
@@ -177,9 +177,9 @@ Before settling on the mezzanine connector as the standard, the community explor
 
 #### DIP
 
-![DIP package designs for through-hole applications](/assets/images/news/chip-on-board-strategy/padframes-cob-dip.png)
+![DIP package design - standard through-hole format](/assets/images/news/chip-on-board-strategy/padframes-cob-dip.png)
 
-![DIP package designs for through-hole applications](/assets/images/news/chip-on-board-strategy/padframes-cob-dip1.png)
+![DIP package design - alternative layout](/assets/images/news/chip-on-board-strategy/padframes-cob-dip1.png)
 
 #### Castellated
 
