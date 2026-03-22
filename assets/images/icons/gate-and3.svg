@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 3-Input AND Gate: flat left, curved right -->
+  <!-- Input lines -->
+  <line x1="2" y1="16" x2="14" y2="16"/>
+  <line x1="2" y1="32" x2="14" y2="32"/>
+  <line x1="2" y1="48" x2="14" y2="48"/>
+  <!-- Gate body: flat left + curved right (AND shape) -->
+  <path d="M14,8 L32,8 C46,8 54,18 54,32 C54,46 46,56 32,56 L14,56 Z" fill="none"/>
+  <!-- Output line -->
+  <line x1="54" y1="32" x2="62" y2="32"/>
+</svg>

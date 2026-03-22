@@ -1,0 +1,9 @@
+<!-- Section Divider -->
+<div id="{{ include.title | slugify }}" class="wrapper dark-wrapper inverse-text">
+  <div class="container inner text-center py-3">
+    <h2 class="title-color color-white mb-0">{{ include.title }}</h2>
+    {% if include.subtitle %}
+    <h3 class="display-3 mb-0">{{ include.subtitle }}</h3>
+    {% endif %}
+  </div>
+</div>

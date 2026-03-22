@@ -1,0 +1,114 @@
+<!-- Run 1 Design Showcase Carousel -->
+{% assign run1 = site.data.run1_designs %}
+{% if run1 %}
+<div id="run1" class="wrapper gray-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <h2 class="title-color color-gray">Run 1: Many Designs on a Single Reticle</h2>
+        <h3 class="display-3">{{ run1.open_source_designs }} open-source designs from universities, startups, and hobbyists worldwide</h3>
+        <p class="lead">Silicon currently in fabrication &mdash; expected delivery late April 2026</p>
+        <div class="space20"></div>
+      </div>
+    </div>
+
+    <div class="grid-view position-relative">
+      <div class="carousel owl-carousel" id="run1-carousel" data-margin="30" data-dots="true" data-loop="true" data-autoplay="true" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "3"}}'>
+        {% for design in run1.designs %}
+        <div class="item">
+          <div class="box bg-white shadow p-30">
+            {% if design.image %}
+            <figure class="overlay overlay1 rounded mb-20">
+              <a href="{{ design.repo_url }}" target="_blank" rel="noopener">
+                <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" />
+              </a>
+              <figcaption>
+                <h5 class="from-top mb-0">View Source</h5>
+              </figcaption>
+            </figure>
+            {% else %}
+            {% assign grad_index = forloop.index | modulo: 10 %}
+            {% if grad_index == 1 %}{% assign grad = "#667eea, #764ba2" %}
+            {% elsif grad_index == 2 %}{% assign grad = "#11998e, #38ef7d" %}
+            {% elsif grad_index == 3 %}{% assign grad = "#ee0979, #ff6a00" %}
+            {% elsif grad_index == 4 %}{% assign grad = "#2c3e50, #4ca1af" %}
+            {% elsif grad_index == 5 %}{% assign grad = "#834d9b, #d04ed6" %}
+            {% elsif grad_index == 6 %}{% assign grad = "#fc4a1a, #f7b733" %}
+            {% elsif grad_index == 7 %}{% assign grad = "#4568dc, #b06ab3" %}
+            {% elsif grad_index == 8 %}{% assign grad = "#0f2027, #2c5364" %}
+            {% elsif grad_index == 9 %}{% assign grad = "#16a085, #f4d03f" %}
+            {% elsif grad_index == 0 %}{% assign grad = "#e44d26, #f16529" %}
+            {% endif %}
+            <figure class="rounded mb-20 text-center" style="background: linear-gradient(135deg, {{ grad }}); padding: 2.5rem 1rem; min-height: 140px; display: flex; align-items: center; justify-content: center;">
+              <div>
+                <h4 class="text-white mb-5" style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px;">{{ design.code }}</h4>
+                <p class="text-white-50 mb-0" style="font-size: 0.8rem;">{{ design.slot_size }} slot</p>
+              </div>
+            </figure>
+            {% endif %}
+            <div class="post-content">
+              <div class="category mb-10">
+                {% assign badge_color = "bg-blue" %}
+                {% if design.category == "RISC-V" %}{% assign badge_color = "bg-purple" %}
+                {% elsif design.category == "FPGA" %}{% assign badge_color = "bg-green" %}
+                {% elsif design.category == "Mixed-Signal" %}{% assign badge_color = "bg-meander" %}
+                {% elsif design.category == "Retro CPU" %}{% assign badge_color = "bg-orange" %}
+                {% elsif design.category == "Digital" %}{% assign badge_color = "bg-blue" %}
+                {% elsif design.category == "Multi-Project" %}{% assign badge_color = "bg-pink" %}
+                {% elsif design.category == "Crypto" %}{% assign badge_color = "bg-violet" %}
+                {% elsif design.category == "Analog" %}{% assign badge_color = "bg-teal" %}
+                {% elsif design.category == "Art" %}{% assign badge_color = "bg-yellow" %}
+                {% endif %}
+                <span class="badge rounded-pill {{ badge_color }}">{{ design.category }}</span>
+              </div>
+              <h5 class="post-title mb-5">
+                {% if design.repo_url %}
+                  <a href="{{ design.repo_url }}" target="_blank" rel="noopener">{{ design.name }}</a>
+                {% else %}
+                  {{ design.name }}
+                {% endif %}
+              </h5>
+              <p class="mb-10 text-muted small">{{ design.description }}</p>
+              <div class="meta mb-0">
+                <span><i class="jam jam-user"></i> {{ design.author }}</span>
+                {% if design.repo_url %}
+                  <span><a href="{{ design.repo_url }}" target="_blank" rel="noopener"><i class="jam jam-github"></i> Source</a></span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.item -->
+        {% endfor %}
+      </div>
+      <!-- /.owl-carousel -->
+      <button class="carousel-nav-btn carousel-prev" aria-label="Previous"><i class="jam jam-chevron-left"></i></button>
+      <button class="carousel-nav-btn carousel-next" aria-label="Next"><i class="jam jam-chevron-right"></i></button>
+    </div>
+    <!-- /.grid-view -->
+
+    <div class="space80"></div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="{{ run1.repo_url }}" target="_blank" rel="noopener" class="btn btn-default">
+          See all {{ run1.open_source_designs }} open-source designs &rarr;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    var $c = jQuery('#run1-carousel');
+    document.querySelector('#run1 .carousel-prev').addEventListener('click', function() {
+      $c.trigger('prev.owl.carousel');
+    });
+    document.querySelector('#run1 .carousel-next').addEventListener('click', function() {
+      $c.trigger('next.owl.carousel');
+    });
+  }, 500);
+});
+</script>
+{% endif %}

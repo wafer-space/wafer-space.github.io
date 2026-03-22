@@ -1,0 +1,62 @@
+<!-- Add-ons Section -->
+<div id="addons" class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-md-8 mx-auto text-center">
+        <h2 class="title-color color-gray">Enhance Your Order</h2>
+        <h3 class="display-3">Get your chips packaged and ready to test, or take home an entire wafer</h3>
+        <div class="space40"></div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      {% for addon in site.data.slots.addons %}
+      <div class="col-lg-5 col-md-6 mb-30">
+        <div class="box bg-white shadow addon-card">
+          {% if addon.image %}
+          <figure class="addon-image-wrapper rounded mb-20 overlay overlay1">
+            <a href="{{ site.data.slots.buy_url }}">
+              <img src="{{ addon.image | relative_url }}" alt="{{ addon.name }}" />
+            </a>
+            <figcaption>
+              <h5 class="from-top mb-0">Learn More</h5>
+            </figcaption>
+          </figure>
+          {% endif %}
+
+          <span class="addon-badge">Add-on</span>
+
+          <h5 class="mb-15">{{ addon.name }}</h5>
+
+          <div class="d-flex align-items-baseline mb-10">
+            <span class="addon-price color-dark">${{ addon.price | divided_by: 1000 }},{{ addon.price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</span>
+            <span class="text-muted ml-10">USD</span>
+            {% if addon.per_die != "" %}
+            <span class="text-muted ml-10">&middot; ${{ addon.per_die }} per die</span>
+            {% endif %}
+          </div>
+
+          <p class="mb-15">{{ addon.description }}</p>
+
+          {% if addon.features %}
+          <ul class="icon-list bullet-default mb-20">
+            {% for feature in addon.features %}
+            <li><i class="icofont-verification-check"></i> {{ feature }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if addon.note %}
+          <p class="text-muted small mb-15"><em>{{ addon.note }}</em></p>
+          {% endif %}
+
+          <a href="{{ site.data.slots.buy_url }}" class="btn btn-default btn-sm" role="button">
+            <i class="jam jam-shopping-cart mr-10"></i>Add to Order
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- /.wrapper -->

@@ -1,0 +1,220 @@
+# wafer.space Slot Specifications and Pricing
+# GF180MCU Run 2
+
+run: "gf180mcu_run_2"
+early_bird_deadline: "2026-05-01T11:59:00Z"  # 30 April 2026 AoE
+campaign_deadline: "2026-07-01T11:59:00Z"     # 30 June 2026 AoE
+buy_url: "https://buy.wafer.space/#products"
+
+slot_types:
+  - id: "1x1"
+    name: "1×1&nbsp;Slot (Full)"
+    short_name: "1×1&nbsp;Slot"
+    badge: ""
+    die_width_mm: 3.93
+    die_height_mm: 5.12
+    die_area_mm2: 20.12
+    usable_width_mm: 3.878
+    usable_height_mm: 5.068
+    usable_area_mm2: 19.65
+    core_width_mm: 3.05
+    core_height_mm: 4.24
+    core_area_mm2: 12.92
+    io_count: 56
+    total_pads: 72
+    max_pads: 200
+    max_io: 168
+    quantity: 1000
+    early_bird_price: 7000
+    normal_price: 7500
+    per_die_early_bird: "7.00"
+    per_die_normal: "7.50"
+    image: "assets/images/slots/1x1_gelpack.jpg"
+    docs_url: "https://mithro.github.io/gf180mcu-project-template/"
+
+  - id: "0p5x1"
+    name: "0.5×1&nbsp;Slot (Half&nbsp;Width)"
+    short_name: "0.5×1&nbsp;Slot"
+    badge: "New!"
+    die_width_mm: 1.94
+    die_height_mm: 5.12
+    die_area_mm2: 9.93
+    usable_width_mm: 1.888
+    usable_height_mm: 5.068
+    usable_area_mm2: 9.57
+    core_width_mm: 1.05
+    core_height_mm: 4.24
+    core_area_mm2: 4.46
+    io_count: 56
+    total_pads: 72
+    max_pads: 146
+    max_io: 122
+    quantity: 1000
+    early_bird_price: 4000
+    normal_price: 4500
+    per_die_early_bird: "4.00"
+    per_die_normal: "4.50"
+    image: "assets/images/slots/0p5x1_gelpack.jpg"
+    docs_url: "https://mithro.github.io/gf180mcu-project-template/"
+
+  - id: "1x0p5"
+    name: "1×0.5&nbsp;Slot (Half&nbsp;Height)"
+    short_name: "1×0.5&nbsp;Slot"
+    badge: "New!"
+    die_width_mm: 3.93
+    die_height_mm: 2.53
+    die_area_mm2: 9.94
+    usable_width_mm: 3.878
+    usable_height_mm: 2.478
+    usable_area_mm2: 9.61
+    core_width_mm: 3.05
+    core_height_mm: 1.65
+    core_area_mm2: 5.02
+    io_count: 56
+    total_pads: 72
+    max_pads: 130
+    max_io: 108
+    quantity: 1000
+    early_bird_price: 4000
+    normal_price: 4500
+    per_die_early_bird: "4.00"
+    per_die_normal: "4.50"
+    image: "assets/images/slots/1x0p5_gelpack.jpg"
+    docs_url: "https://mithro.github.io/gf180mcu-project-template/"
+
+addons:
+  - id: "cob"
+    name: "Chip on Board Packaging"
+    price: 1500
+    per_die: "1.50"
+    description: "Receive your dies wire-bonded onto small PCBs, ready for testing and integration."
+    note: "Add-on to any slot purchase. Requires the default pad ring."
+    image: "assets/images/products/wafer-space-chip-on-board.jpg"
+    features:
+      - "Wire-bonded onto individual PCBs"
+      - "Ready to power up and test immediately"
+      - "Requires the default pad ring for wire bonding"
+
+  - id: "wafer"
+    name: "Full Undiced Wafer"
+    price: 2000
+    per_die: ""
+    description: "Take home a complete 200mm wafer with your design alongside other Run 2 projects."
+    note: "Requires slot purchase"
+    image: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
+    features:
+      - "Complete 200mm wafer, uncut"
+      - "Includes all designs from this run"
+      - "Perfect for custom dicing or display"
+
+# Silicon density reference data
+# Source: Tiny Tapeout tile spreadsheet (GF180 column)
+# Reference tile: 347µm × 161µm = 55,867 µm²
+# Site: 0.56µm × 3.92µm = 2.1952 µm²
+density:
+  site_width_um: 0.56
+  site_height_um: 3.92
+  site_area_um2: 2.1952
+  sites_per_mm2: 455539
+
+  # Standard cell sizes (in sites wide) and max cells per reference tile
+  # Per mm² is computed as: (1,000,000 / tile_area_um2) * per_tile
+  cells:
+    - name: "Flip-Flop (FF_1)"
+      sites_wide: 29
+      per_tile: 800
+      per_mm2: 14320
+    - name: "Buffer (BUF_4)"
+      sites_wide: 14
+      per_tile: 1700
+      per_mm2: 30430
+    - name: "3-input AND (AND3_2)"
+      sites_wide: 11
+      per_tile: 2200
+      per_mm2: 39380
+
+# SRAM capacity data
+# Computed using: floor(avail_width / block_width) × floor(avail_height / block_height)
+# Available area = die dimensions minus seal ring (26µm each side)
+sram:
+  # 5V SRAM from GlobalFoundries PDK
+  # Block counts: floor((die_width-52)/block_width) × floor((die_height-52)/block_height)
+  - name: "GF 5V sram512x8"
+    voltage: "5V"
+    bytes_per_block: 512
+    block_width_um: 431.86
+    block_height_um: 484.88
+    capacity:
+      "1x1":
+        blocks: 80    # 8×10
+        total_kb: 40
+      "0p5x1":
+        blocks: 40    # 4×10
+        total_kb: 20
+      "1x0p5":
+        blocks: 40    # 8×5
+        total_kb: 20
+
+  - name: "GF 5V sram256x8"
+    voltage: "5V"
+    bytes_per_block: 256
+    block_width_um: 431.86
+    block_height_um: 340.88
+    capacity:
+      "1x1":
+        blocks: 112   # 8×14
+        total_kb: 28
+      "0p5x1":
+        blocks: 56    # 4×14
+        total_kb: 14
+      "1x0p5":
+        blocks: 56    # 8×7
+        total_kb: 14
+
+  - name: "3.3V sram1024x8"
+    voltage: "3.3V"
+    bytes_per_block: 1024
+    block_width_um: 301.3
+    block_height_um: 515.81
+    capacity:
+      "1x1":
+        blocks: 108
+        total_kb: 108
+      "0p5x1":
+        blocks: 54
+        total_kb: 54
+      "1x0p5":
+        blocks: 48
+        total_kb: 48
+
+  - name: "3.3V sram512x8"
+    voltage: "3.3V"
+    bytes_per_block: 512
+    block_width_um: 301.3
+    block_height_um: 321.89
+    capacity:
+      "1x1":
+        blocks: 180   # 12×15
+        total_kb: 90
+      "0p5x1":
+        blocks: 90    # 6×15
+        total_kb: 45
+      "1x0p5":
+        blocks: 84    # 12×7
+        total_kb: 42
+
+  - name: "3.3V sram256x8"
+    voltage: "3.3V"
+    bytes_per_block: 256
+    block_width_um: 301.3
+    block_height_um: 224.93
+    capacity:
+      "1x1":
+        blocks: 264   # 12×22
+        total_kb: 66
+      "0p5x1":
+        blocks: 132   # 6×22
+        total_kb: 33
+      "1x0p5":
+        blocks: 132   # 12×11
+        total_kb: 33

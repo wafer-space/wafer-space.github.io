@@ -1,0 +1,249 @@
+<!-- Silicon Density Section -->
+<div id="density" class="wrapper dark-wrapper inverse-text">
+  <div class="container inner">
+
+    <!-- Part A: Theoretical maximums -->
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <h2 class="title-color color-white">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?</h2>
+        <h3 class="display-3">Theoretical maximum standard cell density</h3>
+        <p class="lead">Hard upper bounds &mdash; if you packed cells edge-to-edge with zero routing overhead</p>
+        <div class="space20"></div>
+      </div>
+    </div>
+
+    <div class="row text-center gutter-30 justify-content-center">
+      {% for cell in site.data.slots.density.cells %}
+        <div class="col-md-6 col-lg-4 mb-30">
+          <div class="box bg-white shadow p-30">
+            <div class="icon icon-blob icon-blob-{% cycle 'blue', 'green', 'purple' %} color-{% cycle 'blue', 'green', 'purple' %} mb-20">
+              {% if cell.name contains "Flip-Flop" %}
+                <svg class="gate-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="16" y="10" width="32" height="44" rx="1"/>
+                  <line x1="2" y1="22" x2="16" y2="22"/>
+                  <text x="20" y="26" fill="currentColor" stroke="none" font-size="10" font-family="sans-serif" font-weight="bold">D</text>
+                  <line x1="2" y1="42" x2="16" y2="42"/>
+                  <polygon points="16,37 24,42 16,47"/>
+                  <line x1="48" y1="22" x2="62" y2="22"/>
+                  <text x="36" y="26" fill="currentColor" stroke="none" font-size="10" font-family="sans-serif" font-weight="bold">Q</text>
+                  <line x1="52" y1="42" x2="62" y2="42"/>
+                  <circle cx="50" cy="42" r="2.5"/>
+                </svg>
+              {% elsif cell.name contains "Buffer" %}
+                <svg class="gate-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="2" y1="32" x2="14" y2="32"/>
+                  <polygon points="14,12 54,32 14,52"/>
+                  <line x1="54" y1="32" x2="62" y2="32"/>
+                </svg>
+              {% elsif cell.name contains "AND" %}
+                <svg class="gate-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="2" y1="16" x2="14" y2="16"/>
+                  <line x1="2" y1="32" x2="14" y2="32"/>
+                  <line x1="2" y1="48" x2="14" y2="48"/>
+                  <path d="M14,8 L32,8 C46,8 54,18 54,32 C54,46 46,56 32,56 L14,56 Z"/>
+                  <line x1="54" y1="32" x2="62" y2="32"/>
+                </svg>
+              {% endif %}
+            </div>
+            <h3 class="mb-5 color-dark">~{{ cell.per_mm2 | divided_by: 1000 }},{{ cell.per_mm2 | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</h3>
+            <p class="mb-0 font-weight-600 color-dark">{{ cell.name }}</p>
+            <p class="mb-0 small text-muted">per mm&sup2; theoretical max</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="space60"></div>
+
+    <!-- Part B: Achieved density from Run 1 -->
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <h2 class="title-color color-white">What Run&nbsp;1 designers actually achieved</h2>
+        <h3 class="display-3">Real density from 24 designs on the GF180MCU shuttle</h3>
+        <div class="space20"></div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center text-center gutter-30 mb-30">
+      <div class="col-md-4 col-sm-6 mb-20">
+        <div class="box bg-white shadow p-30">
+          <h3 class="mb-5 color-dark">22k</h3>
+          <p class="mb-0 font-weight-600 color-dark">Best Core Average</p>
+          <p class="mb-0 small text-muted">logic cells/mm&sup2; &mdash; 44% of theoretical max</p>
+          <p class="mb-0 small"><a href="https://github.com/ThorbenMoos/Cloneless1" target="_blank" rel="noopener">Cloneless1</a></p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 mb-20">
+        <div class="box bg-white shadow p-30">
+          <h3 class="mb-5 color-dark">31k</h3>
+          <p class="mb-0 font-weight-600 color-dark">Best Peak Region</p>
+          <p class="mb-0 small text-muted">logic cells/mm&sup2; &mdash; 62% of theoretical max</p>
+          <p class="mb-0 small"><a href="https://github.com/ThorbenMoos/Cloneless1" target="_blank" rel="noopener">Cloneless1</a></p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 mb-20">
+        <div class="box bg-white shadow p-30">
+          <h3 class="mb-5 color-dark">3k&ndash;14k</h3>
+          <p class="mb-0 font-weight-600 color-dark">Typical Range</p>
+          <p class="mb-0 small text-muted">logic cells/mm&sup2; for most digital designs</p>
+          <p class="mb-0 small">across 24 designs</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h4 class="text-center mb-20">Achieved Logic Density by Design</h4>
+        <div class="table-responsive">
+          <table class="table table-striped text-center ws-table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="text-left font-weight-bold">Design</th>
+                <th scope="col" class="font-weight-bold">Library</th>
+                <th scope="col" class="font-weight-bold">Core SC/mm&sup2;</th>
+                <th scope="col" class="font-weight-bold">% of max</th>
+                <th scope="col" class="font-weight-bold">Logic Cells</th>
+                <th scope="col" class="font-weight-bold">SRAM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left"><a href="https://github.com/ThorbenMoos/Cloneless1" target="_blank" rel="noopener">Cloneless1</a></td>
+                <td>7t-5V</td><td><strong>22k</strong></td><td>44%</td><td>316k</td><td>0</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/TinyTapeout/tinytapeout-gf-0p2" target="_blank" rel="noopener">Tiny&nbsp;Tapeout</a> <small>(52&nbsp;sub-designs)</small></td>
+                <td>mixed</td><td>14k</td><td>29%</td><td>204k</td><td>0</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/mole99/gf180mcu-fabulous-fpga" target="_blank" rel="noopener">FABulous FPGA</a></td>
+                <td>7t-5V</td><td>14k</td><td>29%</td><td>204k</td><td>12</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/Ravenslofty/gf180mcu-chess" target="_blank" rel="noopener">Chess Move Gen.</a></td>
+                <td>9t-5V</td><td>10k</td><td>25%</td><td>145k</td><td>0</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/meiniKi/gf180mcu-fazyrv-hachure" target="_blank" rel="noopener">FazyRV Hachure</a></td>
+                <td>7t-5V</td><td>7k</td><td>14%</td><td>101k</td><td>40</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/splinedrive/gf180mcu-kianv-rv32ima-sv32/" target="_blank" rel="noopener">KianV RISC-V</a></td>
+                <td>9t-5V</td><td>6k</td><td>16%</td><td>89k</td><td>42</td>
+              </tr>
+              <tr>
+                <td class="text-left"><a href="https://github.com/gregdavill/gf180mcu-racquet/" target="_blank" rel="noopener">Racquet 23-core</a></td>
+                <td>7t-5V</td><td>5k</td><td>11%</td><td>78k</td><td>46</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote text-center">
+          Data from the <a href="https://github.com/wafer-space/ws-run1/blob/density-report/reticle_density_report.md" target="_blank" rel="noopener">Run 1 Density Report</a>.
+          Logic cell counts exclude infrastructure cells (fillers, taps, antenna diodes).
+          &ldquo;% of max&rdquo; compares against buf theoretical max for each library (50k for 7-track, 40k for 9-track).
+        </p>
+      </div>
+    </div>
+
+    <div class="space60"></div>
+
+    <!-- Part C: What fits in each slot -->
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <h2 class="title-color color-white">What fits in each slot?</h2>
+        <h3 class="display-3">Logic and memory capacity by slot type</h3>
+        <div class="space40"></div>
+      </div>
+    </div>
+
+    <!-- Logic Capacity Table -->
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h4 class="text-center mb-30">Theoretical Logic Capacity <small>(with default pad ring)</small></h4>
+        <div class="table-responsive">
+          <table class="table table-striped text-center ws-table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="text-left font-weight-bold">Cell Type</th>
+                {% for slot in site.data.slots.slot_types %}
+                  <th scope="col" class="font-weight-bold">
+                    {% if slot.badge != "" %}<span class="slot-badge mb-5">{{ slot.badge }}</span><br>{% endif %}
+                    {{ slot.short_name }}
+                  </th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for cell in site.data.slots.density.cells %}
+                <tr>
+                  <td class="text-left font-weight-600">{{ cell.name }}</td>
+                  {% for slot in site.data.slots.slot_types %}
+                    {% assign count = cell.per_mm2 | times: slot.core_area_mm2 | round %}
+                    <td>~{{ count | divided_by: 1000 }},{{ count | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote text-center">
+          Theoretical maximums with zero routing overhead. Run 1 designs typically achieved 10&ndash;44% of these values.
+        </p>
+      </div>
+    </div>
+
+    <div class="space40"></div>
+
+    <!-- SRAM Capacity Table -->
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h4 class="text-center mb-30">SRAM Capacity</h4>
+        <div class="table-responsive">
+          <table class="table table-striped text-center ws-table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="text-left font-weight-bold">SRAM Type</th>
+                <th scope="col" class="font-weight-bold">Voltage</th>
+                {% for slot in site.data.slots.slot_types %}
+                  <th scope="col" class="font-weight-bold">{{ slot.short_name }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for sram in site.data.slots.sram %}
+                <tr>
+                  <td class="text-left font-weight-600">{{ sram.name }}</td>
+                  <td>{{ sram.voltage }}</td>
+                  {% for slot in site.data.slots.slot_types %}
+                    {% assign cap = sram.capacity[slot.id] %}
+                    <td>{{ cap.total_kb }}&nbsp;kilobytes ({{ cap.blocks }}&nbsp;blocks)</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote text-center">
+          Block counts use die area minus seal ring (26&micro;m each side). Run 1&rsquo;s most SRAM-heavy design
+          (<a href="https://github.com/wren6991/riscboy-180" target="_blank" rel="noopener">RISCBoy-180</a>) used 60 blocks in a full slot.
+        </p>
+      </div>
+    </div>
+
+    <div class="space30"></div>
+
+    <!-- Notes -->
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 table-footnote">
+        <p class="mb-5">Theoretical numbers use core area (with default pad ring). Using your own pad ring or no pad ring increases available area.</p>
+        <p class="mb-5">Real designs achieve 10&ndash;44% of theoretical max due to routing overhead, infrastructure cells (~75% of instances), power planning, and clock distribution.</p>
+        <p class="mb-5">3.3V SRAM blocks from Tim Edwards and Tholin, introduced in Run 1.</p>
+        <p class="mb-0">Full analysis: <a href="https://github.com/wafer-space/ws-run1/blob/density-report/reticle_density_report.md" target="_blank" rel="noopener">Run 1 Standard Cell &amp; SRAM Density Report</a>.</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.wrapper -->

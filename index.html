@@ -44,7 +44,7 @@ features_area:
 
 # Part of the features_area
 two_columns_one:
-  enable: true
+  enable: false
   title: "Why Choose Us?"
   sub_title: "Why is Search Engine Optimization important for your business?"
   image: "assets/images/concept/concept8@2x.webp"
@@ -58,7 +58,7 @@ two_columns_one:
 
 # Part of the features_area
 process_area:
-  enable: true
+  enable: false
   title: "Our Process"
   sub_title: "We bring solutions to make life easier for our customers"
   image: "assets/images/concept/concept1@2x.webp"
@@ -81,7 +81,7 @@ process_area:
 
 # Part of the features_area
 two_columns_two:
-  enable: true
+  enable: false
   title: "Our Personalized Solutions"
   sub_title: "Just sit and relax while we take care of your business needs"
   image: "assets/images/concept/concept3@2x.webp"
@@ -130,48 +130,6 @@ testimonials:
       name: "Jackie Sanders"
       designation: "Sales Specialist"
 
-pricing_table:
-  enable: true
-  title: "Our pricing"
-  sub_title: |
-    Custom silicon manufactured.<br class="d-none d-lg-block" />Build unique products.
-  plans:
-    - title: "GF180MCU Shuttle Slot<br>Wire-Bonded"
-      monthly_price: "8,500"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/wafer-space-chip-on-board.jpg"
-      features:
-        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "1,000 die wire bonded onto PCBs"
-
-    - title: "GF180MCU Shuttle Slot<br>Bare Dies"
-      monthly_price: "7,000"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/gf180mcu-gelpack-dice.jpg"
-      features:
-        - "<strong><a href='https://gf180mcu-pdk.readthedocs.io/'>GF180MCU</a></strong> Process"
-        - "<strong>~20mm<sup>2</sup></strong> silicon"
-        - "3.88mm x 5.07mm die size"
-        - "1,000 raw dies"
-
-    - title: "Undiced<br>Full Wafer"
-      monthly_price: "2,000"
-      monthly_currency: "USD"
-      pricing_url: "https://buy.wafer.space/#products"
-      button_text: '<i class="icofont-shopping-cart"></i> Buy'
-      icon: "assets/images/products/gf180mcu-wafer-edge-1.jpg"
-      features:
-        - Undiced 200mm wafer.
-        - Only valid with slot purchase.
-        - "&nbsp;"
-        - "&nbsp;"
-
 about_us:
   enable: true
   title: "Let's Talk"
@@ -189,9 +147,9 @@ technical_specs:
   sub_title: "GF180MCU Process Technology Details"
   image: "assets/images/products/gf180mcu-wafer-isometric.jpg"
   specs:
-    - title: "Die Dimensions"
-      value: "19.67 mm²"
-      detail: "3.88mm × 5.07mm"
+    - title: "Slot Options"
+      value: "3 Sizes"
+      detail: "1×1, 0.5×1 half-width, 1×0.5 half-height"
       icon: "jam jam-crop"
       color: "blue"
     - title: "Process Node"
@@ -379,16 +337,49 @@ subscribe_area:
 <!-- /.wrapper -->
 {% endif %} <!-- page.slider_area.enable -->
 
-{% if page.pricing_table.enable %}
-{% include pricing-3col.html %}
-{% endif %}<!-- pricing_data.enable -->
+<!-- ═══════════════════════════════════════════ -->
+<!-- TOP: Hook + Urgency + Action              -->
+<!-- ═══════════════════════════════════════════ -->
 
-<!-- Countdown Section -->
+<!-- (1) Half Slot Marketing Banner -->
+{% include components/half-slot-banner.html %}
+
+<!-- (2) Deadlines -->
 {% include components/countdown.html %}
 
-<!-- Technical Specifications Section -->
+<!-- (3) Call to Action -->
+{% include components/cta-design-help.html %}
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SALES INFO                                 -->
+<!-- ═══════════════════════════════════════════ -->
+{% include components/section-divider.html title="Pricing" fill_next="fill-light-wrapper" %}
+
+<!-- Slot Comparison Table -->
+{% include components/slot-comparison-table.html %}
+
+<!-- Per-Slot Pricing: half-width, half-height, full -->
+{% assign slot_half_w = site.data.slots.slot_types[1] %}
+{% assign slot_half_h = site.data.slots.slot_types[2] %}
+{% assign slot_full = site.data.slots.slot_types[0] %}
+
+{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
+{% include pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
+
+<!-- Add-ons -->
+{% include components/addons-section.html %}
+
+{% include components/pricing-switcher-js.html %}
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TECH INFO                                  -->
+<!-- ═══════════════════════════════════════════ -->
+{% include components/section-divider.html title="Technology" fill_next="fill-light-wrapper" %}
+
+<!-- GF180MCU Process Technology Details -->
 {% if page.technical_specs.enable %}
-<div class="wrapper light-wrapper">
+<div id="specs" class="wrapper light-wrapper">
   <div class="container inner">
     <div class="row">
       <div class="col-md-8 mx-auto text-center">
@@ -402,7 +393,7 @@ subscribe_area:
       {% if page.technical_specs.image %}
       <div class="col-lg-6">
         <figure>
-          <img src="{{page.technical_specs.image}}" alt="{{page.technical_specs.title}}" class="img-fluid"/>
+          <img src="{{ page.technical_specs.image | relative_url }}" alt="{{page.technical_specs.title}}" class="img-fluid"/>
         </figure>
       </div>
       {% endif %}
@@ -429,6 +420,12 @@ subscribe_area:
   </div>
 </div>
 {% endif %}
+
+<!-- Past run designs for reference -->
+{% include components/run1-showcase.html %}
+
+<!-- Silicon capacity -->
+{% include components/silicon-density.html %}
 
 {% if page.features_area.enable %}
 <div class="wrapper white-wrapper">

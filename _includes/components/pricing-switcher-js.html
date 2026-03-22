@@ -1,0 +1,57 @@
+<!-- Early Bird Pricing Switcher + Inline Countdowns -->
+<script>
+(function() {
+  'use strict';
+  var deadlineStr = '{{ site.data.slots.early_bird_deadline }}';
+  if (!deadlineStr) return;
+  var deadline = new Date(deadlineStr);
+  var now = new Date();
+  var isEarlyBird = now < deadline;
+
+  // Switch popular class based on whether early bird is active
+  document.querySelectorAll('.early-bird-panel').forEach(function(col) {
+    var normalCol = col.nextElementSibling;
+    if (!normalCol || !normalCol.classList.contains('normal-panel')) return;
+    if (isEarlyBird) {
+      col.classList.add('popular');
+      normalCol.classList.remove('popular');
+    } else {
+      normalCol.classList.add('popular');
+      col.classList.remove('popular');
+    }
+  });
+
+  // Inline countdown updater for pricing boxes
+  function formatCountdown(target) {
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) return null;
+    var days = Math.floor(diff / 86400000);
+    if (days > 1) return days + ' days';
+    if (days === 1) return '1 day';
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    if (hours > 0) return hours + ' hours';
+    var mins = Math.floor((diff % 3600000) / 60000);
+    return mins + ' min';
+  }
+
+  function updateInlineCountdowns() {
+    document.querySelectorAll('.pricing-deadline').forEach(function(el) {
+      var dl = el.getAttribute('data-deadline');
+      var label = el.getAttribute('data-label') || '';
+      var span = el.querySelector('.countdown-inline');
+      if (!dl || !span) return;
+      var text = formatCountdown(new Date(dl));
+      if (text) {
+        span.textContent = label + ' ' + text;
+      } else {
+        span.textContent = 'Deadline passed';
+        span.style.color = '#dc3545';
+      }
+    });
+  }
+
+  updateInlineCountdowns();
+  setInterval(updateInlineCountdowns, 60000);
+})();
+</script>

@@ -8,16 +8,16 @@ main_menu:
     url: "/about.html"
     menu_type: "simple"
 
+  - text: "Pricing"
+    url: "/price.html"
+    menu_type: "simple"
+
+  - text: "Technology"
+    url: "/technology.html"
+    menu_type: "simple"
+
   - text: "Design Help"
     url: "/design-help.html"
-    menu_type: "simple"
-
-  - text: "How"
-    url: "/how.html"
-    menu_type: "simple"
-
-  - text: "Help"
-    url: "/help.html"
     menu_type: "simple"
 
   - text: "News"

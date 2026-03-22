@@ -13,9 +13,84 @@
     padding-right: 0 !important;
 }
 
-/* Remove padding-top from all pricing columns */
+/* Pricing box padding and vertical centering */
 .pricing-wrapper .panel.pricing.box {
-    padding-top: 3em !important;
+    padding-top: 3rem;
+}
+
+/* Center the pricing row so popular box overhangs equally top and bottom.
+   Override theme's margin-top:-1rem which shifts popular upward after centering. */
+.pricing-wrapper > .row {
+    align-items: center;
+}
+
+.pricing-wrapper .popular .panel.pricing.box {
+    margin-top: 0;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
+}
+
+/* Distribute vertical space to text, not below the button */
+.pricing-wrapper .panel-heading {
+    padding-bottom: 0;
+}
+
+.pricing-wrapper .panel.pricing .panel-footer {
+    padding-top: 0.5rem;
+    padding-bottom: 0;
+}
+
+/* Non-popular box: also tighten bottom */
+.pricing-wrapper .panel.pricing.box {
+    padding-bottom: 1.5rem;
+}
+
+/* Per-die cost is now the hero number */
+.pricing-wrapper .price-hero {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+    margin-top: 0.75rem;
+    margin-bottom: 0.4rem;
+}
+
+.pricing-wrapper .price-hero .price-hero-currency {
+    font-size: 0.7em;
+    font-weight: 400;
+    vertical-align: baseline;
+}
+
+.pricing-wrapper .price-hero .price-hero-unit {
+    font-size: 0.45em;
+    font-weight: 400;
+    color: #888;
+}
+
+/* Total cost is the secondary number (~75% of hero) */
+.pricing-wrapper .price-total {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.6rem;
+}
+
+/* Panel title breathing room */
+.pricing-wrapper .panel-title {
+    margin-bottom: 0.25rem;
+}
+
+/* Countdown text inside pricing boxes */
+.pricing-deadline {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.pricing-deadline .countdown-inline {
+    font-weight: 600;
+    color: #3f78e0;
 }
 
 /* Make header text in middle column slightly larger */
@@ -41,7 +116,7 @@
 }
 
 .timeline-row:hover {
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .timeline-critical td:first-child {
@@ -72,4 +147,295 @@
 /* Adds scroll margin to provider boxes so they don't get hidden under the header */
 .box.bg-white.shadow.mb-30[id] {
     scroll-margin-top: 100px;
+}
+
+/* Slot pricing sections — anchor scroll offset */
+[id^="slot-"] {
+    scroll-margin-top: 80px;
+}
+
+/* Early bird / normal pricing transition */
+.pricing-wrapper [class*="col-"] {
+    transition: all 0.3s ease;
+}
+
+/* Slot images fill the full card width by bleeding into box padding */
+.pricing.panel.box {
+    overflow: hidden;
+}
+
+.slot-image-wrapper {
+    height: 180px;
+    overflow: hidden;
+    margin: -3rem -2rem 15px -2rem;
+}
+
+/* Popular box: bleed image to top edge */
+.popular .slot-image-wrapper {
+    margin-top: -4.5rem;
+}
+
+.slot-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Slot badge styling */
+.slot-badge {
+    display: inline-block;
+    background: #f0ad4e;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+/* Ensure table-responsive works everywhere */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Light-mode tables (slot-comparison-table, etc.) ── */
+.slot-comparison-table thead th,
+.light-wrapper .table-striped thead th {
+    background-color: #f0f2f5;
+    border-bottom: 2px solid #dee2e6;
+    color: #333;
+}
+
+.slot-comparison-table tbody tr:nth-child(odd),
+.light-wrapper .table-striped tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.slot-comparison-table tbody tr:nth-child(even),
+.light-wrapper .table-striped tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.slot-comparison-table tbody tr:hover,
+.light-wrapper .table-striped tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Column striping for slot columns */
+.slot-comparison-table td:nth-child(even),
+.slot-comparison-table th:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* ── Dark-mode tables ── */
+.ws-table-dark,
+.ws-table-dark td,
+.ws-table-dark th,
+.dark-wrapper .table,
+.dark-wrapper .table td,
+.dark-wrapper .table th {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ws-table-dark thead th,
+.dark-wrapper .table thead th {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.ws-table-dark tbody tr:nth-child(odd),
+.dark-wrapper .table-striped tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.ws-table-dark tbody tr:nth-child(even),
+.dark-wrapper .table-striped tbody tr:nth-child(even) {
+    background-color: transparent;
+}
+
+.ws-table-dark tbody tr:hover,
+.dark-wrapper .table-striped tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Column striping on dark tables */
+.ws-table-dark td:nth-child(even),
+.ws-table-dark th:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Logic gate SVG icons inside icon-blob containers.
+   SVGs are replaced elements that don't work with table-cell centering.
+   Constrain the blob container and absolutely-position the SVG inside. */
+.icon-blob:has(.gate-icon) {
+    max-width: 4rem;
+    max-height: 4rem;
+    overflow: visible;
+}
+
+.icon-blob .gate-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    z-index: 1;
+}
+
+/* Density cards use .box.bg-white with theme classes — no custom CSS needed */
+
+/* Run 1 showcase carousel cards */
+.grid-view .box .post-content .post-title {
+    font-size: 1rem;
+}
+
+.grid-view .box .post-content .post-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.grid-view .box .post-content .post-title a:hover {
+    color: #3f78e0;
+}
+
+/* Carousel card title contrast for dark mode (not gray-wrapper — it's light) */
+.inverse-text .grid-view .box .post-content .post-title a,
+.dark-wrapper .grid-view .box .post-content .post-title a {
+    color: #e0e0e0;
+}
+
+.inverse-text .grid-view .box .post-content .post-title a:hover,
+.dark-wrapper .grid-view .box .post-content .post-title a:hover {
+    color: #5fa8ff;
+}
+
+/* Carousel card description text in dark mode */
+.dark-wrapper .grid-view .box .post-content .mb-10 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ── Current (popular) pricing option: prominent ── */
+.pricing-wrapper .early-bird-panel.popular .pricing.panel.box {
+    border: 3px solid #3f78e0;
+    box-shadow: 0 0 30px rgba(63, 120, 224, 0.25);
+}
+
+.pricing-wrapper .normal-panel.popular .pricing.panel.box {
+    border: 3px solid #28a745;
+    box-shadow: 0 0 30px rgba(40, 167, 69, 0.25);
+}
+
+/* ── Future (non-popular) pricing option: de-emphasised ── */
+.pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box {
+    background-color: #f5f5f5;
+    filter: saturate(0.4);
+    opacity: 0.85;
+}
+
+/* Dark wrapper variant */
+.dark-wrapper .pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box,
+.inverse-text .pricing-wrapper [class*="col-"]:not(.popular) .pricing.panel.box {
+    background-color: rgba(255, 255, 255, 0.88);
+}
+
+/* Carousel navigation arrows */
+.carousel-nav-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-nav-btn:hover {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-prev { left: -22px; }
+.carousel-next { right: -22px; }
+
+@media (max-width: 991px) {
+    .carousel-prev { left: -10px; }
+    .carousel-next { right: -10px; }
+}
+
+@media (max-width: 575px) {
+    .carousel-nav-btn { display: none; }
+}
+
+/* Gradient placeholders are applied inline via Liquid forloop.index
+   to avoid nth-child issues with owl-carousel item cloning */
+
+/* ── Add-on product cards ── */
+.addon-card {
+    padding: 1.5rem !important;
+    text-align: left;
+}
+
+.addon-image-wrapper {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.addon-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.addon-badge {
+    display: inline-block;
+    background: var(--color-orange, #fb9d7e);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15em 0.6em;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.addon-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* CTA section */
+.cta-section .btn-lg {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Footnote styling for tables */
+.table-footnote {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.dark-wrapper .table-footnote {
+    color: rgba(255, 255, 255, 0.6);
 }
