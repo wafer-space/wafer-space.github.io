@@ -141,11 +141,11 @@ The **pad mapping symbol** corresponds to the default 74-pad wirebonding padfram
 The **mezzanine connector symbol** provides a 1:1 pin mapping to the 70-pin default layout.
 All pins are aliased to match [Tiny Tapeout](https://tinytapeout.com/) naming conventions, useful for those familiar with the TT ecosystem who are designing custom chips for this wafer.space run.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-default-70pin-mezzanine-symbol.png" | relative_url }}" alt=""Default 70-pin mezzanine COB breakout symbol"" class="img-fluid rounded">
+<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-default-70pin-mezzanine-symbol.png" | relative_url }}" alt="Default 70-pin mezzanine COB breakout symbol" class="img-fluid rounded">
 
 An alternate version is also available that organizes pins by signal type. This version is particularly useful for Tiny Tapeout-style breakout motherboard designs where grouping by function makes routing clearer.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-tinytapeout-kicad-symbols.png" | relative_url }}" alt=""70-pin mezzanine COB symbol organized by signal type (Tiny Tapeout version)"" class="img-fluid rounded">
+<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-tinytapeout-kicad-symbols.png" | relative_url }}" alt="70-pin mezzanine COB symbol organized by signal type (Tiny Tapeout version)" class="img-fluid rounded">
 
 ### KiCad Resources for COB Design
 
