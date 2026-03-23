@@ -39,7 +39,7 @@ export PATH=$PATH:~/.local/share/gem/ruby/3.2.0/bin
 - `make production` - Build for production with JEKYLL_ENV=production
 - `make clean` - Remove generated files and caches
 - `make install` - Install Ruby dependencies via bundle install
-- `make test` - Build and run basic validation (checks for 17 HTML files)
+- `make test` - Build and run basic validation (checks required pages exist)
 - `make verify` - Run comprehensive output verification script
 
 ### Manual Commands (if Make unavailable)
@@ -82,8 +82,9 @@ The `theme_plugin.rb` file implements a sophisticated system to load theme compo
 3. **Navigation override**: Custom `_includes/layouts/nav/_btn-header.html` changes button text from "Free Trial" to "Free Silicon?"
 
 ### Build Output Validation
-The site generates **17 HTML files** for the production wafer.space website. The test system verifies:
-- Correct file count (17 HTML files)
+The test system verifies:
+- Required pages exist (index, about, price, technology, faq, etc.)
+- Minimum HTML file count (≥20)
 - Theme plugin presence
 - Theme submodule availability
 
