@@ -4,6 +4,8 @@
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
 {% assign eb_deadline = site.data.runs.runs.gf180mcu_run_2.early_bird_deadline %}
 {% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_2.campaign_deadline %}
+{% assign is_early_bird = true %}
+{% if site.time > eb_deadline.date %}{% assign is_early_bird = false %}{% endif %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">
@@ -14,8 +16,8 @@
         <div class="pricing-wrapper">
           <div class="row g-0 align-items-center">
 
-            <!-- Early Bird Box (popular by default; JS swaps if deadline passed) -->
-            <div class="col-12 col-sm-6 early-bird-panel popular">
+            <!-- Early Bird Box -->
+            <div class="col-12 col-sm-6 early-bird-panel{% if is_early_bird %} popular{% endif %}">
               <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
@@ -43,7 +45,7 @@
             </div>
 
             <!-- Standard Price Box -->
-            <div class="col-12 col-sm-6 normal-panel">
+            <div class="col-12 col-sm-6 normal-panel{% unless is_early_bird %} popular{% endunless %}">
               <div class="pricing panel box bg-white shadow text-center">
                 <div class="panel-heading">
                   {% if slot.image %}
