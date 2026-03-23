@@ -19,9 +19,13 @@
           <div class="box bg-white shadow p-30">
             {% if design.image %}
             <figure class="overlay overlay1 rounded mb-20">
-              <a href="{{ design.repo_url }}" target="_blank" rel="noopener">
+              {% if design.repo_url %}
+                <a href="{{ design.repo_url }}" target="_blank" rel="noopener">
+                  <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" />
+                </a>
+              {% else %}
                 <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" />
-              </a>
+              {% endif %}
               <figcaption>
                 <h5 class="from-top mb-0">View Source</h5>
               </figcaption>
