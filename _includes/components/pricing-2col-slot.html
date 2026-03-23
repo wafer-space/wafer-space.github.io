@@ -4,8 +4,10 @@
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
 {% assign eb_deadline = site.data.runs.runs.gf180mcu_run_2.early_bird_deadline %}
 {% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_2.campaign_deadline %}
+{% assign build_time = site.time | date: "%Y%m%d%H%M%S" %}
+{% assign eb_time = eb_deadline.date | date: "%Y%m%d%H%M%S" %}
 {% assign is_early_bird = true %}
-{% if site.time > eb_deadline.date %}{% assign is_early_bird = false %}{% endif %}
+{% if build_time > eb_time %}{% assign is_early_bird = false %}{% endif %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">
