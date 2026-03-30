@@ -72,6 +72,8 @@ external_links:
       text: "News"
     - url: "/how.html"
       text: "How"
+    - url: "/status.html"
+      text: "Status"
     - url: "/help.html"
       text: "Help"
     - url: "/faq.html"

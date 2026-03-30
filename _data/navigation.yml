@@ -16,6 +16,10 @@ main_menu:
     url: "/how.html"
     menu_type: "simple"
 
+  - text: "Status"
+    url: "/status.html"
+    menu_type: "simple"
+
   - text: "Help"
     url: "/help.html"
     menu_type: "simple"
