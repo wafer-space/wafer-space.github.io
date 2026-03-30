@@ -84,10 +84,10 @@ test: build
 	@echo "Running basic tests..."
 	@echo -n "Checking HTML file count: "
 	@HTML_COUNT=$$(find $(SITE_DIR) -name "*.html" | wc -l); \
-	if [ $$HTML_COUNT -eq 17 ]; then \
-		echo "✅ $$HTML_COUNT HTML files (expected: 17)"; \
+	if [ $$HTML_COUNT -eq 31 ]; then \
+		echo "✅ $$HTML_COUNT HTML files (expected: 31)"; \
 	else \
-		echo "❌ $$HTML_COUNT HTML files (expected: 17)"; \
+		echo "❌ $$HTML_COUNT HTML files (expected: 31)"; \
 		exit 1; \
 	fi
 	@echo -n "Checking theme plugin: "
