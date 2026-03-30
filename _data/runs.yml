@@ -49,45 +49,85 @@ runs:
       priority: "info"
 
     # Complete timeline for manufacturing process
+    # completed: true/false tracks whether each milestone has actually occurred
     timeline:
       - title: "Purchase Deadline"
         date: "2025-11-28"
         display_date: "28 November 2025 @ 11:59 PM AoE"
         description: "Final deadline to purchase manufacturing slots"
         status: "critical"
+        completed: true
       - title: "Design Submission"
         date: "2025-12-03"
         display_date: "3 December 2025 @ 11:59 PM AoE"
         description: "Final deadline to submit GDS files for fabrication"
         status: "critical"
+        completed: true
       - title: "Tape-out to GlobalFoundries"
         date: "2025-12-05"
         display_date: "5 December 2025"
         description: "GDS files delivered to GlobalFoundries for fabrication"
         status: "milestone"
+        completed: true
       - title: "Fabrication Complete"
         date: "2026-02-15"
         display_date: "February 2026"
         description: "Wafers returned from GlobalFoundries fabrication"
         status: "milestone"
+        completed: true
       - title: "Delivery to Customers"
         date: "2026-03-15"
         display_date: "15 March 2026"
         description: "Finished dies shipped to customers worldwide"
         status: "delivery"
+        completed: false
 
-  # Future run example (commented out for now)
-  # gf180mcu_run_2:
-  #   name: "GF180MCU Run 2"
-  #   process: "GF180MCU"
-  #   run_number: 2
-  #   status: "upcoming"
-  #   featured: false
-  #   campaign_deadline:
-  #     date: "2026-06-15"
-  #     display_date: "15 June 2026"
-  #     title: "Next Campaign Opening"
-  #     subtitle: "GF180MCU Run 2 slots will be available soon"
-  #     button_text: "Get Notified"
-  #     button_url: "/subscribe.html"
-  #     priority: "info"
+  gf180mcu_run_2:
+    name: "GF180MCU Run 2"
+    process: "GF180MCU"
+    run_number: 2
+    status: "upcoming"
+    featured: false
+
+    campaign_deadline:
+      date: "2026-06-30T11:59:00Z"
+      display_date: "30 June 2026 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      title: "Campaign Deadline"
+      subtitle: "Reserve your slot in GF180MCU Run 2"
+      button_text: "Get Notified"
+      button_url: "https://buy.wafer.space/#products"
+      priority: "info"
+
+    timeline:
+      - title: "Campaign Opens"
+        date: "2026-05-01"
+        display_date: "1 May 2026"
+        description: "Slot purchases open for GF180MCU Run 2"
+        status: "milestone"
+        completed: false
+      - title: "Purchase Deadline"
+        date: "2026-06-30"
+        display_date: "30 June 2026 @ 11:59 PM AoE"
+        description: "Final deadline to purchase manufacturing slots"
+        status: "critical"
+        completed: false
+      - title: "Design Submission"
+        date: "2026-07-15"
+        display_date: "15 July 2026"
+        description: "Final deadline to submit GDS files"
+        status: "critical"
+        completed: false
+      - title: "Tape-out to GlobalFoundries"
+        date: "2026-07-20"
+        display_date: "20 July 2026"
+        description: "GDS files delivered to GlobalFoundries"
+        status: "milestone"
+        completed: false
+      - title: "Delivery to Customers"
+        date: "2026-12-15"
+        display_date: "15 December 2026"
+        description: "Finished dies shipped to customers"
+        status: "delivery"
+        completed: false
