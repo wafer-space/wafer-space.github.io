@@ -73,3 +73,248 @@
 .box.bg-white.shadow.mb-30[id] {
     scroll-margin-top: 100px;
 }
+
+/* ==========================================================================
+   Run Status Page
+   ========================================================================== */
+
+/* --- Filter tabs --- */
+.run-status-filters .nav-link {
+    cursor: pointer;
+    font-weight: 600;
+    color: #6c757d;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s ease;
+}
+
+.run-status-filters .nav-link:hover {
+    color: var(--color-default);
+    background-color: rgba(95, 134, 190, 0.08);
+}
+
+.run-status-filters .nav-link.active {
+    color: #fff;
+    background-color: var(--color-default);
+}
+
+/* --- Status badges --- */
+.run-status-badge {
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.run-status-badge-active {
+    background-color: rgba(95, 134, 190, 0.15);
+    color: var(--color-default);
+}
+
+.run-status-badge-upcoming {
+    background-color: rgba(108, 117, 125, 0.12);
+    color: #6c757d;
+}
+
+.run-status-badge-completed {
+    background-color: rgba(40, 167, 69, 0.12);
+    color: #28a745;
+}
+
+/* --- Timeline container --- */
+.run-status-timeline {
+    position: relative;
+    padding: 40px 25px 20px;
+}
+
+/* --- Track (background bar) --- */
+.run-status-track {
+    position: relative;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+    margin-bottom: 0;
+}
+
+/* --- Progress fill --- */
+.run-status-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #34ce57);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+}
+
+/* --- Rocket marker --- */
+.run-status-rocket {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    width: 48px;
+    height: auto;
+    transform: translate(-50%, -50%) rotate(90deg);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+    transition: left 0.6s ease;
+}
+
+/* --- Milestone markers row --- */
+.run-status-milestones {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -3px;
+    padding-top: 0;
+}
+
+/* --- Individual milestone --- */
+.run-status-milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 0 auto;
+    max-width: 120px;
+}
+
+/* Position first and last milestones at edges */
+.run-status-milestone:first-child {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.run-status-milestone:last-child {
+    align-items: flex-end;
+    text-align: right;
+}
+
+/* --- Milestone dot --- */
+.run-status-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #ced4da;
+    background: #fff;
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+}
+
+.run-status-dot.completed {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.run-status-dot.current {
+    background: var(--color-default);
+    border-color: var(--color-default);
+    animation: run-status-pulse 2s ease-in-out infinite;
+}
+
+.run-status-dot.future {
+    background: #fff;
+    border-color: #ced4da;
+    border-style: dashed;
+}
+
+/* --- Milestone labels --- */
+.run-status-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-top: 8px;
+    line-height: 1.2;
+}
+
+.run-status-date {
+    font-size: 0.72rem;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+/* --- Milestone status text in table --- */
+.run-status-actual {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.run-status-projected {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+/* --- Pulse animation --- */
+@keyframes run-status-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(95, 134, 190, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(95, 134, 190, 0);
+    }
+}
+
+/* --- Responsive: vertical timeline on mobile --- */
+@media (max-width: 767px) {
+    .run-status-timeline {
+        padding: 20px 10px;
+    }
+
+    .run-status-track {
+        width: 6px;
+        height: auto;
+        min-height: 300px;
+        position: absolute;
+        left: 30px;
+        top: 20px;
+        bottom: 20px;
+    }
+
+    .run-status-progress {
+        width: 100% !important;
+        height: var(--progress-pct);
+        left: 0;
+        top: 0;
+    }
+
+    .run-status-rocket {
+        top: auto;
+        left: 30px !important;
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    .run-status-milestones {
+        flex-direction: column;
+        margin-top: 0;
+        padding-left: 60px;
+        gap: 30px;
+    }
+
+    .run-status-milestone {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        max-width: none;
+        gap: 12px;
+    }
+
+    .run-status-milestone:first-child,
+    .run-status-milestone:last-child {
+        align-items: center;
+        text-align: left;
+    }
+
+    .run-status-dot {
+        position: absolute;
+        left: 30px;
+        transform: translateX(-50%);
+    }
+
+    .run-status-milestone-text {
+        padding-left: 0;
+    }
+}
