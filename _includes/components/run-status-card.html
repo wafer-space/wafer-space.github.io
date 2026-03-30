@@ -1,0 +1,129 @@
+{% comment %}
+  Run Status Card Component
+  Displays a single run's timeline with rocket progress marker.
+
+  Usage: {% include components/run-status-card.html run=run %}
+  Expects: run object with .name, .process, .status, .timeline[] (each with .completed)
+{% endcomment %}
+
+{% comment %} --- Compute progress --- {% endcomment %}
+{% assign total = include.run.timeline | size %}
+{% assign completed_count = 0 %}
+{% assign current_index = -1 %}
+{% for milestone in include.run.timeline %}
+  {% if milestone.completed == true %}
+    {% assign completed_count = completed_count | plus: 1 %}
+  {% elsif current_index == -1 %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Progress percentage: position at the last completed milestone {% endcomment %}
+{% assign segments = total | minus: 1 %}
+{% if segments > 0 %}
+  {% if completed_count == 0 %}
+    {% assign progress_pct = 0 %}
+    {% assign rocket_pct = 0 %}
+  {% elsif completed_count >= total %}
+    {% assign progress_pct = 100 %}
+    {% assign rocket_pct = 100 %}
+  {% else %}
+    {% assign progress_pct = completed_count | minus: 1 | times: 100 | divided_by: segments %}
+    {% assign rocket_pct = completed_count | times: 100 | divided_by: segments %}
+    {% comment %} Place rocket halfway between last completed and next milestone {% endcomment %}
+    {% assign half_segment = 50 | divided_by: segments %}
+    {% assign rocket_pct = progress_pct | plus: half_segment %}
+  {% endif %}
+{% else %}
+  {% assign progress_pct = 0 %}
+  {% assign rocket_pct = 0 %}
+{% endif %}
+
+<div class="run-card" data-status="{{ include.run.status }}">
+  <div class="box bg-white shadow p-4 mb-40">
+
+    <!-- Card header -->
+    <div class="d-flex justify-content-between align-items-center mb-30">
+      <div>
+        <h4 class="mb-0">{{ include.run.name }}</h4>
+        <span class="text-muted">{{ include.run.process }} &middot; Run {{ include.run.run_number }}</span>
+      </div>
+      <span class="run-status-badge run-status-badge-{{ include.run.status }}">
+        {{ include.run.status | capitalize }}
+      </span>
+    </div>
+
+    <!-- Timeline visualization -->
+    <div class="run-status-timeline">
+      <!-- Track with progress fill -->
+      <div class="run-status-track">
+        <div class="run-status-progress" style="width: {{ progress_pct }}%;"></div>
+        <!-- Rocket marker -->
+        {% if completed_count < total %}
+        <img src="{{ '/assets/images/art/rocket2.webp' | relative_url }}"
+             alt="Current progress"
+             class="run-status-rocket"
+             style="left: {{ rocket_pct }}%;">
+        {% else %}
+        <img src="{{ '/assets/images/art/rocket2.webp' | relative_url }}"
+             alt="Run completed"
+             class="run-status-rocket"
+             style="left: 100%;">
+        {% endif %}
+      </div>
+
+      <!-- Milestone markers -->
+      <div class="run-status-milestones">
+        {% for milestone in include.run.timeline %}
+          {% comment %} Determine dot state {% endcomment %}
+          {% if milestone.completed == true %}
+            {% assign dot_class = "completed" %}
+          {% elsif forloop.index0 == current_index %}
+            {% assign dot_class = "current" %}
+          {% else %}
+            {% assign dot_class = "future" %}
+          {% endif %}
+
+          <div class="run-status-milestone">
+            <div class="run-status-dot {{ dot_class }}"></div>
+            <div class="run-status-milestone-text">
+              <div class="run-status-label">{{ milestone.title }}</div>
+              <div class="run-status-date">{{ milestone.display_date }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Milestone details table -->
+    <div class="table-responsive mt-30">
+      <table class="table table-hover table-borderless">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" class="font-weight-bold">Milestone</th>
+            <th scope="col" class="font-weight-bold">Date</th>
+            <th scope="col" class="font-weight-bold">Description</th>
+            <th scope="col" class="font-weight-bold">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for milestone in include.run.timeline %}
+            <tr class="text-center timeline-row timeline-{{ milestone.status }}">
+              <td class="font-weight-600">{{ milestone.title }}</td>
+              <td class="text-muted">{{ milestone.display_date }}</td>
+              <td class="text-muted">{{ milestone.description }}</td>
+              <td>
+                {% if milestone.completed == true %}
+                  <span class="run-status-actual">Completed</span>
+                {% else %}
+                  <span class="run-status-projected">Projected</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
