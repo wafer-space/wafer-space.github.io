@@ -1,0 +1,108 @@
+---
+layout: default
+title: "Run Status"
+sub_title: |
+  Track the progress of wafer.space manufacturing runs from tape-out to delivery.
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+---
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<!-- Filter tabs -->
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <h2 class="section-title mb-40 text-center">Manufacturing Run Status</h2>
+    <p class="lead larger text-center mb-40">Follow each run's journey from campaign to delivery.</p>
+
+    <div class="d-flex justify-content-center mb-40">
+      <ul class="nav run-status-filters">
+        <li class="nav-item">
+          <a class="nav-link active" data-filter="all">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-filter="active">Current</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-filter="upcoming">Future</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-filter="completed">Completed</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Run cards -->
+<div class="wrapper gray-wrapper">
+  <div class="container inner">
+    {% assign runs_data = site.data.runs.runs %}
+    {% for run_entry in runs_data %}
+      {% assign run = run_entry[1] %}
+      {% include components/run-status-card.html run=run %}
+    {% endfor %}
+
+    <!-- Empty state for filtered views -->
+    <div class="run-card-empty text-center py-5" style="display: none;">
+      <h4 class="text-muted">No runs match this filter.</h4>
+    </div>
+  </div>
+</div>
+
+<div class="space120"></div>
+
+{% include layouts/footer/footer-1.html %}
+
+<!-- Filtering and URL hash support -->
+<script>
+(function() {
+  'use strict';
+
+  function applyFilter(filter) {
+    var $cards = $('.run-card');
+    var $empty = $('.run-card-empty');
+    var visibleCount = 0;
+
+    if (filter === 'all') {
+      $cards.show();
+      visibleCount = $cards.length;
+    } else {
+      $cards.each(function() {
+        if ($(this).data('status') === filter) {
+          $(this).show();
+          visibleCount++;
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+
+    // Show empty state if no matches
+    if (visibleCount === 0) {
+      $empty.show();
+    } else {
+      $empty.hide();
+    }
+
+    // Update active tab
+    $('.run-status-filters .nav-link').removeClass('active');
+    $('.run-status-filters .nav-link[data-filter="' + filter + '"]').addClass('active');
+  }
+
+  $(document).ready(function() {
+    // Tab click handler
+    $('.run-status-filters .nav-link').on('click', function(e) {
+      e.preventDefault();
+      var filter = $(this).data('filter');
+      applyFilter(filter);
+      history.replaceState(null, '', '#' + filter);
+    });
+
+    // Read initial filter from URL hash
+    var hash = window.location.hash.replace('#', '');
+    if (hash && ['all', 'active', 'upcoming', 'completed'].indexOf(hash) !== -1) {
+      applyFilter(hash);
+    }
+  });
+})();
+</script>
