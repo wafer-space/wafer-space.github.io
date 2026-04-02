@@ -24,4 +24,5 @@ yarn.lock
 .claude/settings.local.json
 .playwright-mcp/
 temp/
+tmp/
 .worktrees/
