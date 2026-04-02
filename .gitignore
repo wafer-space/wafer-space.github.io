@@ -22,5 +22,6 @@ yarn.lock
 
 # Claude Code local settings (user-specific)
 .claude/settings.local.json
+.playwright-mcp/
 temp/
 .worktrees/
