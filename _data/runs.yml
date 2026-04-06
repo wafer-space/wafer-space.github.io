@@ -144,7 +144,7 @@ runs:
         description: "Final deadline to purchase slots and submit GDS files"
         status: "critical"
       - title: "Parts Shipped"
-        date: "2026-10-01"
+        date: "2026-10-01"  # Intentionally approximate; delivery_date (16 Oct) is the specific estimate
         display_date: "Early Q4 2026"
         description: "Bare dies and packaged parts shipped to customers"
         status: "delivery"
