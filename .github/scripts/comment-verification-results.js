@@ -5,14 +5,11 @@
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = async function commentVerificationResults(github, context, core) {
-  // Validate inputs
-  if (!context.payload.pull_request) {
-    throw new Error('No pull request data available');
-  }
-  
-  const prNumber = context.payload.pull_request.number;
+  // Read PR number from env (works for both workflow_run and workflow_dispatch
+  // contexts, unlike context.payload.pull_request which is null for workflow_run)
+  const prNumber = parseInt(process.env.PR_NUMBER, 10);
   if (!Number.isInteger(prNumber) || prNumber < 1 || prNumber > 99999) {
-    throw new Error('Invalid PR number');
+    throw new Error(`Invalid PR number: ${process.env.PR_NUMBER}`);
   }
   
   const verificationStatus = process.env.VERIFICATION_STATUS;

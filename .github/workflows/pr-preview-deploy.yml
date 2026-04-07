@@ -1,0 +1,589 @@
+# PR Preview Deploy (Stage 2 - Trusted Context)
+# This workflow is triggered by workflow_run after Stage 1 completes
+# It has FULL access to secrets and runs from the base branch (trusted)
+#
+# SECURITY MODEL: This workflow does NOT trust Stage 1's artifact for
+# security decisions. Stage 1 runs the fork's version of its workflow,
+# so a malicious fork could tamper with the artifact. Instead, this
+# workflow independently verifies security-critical data via the GitHub
+# API before proceeding with the build.
+name: PR Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ["PR Preview Build"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  deployments: write
+  actions: read  # Needed to download artifacts
+
+# Prevent concurrent deployments - cancel old runs when new commits pushed
+concurrency:
+  group: pr-preview-deployment-${{ github.event.workflow_run.pull_requests[0].number }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    # Only run if Stage 1 succeeded and there's a PR associated
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.pull_requests[0].number != null
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download PR context artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-context-${{ github.event.workflow_run.pull_requests[0].number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Read and validate PR metadata
+        id: pr
+        run: |
+          echo "📦 Reading PR metadata..."
+          cat pr-context.json | jq .
+
+          # Extract and validate PR number (must be positive integer)
+          PR_NUMBER=$(jq -r .number pr-context.json)
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]] || [ "$PR_NUMBER" -lt 1 ] || [ "$PR_NUMBER" -gt 99999 ]; then
+            echo "❌ Invalid PR number: $PR_NUMBER"
+            exit 1
+          fi
+
+          # Extract and validate SHA (must be 40-character hex)
+          PR_SHA=$(jq -r .sha pr-context.json)
+          if ! [[ "$PR_SHA" =~ ^[a-f0-9]{40}$ ]]; then
+            echo "❌ Invalid SHA format: $PR_SHA"
+            exit 1
+          fi
+
+          # Extract title (truncate to 100 chars, sanitize)
+          PR_TITLE=$(jq -r .title pr-context.json | head -c 100 | tr -d '\n\r')
+
+          # Set validated outputs (used for non-security-critical purposes)
+          echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "sha=$PR_SHA" >> $GITHUB_OUTPUT
+          echo "title=$PR_TITLE" >> $GITHUB_OUTPUT
+
+          echo "✅ Validated PR #$PR_NUMBER"
+
+      # SECURITY: Independent verification via GitHub API
+      # Do NOT trust Stage 1 artifact for security decisions - a malicious
+      # fork can modify the Stage 1 workflow to tamper with artifact data.
+      - name: Verify PR security independently
+        id: security-check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.workflow_run.pull_requests[0].number;
+
+            // Fetch PR details from GitHub API (trusted source)
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+
+            const isFork = pr.head.repo.full_name !== `${context.repo.owner}/${context.repo.repo}`;
+            core.setOutput('is_fork', isFork.toString());
+            core.setOutput('pr_sha', pr.head.sha);
+
+            console.log(`PR #${prNumber} from ${pr.head.repo.full_name} (fork: ${isFork})`);
+
+            // Validate artifact SHA matches API SHA to detect tampering
+            const fs = require('fs');
+            const metadata = JSON.parse(fs.readFileSync('pr-context.json', 'utf8'));
+            if (metadata.sha !== pr.head.sha) {
+              core.setFailed(`SHA mismatch: artifact=${metadata.sha}, API=${pr.head.sha}. Possible artifact tampering.`);
+              return;
+            }
+            console.log(`✅ SHA verified: ${pr.head.sha}`);
+
+            // Internal PRs: always allowed
+            if (!isFork) {
+              core.setOutput('deployment_allowed', 'true');
+              console.log('✅ Internal PR — deployment always allowed');
+              return;
+            }
+
+            // Fork PRs: check for dangerous file changes
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                per_page: 100
+              }
+            );
+
+            const dangerousPatterns = [
+              /^_plugins\//,
+              /^\.github\//,
+            ];
+
+            const dangerousFiles = files
+              .map(f => f.filename)
+              .filter(f => dangerousPatterns.some(p => p.test(f)));
+
+            if (dangerousFiles.length > 0) {
+              core.setOutput('deployment_allowed', 'false');
+              core.setOutput('dangerous_files', dangerousFiles.join('\n'));
+              core.warning(`🚫 Fork PR modifies executable code: ${dangerousFiles.join(', ')}`);
+            } else {
+              core.setOutput('deployment_allowed', 'true');
+              console.log('✅ Fork PR — content-only changes — deployment allowed');
+            }
+
+      - name: Checkout PR code from git
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        uses: actions/checkout@v4
+        with:
+          # Use API-verified SHA (not artifact SHA) to close the trust chain
+          ref: ${{ steps.security-check.outputs.pr_sha }}
+          submodules: false  # We'll handle submodules separately
+
+      # SECURITY: For fork PRs, replace all executable files with trusted
+      # versions from main. This prevents three attack vectors:
+      # 1. _config.yml redirecting plugins_dir to execute attacker code
+      # 2. Pre-existing fork modifications to .github/scripts/ that don't
+      #    appear in the PR diff but are present in the checked-out code
+      # 3. Pre-existing fork modifications to _plugins/ (Ruby code executed
+      #    by Jekyll during build) that don't appear in the PR diff
+      - name: Apply security overrides for fork PRs
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.security-check.outputs.is_fork == 'true'
+        run: |
+          set -e
+          echo "🔒 Applying security overrides for fork PR..."
+
+          # Force plugins_dir to _plugins to prevent _config.yml redirection
+          # (a malicious _config.yml could set plugins_dir to a directory
+          # containing attacker-supplied Ruby code outside _plugins/)
+          cat > _config_security.yml << 'SECURITY_EOF'
+          # Security overrides for fork PR builds - do not modify
+          plugins_dir: _plugins
+          SECURITY_EOF
+
+          git fetch origin main
+
+          # Completely replace _plugins/ with trusted version from main.
+          # This prevents both modifications to existing plugins AND
+          # addition of new malicious plugin files by the fork.
+          rm -rf _plugins/
+          git checkout origin/main -- _plugins/
+          echo "✅ Replaced _plugins/ with trusted version from main"
+
+          # Replace executable scripts with trusted versions from main
+          # to prevent pre-existing fork modifications from executing
+          for script in \
+            .github/scripts/generate-pr-directory-name.js \
+            .github/scripts/generate-preview-index.sh; do
+            if git cat-file -e "origin/main:$script" 2>&1; then
+              git show "origin/main:$script" > "$script"
+              echo "✅ Replaced $script with trusted version from main"
+            fi
+          done
+
+          echo "✅ Security overrides applied"
+
+      # Use API-verified is_fork (not artifact) for security decisions
+      - name: Use trusted Gemfile for fork PRs (security)
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.security-check.outputs.is_fork == 'true'
+        id: gemfile-check
+        run: |
+          echo "🔒 Fork PR detected - using trusted Gemfile from main branch"
+
+          # Check if Gemfile was modified in this PR
+          git fetch origin main
+          if ! git diff --quiet origin/main HEAD -- Gemfile Gemfile.lock; then
+            echo "gemfile_modified=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Gemfile changes detected in fork PR"
+          else
+            echo "gemfile_modified=false" >> $GITHUB_OUTPUT
+          fi
+
+          # Checkout trusted Gemfile and Gemfile.lock from main branch
+          git show origin/main:Gemfile > Gemfile.trusted
+          git show origin/main:Gemfile.lock > Gemfile.lock.trusted
+
+          # Replace PR's Gemfile with trusted version
+          mv Gemfile.trusted Gemfile
+          mv Gemfile.lock.trusted Gemfile.lock
+
+          echo "✅ Using trusted dependencies for security"
+
+      - name: Initialize private theme submodule with SSH
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        run: |
+          echo "🔐 Checking out private theme submodule..."
+          # Setup SSH agent with theme deploy key
+          eval $(ssh-agent -s)
+          echo "${{ secrets.JEKYLL_THEME_KEY }}" | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          # Initialize and update theme submodule
+          git submodule sync --recursive
+          git submodule update --init --recursive
+
+          echo "✅ Private theme checked out successfully"
+
+      - name: Setup Ruby and dependencies
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+          cache-version: 0
+
+      - name: Generate PR directory name
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        id: pr-directory
+        uses: actions/github-script@v7
+        # Pass title via env to prevent expression injection (title is
+        # artifact-sourced and attacker-controlled for fork PRs)
+        env:
+          PR_TITLE: ${{ steps.pr.outputs.title }}
+        with:
+          script: |
+            const generatePrDirectoryName = require('./.github/scripts/generate-pr-directory-name.js');
+            const prNumber = ${{ steps.pr.outputs.number }};
+            const prTitle = process.env.PR_TITLE;
+
+            // Main directory uses just PR number for simplicity
+            const directoryName = `pr-${prNumber}`;
+            // Slugified version for user-friendly redirect
+            const slugifiedName = generatePrDirectoryName(prNumber, prTitle);
+
+            console.log(`Main directory: ${directoryName}`);
+            console.log(`Slugified redirect: ${slugifiedName}`);
+
+            // Set outputs
+            core.setOutput('directory_name', directoryName);
+            core.setOutput('slugified_name', slugifiedName);
+            core.setOutput('baseurl_path', `/${directoryName}`);
+
+            return directoryName;
+
+      - name: Build Jekyll site with private theme
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        run: |
+          BASEURL="${{ steps.pr-directory.outputs.baseurl_path }}"
+          export PATH=$PATH:~/.local/share/gem/ruby/3.1.0/bin
+          echo "🔨 Building Jekyll site..."
+          # For fork PRs, stack security config to override dangerous settings
+          CONFIG_FLAG=""
+          if [ -f _config_security.yml ]; then
+            CONFIG_FLAG="--config _config.yml,_config_security.yml"
+            echo "🔒 Using security config override"
+          fi
+          bundle exec jekyll build --baseurl "$BASEURL" $CONFIG_FLAG
+          echo "✅ Site built successfully"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Save built site for deployment
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        run: |
+          DIR_NAME="${{ steps.pr-directory.outputs.directory_name }}"
+          # Save to temp location
+          cp -r _site "/tmp/pr-site-${DIR_NAME}"
+          cp -r .github "/tmp/pr-github-${DIR_NAME}"
+
+      - name: Clone preview repository and deploy
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        run: |
+          # Assign outputs to shell variables for safe quoting
+          DIR_NAME="${{ steps.pr-directory.outputs.directory_name }}"
+          SLUG_NAME="${{ steps.pr-directory.outputs.slugified_name }}"
+          PR_NUM="${{ steps.pr.outputs.number }}"
+          PR_SHA="${{ steps.pr.outputs.sha }}"
+
+          echo "🚀 Deploying to preview.wafer.space..."
+
+          # Setup SSH for preview repo
+          eval $(ssh-agent -s)
+          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          # Clone preview repository
+          git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
+          cd preview-repo
+
+          # Configure git
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Create PR directory and copy built site
+          mkdir -p "$DIR_NAME"
+          cp -r "/tmp/pr-site-${DIR_NAME}/"* "$DIR_NAME/"
+
+          # Create redirect page for slugified URL if different
+          if [ "$SLUG_NAME" != "$DIR_NAME" ]; then
+            mkdir -p "$SLUG_NAME"
+            cp "/tmp/pr-github-${DIR_NAME}/templates/redirect-template.html" "$SLUG_NAME/index.html"
+            sed -i "s|{{TARGET_URL}}|/${DIR_NAME}|g" "$SLUG_NAME/index.html"
+            echo "Created redirect from $SLUG_NAME to $DIR_NAME"
+          fi
+
+          # Ensure CNAME file exists
+          if [ ! -f CNAME ]; then
+            echo "preview.wafer.space" > CNAME
+          fi
+
+          # Generate preview index page
+          if [ -f "/tmp/pr-github-${DIR_NAME}/scripts/generate-preview-index.sh" ]; then
+            cp "/tmp/pr-github-${DIR_NAME}/scripts/generate-preview-index.sh" ./
+            mkdir -p .github/templates
+            cp "/tmp/pr-github-${DIR_NAME}/templates/preview-index.html" .github/templates/
+            chmod +x generate-preview-index.sh
+            ./generate-preview-index.sh
+          fi
+
+          # Commit and push
+          git add .
+          if git diff --staged --quiet; then
+            echo "ℹ️  No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Deploy preview for PR #${PR_NUM} - ${PR_SHA}"
+
+          # SSH agent is still active from earlier setup
+          git push origin main
+
+          echo "✅ Deployment complete"
+
+      - name: Wait for Pages deployment
+        if: steps.security-check.outputs.deployment_allowed == 'true'
+        id: verify-deployment
+        run: |
+          PREVIEW_URL="https://preview.wafer.space/pr-${{ steps.pr.outputs.number }}/"
+          EXPECTED_COMMIT="${{ steps.pr.outputs.sha }}"
+
+          echo "⏳ Waiting for GitHub Pages deployment..."
+          echo "Preview URL: $PREVIEW_URL"
+          echo "Expected commit: $EXPECTED_COMMIT"
+
+          # Wait for basic HTTP response (3 minutes max)
+          for i in {1..18}; do
+            sleep 10
+            echo "Attempt $i/18: Checking HTTP response..."
+
+            if curl -s --fail --head "$PREVIEW_URL" > /dev/null; then
+              echo "✅ Site is responding"
+              break
+            fi
+
+            if [ $i -eq 18 ]; then
+              echo "deployment_status=failed" >> $GITHUB_OUTPUT
+              echo "error_message=No HTTP response after 3 minutes" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          done
+
+          # Verify content is correct (2 minutes max)
+          for i in {1..24}; do
+            sleep 5
+            echo "Content verification attempt $i/24..."
+
+            PAGE_CONTENT=$(curl -s "$PREVIEW_URL")
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PREVIEW_URL")
+
+            if [ "$HTTP_STATUS" = "200" ] && echo "$PAGE_CONTENT" | grep -q "wafer.space"; then
+              echo "✅ Deployment verified successfully"
+              echo "deployment_status=success" >> $GITHUB_OUTPUT
+              echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          done
+
+          echo "⚠️  Verification timeout - deployment may still be propagating"
+          echo "deployment_status=partial" >> $GITHUB_OUTPUT
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "error_message=Content verification timeout" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub deployment
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.verify-deployment.outputs.deployment_status == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.number }};
+            const sha = '${{ steps.pr.outputs.sha }}';
+            const previewUrl = '${{ steps.verify-deployment.outputs.preview_url }}';
+
+            try {
+              const { data: deployment } = await github.rest.repos.createDeployment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: sha,
+                environment: `pr-preview-${prNumber}`,
+                transient_environment: true,
+                production_environment: false,
+                required_contexts: [],
+                description: `PR #${prNumber} preview`,
+                auto_merge: false
+              });
+
+              await github.rest.repos.createDeploymentStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: deployment.id,
+                state: 'success',
+                environment_url: previewUrl,
+                description: 'Preview deployment successful'
+              });
+
+              console.log(`Created deployment ${deployment.id} for PR #${prNumber}`);
+            } catch (error) {
+              console.error('Failed to create deployment:', error.message);
+              // Don't fail the workflow if deployment creation fails
+            }
+
+      - name: Comment on PR with preview URL
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.verify-deployment.outputs.deployment_status == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.number }};
+            const previewUrl = '${{ steps.verify-deployment.outputs.preview_url }}';
+            const commitSha = '${{ steps.pr.outputs.sha }}'.substring(0, 7);
+            const isFork = ${{ steps.security-check.outputs.is_fork }};
+            const gemfileModified = '${{ steps.gemfile-check.outputs.gemfile_modified }}' === 'true';
+
+            const forkBadge = isFork ? '🌍 **External Contributor** (fork PR)' : '🏠 Internal PR';
+
+            // Add Gemfile security notice for fork PRs with dependency changes
+            let securityNotice = '';
+            if (isFork && gemfileModified) {
+              securityNotice = `\n\n> **🔒 Security Notice:** This PR includes changes to \`Gemfile\` or \`Gemfile.lock\`. For security, the preview was built using the trusted dependencies from the \`main\` branch. If you need to update dependencies, please work with a maintainer to submit those changes separately from an internal branch.\n`;
+            }
+
+            const commentBody = [
+              '## ✅ Preview Deployment Ready!',
+              '',
+              forkBadge,
+              '',
+              '| Preview URL | Commit |',
+              '|-------------|--------|',
+              `| [View Preview](${previewUrl}) | \`${commitSha}\` |`,
+              '',
+              '**🎉 Your preview has been deployed successfully!**',
+              '',
+              `The preview site is available at: ${previewUrl}${securityNotice}`,
+              '',
+              '---',
+              '<sub>⚡ Deployed via workflow_run (two-stage deployment) • Preview will be removed when PR is closed</sub>',
+            ].join('\n');
+
+            // Find and update existing comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Preview Deployment')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+              console.log(`Updated comment ${botComment.id} on PR #${prNumber}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+              console.log(`Created new comment on PR #${prNumber}`);
+            }
+
+      - name: Comment on PR if deployment failed
+        if: steps.security-check.outputs.deployment_allowed == 'true' && steps.verify-deployment.outputs.deployment_status == 'failed'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.number }};
+            const errorMessage = '${{ steps.verify-deployment.outputs.error_message }}';
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `## ❌ Preview Deployment Failed\n\n**Error:** ${errorMessage}\n\nPlease check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`
+            });
+
+      - name: Comment on PR about blocked deployment
+        if: steps.security-check.outputs.deployment_allowed == 'false'
+        uses: actions/github-script@v7
+        env:
+          DANGEROUS_FILES: ${{ steps.security-check.outputs.dangerous_files }}
+        with:
+          script: |
+            const prNumber = ${{ steps.pr.outputs.number }};
+            const dangerousFiles = process.env.DANGEROUS_FILES;
+
+            const commentBody = [
+              '## 🚫 Preview Deployment Blocked',
+              '',
+              'This pull request modifies executable code that runs during the preview build:',
+              '',
+              '```',
+              dangerousFiles,
+              '```',
+              '',
+              '**Why?** For security, fork PRs that modify files in `_plugins/` or `.github/` cannot receive automatic preview deployments. These files execute during the build process with access to repository secrets.',
+              '',
+              '**What to do:**',
+              '- If you only need content changes previewed, please move executable code changes to a separate PR',
+              '- A maintainer can review the executable changes and deploy a preview manually',
+              '',
+              '---',
+              '<sub>🔒 Blocked by security gate (two-stage deployment)</sub>',
+            ].join('\n');
+
+            // Find and update existing comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Preview Deployment')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }

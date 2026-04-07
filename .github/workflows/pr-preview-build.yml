@@ -1,0 +1,126 @@
+# PR Preview Build (Stage 1 - Untrusted Context)
+# This workflow runs for ALL pull requests, including those from forks
+# It has NO access to secrets and only collects PR metadata
+#
+# SECURITY NOTE: This workflow runs the FORK's version of this file.
+# A malicious fork can modify this workflow arbitrarily. Therefore:
+# - The artifact produced here is UNTRUSTED data
+# - Stage 2 must independently verify all security-critical claims
+# - The security check here is informational only (for logging/summaries)
+name: PR Preview Build
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read  # Needed to list PR changed files
+
+jobs:
+  collect-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for executable code changes
+        id: security-check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                per_page: 100
+              }
+            );
+
+            const dangerousPatterns = [
+              /^_plugins\//,
+              /^\.github\//,
+            ];
+
+            const dangerousFiles = files
+              .map(f => f.filename)
+              .filter(f => dangerousPatterns.some(p => p.test(f)));
+
+            const hasDangerousChanges = dangerousFiles.length > 0;
+
+            core.setOutput('has_dangerous_changes', hasDangerousChanges.toString());
+            core.setOutput('dangerous_files', dangerousFiles.join(', '));
+
+            if (hasDangerousChanges) {
+              core.warning(`Executable code modified: ${dangerousFiles.join(', ')}`);
+            } else {
+              console.log('No executable code changes detected');
+            }
+
+      - name: Save PR metadata
+        # Pass attacker-controlled values via env to prevent shell injection
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_REF: ${{ github.event.pull_request.head.ref }}
+          PR_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+          DANGEROUS_FILES: ${{ steps.security-check.outputs.dangerous_files }}
+        run: |
+          # Determine if this is a fork PR
+          if [ "$PR_REPO" != "${{ github.repository }}" ]; then
+            IS_FORK=true
+          else
+            IS_FORK=false
+          fi
+
+          # Use jq to construct JSON safely (prevents injection via PR title etc.)
+          jq -n \
+            --argjson number "${{ github.event.pull_request.number }}" \
+            --arg sha "${{ github.event.pull_request.head.sha }}" \
+            --arg ref "$PR_REF" \
+            --arg title "$PR_TITLE" \
+            --arg repo "$PR_REPO" \
+            --arg base_ref "${{ github.event.pull_request.base.ref }}" \
+            --arg user "$PR_USER" \
+            --argjson is_fork "$IS_FORK" \
+            --argjson has_dangerous_changes "${{ steps.security-check.outputs.has_dangerous_changes }}" \
+            --arg dangerous_files "$DANGEROUS_FILES" \
+            '{
+              number: $number,
+              sha: $sha,
+              ref: $ref,
+              title: $title,
+              repo: $repo,
+              base_ref: $base_ref,
+              user: $user,
+              is_fork: $is_fork,
+              has_dangerous_changes: $has_dangerous_changes,
+              dangerous_files: $dangerous_files
+            }' > pr-context.json
+
+          echo "📦 Saved PR metadata:"
+          cat pr-context.json
+
+      - name: Upload PR context artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-context-${{ github.event.pull_request.number }}
+          path: pr-context.json
+          retention-days: 1
+
+      - name: Summary
+        run: |
+          echo "✅ PR metadata collected successfully"
+          echo "📊 PR #${{ github.event.pull_request.number }}"
+          echo "🔗 From: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "🎯 SHA: ${{ github.event.pull_request.head.sha }}"
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "🌍 External contributor (fork PR)"
+          else
+            echo "🏠 Internal contributor"
+          fi
+          if [ "${{ steps.security-check.outputs.has_dangerous_changes }}" = "true" ]; then
+            echo "⚠️  Executable code changes: ${{ steps.security-check.outputs.dangerous_files }}"
+          else
+            echo "✅ No executable code changes"
+          fi
