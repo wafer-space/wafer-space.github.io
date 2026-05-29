@@ -16,6 +16,11 @@
 
 {% if include.id != "TODO" %}
 <div>
+    {% if include.caption %}
+        <p class="text-center text-muted mb-10">
+            <small>{{ include.caption }}</small>
+        </p>
+    {% endif %}
     <iframe style="width:100%; aspect-ratio: 16/9;"
         src="https://www.youtube.com/embed/{{ include.id }}?start=&end={{playback_options}}"
         title="YouTube video player" frameborder="0"
@@ -24,8 +29,15 @@
     </iframe>
 </div>
 {% else %}
-<div style="width:100%; aspect-ratio: 16/9; display: flex; flex-direction: column; justify-content: center; align-items: center; border: dashed red;">
-    {% include image.html file="/assets/images/logo.webp" %}
-    <p><b>Placeholder video box</b></p>
+<div>
+    {% if include.caption %}
+    <p class="text-center text-muted mb-10">
+        <small>{{ include.caption }}</small>
+    </p>
+    {% endif %}
+    <div style="width:100%; aspect-ratio: 16/9; display: flex; flex-direction: column; justify-content: center; align-items: center; border: dashed red;">
+        {% include image.html file="/assets/images/logo.webp" %}
+        <p><b>Placeholder video box</b></p>
+    </div>
 </div>
 {% endif %}
