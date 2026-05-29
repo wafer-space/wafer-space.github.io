@@ -35,4 +35,4 @@ Early bird pricing for Run 2 is ending soon. If you want to lock in the lower pr
 * [Run 2 on Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2)
 * [Discord](https://discord.gg/43y2t53jpE)
 
--Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

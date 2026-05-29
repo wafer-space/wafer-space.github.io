@@ -41,4 +41,4 @@ Every slot includes 1,000 dies. Half slots are new for Run 2.
 
 More updates coming as we progress through dicing and sorting.
 
--Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

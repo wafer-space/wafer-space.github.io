@@ -98,4 +98,4 @@ The conversations above explore this shift from multiple angles—technical, eco
 
 Thanks for taking the time to learn about this mission. Whether you join Run 1 or future runs, understanding why this infrastructure matters is the first step.
 
-- Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

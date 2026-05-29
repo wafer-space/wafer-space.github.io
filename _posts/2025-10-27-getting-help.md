@@ -150,4 +150,4 @@ These professional service companies extend that mission by making silicon acces
 
 Your idea deserves to become real silicon. Whether you get there independently, with community help, with targeted professional help, or through full-service design, what matters is that you get there.
 
-- Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

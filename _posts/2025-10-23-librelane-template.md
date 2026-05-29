@@ -174,4 +174,4 @@ LibreLane handles the flow. The template handles the setup. You handle the innov
 
 Whether you're targeting the December 3rd deadline or planning for a future run, these tools are here to help you go from idea to silicon faster and with less friction.
 
-- Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

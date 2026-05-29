@@ -77,6 +77,6 @@ Check out the [full paper](https://siliconprawn.org/archive/lib/exe/fetch.php?me
 
 Questions about the campaign or getting started with GF180MCU? Hit reply or join our community discussions!
 
-- Tim "mithro" Ansell
+\- Tim "mithro" Ansell
 
 *P.S. — If you haven't reserved your slot yet, head over to [buy.wafer.space](https://buy.wafer.space/) before November 28th. After that, you'll be waiting for Run 2!*

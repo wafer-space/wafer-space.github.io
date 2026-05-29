@@ -43,4 +43,4 @@ The final deadline to purchase a slot and submit your GDS is **30 June 2026**.
 
 [Purchase your slot on Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2) before early bird pricing ends on 30 April.
 
--Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

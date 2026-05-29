@@ -67,4 +67,4 @@ The earlier you start, the more time you have to iterate. The best designs from 
 
 More updates coming soon with pricing details, slot sizes, and timeline specifics. Stay tuned.
 
--Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell

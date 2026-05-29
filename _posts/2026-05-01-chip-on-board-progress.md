@@ -41,4 +41,4 @@ Chip-on-board packaging is available as an add-on for $1,500 ($1.50/die).
 * [Run 2 on Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2)
 * [Discord](https://discord.gg/43y2t53jpE)
 
--Tim 'mithro' Ansell
+\- Tim 'mithro' Ansell
