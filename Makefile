@@ -111,5 +111,5 @@ quick: build serve
 
 # Prepare image for website by stripping EXIF data and compressing it
 prepimg:
-	exif --remove $(img) -o $(img)
+	-exif --remove $(img) -o $(img)
 	convert -quality 90% $(img) $(img)
