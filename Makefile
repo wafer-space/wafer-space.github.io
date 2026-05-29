@@ -11,7 +11,7 @@ PATH := ${PATH}:/home/tim/.local/share/gem/ruby/3.2.0/bin
 .DEFAULT_GOAL := help
 
 # Phony targets
-.PHONY: help build serve clean install update verify dev production test
+.PHONY: help build serve clean install update verify dev production test prepimg
 
 # Help target - shows available commands
 help:
@@ -108,3 +108,8 @@ test: build
 
 # Quick build and serve (builds first, then serves)
 quick: build serve
+
+# Prepare image for website by stripping EXIF data and compressing it
+prepimg:
+	exif --remove $(img) -o $(img)
+	convert -quality 90% $(img) $(img)
