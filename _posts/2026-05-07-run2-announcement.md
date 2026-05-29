@@ -1,7 +1,7 @@
 ---
 layout: posts/post-boxed
 title: "GF180MCU Run 2 is in the Works"
-date: 2026-03-25 12:00:00 +0000
+date: 2026-05-17 12:00:00 +0000
 excerpt: "Run 2 is in the works with multiple slot sizes, improved submission tooling, and early-bird pricing for Run 1 participants."
 categories: [news]
 tags: [gf180mcu, run1, run2]
