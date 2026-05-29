@@ -16,7 +16,7 @@ permalink: "/news/run2-coming-soon"
 
 Hey folks,
 
-If you are reading this, you have just subscribed to the [wafer.space GF180MCU Run 2 campaign](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2). Welcome! Whether you followed Run 1 or this is your first time hearing about wafer.space, we are glad you are here.
+We're pleased to announce that Run 2 is coming soon! Whether you followed Run 1 or this is your first time hearing about wafer.space, we are glad you are here.
 
 ## What is wafer.space?
 
