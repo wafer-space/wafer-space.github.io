@@ -12,6 +12,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/run2-early-bird-warning"
+published: false
 ---
 
 Quick reminder: early bird pricing for [wafer.space](https://wafer.space) GF180MCU Run 2 ends on **30 April 2026**. That is two weeks from now.
