@@ -1,7 +1,7 @@
 ---
 layout: "posts/post-boxed"
 title: "We Have Some Amazing Projects This Run: MOSbius"
-date: "2025-11-17 12:00:00 +0000"
+date: "2025-11-19 12:00:00 +0000"
 excerpt: "This week we highlight MOSbius, an educational platform from Columbia University bringing hands-on silicon learning to students worldwide."
 categories: [news]
 tags: [gf180mcu, run1, featured-project, mosbius]
