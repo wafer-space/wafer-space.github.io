@@ -29,15 +29,13 @@ Through wafer.space, MOSbius gains 3.3V compatible I/Os, high part counts, and C
 
 ## [MOSbius](https://mosbius.org/)
 
-<img src="{{ "/assets/images/news/mosbius-feature/mosbius_flow.png" | relative_url }}" alt="MOSbius platform enables hands-on exploration of transistor-level MOS circuits on breadboard" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/mosbius-feature/mosbius_flow.png" description="MOSbius platform enables hands-on exploration of transistor-level MOS circuits on breadboard" %}
 
 **[MOSbius](https://mosbius.org/)**, developed by **[Professor Peter Kinget](https://peterkinget.github.io/)** and his students at **[Columbia University](http://www.cisl.columbia.edu/kinget_group/)**, is an innovative educational platform that helps students and designers explore **MOS circuit topologies** typically found on silicon and now accessible on a breadboard.
 
 The goal of [MOSbius](https://mosbius.org/) is to give learners hands-on experience with **transistor-level design**, including circuit debugging, measurement, and the full "chip bring-up" process. The platform allows users to compare calculations, simulations, and real measurements using provided **[LTspice](https://wiki.analog.com/resources/tools-software/ltspice) models**, bridging the gap between theory and silicon.
 
-<img src="{{ "/assets/images/news/mosbius-feature/mosbius_interview.png" | relative_url }}" alt="MOSbius – A Field Programmable Transistor Array for Chip Designers (Interview with Peter Kinget)" class="img-fluid rounded">
-
-**[Watch the interview on YouTube](https://www.youtube.com/watch?v=abu3u6UX6wE)**
+{% include youtube.html id="abu3u6UX6wE" autoplay=0 mute=0 controls=1 loop=0 caption="MOSbius - A Field Programmable Transistor Array for Chip Designers (Interview with Peter Kinget)" %}
 
 ### Building on Previous Success
 
@@ -64,7 +62,7 @@ Their current board design requires numerous passive components due to varying p
 
 ## Don't Miss Your Chance to Join the First Shuttle
 
-<img src="{{ "/assets/images/news/mosbius-feature/rainbow_narrow2.png" | relative_url }}" alt="wafer.space - Accessible custom silicon fabrication" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/mosbius-feature/rainbow_narrow2.png" description="wafer.space - Accessible custom silicon fabrication" %}
 
 MOSbius is part of this run because accessible silicon enables their educational mission. What becomes possible at $7/chip? Whether you're building educational tools, [exploring new architectures](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/openfasoc), or [bringing vintage designs back to life](https://www.crowdsupply.com/wafer-space/gf180mcu-run-1/updates/tholin-feature) - this is your opportunity.
 

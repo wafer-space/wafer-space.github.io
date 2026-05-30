@@ -31,7 +31,7 @@ With the **December 3rd GDS submission deadline** getting closer, I wanted to ta
 
 Whether you've already [reserved a slot](https://buy.wafer.space/) or you're still on the fence because of timeline concerns, this update is for you. The short version: you have options. Professional paid engineering services are available if you want to accelerate your timeline, get expert review, or have someone handle parts (or all) of your design.
 
-<img src="{{ "/assets/images/news/getting-help/timeline.svg" | relative_url }}" alt="timeline" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/getting-help/timeline.svg" description="Run 1 timeline" %}
 
 ## Two Important Things Up Front
 

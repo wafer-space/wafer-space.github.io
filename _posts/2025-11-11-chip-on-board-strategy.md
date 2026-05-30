@@ -113,7 +113,7 @@ Panelized for efficient handling and assembly by wirebonding partners:
 
 The standard configuration can be found in the [GitHub repository](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml). For easier viewing, it's also available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1pI2BAEWEexXcXN3vah3SR85zPIV6eAXPGXc2bcvoSGU/edit?gid=0#gid=0) that shows the complete pad mapping.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-die-padring.png" | relative_url }}" alt="Die padring layout with 74-pad configuration" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-die-padring.png" description="Die padring layout with 74-pad configuration" class="img-fluid rounded" %}
 
 To help visualize your own pad layouts, Discord user **@Tholin** has developed a Python-based pad viewer that generates an image of the pad layout defined in your template. This is useful for verifying your configuration matches your design intent. You can find the tool [here](https://github.com/AvalonSemiconductors/ws-submission-2025/blob/main/padout_gen.py).
 
@@ -132,7 +132,7 @@ The **pad mapping symbol** corresponds to the default 74-pad wirebonding padfram
 > Some users have suggested reducing the number of ground and power pads. If there is sufficient demand, an alternate default configuration will be created.
 > Join the discussion on our [**Discord server**](https://discord.gg/43y2t53jpE).
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-default-74pad-wirebond-symbol.png" | relative_url }}" alt="Default 74-pad wirebonding padframe symbol" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-default-74pad-wirebond-symbol.png" description="Default 74-pad wirebonding padframe symbol" %}
 
 ---
 
@@ -141,11 +141,11 @@ The **pad mapping symbol** corresponds to the default 74-pad wirebonding padfram
 The **mezzanine connector symbol** provides a 1:1 pin mapping to the 70-pin default layout.
 All pins are aliased to match [Tiny Tapeout](https://tinytapeout.com/) naming conventions, useful for those familiar with the TT ecosystem who are designing custom chips for this wafer.space run.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-default-70pin-mezzanine-symbol.png" | relative_url }}" alt="Default 70-pin mezzanine COB breakout symbol" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-default-70pin-mezzanine-symbol.png" description="Default 70-pin mezzanine COB breakout symbol" %}
 
 An alternate version is also available that organizes pins by signal type. This version is particularly useful for Tiny Tapeout-style breakout motherboard designs where grouping by function makes routing clearer.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-tinytapeout-kicad-symbols.png" | relative_url }}" alt="70-pin mezzanine COB symbol organized by signal type (Tiny Tapeout version)" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-tinytapeout-kicad-symbols.png" description="70-pin mezzanine COB symbol organized by signal type (Tiny Tapeout version)" %}
 
 ### KiCad Resources for COB Design
 
@@ -165,7 +165,7 @@ While the 70-pin mezzanine connector serves as the standard, the community recog
 
 The community is developing a series of breakout boards designed to make it easier to prototype, experiment, and integrate your dies into existing systems.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-breakouts.png" | relative_url }}" alt="Castellated and breadboardable breakout board designs" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-breakouts.png" description="Castellated and breadboardable breakout board designs" %}
 
 ---
 
@@ -180,7 +180,7 @@ It's exciting to see others building on the [wafer.space](https://wafer.space/) 
 
 MosBius provides students and designers the opportunity to explore MOS circuit topologies through a unique **analog switch matrix**, where each pin can connect to any of ten on-chip buses. This enables flexible on-chip circuit wiring and simplifies testing setups.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-mosbius.png" | relative_url }}" alt="MosBius Project chip design from Columbia University" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-mosbius.png" description="MosBius Project chip design from Columbia University" %}
 
 *Image and design by @xianglin_pu on [wafer.space Discord](https://discord.gg/43y2t53jpE)*
 
@@ -192,7 +192,7 @@ Before settling on the mezzanine connector as the standard, the community explor
 
 #### LGA (Land Grid Array)
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-lga-cob.png" | relative_url }}" alt="LGA (Land Grid Array) COB package design" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-lga-cob.png" description="LGA (Land Grid Array) COB package design" %}
 
 #### DIP
 
@@ -201,7 +201,7 @@ Before settling on the mezzanine connector as the standard, the community explor
 
 #### Castellated
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-castellated.png" | relative_url }}" alt="Castellated edge COB package design" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-castellated.png" description="Castellated edge COB package design" %}
 
 ---
 
@@ -209,19 +209,17 @@ Before settling on the mezzanine connector as the standard, the community explor
 
 The wafer.space COB work doesn't exist in isolation. Other projects have tackled similar challenges, and their experiences directly inform this effort.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-tt-cob.jpg" | relative_url }}" alt="Tiny Tapeout chip-on-board implementation" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-tt-cob.jpg" description="Tiny Tapeout chip-on-board implementation" %}
 
 Tiny Tapeout recently [published an update](https://www.zerotoasiccourse.com/post/cob/) on their first successful Chip-on-Board (COB) implementation, highlighting their bare-die submission on the Zero to ASIC Course "MPW-7" run.
 
-<img src="{{ "/assets/images/news/chip-on-board-strategy/padframes-cob-tt-youtube.png" | relative_url }}" alt="Video thumbnail - Tiny Tapeout 9 First COB samples" class="img-fluid rounded">
-
-[**Watch the video: Tiny Tapeout 9 - First COB samples!**](https://www.youtube.com/watch?v=XJmWoBJjvlI)
+{% include youtube.html id="XJmWoBJjvlI" autoplay=0 mute=0 controls=1 loop=0 caption="Tiny Tapeout 9 - First COB samples!" %}
 
 While Tiny Tapeout achieved a significant milestone, they also noted limitations: the long bonding wires increased inductance and degraded performance, and securing small-volume wire-bonding services remains difficult.
 
-For those interested in understanding the wire bonding process in detail, Stephan Bökelmann's talk at Kicon 2025 provides an excellent introduction to the practical challenges and techniques:
+For those interested in understanding the wire bonding process in detail, Stephan Bökelmann's talk at Kicon 2025 provides an excellent introduction to the practical challenges and techniques.
 
-[**Watch: Poor man's intro to Wire-Bonding @ Kicon 2025**](https://www.youtube.com/watch?v=dNBwY7L6niI)
+{% include youtube.html id="dNBwY7L6niI" autoplay=0 mute=0 controls=1 loop=0 caption="Poor man's intro to Wire-Bonding @ Kicon 2025" %}
 
 The [wafer.space](https://wafer.space/) community views these learnings as a springboard. By introducing standardized COB templates, the goal is to make COB packaging more accessible, more scalable, and better optimized. The objective is to build upon the success of Tiny Tapeout and improve their future runs by reducing parasitics, streamlining the supply chain, and enabling anyone to pick up a COB-mounted die and integrate it into their system with ease.
 

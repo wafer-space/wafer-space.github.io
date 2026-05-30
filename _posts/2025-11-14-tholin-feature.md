@@ -36,7 +36,7 @@ Our first shuttle run includes a number of incredible projects, and we wanted to
 
 ## Tholin & Avalon Semiconductors
 
-<img src="{{ "/assets/images/news/tholin-feature/ic1.png" | relative_url }}" alt="Tholin's custom silicon designs showcase what's possible with open tooling" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/tholin-feature/ic1.png" description="Tholin's custom silicon designs showcase what's possible with open tooling" %}
 
 [Tholin](https://tholin.dev/) — the hardware designer behind [**Avalon Semiconductors**](https://github.com/AvalonSemiconductors) — has been exploring what's possible when open tooling meets personal silicon. Their journey, chronicled through detailed blog posts like [*Custom Silicon*](https://tholin.dev/custom_silicon/) and [*Custom Silicon Two: Electric Boogaloo*](https://tholin.dev/custom_silicon_two_electric_boogaloo/), shows how a single engineer can go from HDL to packaged chips using open-source flows, patience, and a healthy dose of curiosity.
 
@@ -44,7 +44,7 @@ Our first shuttle run includes a number of incredible projects, and we wanted to
 
 ### AS2650 and AS2650-2
 
-<img src="{{ "/assets/images/news/tholin-feature/as2650.png" | relative_url }}" alt="The AS2650(-2) is inspired by retro CPUs like the Signetics 2650" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/tholin-feature/as2650.png" description="The AS2650(-2) is inspired by retro CPUs like the Signetics 2650" %}
 
 Tholin's flagship projects are the **AS2650** and **AS2650-2**, re-implementations and extensions of the historic [Signetics 2650](https://en.wikipedia.org/wiki/Signetics_2650) microprocessor, recreated from the ground up using open EDA tools.
 You can explore the repositories here:
@@ -78,11 +78,11 @@ Tholin has also created a companion repository,
 
 True to her style, the project includes **artwork integrated directly into the silicon layout**, reflecting the creative potential unlocked when advanced design tools are accessible and open.
 
-<img src="{{ "/assets/images/news/tholin-feature/logo_bw.png" | relative_url }}" alt="Tholin's logo, adapted for silicon artwork" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/tholin-feature/logo_bw.png" description="Tholin's logo, adapted for silicon artwork" %}
 
 Additionally, Tholin developed a [**Python script**](https://github.com/AvalonSemiconductors/ws-submission-2025/blob/main/padout_gen.py) that **automatically generates padout diagrams** from a [LibreLane](https://librelane.rtfd.io/) configuration file thereby simplifying visualization and documentation of pad assignments.
 
-<img src="{{ "/assets/images/news/tholin-feature/padout.png" | relative_url }}" alt="Padout diagram generated from Python and LibreLane configuration" class="img-fluid rounded">
+{% include image.html file="/assets/images/news/tholin-feature/padout.png" description="Padout diagram generated from Python and LibreLane configuration" %}
 
 
 ---
@@ -106,7 +106,7 @@ This approach reflects the open ethos of wafer.space — making silicon explorat
 Tholin has been an early adopter of [**LibreLane**](https://librelane.rtfd.io/), the open-source ASIC flow used by wafer.space. Their feedback and experiments with padframes, padrings, and packaging have helped refine the ecosystem for everyone.
 From RTL through layout and DRC, to bonding and board testing, Tholin's work demonstrates that open tooling can now carry a chip from idea to reality — no closed vendor stack required.
 
-<img src="{{ "/assets/images/news/tholin-feature/3d_view.png" | relative_url }}" alt="Standard cells are a key component of RTL to GDSII flows." class="img-fluid rounded">
+{% include image.html file="/assets/images/news/tholin-feature/3d_view.png" description="Standard cells are a key component of RTL to GDSII flows" %}
 
 ---
 
