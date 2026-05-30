@@ -37,7 +37,7 @@ serve:
 	@echo "Starting Jekyll server..."
 	@echo "Site will be available at http://localhost:4000"
 	@echo "Press Ctrl+C to stop"
-	@$(JEKYLL) serve --watch --incremental
+	@$(JEKYLL) serve --watch --incremental --future
 
 # Alias for serve - development mode
 dev: serve
