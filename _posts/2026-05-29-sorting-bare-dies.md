@@ -6,7 +6,7 @@ excerpt: "The Run 1 wafers are diced and the individual dies can now be sorted. 
 categories: [news]
 tags: [gf180mcu, run1, manufacturing]
 author: "Tim 'mithro' Ansell"
-post_image: "/assets/images/news/gf180mcu-gelpack-dice.jpg"
+post_image: "/assets/images/news/sorting-bare-dies/thumbnail.jpg"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
