@@ -6,7 +6,7 @@ excerpt: "Run 1 bare dies have shipped. Now we are working through chip-on-board
 categories: [news]
 tags: [gf180mcu, run1, packaging, chip-on-board]
 author: "Tim 'mithro' Ansell"
-post_image: "/assets/images/news/gf180mcu-gelpack-dice.jpg"
+post_image: "/assets/images/news/chip-on-board-progress/thumbnail.jpg"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
