@@ -6,7 +6,7 @@ excerpt: "After 12 weeks at GlobalFoundries, the Run 1 wafers have been manufact
 categories: [news]
 tags: [gf180mcu, run1, manufacturing]
 author: "Tim 'mithro' Ansell"
-post_image: "/assets/images/news/gf180mcu-gelpack-dice.jpg"
+post_image: "/assets/images/news/run1-wafers-arrived/thumbnail.jpg"
 badge_color: "bg-purple"
 slider_post: false
 trending: false
