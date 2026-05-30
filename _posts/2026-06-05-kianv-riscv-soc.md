@@ -11,7 +11,7 @@ slider_post: false
 trending: false
 sidebar: true
 permalink: "/news/kianv-riscv-soc"
-post_image: "/assets/images/news/kianv-riscv-soc/soc-overview.svg"
+post_image: "/assets/images/news/kianv-riscv-soc/thumbnail.jpg"
 galleries:
   pcb_views:
     caption: "KianV bring-up PCB"
