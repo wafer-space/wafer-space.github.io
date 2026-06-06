@@ -384,9 +384,8 @@ subscribe_area:
     <div class="row">
       <div class="col-md-8 mx-auto text-center">
         {% assign tech_specs_title_id = page.technical_specs.title | strip_html | slugify %}
-        {% assign tech_specs_sub_id = page.technical_specs.sub_title | strip_html | slugify %}
         <h2 id="{{ tech_specs_title_id }}" class="title-color color-gray">{{page.technical_specs.title}}{% include components/heading-anchor.html id=tech_specs_title_id %}</h2>
-        <h3 id="{{ tech_specs_sub_id }}" class="display-3">{{page.technical_specs.sub_title}}{% include components/heading-anchor.html id=tech_specs_sub_id %}</h3>
+        <h3 class="display-3">{{page.technical_specs.sub_title}}</h3>
         <div class="space40"></div>
       </div>
     </div>
@@ -439,8 +438,7 @@ subscribe_area:
 		    {% assign features_title_id = page.features_area.title | strip_html | slugify %}
 		    <h2 id="{{ features_title_id }}" class="title-color color-gray text-center">{{page.features_area.title}}{% include components/heading-anchor.html id=features_title_id %}</h2>
 		    {% if page.features_area.sub_title %}
-		     {% assign features_sub_id = page.features_area.sub_title | strip_html | slugify %}
-		     <h3 id="{{ features_sub_id }}" class="display-3 text-center">{{page.features_area.sub_title}}{% include components/heading-anchor.html id=features_sub_id %}</h3>
+		     <h3 class="display-3 text-center">{{page.features_area.sub_title}}</h3>
 		    {% endif %}
 		    <div class="space40"></div>
     	</div>
@@ -483,8 +481,7 @@ subscribe_area:
          <h2 id="{{ tc1_title_id }}" class="title-color color-gray">{{page.two_columns_one.title}}{% include components/heading-anchor.html id=tc1_title_id %}</h2>
         {% endif %}
         {% if page.two_columns_one.sub_title %}
-         {% assign tc1_sub_id = page.two_columns_one.sub_title | strip_html | slugify %}
-         <h3 id="{{ tc1_sub_id }}" class="display-3">{{page.two_columns_one.sub_title}}{% include components/heading-anchor.html id=tc1_sub_id %}</h3>
+         <h3 class="display-3">{{page.two_columns_one.sub_title}}</h3>
         {% endif %}
         <div class="space20"></div>
         {% if page.two_columns_one.description %}
@@ -523,8 +520,7 @@ subscribe_area:
          <h2 id="{{ process_title_id }}" class="title-color color-gray">{{page.process_area.title}}{% include components/heading-anchor.html id=process_title_id %}</h2>
         {% endif %}
         {% if page.process_area.sub_title %}
-         {% assign process_sub_id = page.process_area.sub_title | strip_html | slugify %}
-         <h3 id="{{ process_sub_id }}" class="display-3">{{page.process_area.sub_title}}{% include components/heading-anchor.html id=process_sub_id %}</h3>
+         <h3 class="display-3">{{page.process_area.sub_title}}</h3>
         {% endif %}
         {% for list in page.process_area.lists %}
         <div class="space30"></div>
@@ -568,8 +564,7 @@ subscribe_area:
          <h2 id="{{ tc2_title_id }}" class="title-color color-gray">{{page.two_columns_two.title}}{% include components/heading-anchor.html id=tc2_title_id %}</h2>
         {% endif %}
         {% if page.two_columns_two.sub_title %}
-         {% assign tc2_sub_id = page.two_columns_two.sub_title | strip_html | slugify %}
-         <h3 id="{{ tc2_sub_id }}" class="display-3">{{page.two_columns_two.sub_title}}{% include components/heading-anchor.html id=tc2_sub_id %}</h3>
+         <h3 class="display-3">{{page.two_columns_two.sub_title}}</h3>
         {% endif %}
         <div class="space20"></div>
         <p>{{page.two_columns_two.description}}</p>
@@ -602,8 +597,7 @@ subscribe_area:
            <h2 id="{{ testimonials_title_id }}" class="title-color color-gray text-center mb-30">{{page.testimonials.title}}{% include components/heading-anchor.html id=testimonials_title_id %}</h2>
           {% endif %}
           {% if page.testimonials.sub_title %}
-           {% assign testimonials_sub_id = page.testimonials.sub_title | strip_html | slugify %}
-           <h3 id="{{ testimonials_sub_id }}" class="display-3 text-center">{{page.testimonials.sub_title}}{% include components/heading-anchor.html id=testimonials_sub_id %}</h3>
+           <h3 class="display-3 text-center">{{page.testimonials.sub_title}}</h3>
           {% endif %}
         </div>
       </div>
@@ -655,8 +649,7 @@ subscribe_area:
              <h2 id="{{ subscribe_title_id }}" class="title-color color-gray">{{page.subscribe_area.title}}{% include components/heading-anchor.html id=subscribe_title_id %}</h2>
             {% endif %}
             {% if page.subscribe_area.sub_title %}
-             {% assign subscribe_sub_id = page.subscribe_area.sub_title | strip_html | slugify %}
-             <h3 id="{{ subscribe_sub_id }}" class="display-3">{{page.subscribe_area.sub_title}}{% include components/heading-anchor.html id=subscribe_sub_id %}</h3>
+             <h3 class="display-3">{{page.subscribe_area.sub_title}}</h3>
             {% endif %}
           </div>
         </div>
@@ -706,8 +699,7 @@ subscribe_area:
              <h2 id="{{ about_us_title_id }}" class="title-color color-gray">{{page.about_us.title}}{% include components/heading-anchor.html id=about_us_title_id %}</h2>
             {% endif %}
             {% if page.about_us.sub_title %}
-             {% assign about_us_sub_id = page.about_us.sub_title | strip_html | slugify %}
-             <h3 id="{{ about_us_sub_id }}" class="display-3">{{page.about_us.sub_title}}{% include components/heading-anchor.html id=about_us_sub_id %}</h3>
+             <h3 class="display-3">{{page.about_us.sub_title}}</h3>
             {% endif %}
             <div class="space20"></div>
             <p>{{page.about_us.description}}</p>

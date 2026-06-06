@@ -6,8 +6,7 @@
        scroll target) rather than carrying a duplicate id of its own. {% endcomment %}
     <h2 class="title-color color-white mb-0">{{ include.title }}{% include components/heading-anchor.html id=divider_id %}</h2>
     {% if include.subtitle %}
-    {% assign divider_sub_id = include.subtitle | strip_html | slugify %}
-    <h3 id="{{ divider_sub_id }}" class="display-3 mb-0">{{ include.subtitle }}{% include components/heading-anchor.html id=divider_sub_id %}</h3>
+    <h3 class="display-3 mb-0">{{ include.subtitle }}</h3>
     {% endif %}
   </div>
 </div>

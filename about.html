@@ -169,9 +169,8 @@ contact_area:
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         {% assign contact_title_id = page.contact_area.title | strip_html | slugify %}
-        {% assign contact_sub_id = page.contact_area.sub_title | strip_html | slugify %}
         <h2 id="{{ contact_title_id }}" class="title-color color-gray text-center">{{page.contact_area.title}}{% include components/heading-anchor.html id=contact_title_id %}</h2>
-        <h3 id="{{ contact_sub_id }}" class="display-3">{{page.contact_area.sub_title}}{% include components/heading-anchor.html id=contact_sub_id %}</h3>
+        <h3 class="display-3">{{page.contact_area.sub_title}}</h3>
         <div class="space50"></div>
         <div class="row text-center gutter-60">
           {% for contact_data in page.contact_area.contact_data %}

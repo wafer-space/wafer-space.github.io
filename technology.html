@@ -155,9 +155,8 @@ technical_specs:
     <div class="row">
       <div class="col-md-8 mx-auto text-center">
         {% assign tech_specs_title_id = page.technical_specs.title | strip_html | slugify %}
-        {% assign tech_specs_sub_id = page.technical_specs.sub_title | strip_html | slugify %}
         <h2 id="{{ tech_specs_title_id }}" class="title-color color-gray">{{page.technical_specs.title}}{% include components/heading-anchor.html id=tech_specs_title_id %}</h2>
-        <h3 id="{{ tech_specs_sub_id }}" class="display-3">{{page.technical_specs.sub_title}}{% include components/heading-anchor.html id=tech_specs_sub_id %}</h3>
+        <h3 class="display-3">{{page.technical_specs.sub_title}}</h3>
         <div class="space40"></div>
       </div>
     </div>

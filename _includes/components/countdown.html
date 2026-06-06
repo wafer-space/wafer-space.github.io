@@ -13,9 +13,8 @@
               {% comment %} The "Deadlines" heading links to the wrapper div's
                  id (its scroll target) rather than duplicating it. {% endcomment %}
               <h2 class="title-color color-gray text-center">Deadlines{% include components/heading-anchor.html id="deadlines" %}</h2>
-              {% assign run_deadlines_id = run.name | slugify | prepend: 'deadlines-' %}
-              <h3 id="{{ run_deadlines_id }}" class="display-3 text-center">
-                <a href="https://buy.wafer.space" class="text-decoration-none">wafer.space {{ run.name }}</a>{% include components/heading-anchor.html id=run_deadlines_id %}
+              <h3 class="display-3 text-center">
+                <a href="https://buy.wafer.space" class="text-decoration-none">wafer.space {{ run.name }}</a>
               </h3>
               <div class="space40"></div>
             </div>
