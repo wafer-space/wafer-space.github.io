@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <!-- Paper-style patterns -->
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#e0e0e0"/>
+    </pattern>
+    
+    <!-- Subtle shadows for paper style -->
+    <filter id="paperShadow">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-opacity="0.15"/>
+    </filter>
+    
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#555555" />
+    </marker>
+  </defs>
+  
+  <!-- Background with subtle texture -->
+  <rect width="1200" height="800" fill="#fafafa"/>
+  <rect width="1200" height="800" fill="url(#dots)" opacity="0.3"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" font-family="Georgia, serif" font-size="32" font-weight="normal" text-anchor="middle" fill="#1a1a1a">
+    KianV RISC-V SoC Architecture
+  </text>
+  <text x="600" y="65" font-family="Georgia, serif" font-size="12" text-anchor="middle" fill="#666666" font-style="italic">
+    RV32IMA_Zicntr_Zicsr_Zifencei_SSTC with SV32 MMU • 180nm GF180MCU • 3.3V
+  </text>
+  
+  <!-- Horizontal divider -->
+  <line x1="150" y1="80" x2="1050" y2="80" stroke="#cccccc" stroke-width="1"/>
+  
+  <!-- Main SoC Container -->
+  <rect x="50" y="90" width="1100" height="680" rx="2" fill="white" stroke="#d0d0d0" stroke-width="1" filter="url(#paperShadow)"/>
+  
+  <!-- Hardware Core Container (left and middle sections) -->
+  <rect x="70" y="110" width="710" height="480" rx="2" fill="#f8f8f8" stroke="#bbbbbb" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="425" y="605" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#888888" font-style="italic">
+    Hardware Core
+  </text>
+  
+  <!-- CPU Core Section -->
+  <g id="cpu-core">
+    <rect x="80" y="120" width="340" height="280" rx="2" fill="white" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="250" y="145" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      RISC-V Core (RV32IMA)
+    </text>
+    <line x1="100" y1="155" x2="400" y2="155" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <!-- CPU Details -->
+    <rect x="100" y="170" width="280" height="200" rx="1" fill="#fafafa" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <!-- ISA Features -->
+    <text x="110" y="195" font-family="Arial, sans-serif" font-size="11" fill="#444444" font-weight="bold">ISA Extensions:</text>
+    <text x="120" y="215" font-family="Arial, sans-serif" font-size="10" fill="#555555">• Integer (I)</text>
+    <text x="120" y="230" font-family="Arial, sans-serif" font-size="10" fill="#555555">• Multiply/Divide (M)</text>
+    <text x="120" y="245" font-family="Arial, sans-serif" font-size="10" fill="#555555">• Atomic (A)</text>
+    <text x="120" y="260" font-family="Arial, sans-serif" font-size="10" fill="#555555">• Zicntr, Zicsr, Zifencei</text>
+    <text x="120" y="275" font-family="Arial, sans-serif" font-size="10" fill="#555555">• SSTC (Sstc timer)</text>
+    
+    <!-- MMU Info -->
+    <text x="110" y="300" font-family="Arial, sans-serif" font-size="11" fill="#444444" font-weight="bold">Memory Management:</text>
+    <text x="120" y="320" font-family="Arial, sans-serif" font-size="10" fill="#555555">• SV32 Virtual Memory</text>
+    <text x="120" y="335" font-family="Arial, sans-serif" font-size="10" fill="#555555">• 4-way I-TLB &amp; D-TLB</text>
+    <text x="120" y="350" font-family="Arial, sans-serif" font-size="10" fill="#555555">• Linux/XV6/uLinux capable</text>
+  </g>
+  
+  <!-- Cache Hierarchy -->
+  <g id="cache-system">
+    <rect x="80" y="420" width="340" height="160" rx="2" fill="#f5f5f5" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="250" y="445" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      Cache System
+    </text>
+    <line x1="100" y1="455" x2="400" y2="455" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <rect x="100" y="465" width="280" height="95" rx="1" fill="white" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <!-- I-Cache -->
+    <rect x="120" y="480" width="110" height="60" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="175" y="500" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#444444">I-Cache</text>
+    <text x="175" y="518" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#666666">2-way set</text>
+    <text x="175" y="532" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#666666">associative</text>
+    
+    <!-- D-Cache -->
+    <rect x="250" y="480" width="110" height="60" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="305" y="500" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#444444">D-Cache</text>
+    <text x="305" y="518" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#666666">Direct</text>
+    <text x="305" y="532" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#666666">mapped</text>
+  </g>
+  
+  <!-- Memory System -->
+  <g id="memory">
+    <rect x="460" y="120" width="300" height="200" rx="2" fill="white" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="610" y="145" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      Memory Subsystem
+    </text>
+    <line x1="480" y1="155" x2="740" y2="155" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <rect x="480" y="170" width="260" height="130" rx="1" fill="#fafafa" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <!-- SDRAM -->
+    <rect x="500" y="185" width="220" height="50" rx="1" fill="white" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="610" y="208" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#444444">SDRAM Controller</text>
+    <text x="610" y="226" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#666666">32 MiB External Memory</text>
+    
+    <!-- NOR Flash -->
+    <rect x="500" y="245" width="220" height="45" rx="1" fill="white" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="610" y="265" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#444444">NOR Flash Controller</text>
+    <text x="610" y="281" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#666666">Boot &amp; Program Storage</text>
+  </g>
+  
+  <!-- Peripherals -->
+  <g id="peripherals">
+    <rect x="460" y="340" width="300" height="240" rx="2" fill="#f5f5f5" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="610" y="365" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      Peripherals
+    </text>
+    <line x1="480" y1="375" x2="740" y2="375" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <rect x="480" y="385" width="260" height="175" rx="1" fill="white" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <!-- UART -->
+    <rect x="500" y="395" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="552" y="415" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">UART</text>
+    
+    <!-- SPI -->
+    <rect x="615" y="395" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="667" y="415" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">SD CARD</text>
+    
+    <!-- GPIO -->
+    <rect x="500" y="435" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="552" y="455" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">GPIO</text>
+    
+    <!-- Network -->
+    <rect x="615" y="435" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="667" y="455" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">Network</text>
+    
+    <!-- PLIC -->
+    <rect x="500" y="475" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="552" y="495" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">PLIC</text>
+    
+    <!-- CLINT -->
+    <rect x="615" y="475" width="105" height="30" rx="1" fill="#fafafa" stroke="#aaaaaa" stroke-width="1"/>
+    <text x="667" y="495" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#444444">CLINT</text>
+    
+    <!-- Description text -->
+    <text x="610" y="525" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#888888">Serial • SD Card • I/O • Interrupts • Timers</text>
+  </g>
+  
+  <!-- OS and Tech Info -->
+  <g id="os-info">
+    <rect x="800" y="120" width="320" height="180" rx="2" fill="white" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="960" y="145" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      Operating Systems
+    </text>
+    <line x1="820" y1="155" x2="1100" y2="155" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <rect x="820" y="165" width="280" height="115" rx="1" fill="#fafafa" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <text x="960" y="195" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#444444">Linux (mainline kernel)</text>
+    <text x="960" y="220" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#444444">uLinux (embedded variant)</text>
+    <text x="960" y="245" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#444444">XV6 (educational OS)</text>
+    <text x="960" y="272" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#666666" font-style="italic">Boot from SD Card</text>
+  </g>
+  
+  <!-- Technology Specs -->
+  <g id="tech-specs">
+    <rect x="800" y="320" width="320" height="260" rx="2" fill="#f5f5f5" stroke="#999999" stroke-width="1" filter="url(#paperShadow)"/>
+    <text x="960" y="345" font-family="Georgia, serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333333">
+      Technology Node
+    </text>
+    <line x1="820" y1="355" x2="1100" y2="355" stroke="#cccccc" stroke-width="0.5"/>
+    
+    <rect x="820" y="365" width="280" height="195" rx="1" fill="white" stroke="#dddddd" stroke-width="0.5"/>
+    
+    <text x="960" y="400" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#444444">GlobalFoundries GF180MCU</text>
+    <text x="960" y="430" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555555">Process: 180 nm</text>
+    <text x="960" y="455" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555555">Supply Voltage: 3.3 V</text>
+    <text x="960" y="480" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555555">Fabrication: wafer.space</text>
+    
+    <line x1="840" y1="500" x2="1080" y2="500" stroke="#cccccc" stroke-width="1"/>
+    
+    <text x="960" y="525" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#444444" font-weight="bold">ASIC Tapeout Milestone</text>
+    <text x="960" y="545" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#666666">December 2025 (tapeout)</text>
+  </g>
+  
+  <!-- Connection Lines -->
+  <!-- CPU to Cache -->
+  <line x1="250" y1="400" x2="250" y2="420" stroke="#666666" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  
+  <!-- Cache to Memory -->
+  <line x1="420" y1="500" x2="460" y2="220" stroke="#999999" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Memory to OS (data flow) -->
+  <line x1="760" y1="220" x2="800" y2="220" stroke="#999999" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Peripherals to right side -->
+  <line x1="760" y1="460" x2="800" y2="400" stroke="#999999" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Footer -->
+  <text x="600" y="750" font-family="Georgia, serif" font-size="9" text-anchor="middle" fill="#999999">
+    Full-featured RISC-V SoC with MMU support for modern operating systems
+  </text>
+</svg>

@@ -1,0 +1,43 @@
+{% comment %} See https://developers.google.com/youtube/player_parameters for youtube embed parameters {% endcomment %}
+
+{% assign autoplay = include.autoplay | default: false | to_integer %}
+{% assign mute = include.mute | default: true | to_integer %}
+{% assign playsinline = include.playsinline | default: true | to_integer %}
+{% assign fs = include.fullscreen | default: true | to_integer %}
+{% assign disablekb = include.disablekb | default: true | to_integer %}
+{% assign controls = include.controls | default: false | to_integer %}
+{% assign loop = include.loop | default: true | to_integer %}
+
+
+{% comment %} Looping single videos still needs a playlist parameter in the URL - see the docs {% endcomment %}
+{% capture playback_options %}
+&autoplay={{autoplay}}&mute={{mute}}&playsinline={{playsinline}}&fs={{fs}}&disablekb={{disablekb}}&controls={{controls}}&loop={{loop}}&playlist={{include.id}}
+{% endcapture %}
+
+{% if include.id != "TODO" %}
+<div>
+    {% if include.caption %}
+        <p class="text-center text-muted mb-10">
+            <small>{{ include.caption }}</small>
+        </p>
+    {% endif %}
+    <iframe style="width:100%; aspect-ratio: 16/9;"
+        src="https://www.youtube.com/embed/{{ include.id }}?start=&end={{playback_options | strip }}"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+</div>
+{% else %}
+<div>
+    {% if include.caption %}
+    <p class="text-center text-muted mb-10">
+        <small>{{ include.caption }}</small>
+    </p>
+    {% endif %}
+    <div style="width:100%; aspect-ratio: 16/9; display: flex; flex-direction: column; justify-content: center; align-items: center; border: dashed red;">
+        {% include image.html file="/assets/images/logo.webp" %}
+        <p><b>Placeholder video box</b></p>
+    </div>
+</div>
+{% endif %}

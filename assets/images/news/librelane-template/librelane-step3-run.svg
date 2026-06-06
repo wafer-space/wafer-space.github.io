@@ -1,0 +1,17 @@
+<svg width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="220" height="220" fill="#ffffff"/>
+
+  <!-- Main box -->
+  <rect x="10" y="40" width="200" height="170" fill="#e8f5e9" stroke="#28a745" stroke-width="3" rx="8"/>
+
+  <!-- Title -->
+  <text x="110" y="30" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Step 3</text>
+  <text x="110" y="75" text-anchor="middle" fill="#28a745" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Run Flow</text>
+
+  <!-- Terminal box -->
+  <rect x="35" y="100" width="150" height="60" fill="#2d2d2d" rx="4"/>
+  <text x="45" y="125" fill="#28a745" font-family="Courier New, monospace" font-size="14" font-weight="bold">$</text>
+  <text x="60" y="125" fill="#ffffff" font-family="Courier New, monospace" font-size="14">librelane</text>
+  <text x="48" y="148" fill="#ffffff" font-family="Courier New, monospace" font-size="13">config.yaml</text>
+</svg>
