@@ -28,7 +28,6 @@ h6:hover > .heading-anchor,
 .heading-anchor:hover,
 .heading-anchor:focus {
     opacity: 1 !important;
-    text-decoration: underline;
 }
 
 /* When a visitor jumps to a heading via its #fragment, keep it clear of the

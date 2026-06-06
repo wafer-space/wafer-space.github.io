@@ -10,11 +10,10 @@
  <div class="container inner">
   {% assign pricing_data = page.pricing_table %}
   {% assign pricing_title_id = pricing_data.title | strip_html | slugify %}
-  {% assign pricing_sub_id = pricing_data.sub_title | strip_html | slugify %}
   <div class="row">
       <div class="col-lg-5 pr-50 pr-md-15">
           <h2 id="{{ pricing_title_id }}" class="title-color color-gray">{{pricing_data.title}}{% include components/heading-anchor.html id=pricing_title_id %}</h2>
-          <h3 id="{{ pricing_sub_id }}" class="display-3">{{pricing_data.sub_title}}{% include components/heading-anchor.html id=pricing_sub_id %}</h3>
+          <h3 class="display-3">{{pricing_data.sub_title}}</h3>
           <!-- <div class="space20"></div> -->
           <p>{{pricing_data.description}}</p>
           <div class="space10"></div>
