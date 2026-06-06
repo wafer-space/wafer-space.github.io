@@ -1,0 +1,20 @@
+{%- comment -%}
+  Renders a hover-revealed "#" permalink for a heading so it can be linked
+  directly via a URL fragment.
+
+  Place it immediately before the heading's closing tag and pass the heading's
+  id:
+
+    <h2 id="how-it-works">How it works{% include components/heading-anchor.html id="how-it-works" %}</h2>
+
+  For dynamic / templated headings, slugify the text once and reuse it for both
+  the id and this include:
+
+    {% assign hid = page.faq_area.sub_title | slugify %}
+    <h3 id="{{ hid }}">{{ page.faq_area.sub_title }}{% include components/heading-anchor.html id=hid %}</h3>
+
+  Renders nothing when the supplied id is blank, so it is safe to use behind a
+  slugify that may produce an empty string.
+{%- endcomment -%}
+{%- assign anchor_id = include.id | strip -%}
+{%- if anchor_id != "" -%}<a class="heading-anchor" href="#{{ anchor_id }}" aria-label="Permalink to this heading" title="Copy link to this heading">#</a>{%- endif -%}
