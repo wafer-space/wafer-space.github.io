@@ -15,12 +15,14 @@
     <!--/column -->
     {% endif %}
     <div class="col-md-8">
+      {% assign prov_id = include.provider.title | slugify %}
+      {% assign prov_sub_id = include.provider.sub_title | slugify %}
       {% if include.provider.website %}
-      <h3><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a></h3>
+      <h3 id="{{ prov_id }}"><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a>{% include components/heading-anchor.html id=prov_id %}</h3>
       {% else %}
-      <h3>{{include.provider.title}}</h3>
+      <h3 id="{{ prov_id }}">{{include.provider.title}}{% include components/heading-anchor.html id=prov_id %}</h3>
       {% endif %}
-      <h4>{{include.provider.sub_title}}</h4>
+      <h4 id="{{ prov_sub_id }}">{{include.provider.sub_title}}{% include components/heading-anchor.html id=prov_sub_id %}</h4>
       {% if include.provider.content %}
       <p class="mb-10">{{include.provider.content | markdownify }}</p>
       {% endif %}
