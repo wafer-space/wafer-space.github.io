@@ -1,0 +1,20 @@
+{% comment %}
+  Site-level override of the theme's layouts/header/page-title.html.
+
+  Identical to the theme partial except that the page-title <h1> carries an id
+  and a hover-revealed "#" permalink (via components/heading-anchor.html) so the
+  primary page heading can be linked directly. Keep this in sync with the theme
+  partial if the theme's markup changes.
+{% endcomment %}
+{%- if page.title -%}{%- assign page_title_text = page.title -%}{%- else -%}{%- assign page_title_text = page.page_header.title -%}{%- endif -%}
+{%- assign page_title_id = page_title_text | strip_html | slugify -%}
+<!--header with image-->
+<div class="wrapper image-wrapper bg-image page-title-wrapper inverse-text" data-image-src="{% if page.header_image %}{{page.header_image | relative_url}}{% elsif page.product_heading.header_image %}{{page.product_heading.header_image | relative_url}}{% else %}{{page.background_image | relative_url}}{% endif %}">
+  <div class="container inner text-center">
+    <div class="space90"></div>
+    <h1 id="{{ page_title_id }}" class="page-title">{% if page.title %} {{page.title}} {% else %}{{page.page_header.title}} {% endif %}{% include components/heading-anchor.html id=page_title_id %}</h1>
+    <p class="lead">{% if page.sub_title %} {{page.sub_title}} {% else %}{{page.page_header.sub_title}} {% endif %}</p>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.wrapper -->
