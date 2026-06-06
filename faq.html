@@ -55,18 +55,20 @@ contact_area:
     <div class="container inner pb-0">
 
         {% if page.faq_area.enable %}
-        <h3 class="display-3 text-center">{{page.faq_area.sub_title}}</h3>
+        {% assign faq_sub_id = page.faq_area.sub_title | strip_html | slugify %}
+        <h3 id="{{ faq_sub_id }}" class="display-3 text-center">{{page.faq_area.sub_title}}{% include components/heading-anchor.html id=faq_sub_id %}</h3>
         <div class="space40"></div>
         <div class="row">
             <div class="col-lg-6 mb-0">
                 <div id="accordion-1" class="accordion accordion-wrapper">
                     {% for faq in page.faq_area.faq limit: "3" %}
                     <div class="accordion-item card">
+                        {% assign faq_id = faq.question | slugify %}
                         <div class="accordion-header card-header" id="accordion-heading-1-{{forloop.index}}">
-                            <h5>
+                            <h5 id="{{ faq_id }}">
                                 <button class="collapsed" data-bs-toggle="collapse"
                                     data-bs-target="#accordion-collapse-1-{{forloop.index}}" aria-expanded="false"
-                                    aria-controls="accordion-collapse-1-{{forloop.index}}">{{faq.question}}</button>
+                                    aria-controls="accordion-collapse-1-{{forloop.index}}">{{faq.question}}</button>{% include components/heading-anchor.html id=faq_id %}
                             </h5>
                         </div>
                         <div id="accordion-collapse-1-{{forloop.index}}" class="accordion-collapse collapse"
@@ -85,11 +87,12 @@ contact_area:
                 <div id="accordion-2" class="accordion accordion-wrapper">
                     {% for faq in page.faq_area.faq limit: "2" offset: "3" %}
                     <div class="accordion-item card shadow">
+                        {% assign faq_id = faq.question | slugify %}
                         <div class="accordion-header card-header" id="accordion-heading-2-{{forloop.index}}">
-                            <h5>
+                            <h5 id="{{ faq_id }}">
                                 <button class="collapsed" data-bs-toggle="collapse"
                                     data-bs-target="#accordion-collapse-2-{{forloop.index}}" aria-expanded="false"
-                                    aria-controls="accordion-collapse-2-{{forloop.index}}">{{faq.question}}</button>
+                                    aria-controls="accordion-collapse-2-{{forloop.index}}">{{faq.question}}</button>{% include components/heading-anchor.html id=faq_id %}
                             </h5>
                         </div>
                         <!-- /.card-header -->
@@ -118,7 +121,7 @@ contact_area:
 
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <h3 class="display-3 text-center mb-10">Still Have Questions?</h3>
+                <h3 id="still-have-questions" class="display-3 text-center mb-10">Still Have Questions?{% include components/heading-anchor.html id="still-have-questions" %}</h3>
                 <p class="lead text-center mb-10">Can't find what you're looking for? Send us a message and we'll get back to you.</p>
                 <div class="space30"></div>
                 <form id="contact-form" class="fields-white" method="post"
