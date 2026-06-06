@@ -1,4 +1,4 @@
-<div id="{{include.provider.slug}}" class="box bg-white shadow mb-30">
+<div class="box bg-white shadow mb-30">
   <div class="row">
     {% if include.provider.avatar %}
     <div class="col-md-4">
@@ -15,8 +15,10 @@
     <!--/column -->
     {% endif %}
     <div class="col-md-8">
-      {% assign prov_id = include.provider.title | slugify %}
-      {% assign prov_sub_id = include.provider.sub_title | slugify %}
+      {% comment %} Use the document's filename-based slug as the canonical
+         provider anchor (it previously lived on the wrapping box). {% endcomment %}
+      {% assign prov_id = include.provider.slug %}
+      {% assign prov_sub_id = include.provider.sub_title | strip_html | slugify %}
       {% if include.provider.website %}
       <h3 id="{{ prov_id }}"><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a>{% include components/heading-anchor.html id=prov_id %}</h3>
       {% else %}
