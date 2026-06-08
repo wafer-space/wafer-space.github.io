@@ -1,0 +1,11 @@
+<div class="post-gallery light-gallery-wrapper mb-30">
+    {% if include.description %}
+    <p class="text-center text-muted mb-10"><small>{{ include.description }}</small></p>
+    {% endif %}
+    <figure class="overlay overlay1 rounded">
+        <a href="{{ include.file | relative_url }}" class="lightbox">
+            <span class="bg"></span>
+            <img src="{{ include.file | relative_url }}" alt="{{ include.description }}"/>
+        </a>
+    </figure>
+</div>
