@@ -339,6 +339,7 @@ jobs:
             --timeout=30 \
             --max-connections=10 \
             --max-connections-per-host=5 \
+            --rate-limit=20 \
             --buffer-size=16384 \
             --exclude=".*mailto:.*" \
             --exclude=".*linkedin\.com.*" \
