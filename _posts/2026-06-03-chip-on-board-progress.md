@@ -52,7 +52,7 @@ Run 1 bare dies and chips-on-board (COBs) have shipped - join us to have a look 
 
 ## The Chip-on-Board Boards
 
-If you've been following along, you may remember a [previous update](/news/chip-on-board-strategy)
+If you've been following along, you may remember a [previous update](https://wafer.space/news/chip-on-board-strategy)
 where we discussed different potential strategies for chip-on-board packaging. In this update we will see all that hard
 work come to fruition, as we wirebond some of the very first dies from this run.
 
