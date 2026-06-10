@@ -100,7 +100,7 @@ location.
 
 {% include image.html file="/assets/images/news/chip-on-board-progress/wirebonder-operator.jpg" description="Wirebond operator configuring the bond path visually using a high-power microscope" %}
 
-{% include youtube.html id="TODO" caption="Wirebond operator programming the bonds the machine needs to perform" autoplay=true %}
+{% include youtube.html id="gyE6ZMNqUeI" caption="Wirebond operator programming the bonds the machine needs to perform" autoplay=true %}
 
 Now we're ready for the fun part! Once programmed, the machine will begin performing the wirebonding - all 74 pins.
 
@@ -123,14 +123,14 @@ We've been able to successfully run Tiny Tapeout's own factory test on their TTG
 works as expected. We'd love to hear about your testing successes when you get your hands on your COBs, so please
 come join our community on [Discord](https://discord.gg/43y2t53jpE)!
 
-{% include youtube.html id="TODO" caption="Tiny Tapeout's TTGF0p2 factory test counting up (in binary, as shown on the LEDs)" autoplay=true %}
+{% include youtube.html id="nAksPk27yB0" caption="Tiny Tapeout's TTGF0p2 factory test counting up (in binary, as shown on the LEDs)" autoplay=true %}
 
 
 That's not all though - check out this scrolling VGA screensaver with the [wafer.space](https://wafer.space) logo. You can
 view the source code for this on [GitHub](https://github.com/TinyTapeout/tt-waferspace-vga-screensaver), or experiment
 with it on [VGA Playground](https://vga-playground.com/?repo=https://github.com/TinyTapeout/tt-waferspace-vga-screensaver).
 
-{% include youtube.html id="TODO" caption="An animated wafer.space logo screensaver output over VGA" autoplay=true %}
+{% include youtube.html id="rEfHia0b5vo" caption="An animated wafer.space logo screensaver output over VGA" autoplay=true %}
 
 [Sylvain "tnt" Munaut](https://github.com/smunaut) has also been hard at work testing several designs onboard the TTGF0p2
 shuttle and reporting their status. You can view these on Tiny Tapeout's "Silicon Proven Projects" page - head to
