@@ -82,7 +82,7 @@ layout: default
 
             <h4 class="mt-30 mb-15">How the Tile System Works:</h4>
             <ul class="icon-list bullet-primary">
-              <li><i class="icofont-check-circled"></i> <strong>Individual tiles:</strong> Each design gets a dedicated area (typically 160×100 μm)</li>
+              <li><i class="icofont-check-circled"></i> <strong>Individual tiles:</strong> Each design gets a dedicated area (typically 690×320 μm)</li>
               <li><i class="icofont-check-circled"></i> <strong>Shared infrastructure:</strong> Common I/O, power, and testing circuits</li>
               <li><i class="icofont-check-circled"></i> <strong>Multiplexed access:</strong> Switch between different designs on the same chip</li>
               <li><i class="icofont-check-circled"></i> <strong>Cost sharing:</strong> Manufacturing costs split among all participants</li>
@@ -94,8 +94,8 @@ layout: default
               <h4 class="mb-20">Technical Specifications</h4>
               <table class="table table-sm">
                 <tr><td><strong>Process:</strong></td><td>GF180MCU (180nm)</td></tr>
-                <tr><td><strong>Tile Size:</strong></td><td>160×100 μm</td></tr>
-                <tr><td><strong>Digital I/O:</strong></td><td>8 pins per design</td></tr>
+                <tr><td><strong>Tile Size:</strong></td><td>690×320 μm</td></tr>
+                <tr><td><strong>Digital I/O:</strong></td><td>26 pins per design</td></tr>
                 <tr><td><strong>Clock:</strong></td><td>Up to 50 MHz</td></tr>
               </table>
             </div>
@@ -282,17 +282,17 @@ layout: default
             <tbody>
               <tr>
                 <td><strong>Silicon Area</strong></td>
-                <td class="text-center">160×100 μm<br><small class="text-muted">(0.016 mm²)</small></td>
+                <td class="text-center">690×320 μm<br><small class="text-muted">(0.022 mm²)</small></td>
                 <td class="text-center">3.88×5.07 mm<br><small class="text-muted">(~20 mm²)</small></td>
               </tr>
               <tr>
                 <td><strong>Design Freedom</strong></td>
-                <td class="text-center">Digital logic only<br><small class="text-muted">Pre-defined I/O constraints</small></td>
+                <td class="text-center">Digital, analog and mixed-signal<br><small class="text-muted">Limited space and pre-defined I/O constraints</small></td>
                 <td class="text-center">Complete chip design<br><small class="text-muted">Custom I/O, analog, mixed-signal</small></td>
               </tr>
               <tr>
                 <td><strong>I/O Pins</strong></td>
-                <td class="text-center">8 digital pins<br><small class="text-muted">Shared through multiplexer</small></td>
+                <td class="text-center">26 digital pins<br><small class="text-muted">Shared through multiplexer</small></td>
                 <td class="text-center">Custom pad frame<br><small class="text-muted">Hundreds of I/O options</small></td>
               </tr>
               <tr>
@@ -307,7 +307,7 @@ layout: default
               </tr>
               <tr>
                 <td><strong>Quantity</strong></td>
-                <td class="text-center">1 chip (shared)<br><small class="text-muted">Your design is 1 tile</small></td>
+                <td class="text-center">1 chip (shared)<br><small class="text-muted">Your design is 1 or more tiles</small></td>
                 <td class="text-center">500-1,000 dies<br><small class="text-muted">Low-volume production</small></td>
               </tr>
               <tr class="table-active">
