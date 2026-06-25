@@ -103,7 +103,7 @@ runs:
       priority: "urgent"
       expired_message: "Early bird pricing has ended — normal pricing now applies"
 
-    # Campaign and submission deadline (same date for Run 2)
+    # Purchase deadline (separate dates as Run 2 was delayed)
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Jun 30 = Jul 1 11:59 UTC
     campaign_deadline:
       date: "2026-07-01T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Jun 30
@@ -111,12 +111,26 @@ runs:
       timezone: "AoE"
       timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
       local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260630T2359&p1=3399"
-      title: "Purchase & Submission Deadline"
+      title: "Purchase Deadline"
       subtitle: "Final deadline to purchase a slot and submit your GDS"
       button_text: "Reserve"
       button_url: "https://buy.wafer.space/#products"
       priority: "urgent"
       expired_message: "Too late, catch the next shuttle!"
+
+    # GDS submission deadline
+    submission_deadline:
+      date: "2026-07-15T11:59:00Z" # UTC equivalent of 11:59 PM AoE Jul 14
+      display_date: "14 July 2026 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260714T2359&p1=3399"
+      title: "Submission Deadline"
+      subtitle: "Final deadline to submit a clean GDS"
+      button_text: "Submit"
+      button_url: "https://platform.wafer.space"
+      priority: "urgent"
+      expired_message: "See you in the next shuttle!"
 
     # Delivery date - when bare dies are shipped
     delivery_date:
@@ -138,10 +152,15 @@ runs:
         display_date: "30 April 2026 @ 11:59 PM AoE"
         description: "Last day to purchase at early bird pricing"
         status: "critical"
-      - title: "Purchase & Submission Deadline"
+      - title: "Purchase Deadline"
         date: "2026-06-30"
         display_date: "30 June 2026 @ 11:59 PM AoE"
-        description: "Final deadline to purchase slots and submit GDS files"
+        description: "Final deadline to purchase slots"
+        status: "critical"
+      - title: "Submission Deadline"
+        date: "2026-07-14"
+        display_date: "14 July 2026 @ 11:59 PM AoE"
+        description: "Final deadline to submit clean GDS"
         status: "critical"
       - title: "Parts Shipped"
         date: "2026-10-01"
