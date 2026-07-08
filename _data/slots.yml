@@ -35,7 +35,7 @@ slot_types:
   - id: "0p5x1"
     name: "0.5×1&nbsp;Slot (Half&nbsp;Width)"
     short_name: "0.5×1&nbsp;Slot"
-    badge: "New!"
+    badge: ""
     die_width_mm: 1.94
     die_height_mm: 5.12
     die_area_mm2: 9.93
@@ -60,7 +60,7 @@ slot_types:
   - id: "1x0p5"
     name: "1×0.5&nbsp;Slot (Half&nbsp;Height)"
     short_name: "1×0.5&nbsp;Slot"
-    badge: "New!"
+    badge: ""
     die_width_mm: 3.93
     die_height_mm: 2.53
     die_area_mm2: 9.94
@@ -80,6 +80,31 @@ slot_types:
     per_die_early_bird: "4.00"
     per_die_normal: "4.50"
     image: "assets/images/slots/1x0p5_gelpack.jpg"
+    docs_url: "https://mithro.github.io/gf180mcu-project-template/"
+
+  - id: "0p5x0p5"
+    name: "0.5×0.5&nbsp;Slot (Quarter)"
+    short_name: "0.5×0.5&nbsp;Slot"
+    badge: "New!"
+    die_width_mm: 1.94
+    die_height_mm: 2.53
+    die_area_mm2: 4.90
+    usable_width_mm: 1.88
+    usable_height_mm: 2.48
+    usable_area_mm2: 4.67
+    core_width_mm: 1.05
+    core_height_mm: 1.65
+    core_area_mm2: 1.73
+    io_count: 48
+    total_pads: 56
+    max_pads: TODO
+    max_io: TODO
+    quantity: 1000
+    early_bird_price: 2000
+    normal_price: 2500
+    per_die_early_bird: "2.00"
+    per_die_normal: "2.50"
+    image: "assets/images/slots/0p5x0p5_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
 addons:
