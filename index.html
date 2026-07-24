@@ -363,9 +363,9 @@ subscribe_area:
 {% assign slot_half_h = site.data.slots.slot_types[2] %}
 {% assign slot_full = site.data.slots.slot_types[0] %}
 
-{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
-{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
-{% include pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
+{% include components/pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
+{% include components/pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
+{% include components/pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
 
 <!-- Add-ons -->
 {% include components/addons-section.html %}

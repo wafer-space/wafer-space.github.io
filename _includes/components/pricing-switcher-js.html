@@ -2,7 +2,7 @@
 <script>
 (function() {
   'use strict';
-  var deadlineStr = '{{ site.data.slots.early_bird_deadline }}';
+  var deadlineStr = '{{ site.data.runs.runs.gf180mcu_run_2.early_bird_deadline.date }}';
   if (!deadlineStr) return;
   var deadline = new Date(deadlineStr);
   var now = new Date();

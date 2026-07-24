@@ -82,14 +82,25 @@ verify:
 # Basic tests
 test: build
 	@echo "Running basic tests..."
-	@echo -n "Checking HTML file count: "
-	@HTML_COUNT=$$(find $(SITE_DIR) -name "*.html" | wc -l); \
-	if [ $$HTML_COUNT -eq 17 ]; then \
-		echo "✅ $$HTML_COUNT HTML files (expected: 17)"; \
+	@FAIL=0; \
+	echo "Checking required HTML pages..."; \
+	for page in index.html about.html price.html technology.html how.html \
+	            faq.html design-help.html news/index.html 404.html; do \
+		if [ -f "$(SITE_DIR)/$$page" ]; then \
+			echo "  ✅ $$page"; \
+		else \
+			echo "  ❌ $$page (missing)"; \
+			FAIL=1; \
+		fi; \
+	done; \
+	HTML_COUNT=$$(find $(SITE_DIR) -name "*.html" | wc -l); \
+	if [ $$HTML_COUNT -ge 20 ]; then \
+		echo "  ✅ $$HTML_COUNT HTML files total (minimum: 20)"; \
 	else \
-		echo "❌ $$HTML_COUNT HTML files (expected: 17)"; \
-		exit 1; \
-	fi
+		echo "  ❌ $$HTML_COUNT HTML files total (minimum: 20)"; \
+		FAIL=1; \
+	fi; \
+	if [ $$FAIL -ne 0 ]; then exit 1; fi
 	@echo -n "Checking theme plugin: "
 	@if [ -f _plugins/theme_plugin.rb ]; then \
 		echo "✅ Found"; \
