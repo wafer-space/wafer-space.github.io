@@ -4,6 +4,11 @@
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
 {% assign eb_deadline = site.data.runs.runs.gf180mcu_run_2.early_bird_deadline %}
 {% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_2.campaign_deadline %}
+{% comment %} This partial is included once per slot, so every heading id is
+   namespaced by the slot id to stay unique across the three slots. {% endcomment %}
+{% assign slot_name_id = slot.name | slugify %}
+{% assign slot_eb_id = slot.id | prepend: 'early-bird-slot-' %}
+{% assign slot_std_id = slot.id | prepend: 'standard-slot-' %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">
@@ -27,7 +32,7 @@
                     <span class="price-hero-currency">$</span>{{ slot.per_die_early_bird }}<span class="price-hero-unit">&nbsp;/&nbsp;die</span>
                   </div>
                   <p class="price-total"><small class="text-muted">USD</small>&nbsp;${{ slot.early_bird_price | divided_by: 1000 }},{{ slot.early_bird_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
-                  <h4 class="panel-title">Early&nbsp;Bird</h4>
+                  <h4 id="{{ slot_eb_id }}" class="panel-title">Early&nbsp;Bird{% include components/heading-anchor.html id=slot_eb_id %}</h4>
                   {% if eb_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ eb_deadline.date }}" data-label="Ends">
                     <span class="countdown-inline"></span>
@@ -55,7 +60,7 @@
                     <span class="price-hero-currency">$</span>{{ slot.per_die_normal }}<span class="price-hero-unit">&nbsp;/&nbsp;die</span>
                   </div>
                   <p class="price-total"><small class="text-muted">USD</small>&nbsp;${{ slot.normal_price | divided_by: 1000 }},{{ slot.normal_price | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</p>
-                  <h4 class="panel-title">Standard</h4>
+                  <h4 id="{{ slot_std_id }}" class="panel-title">Standard{% include components/heading-anchor.html id=slot_std_id %}</h4>
                   {% if campaign_deadline %}
                   <p class="pricing-deadline" data-deadline="{{ campaign_deadline.date }}" data-label="Closes">
                     <span class="countdown-inline"></span>
@@ -82,11 +87,11 @@
 
       <!-- Right: Slot description and specs -->
       <div class="col-lg-6 pl-60 pl-md-15">
-        <h2 class="title-color {% if is_dark %}color-white{% else %}color-gray{% endif %}">
+        <h2 id="{{ slot_name_id }}" class="title-color {% if is_dark %}color-white{% else %}color-gray{% endif %}">
           {{ slot.name }}
           {% if slot.badge != "" %}
             <span class="slot-badge">{{ slot.badge }}</span>
-          {% endif %}
+          {% endif %}{% include components/heading-anchor.html id=slot_name_id %}
         </h2>
         <h3 class="display-3">{{ slot.short_name }} &mdash;&nbsp;{{ slot.quantity }}&nbsp;dies&nbsp;per&nbsp;slot</h3>
         <div class="space20"></div>

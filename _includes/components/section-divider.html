@@ -1,7 +1,10 @@
 <!-- Section Divider -->
-<div id="{{ include.title | slugify }}" class="wrapper dark-wrapper inverse-text">
+{% assign divider_id = include.title | slugify %}
+<div id="{{ divider_id }}" class="wrapper dark-wrapper inverse-text">
   <div class="container inner text-center py-3">
-    <h2 class="title-color color-white mb-0">{{ include.title }}</h2>
+    {% comment %} The heading links to the wrapper div's id (the section's
+       scroll target) rather than carrying a duplicate id of its own. {% endcomment %}
+    <h2 class="title-color color-white mb-0">{{ include.title }}{% include components/heading-anchor.html id=divider_id %}</h2>
     {% if include.subtitle %}
     <h3 class="display-3 mb-0">{{ include.subtitle }}</h3>
     {% endif %}

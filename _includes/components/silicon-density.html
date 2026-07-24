@@ -5,7 +5,7 @@
     <!-- Part A: Theoretical maximums -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-white">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?</h2>
+        <h2 id="what-fits-on-1mm2-of-silicon" class="title-color color-white">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?{% include components/heading-anchor.html id="what-fits-on-1mm2-of-silicon" %}</h2>
         <h3 class="display-3">Theoretical maximum standard cell density</h3>
         <p class="lead">Hard upper bounds &mdash; if you packed cells edge-to-edge with zero routing overhead</p>
         <div class="space20"></div>
@@ -45,7 +45,8 @@
                 </svg>
               {% endif %}
             </div>
-            <h3 class="mb-5 color-dark">~{{ cell.per_mm2 | divided_by: 1000 }},{{ cell.per_mm2 | modulo: 1000 | prepend: '000' | slice: -3, 3 }}</h3>
+            {% assign cell_density_id = cell.name | slugify | prepend: 'density-' %}
+            <h3 id="{{ cell_density_id }}" class="mb-5 color-dark">~{{ cell.per_mm2 | divided_by: 1000 }},{{ cell.per_mm2 | modulo: 1000 | prepend: '000' | slice: -3, 3 }}{% include components/heading-anchor.html id=cell_density_id %}</h3>
             <p class="mb-0 font-weight-600 color-dark">{{ cell.name }}</p>
             <p class="mb-0 small text-muted">per mm&sup2; theoretical max</p>
           </div>
@@ -58,7 +59,7 @@
     <!-- Part B: Achieved density from Run 1 -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-white">What Run&nbsp;1 designers actually achieved</h2>
+        <h2 id="what-run-1-designers-achieved" class="title-color color-white">What Run&nbsp;1 designers actually achieved{% include components/heading-anchor.html id="what-run-1-designers-achieved" %}</h2>
         <h3 class="display-3">Real density from 24 designs on the GF180MCU shuttle</h3>
         <div class="space20"></div>
       </div>
@@ -67,7 +68,7 @@
     <div class="row justify-content-center text-center gutter-30 mb-30">
       <div class="col-md-4 col-sm-6 mb-20">
         <div class="box bg-white shadow p-30">
-          <h3 class="mb-5 color-dark">22k</h3>
+          <h3 id="best-core-average" class="mb-5 color-dark">22k{% include components/heading-anchor.html id="best-core-average" %}</h3>
           <p class="mb-0 font-weight-600 color-dark">Best Core Average</p>
           <p class="mb-0 small text-muted">logic cells/mm&sup2; &mdash; 44% of theoretical max</p>
           <p class="mb-0 small"><a href="https://github.com/ThorbenMoos/Cloneless1" target="_blank" rel="noopener">Cloneless1</a></p>
@@ -75,7 +76,7 @@
       </div>
       <div class="col-md-4 col-sm-6 mb-20">
         <div class="box bg-white shadow p-30">
-          <h3 class="mb-5 color-dark">31k</h3>
+          <h3 id="best-peak-region" class="mb-5 color-dark">31k{% include components/heading-anchor.html id="best-peak-region" %}</h3>
           <p class="mb-0 font-weight-600 color-dark">Best Peak Region</p>
           <p class="mb-0 small text-muted">logic cells/mm&sup2; &mdash; 62% of theoretical max</p>
           <p class="mb-0 small"><a href="https://github.com/ThorbenMoos/Cloneless1" target="_blank" rel="noopener">Cloneless1</a></p>
@@ -83,7 +84,7 @@
       </div>
       <div class="col-md-4 col-sm-6 mb-20">
         <div class="box bg-white shadow p-30">
-          <h3 class="mb-5 color-dark">3k&ndash;14k</h3>
+          <h3 id="typical-range" class="mb-5 color-dark">3k&ndash;14k{% include components/heading-anchor.html id="typical-range" %}</h3>
           <p class="mb-0 font-weight-600 color-dark">Typical Range</p>
           <p class="mb-0 small text-muted">logic cells/mm&sup2; for most digital designs</p>
           <p class="mb-0 small">across 24 designs</p>
@@ -93,7 +94,7 @@
 
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h4 class="text-center mb-20">Achieved Logic Density by Design</h4>
+        <h4 id="achieved-logic-density-by-design" class="text-center mb-20">Achieved Logic Density by Design{% include components/heading-anchor.html id="achieved-logic-density-by-design" %}</h4>
         <div class="table-responsive">
           <table class="table table-striped text-center ws-table-dark">
             <thead>
@@ -151,7 +152,7 @@
     <!-- Part C: What fits in each slot -->
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h2 class="title-color color-white">What fits in each slot?</h2>
+        <h2 id="what-fits-in-each-slot" class="title-color color-white">What fits in each slot?{% include components/heading-anchor.html id="what-fits-in-each-slot" %}</h2>
         <h3 class="display-3">Logic and memory capacity by slot type</h3>
         <div class="space40"></div>
       </div>
@@ -160,7 +161,7 @@
     <!-- Logic Capacity Table -->
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h4 class="text-center mb-30">Theoretical Logic Capacity <small>(with default pad ring)</small></h4>
+        <h4 id="theoretical-logic-capacity" class="text-center mb-30">Theoretical Logic Capacity <small>(with default pad ring)</small>{% include components/heading-anchor.html id="theoretical-logic-capacity" %}</h4>
         <div class="table-responsive">
           <table class="table table-striped text-center ws-table-dark">
             <thead>
@@ -198,7 +199,7 @@
     <!-- SRAM Capacity Table -->
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h4 class="text-center mb-30">SRAM Capacity</h4>
+        <h4 id="sram-capacity" class="text-center mb-30">SRAM Capacity{% include components/heading-anchor.html id="sram-capacity" %}</h4>
         <div class="table-responsive">
           <table class="table table-striped text-center ws-table-dark">
             <thead>

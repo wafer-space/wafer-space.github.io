@@ -88,7 +88,7 @@ technical_specs:
 <!-- How It Works -->
 <div class="wrapper light-wrapper">
   <div class="container inner">
-    <h2 class="section-title mb-40 text-center">How wafer.space works</h2>
+    <h2 id="how-wafer-space-works" class="section-title mb-40 text-center">How wafer.space works{% include components/heading-anchor.html id="how-wafer-space-works" %}</h2>
     <p class="lead larger text-center">Getting from your design to manufactured silicon is a collaborative process. You handle the design and submission, we take care of fabrication and delivery.</p>
     <div class="space40"></div>
   </div>
@@ -98,7 +98,8 @@ technical_specs:
 {% if page.user_steps.enable %}
 <div class="wrapper gray-wrapper">
   <div class="container inner">
-    <h2 class="section-title mb-40 text-center">{{page.user_steps.title}}</h2>
+    {% assign user_steps_id = page.user_steps.title | strip_html | slugify %}
+    <h2 id="{{ user_steps_id }}" class="section-title mb-40 text-center">{{page.user_steps.title}}{% include components/heading-anchor.html id=user_steps_id %}</h2>
     <p class="lead larger text-center mb-40">{{page.user_steps.sub_title}}</p>
     <div class="row gutter-50 gutter-md-30 process-wrapper line text-center">
       {% for step in page.user_steps.steps %}
@@ -106,7 +107,8 @@ technical_specs:
         <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
           <span class="number color-{{step.color}}">{{step.number}}</span>
         </span>
-        <h5>{{step.title}}</h5>
+        {% assign step_id = step.title | slugify %}
+        <h5 id="{{ step_id }}">{{step.title}}{% include components/heading-anchor.html id=step_id %}</h5>
         <p>{{step.description}}</p>
       </div>
       {% endfor %}
@@ -118,7 +120,7 @@ technical_specs:
 <!-- Transition -->
 <div class="wrapper light-wrapper">
   <div class="container inner text-center">
-    <h3 class="display-4 mb-30">Once you submit, we take over...</h3>
+    <h3 id="once-you-submit-we-take-over" class="display-4 mb-30">Once you submit, we take over...{% include components/heading-anchor.html id="once-you-submit-we-take-over" %}</h3>
     <p class="lead larger">After you complete your design and submission, wafer.space handles all the manufacturing logistics for you.</p>
   </div>
 </div>
@@ -127,7 +129,8 @@ technical_specs:
 {% if page.wafer_steps.enable %}
 <div class="wrapper gray-wrapper">
   <div class="container inner">
-    <h2 class="section-title mb-40 text-center">{{page.wafer_steps.title}}</h2>
+    {% assign wafer_steps_id = page.wafer_steps.title | strip_html | slugify %}
+    <h2 id="{{ wafer_steps_id }}" class="section-title mb-40 text-center">{{page.wafer_steps.title}}{% include components/heading-anchor.html id=wafer_steps_id %}</h2>
     <p class="lead larger text-center mb-40">{{page.wafer_steps.sub_title}}</p>
     <div class="row gutter-50 gutter-md-30 process-wrapper line text-center justify-content-center">
       {% for step in page.wafer_steps.steps %}
@@ -135,7 +138,8 @@ technical_specs:
         <span class="icon icon-blob icon-blob-{{step.color}} mb-30">
           <span class="number color-{{step.color}}">{{step.number}}</span>
         </span>
-        <h5>{{step.title}}</h5>
+        {% assign step_id = step.title | slugify %}
+        <h5 id="{{ step_id }}">{{step.title}}{% include components/heading-anchor.html id=step_id %}</h5>
         <p>{{step.description}}</p>
       </div>
       {% endfor %}
@@ -150,7 +154,8 @@ technical_specs:
   <div class="container inner">
     <div class="row">
       <div class="col-md-8 mx-auto text-center">
-        <h2 class="title-color color-gray">{{page.technical_specs.title}}</h2>
+        {% assign tech_specs_title_id = page.technical_specs.title | strip_html | slugify %}
+        <h2 id="{{ tech_specs_title_id }}" class="title-color color-gray">{{page.technical_specs.title}}{% include components/heading-anchor.html id=tech_specs_title_id %}</h2>
         <h3 class="display-3">{{page.technical_specs.sub_title}}</h3>
         <div class="space40"></div>
       </div>
@@ -174,7 +179,8 @@ technical_specs:
                 <i class="{{spec.icon}}"></i>
               </div>
               <div>
-                <h6 class="mb-5">{{spec.title}}</h6>
+                {% assign spec_id = spec.title | slugify %}
+                <h6 id="{{ spec_id }}" class="mb-5">{{spec.title}}{% include components/heading-anchor.html id=spec_id %}</h6>
                 <p class="mb-0 font-weight-600 color-dark">{{spec.value}}</p>
                 <p class="mb-0 text-muted small">{{spec.detail}}</p>
               </div>

@@ -5,7 +5,7 @@
   <div class="container inner">
     <div class="row">
       <div class="col-lg-10 offset-lg-1 text-center">
-        <h2 class="title-color color-gray">Run 1: Many Designs on a Single Reticle</h2>
+        <h2 id="run-1-many-designs" class="title-color color-gray">Run 1: Many Designs on a Single Reticle{% include components/heading-anchor.html id="run-1-many-designs" %}</h2>
         <h3 class="display-3">{{ run1.open_source_designs }} open-source designs from universities, startups, and hobbyists worldwide</h3>
         <p class="lead">Silicon currently in fabrication &mdash; expected delivery late April 2026</p>
         <div class="space20"></div>
@@ -15,6 +15,9 @@
     <div class="grid-view position-relative">
       <div class="carousel owl-carousel" id="run1-carousel" data-margin="30" data-dots="true" data-loop="true" data-autoplay="true" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "3"}}'>
         {% for design in run1.designs %}
+        {% assign design_id = design.name | slugify | append: "-" | append: forloop.index %}
+        {% assign design_view_source_id = design_id | prepend: "view-source-" %}
+        {% assign design_code_id = design_id | prepend: "code-" %}
         <div class="item">
           <div class="box bg-white shadow p-30">
             {% if design.image %}
@@ -23,7 +26,7 @@
                 <img src="{{ design.image | relative_url }}" alt="{{ design.name }}" />
               </a>
               <figcaption>
-                <h5 class="from-top mb-0">View Source</h5>
+                <h5 id="{{ design_view_source_id }}" class="from-top mb-0">View Source{% include components/heading-anchor.html id=design_view_source_id %}</h5>
               </figcaption>
             </figure>
             {% else %}
@@ -41,7 +44,7 @@
             {% endif %}
             <figure class="rounded mb-20 text-center" style="background: linear-gradient(135deg, {{ grad }}); padding: 2.5rem 1rem; min-height: 140px; display: flex; align-items: center; justify-content: center;">
               <div>
-                <h4 class="text-white mb-5" style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px;">{{ design.code }}</h4>
+                <h4 id="{{ design_code_id }}" class="text-white mb-5" style="font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px;">{{ design.code }}{% include components/heading-anchor.html id=design_code_id %}</h4>
                 <p class="text-white-50 mb-0" style="font-size: 0.8rem;">{{ design.slot_size }} slot</p>
               </div>
             </figure>
@@ -61,12 +64,12 @@
                 {% endif %}
                 <span class="badge rounded-pill {{ badge_color }}">{{ design.category }}</span>
               </div>
-              <h5 class="post-title mb-5">
+              <h5 id="{{ design_id }}" class="post-title mb-5">
                 {% if design.repo_url %}
                   <a href="{{ design.repo_url }}" target="_blank" rel="noopener">{{ design.name }}</a>
                 {% else %}
                   {{ design.name }}
-                {% endif %}
+                {% endif %}{% include components/heading-anchor.html id=design_id %}
               </h5>
               <p class="mb-10 text-muted small">{{ design.description }}</p>
               <div class="meta mb-0">

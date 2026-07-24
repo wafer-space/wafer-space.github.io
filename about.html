@@ -75,7 +75,8 @@ contact_area:
                 <div class="col-md-10 text-center">
                   <div class="box bg-white shadow">
                     {% if page.about_area.projects_number %}
-                     <h3><span class="value">{{page.about_area.projects_number}}</span>+</h3>
+                     {% assign about_stat_id = page.about_area.project_tag | slugify %}
+                     <h3 id="{{ about_stat_id }}"><span class="value">{{page.about_area.projects_number}}</span>+{% include components/heading-anchor.html id=about_stat_id %}</h3>
                     {% endif %}
                     {% if page.about_area.project_tag %}
                      <p>{{page.about_area.project_tag}}</p>
@@ -92,7 +93,8 @@ contact_area:
           <div class="space30 d-none d-md-block d-lg-none"></div>
           <div class="col-lg-6 pr-60 pr-md-15">
             {% if page.about_area.title %}
-             <h2 class="section-title mb-20">{{ page.about_area.title }}</h2>
+             {% assign about_title_id = page.about_area.title | strip_html | slugify %}
+             <h2 id="{{ about_title_id }}" class="section-title mb-20">{{ page.about_area.title }}{% include components/heading-anchor.html id=about_title_id %}</h2>
             {% endif %}
             {% if  page.about_area.sub_title %}
              <p class="lead larger">{{page.about_area.sub_title}}</p>
@@ -123,7 +125,8 @@ contact_area:
     <div class="container inner pt-140 pb-140 text-center">
       <div class="row">
         <div class="col-md-7 mx-auto">
-          <h2 class="section-title text-center">{{page.video_area.title}}</h2>
+          {% assign video_title_id = page.video_area.title | strip_html | slugify %}
+          <h2 id="{{ video_title_id }}" class="section-title text-center">{{page.video_area.title}}{% include components/heading-anchor.html id=video_title_id %}</h2>
           <p class="lead larger text-center">{{page.video_area.sub_title}}</p>
           <div class="space10"></div>
           <div class="light-gallery-wrapper">
@@ -165,7 +168,8 @@ contact_area:
   <div class="container inner">
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h2 class="title-color color-gray text-center">{{page.contact_area.title}}</h2>
+        {% assign contact_title_id = page.contact_area.title | strip_html | slugify %}
+        <h2 id="{{ contact_title_id }}" class="title-color color-gray text-center">{{page.contact_area.title}}{% include components/heading-anchor.html id=contact_title_id %}</h2>
         <h3 class="display-3">{{page.contact_area.sub_title}}</h3>
         <div class="space50"></div>
         <div class="row text-center gutter-60">
