@@ -97,8 +97,8 @@ slot_types:
     core_area_mm2: 1.73
     io_count: 48
     total_pads: 56
-    max_pads: TODO
-    max_io: TODO
+    max_pads: 56    # TODO: placeholder until more info
+    max_io: 48      # TODO: placeholder until more info
     quantity: 1000
     early_bird_price: 2000
     normal_price: 2500
