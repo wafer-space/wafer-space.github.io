@@ -179,6 +179,9 @@ sram:
       "1x0p5":
         blocks: 40    # 8×5
         total_kb: 20
+      "0p5x0p5":
+        blocks: 20
+        total_kb: 10
 
   - name: "GF 5V sram256x8"
     voltage: "5V"
@@ -195,6 +198,9 @@ sram:
       "1x0p5":
         blocks: 56    # 8×7
         total_kb: 14
+      "0p5x0p5":
+        blocks: 28
+        total_kb: 7
 
   - name: "3.3V sram1024x8"
     voltage: "3.3V"
@@ -211,6 +217,9 @@ sram:
       "1x0p5":
         blocks: 48
         total_kb: 48
+      "0p5x0p5":
+        blocks: 24
+        total_kb: 24
 
   - name: "3.3V sram512x8"
     voltage: "3.3V"
@@ -227,6 +236,9 @@ sram:
       "1x0p5":
         blocks: 84    # 12×7
         total_kb: 42
+      "0p5x0p5":
+        blocks: 42
+        total_kb: 21
 
   - name: "3.3V sram256x8"
     voltage: "3.3V"
@@ -243,3 +255,6 @@ sram:
       "1x0p5":
         blocks: 132   # 12×11
         total_kb: 33
+      "0p5x0p5":
+        blocks: 66
+        total_kb: 16.5
