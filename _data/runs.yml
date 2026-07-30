@@ -177,18 +177,18 @@ runs:
 
     # Early bird pricing deadline
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Apr 30 = May 1 11:59 UTC
-    # early_bird_deadline:
-    #   date: "2026-05-01T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Apr 30
-    #   display_date: "30 April 2026 @ 11:59 PM"
-    #   timezone: "AoE"
-    #   timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
-    #   local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260430T2359&p1=3399"
-    #   title: "Early Bird Deadline"
-    #   subtitle: "Lock in early bird pricing for GF180MCU Run 2"
-    #   button_text: "Reserve"
-    #   button_url: "https://buy.wafer.space/#products"
-    #   priority: "urgent"
-    #   expired_message: "Early bird pricing has ended — normal pricing now applies"
+    early_bird_deadline:
+      date: "2026-10-01T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Sep 30
+      display_date: "30 September 2026 @ 11:59 PM"
+      timezone: "AoE"
+      timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20261001T2359&p1=3399"
+      title: "Early Bird Deadline"
+      subtitle: "Lock in early bird pricing for GF180MCU Run 3"
+      button_text: "Reserve"
+      button_url: "https://buy.wafer.space/#products"
+      priority: "urgent"
+      expired_message: "Early bird pricing has ended — normal pricing now applies"
 
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Jun 30 = Jul 1 11:59 UTC
     campaign_deadline:

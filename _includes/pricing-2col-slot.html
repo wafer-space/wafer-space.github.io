@@ -2,8 +2,8 @@
 {% assign slot = include.slot %}
 {% assign is_dark = false %}
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
-{% assign eb_deadline = site.data.runs.runs.gf180mcu_run_2.early_bird_deadline %}
-{% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_2.campaign_deadline %}
+{% assign eb_deadline = site.data.runs.runs.gf180mcu_run_3.early_bird_deadline %}
+{% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_3.campaign_deadline %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">

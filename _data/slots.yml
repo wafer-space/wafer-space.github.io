@@ -1,9 +1,5 @@
 # wafer.space Slot Specifications and Pricing
-# GF180MCU Run 2
 
-run: "gf180mcu_run_2"
-early_bird_deadline: "2026-05-01T11:59:00Z"  # 30 April 2026 AoE
-campaign_deadline: "2026-07-01T11:59:00Z"     # 30 June 2026 AoE
 buy_url: "https://buy.wafer.space/#products"
 
 slot_types:
