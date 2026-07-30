@@ -10,6 +10,8 @@ slot_types:
   - id: "1x1"
     name: "1×1&nbsp;Slot (Full)"
     short_name: "1×1&nbsp;Slot"
+    description: |
+      The full-size slot gives you the largest die area and maximum I/O count. Ideal for complex SoCs, full mixed-signal designs, or projects that need the most routing and core area.
     badge: ""
     die_width_mm: 3.93
     die_height_mm: 5.12
@@ -35,6 +37,8 @@ slot_types:
   - id: "0p5x1"
     name: "0.5×1&nbsp;Slot (Half&nbsp;Width)"
     short_name: "0.5×1&nbsp;Slot"
+    description: |
+      The half-width (0.5×1) slot delivers a tall, narrow die &mdash; ideal for I/O-heavy designs where signals concentrate along the long edges. Perfect for medium-complexity digital or mixed-signal projects, at just over half the cost of a full slot.
     badge: ""
     die_width_mm: 1.94
     die_height_mm: 5.12
@@ -60,6 +64,8 @@ slot_types:
   - id: "1x0p5"
     name: "1×0.5&nbsp;Slot (Half&nbsp;Height)"
     short_name: "1×0.5&nbsp;Slot"
+    description: |
+      The half-height (1×0.5) slot gives you a wide, short die &mdash; ideal for designs that benefit from a wider core. Offers slightly more core area than the half-width slot at the same price.
     badge: ""
     die_width_mm: 3.93
     die_height_mm: 2.53
@@ -85,6 +91,8 @@ slot_types:
   - id: "0p5x0p5"
     name: "0.5×0.5&nbsp;Slot (Quarter)"
     short_name: "0.5×0.5&nbsp;Slot"
+    description: |
+      The quarter-size (0.5×0.5) slot is the smallest out of the bunch, but offers an unbeatable price point for prototyping designs without paying for silicon you do not need.
     badge: "New!"
     die_width_mm: 1.94
     die_height_mm: 2.53
