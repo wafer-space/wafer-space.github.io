@@ -192,8 +192,8 @@ runs:
 
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Jun 30 = Jul 1 11:59 UTC
     campaign_deadline:
-      date: "2026-12-16T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Dec 15
-      display_date: "15 December 2026 @ 11:59 PM"
+      date: "2026-12-10T11:59:00Z"  # UTC equivalent of 11:59 PM AoE Dec 09
+      display_date: "9 December 2026 @ 11:59 PM"
       timezone: "AoE"
       timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
       local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20261226T2359&p1=3399"
@@ -239,8 +239,8 @@ runs:
         description: "Last day to purchase at early bird pricing"
         status: "critical"
       - title: "Purchase Deadline"
-        date: "2026-12-15"
-        display_date: "15 December 2026 @ 11:59 PM AoE"
+        date: "2026-12-09"
+        display_date: "9 December 2026 @ 11:59 PM AoE"
         description: "Final deadline to purchase slots"
         status: "critical"
       - title: "Submission Deadline"
