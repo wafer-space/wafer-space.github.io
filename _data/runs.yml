@@ -206,8 +206,8 @@ runs:
 
     # GDS submission deadline
     submission_deadline:
-      date: "2026-12-30T11:59:00Z" # UTC equivalent of 11:59 PM AoE Dec 29
-      display_date: "29 December 2026 @ 11:59 PM"
+      date: "2026-12-17T11:59:00Z" # UTC equivalent of 11:59 PM AoE Dec 16
+      display_date: "16 December 2026 @ 11:59 PM"
       timezone: "AoE"
       timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
       local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20261230T2359&p1=3399"
@@ -244,8 +244,8 @@ runs:
         description: "Final deadline to purchase slots"
         status: "critical"
       - title: "Submission Deadline"
-        date: "2026-12-29"
-        display_date: "29 December 2026 @ 11:59 PM AoE"
+        date: "2026-12-16"
+        display_date: "16 December 2026 @ 11:59 PM AoE"
         description: "Final deadline to submit clean GDS"
         status: "critical"
       - title: "Parts Shipped"
