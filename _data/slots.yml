@@ -1,15 +1,13 @@
 # wafer.space Slot Specifications and Pricing
-# GF180MCU Run 2
 
-run: "gf180mcu_run_2"
-early_bird_deadline: "2026-05-01T11:59:00Z"  # 30 April 2026 AoE
-campaign_deadline: "2026-07-01T11:59:00Z"     # 30 June 2026 AoE
 buy_url: "https://buy.wafer.space/#products"
 
 slot_types:
   - id: "1x1"
     name: "1×1&nbsp;Slot (Full)"
     short_name: "1×1&nbsp;Slot"
+    description: |
+      The full-size slot gives you the largest die area and maximum I/O count. Ideal for complex SoCs, full mixed-signal designs, or projects that need the most routing and core area.
     badge: ""
     die_width_mm: 3.93
     die_height_mm: 5.12
@@ -26,16 +24,18 @@ slot_types:
     max_io: 168
     quantity: 1000
     early_bird_price: 7000
-    normal_price: 7500
+    normal_price: 8000
     per_die_early_bird: "7.00"
-    per_die_normal: "7.50"
+    per_die_normal: "8.00"
     image: "assets/images/slots/1x1_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
   - id: "0p5x1"
     name: "0.5×1&nbsp;Slot (Half&nbsp;Width)"
     short_name: "0.5×1&nbsp;Slot"
-    badge: "New!"
+    description: |
+      The half-width (0.5×1) slot delivers a tall, narrow die &mdash; ideal for I/O-heavy designs where signals concentrate along the long edges. Perfect for medium-complexity digital or mixed-signal projects, at just over half the cost of a full slot.
+    badge: ""
     die_width_mm: 1.94
     die_height_mm: 5.12
     die_area_mm2: 9.93
@@ -51,16 +51,18 @@ slot_types:
     max_io: 122
     quantity: 1000
     early_bird_price: 4000
-    normal_price: 4500
+    normal_price: 5000
     per_die_early_bird: "4.00"
-    per_die_normal: "4.50"
+    per_die_normal: "5.00"
     image: "assets/images/slots/0p5x1_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
   - id: "1x0p5"
     name: "1×0.5&nbsp;Slot (Half&nbsp;Height)"
     short_name: "1×0.5&nbsp;Slot"
-    badge: "New!"
+    description: |
+      The half-height (1×0.5) slot gives you a wide, short die &mdash; ideal for designs that benefit from a wider core. Offers slightly more core area than the half-width slot at the same price.
+    badge: ""
     die_width_mm: 3.93
     die_height_mm: 2.53
     die_area_mm2: 9.94
@@ -76,10 +78,37 @@ slot_types:
     max_io: 108
     quantity: 1000
     early_bird_price: 4000
-    normal_price: 4500
+    normal_price: 5000
     per_die_early_bird: "4.00"
-    per_die_normal: "4.50"
+    per_die_normal: "5.00"
     image: "assets/images/slots/1x0p5_gelpack.jpg"
+    docs_url: "https://mithro.github.io/gf180mcu-project-template/"
+
+  - id: "0p5x0p5"
+    name: "0.5×0.5&nbsp;Slot (Quarter)"
+    short_name: "0.5×0.5&nbsp;Slot"
+    description: |
+      The quarter-size (0.5×0.5) slot is the smallest out of the bunch, but offers an unbeatable price point for prototyping designs without paying for silicon you do not need.
+    badge: "New!"
+    die_width_mm: 1.94
+    die_height_mm: 2.53
+    die_area_mm2: 4.90
+    usable_width_mm: 1.88
+    usable_height_mm: 2.48
+    usable_area_mm2: 4.67
+    core_width_mm: 1.05
+    core_height_mm: 1.65
+    core_area_mm2: 1.73
+    io_count: 48
+    total_pads: 56
+    max_pads: 56    # TODO: placeholder until more info
+    max_io: 48      # TODO: placeholder until more info
+    quantity: 1000
+    early_bird_price: 2000
+    normal_price: 3000
+    per_die_early_bird: "2.00"
+    per_die_normal: "3.00"
+    image: "assets/images/slots/0p5x0p5_gelpack.jpg"
     docs_url: "https://mithro.github.io/gf180mcu-project-template/"
 
 addons:
@@ -154,6 +183,9 @@ sram:
       "1x0p5":
         blocks: 40    # 8×5
         total_kb: 20
+      "0p5x0p5":
+        blocks: 20
+        total_kb: 10
 
   - name: "GF 5V sram256x8"
     voltage: "5V"
@@ -170,6 +202,9 @@ sram:
       "1x0p5":
         blocks: 56    # 8×7
         total_kb: 14
+      "0p5x0p5":
+        blocks: 28
+        total_kb: 7
 
   - name: "3.3V sram1024x8"
     voltage: "3.3V"
@@ -186,6 +221,9 @@ sram:
       "1x0p5":
         blocks: 48
         total_kb: 48
+      "0p5x0p5":
+        blocks: 24
+        total_kb: 24
 
   - name: "3.3V sram512x8"
     voltage: "3.3V"
@@ -202,6 +240,9 @@ sram:
       "1x0p5":
         blocks: 84    # 12×7
         total_kb: 42
+      "0p5x0p5":
+        blocks: 42
+        total_kb: 21
 
   - name: "3.3V sram256x8"
     voltage: "3.3V"
@@ -218,3 +259,6 @@ sram:
       "1x0p5":
         blocks: 132   # 12×11
         total_kb: 33
+      "0p5x0p5":
+        blocks: 66
+        total_kb: 16.5

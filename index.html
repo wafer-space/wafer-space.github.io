@@ -148,8 +148,8 @@ technical_specs:
   image: "assets/images/products/gf180mcu-wafer-isometric.jpg"
   specs:
     - title: "Slot Options"
-      value: "3 Sizes"
-      detail: "1×1, 0.5×1 half-width, 1×0.5 half-height"
+      value: "4 Sizes"
+      detail: "1×1, 0.5×0.5, 0.5×1 half-width, 1×0.5 half-height"
       icon: "jam jam-crop"
       color: "blue"
     - title: "Process Node"
@@ -341,8 +341,8 @@ subscribe_area:
 <!-- TOP: Hook + Urgency + Action              -->
 <!-- ═══════════════════════════════════════════ -->
 
-<!-- (1) Half Slot Marketing Banner -->
-{% include components/half-slot-banner.html %}
+<!-- (1) Quarter Slot Marketing Banner -->
+{% include components/quarter-slots-banner.html %}
 
 <!-- (2) Deadlines -->
 {% include components/countdown.html %}
@@ -362,10 +362,12 @@ subscribe_area:
 {% assign slot_half_w = site.data.slots.slot_types[1] %}
 {% assign slot_half_h = site.data.slots.slot_types[2] %}
 {% assign slot_full = site.data.slots.slot_types[0] %}
+{% assign slot_quarter = site.data.slots.slot_types[3] %}
 
-{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="dark-wrapper inverse-text" %}
-{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="light-wrapper" %}
-{% include pricing-2col-slot.html slot=slot_full wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_quarter wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_half_w wrapper_class="light-wrapper" %}
+{% include pricing-2col-slot.html slot=slot_half_h wrapper_class="dark-wrapper inverse-text" %}
+{% include pricing-2col-slot.html slot=slot_full wrapper_class="light-wrapper" %}
 
 <!-- Add-ons -->
 {% include components/addons-section.html %}
