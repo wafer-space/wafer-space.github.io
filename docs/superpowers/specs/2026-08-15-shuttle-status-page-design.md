@@ -51,9 +51,10 @@ stops:
   primary mechanism because estimated dates drift from reality (Run 1's
   `timeline:` in runs.yml said dies ship 28 April 2026; the news posts show
   wafers only arrived 27 May 2026).
-* A new `gf180mcu_run_3` entry is added with `status: "upcoming"`,
-  `featured: false`, and all stops TBD/pending. It is invisible to the
-  countdown component (which requires `featured: true`).
+* Run 3 was announced upstream while this feature was in progress (campaign
+  opened 1 August 2026), so its `stops:` use the real announced dates. Hard
+  deadlines carry machine-readable dates; manufacturing stages are
+  display-only estimates so a passed estimate never auto-flips to done.
 * Run 1 omits the "Early Bird Deadline" stop — Run 1 had no early bird
   pricing, and inventing a date would be fabrication.
 * The existing `timeline:` keys are left untouched for compatibility.
@@ -67,8 +68,9 @@ then page sections.
 
 * Three shuttle cards: `col-lg-4` each on desktop, stacked on mobile.
 * Per shuttle: name, a derived status badge, and a vertical timeline of stops.
-  * Badge: all stops done → "Delivered"; any stop done/current → "In Flight";
-    none → "Coming Soon".
+  * Badge: all stops done → "Delivered"; Final Order Date stop done →
+    "In Flight"; active run still taking orders → "Boarding"; anything else →
+    "Coming Soon".
 * Each stop: a dot on a vertical rail, title, and `display_date`. Done stops
   get a filled dot with a checkmark; the first not-done stop gets a highlighted
   "current" treatment.
@@ -110,6 +112,9 @@ dark mode.
   403-blocks bots, so completion could not be verified. Correct in
   `_data/runs.yml` if this has since finished.
 * Run 2 mask/wafer manufacturing dates are estimates derived from the
-  submission deadline (30 June 2026) plus the ~12-week fab time observed for
-  Run 1, landing on the published 16 October 2026 delivery estimate.
-* Run 3 has no public dates; all stops are TBD.
+  submission deadline (extended to 14 July 2026) plus the ~12-week fab time
+  observed for Run 1, landing on the published 16 October 2026 delivery
+  estimate.
+* Run 3 deadline stops use the announced dates (early bird 30 September 2026,
+  orders close 9 December 2026, GDS in 16 December 2026); its manufacturing
+  stages are estimates anchored to the published 16 April 2027 delivery.

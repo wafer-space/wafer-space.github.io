@@ -45,12 +45,26 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
             {% endif %}
           {% endfor %}
 
+          {% comment %} A shuttle is "In Flight" once its doors have closed
+             (the Final Order Date stop is done); before that an active run
+             is "Boarding" and anything else is "Coming Soon". {% endcomment %}
+          {% assign orders_closed = false %}
+          {% for stop in run.stops %}
+            {% assign i = forloop.index0 %}
+            {% if stop.title contains "Final Order" and status_list[i] == "done" %}
+              {% assign orders_closed = true %}
+            {% endif %}
+          {% endfor %}
+
           {% if first_active == -1 %}
             {% assign badge_label = "Delivered" %}
             {% assign badge_class = "ws-badge--delivered" %}
-          {% elsif done_count > 0 %}
+          {% elsif orders_closed %}
             {% assign badge_label = "In Flight" %}
             {% assign badge_class = "ws-badge--flight" %}
+          {% elsif run.status == "active" %}
+            {% assign badge_label = "Boarding" %}
+            {% assign badge_class = "ws-badge--boarding" %}
           {% else %}
             {% assign badge_label = "Coming Soon" %}
             {% assign badge_class = "ws-badge--soon" %}
@@ -60,7 +74,7 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
           <div class="col-lg-4 mb-30">
             <div class="ws-shuttle-card">
               <header class="ws-shuttle-header">
-                <h2 class="ws-shuttle-name" id="{{ run_id }}">{{ run.name }}{% include components/heading-anchor.html id=run_id %}</h2>
+                <h2 class="ws-shuttle-name" id="{{ run_id }}">{{ run.name }}</h2>
                 <span class="ws-badge {{ badge_class }}">{{ badge_label }}</span>
               </header>
 
@@ -68,7 +82,7 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
                 {% if first_active == 0 %}
                   <li class="ws-route-pad">
                     {% include components/rocket.html mode="parked" %}
-                    <span class="ws-route-pad-label">On the launch pad</span>
+                    <span class="ws-route-pad-label">{% if badge_label == "Boarding" %}Boarding &mdash; orders open{% else %}On the launch pad{% endif %}</span>
                   </li>
                 {% endif %}
 

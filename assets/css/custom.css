@@ -514,6 +514,7 @@
 
 .ws-badge--delivered { background: var(--color-green); }
 .ws-badge--flight    { background: var(--color-purple); }
+.ws-badge--boarding  { background: var(--color-blue); }
 .ws-badge--soon      { background: var(--color-gray); }
 
 /* The route: a vertical rail of stops. Dots sit in a 28px column; the
