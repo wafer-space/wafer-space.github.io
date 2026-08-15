@@ -81,6 +81,43 @@ runs:
         description: "Chip-on-board packaged parts shipped"
         status: "delivery"
 
+    # Shuttle status page stops (rendered by /status.html).
+    # Explicit status ("done" | "current" | "pending") always wins; without it
+    # the page falls back to comparing `date` against the build time.
+    # Run 1 had no early bird pricing, so that stop is omitted.
+    stops:
+      - title: "Final Order Date"
+        date: "2025-11-28"
+        display_date: "28 November 2025"
+        status: "done"
+      - title: "GDS In Date"
+        date: "2025-12-03"
+        display_date: "3 December 2025"
+        status: "done"
+      - title: "GF Mask Manufacturing"
+        date: "2026-01-08"
+        display_date: "January – February 2026"
+        status: "done"
+      - title: "GF Wafer Manufacturing"
+        date: "2026-03-03"
+        display_date: "March – May 2026"
+        status: "done"
+      - title: "Dicing & Sorting"
+        date: "2026-05-29"
+        display_date: "Late May 2026"
+        status: "done"
+      - title: "Bare Dies Shipped"
+        date: "2026-06-03"
+        display_date: "Early June 2026"
+        status: "done"
+      - title: "Chip on Board Packaging"
+        date: "2026-06-15"
+        display_date: "June 2026"
+        status: "done"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "Rolling out from June 2026"
+        status: "current"
+
   gf180mcu_run_2:
     name: "GF180MCU Run 2"
     process: "GF180MCU"
@@ -167,6 +204,69 @@ runs:
         display_date: "Early Q4 2026"
         description: "Bare dies and packaged parts shipped to customers"
         status: "delivery"
+
+    # Shuttle status page stops (rendered by /status.html).
+    # Fab stage dates are estimates: GDS in 30 June 2026 plus the ~12-week
+    # fab time observed on Run 1, landing on the 16 October 2026 delivery.
+    stops:
+      - title: "Early Bird Deadline"
+        date: "2026-04-30"
+        display_date: "30 April 2026"
+        status: "done"
+      - title: "Final Order Date"
+        date: "2026-06-30"
+        display_date: "30 June 2026"
+        status: "done"
+      - title: "GDS In Date"
+        date: "2026-06-30"
+        display_date: "30 June 2026"
+        status: "done"
+      - title: "GF Mask Manufacturing"
+        date: "2026-07-15"
+        display_date: "July 2026"
+        status: "done"
+      - title: "GF Wafer Manufacturing"
+        display_date: "Est. August – October 2026"
+        status: "current"
+      - title: "Dicing & Sorting"
+        display_date: "Est. October 2026"
+      - title: "Bare Dies Shipped"
+        date: "2026-10-16"
+        display_date: "Est. 16 October 2026"
+      - title: "Chip on Board Packaging"
+        display_date: "Est. November 2026"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "Est. November 2026"
+
+  # Run 3 has not been announced yet — no public dates. It appears on the
+  # shuttle status page as "Coming Soon"; the countdown and pricing
+  # components ignore it (they require featured: true / an explicit key).
+  gf180mcu_run_3:
+    name: "GF180MCU Run 3"
+    process: "GF180MCU"
+    run_number: 3
+    status: "upcoming"
+    featured: false
+
+    stops:
+      - title: "Early Bird Deadline"
+        display_date: "TBD"
+      - title: "Final Order Date"
+        display_date: "TBD"
+      - title: "GDS In Date"
+        display_date: "TBD"
+      - title: "GF Mask Manufacturing"
+        display_date: "TBD"
+      - title: "GF Wafer Manufacturing"
+        display_date: "TBD"
+      - title: "Dicing & Sorting"
+        display_date: "TBD"
+      - title: "Bare Dies Shipped"
+        display_date: "TBD"
+      - title: "Chip on Board Packaging"
+        display_date: "TBD"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "TBD"
 
   gf180mcu_run_3:
     name: "GF180MCU Run 3"
