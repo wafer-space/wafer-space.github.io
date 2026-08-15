@@ -327,14 +327,17 @@ runs:
     # automatically at build time; manufacturing stages are estimates that
     # get updated editorially as the run progresses.
     stops:
+      # Deadline timestamps mirror the canonical early_bird_deadline /
+      # campaign_deadline / submission_deadline values above (end of day
+      # AoE) so a stop never shows as passed while orders are still open.
       - title: "Early Bird Deadline"
-        date: "2026-09-30"
+        date: "2026-10-01T11:59:00Z"
         display_date: "30 September 2026"
       - title: "Final Order Date"
-        date: "2026-12-09"
+        date: "2026-12-10T11:59:00Z"
         display_date: "9 December 2026"
       - title: "GDS In Date"
-        date: "2026-12-16"
+        date: "2026-12-17T11:59:00Z"
         display_date: "16 December 2026"
       - title: "GF Mask Manufacturing"
         display_date: "Est. January 2027"
