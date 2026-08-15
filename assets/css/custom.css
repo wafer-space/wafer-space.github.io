@@ -489,15 +489,19 @@
 
 .ws-shuttle-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 0.5rem 0.75rem;
     margin-bottom: 1.25rem;
 }
 
+/* nowrap + flex-wrap on the header keeps the run name on one line and
+   drops the badge underneath when the card is too narrow for both. */
 .ws-shuttle-name {
     font-size: 1.15rem;
     margin: 0;
+    white-space: nowrap;
 }
 
 .ws-badge {
