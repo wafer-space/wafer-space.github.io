@@ -473,3 +473,250 @@
 .dark-wrapper .table-footnote {
     color: rgba(255, 255, 255, 0.6);
 }
+
+/* Shuttle status page (/status.html) --------------------------------------- */
+/* Colors lean on the theme's palette variables (defined in the theme's
+   plugins.css :root block) so the page follows any future palette change. */
+
+.ws-shuttle-card {
+    height: 100%;
+    padding: 1.5rem 1.5rem 1rem;
+    border: 1px solid rgba(var(--rgb-gray), 0.25);
+    border-radius: 0.5rem;
+    background: var(--color-white);
+    box-shadow: 0 0.25rem 0.75rem rgba(var(--rgb-black), 0.05);
+}
+
+.ws-shuttle-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.ws-shuttle-name {
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.ws-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-white);
+}
+
+.ws-badge--delivered { background: var(--color-green); }
+.ws-badge--flight    { background: var(--color-purple); }
+.ws-badge--soon      { background: var(--color-gray); }
+
+/* The route: a vertical rail of stops. Dots sit in a 28px column; the
+   connector segment entering each stop is drawn in the stop's padding-top
+   area by its ::before. */
+.ws-route {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.ws-route li {
+    position: relative;
+    padding-left: 40px;
+    min-height: 28px;
+}
+
+.ws-stop {
+    padding-top: 26px;
+}
+
+.ws-route li:first-child {
+    padding-top: 0;
+}
+
+/* Connector segment entering this stop (drawn in the padding-top area). */
+.ws-stop::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 0;
+    height: 26px;
+    border-left: 2px dashed rgba(var(--rgb-gray), 0.5);
+}
+
+.ws-route li:first-child::before {
+    content: none;
+}
+
+/* Segment already travelled: solid green. */
+.ws-stop.is-done::before {
+    border-left-style: solid;
+    border-left-color: var(--color-green);
+}
+
+/* Segment the rocket is currently flying: taller, to give it airspace. */
+.ws-stop.has-rocket {
+    padding-top: 84px;
+}
+
+.ws-stop.has-rocket::before {
+    height: 84px;
+    border-left-color: rgba(var(--rgb-purple), 0.6);
+}
+
+.ws-stop-dot {
+    position: absolute;
+    left: 0;
+    top: auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--rgb-gray), 0.5);
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.ws-stop .ws-stop-dot {
+    margin-top: -2px;
+}
+
+.ws-stop.is-done .ws-stop-dot {
+    border-color: var(--color-green);
+    background: var(--color-green);
+    color: var(--color-white);
+}
+
+.ws-stop.is-current .ws-stop-dot {
+    border-color: var(--color-purple);
+    animation: ws-current-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ws-current-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(var(--rgb-purple), 0.45); }
+    50%      { box-shadow: 0 0 0 8px rgba(var(--rgb-purple), 0); }
+}
+
+.ws-stop-title {
+    display: block;
+    font-weight: 600;
+    line-height: 1.3;
+    padding-top: 3px;
+}
+
+.ws-stop-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-gray);
+}
+
+/* Launch pad / mission complete rows. */
+.ws-route-pad {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 40px;
+}
+
+.ws-route-pad .ws-rocket {
+    position: absolute;
+    left: 2px;
+}
+
+.ws-route-pad-label {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-gray);
+}
+
+.ws-route-pad--landed {
+    padding-top: 30px;
+}
+
+.ws-route-pad--landed::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 0;
+    height: 26px;
+    border-left: 2px solid var(--color-green);
+}
+
+/* The rocket itself. */
+.ws-rocket {
+    display: inline-block;
+    width: 24px;
+    height: 36px;
+    line-height: 0;
+}
+
+.ws-rocket-body   { fill: var(--color-purple); }
+.ws-rocket-fin    { fill: var(--color-sky); }
+.ws-rocket-window { fill: var(--color-white); }
+.ws-rocket-flame  {
+    fill: var(--color-orange);
+    transform-origin: 12px 25.5px;
+    animation: ws-flame-flicker 0.35s ease-in-out infinite;
+}
+
+.ws-rocket--parked .ws-rocket-flame {
+    display: none;
+}
+
+/* Flying: nose points down (towards the next stop); the wrapper span
+   bobs along the connector while the svg carries the rotation. */
+.ws-rocket--flying .ws-rocket-svg {
+    transform: rotate(180deg);
+}
+
+.ws-stop.has-rocket .ws-rocket {
+    position: absolute;
+    left: 1px;
+    top: 8px;
+    animation: ws-rocket-fly 3.2s ease-in-out infinite;
+}
+
+@keyframes ws-rocket-fly {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(32px); }
+}
+
+@keyframes ws-flame-flicker {
+    0%, 100% { transform: scaleY(1);   opacity: 0.95; }
+    50%      { transform: scaleY(0.7); opacity: 0.6;  }
+}
+
+.ws-status-note {
+    margin-top: 1rem;
+}
+
+/* Respect reduced-motion preferences: park all the animations. */
+@media (prefers-reduced-motion: reduce) {
+    .ws-stop.has-rocket .ws-rocket,
+    .ws-rocket-flame,
+    .ws-stop.is-current .ws-stop-dot {
+        animation: none;
+    }
+}
+
+/* Dark mode. */
+[data-theme="dark"] .ws-shuttle-card {
+    background: #242424;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .ws-stop-dot {
+    background: #242424;
+}
+
+[data-theme="dark"] .ws-stop.is-done .ws-stop-dot {
+    background: var(--color-green);
+}

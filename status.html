@@ -1,0 +1,118 @@
+---
+layout: default
+title: "Shuttle Status"
+sub_title: "Where each wafer.space shuttle is on its journey from final orders to silicon in your hands"
+meta_description: "Live status of the wafer.space GF180MCU shuttle runs — from ordering deadlines through GlobalFoundries manufacturing to parts shipped."
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+---
+{% include layouts/nav/nav.html drop_search=true alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<div class="wrapper light-wrapper">
+  <div class="container inner">
+    <div class="row">
+      {% assign now_epoch = site.time | date: "%s" | plus: 0 %}
+      {% for run_data in site.data.runs.runs %}
+        {% assign run = run_data[1] %}
+        {% if run.stops %}
+
+          {% comment %} Effective status per stop: explicit status wins,
+             otherwise fall back to comparing the stop date with build time.
+             status_list is built as an array so the connector segments can
+             look at neighbouring stops. {% endcomment %}
+          {% assign status_list = "" | split: "" %}
+          {% assign done_count = 0 %}
+          {% for stop in run.stops %}
+            {% assign eff = stop.status %}
+            {% unless eff %}
+              {% assign eff = "pending" %}
+              {% if stop.date %}
+                {% assign stop_epoch = stop.date | date: "%s" | plus: 0 %}
+                {% if stop_epoch <= now_epoch %}{% assign eff = "done" %}{% endif %}
+              {% endif %}
+            {% endunless %}
+            {% if eff == "done" %}{% assign done_count = done_count | plus: 1 %}{% endif %}
+            {% assign eff_as_array = eff | split: " " %}
+            {% assign status_list = status_list | concat: eff_as_array %}
+          {% endfor %}
+
+          {% comment %} The rocket flies in the connector segment entering the
+             first stop that is not done. -1 means every stop is complete. {% endcomment %}
+          {% assign first_active = -1 %}
+          {% for s in status_list %}
+            {% if s != "done" and first_active == -1 %}
+              {% assign first_active = forloop.index0 %}
+            {% endif %}
+          {% endfor %}
+
+          {% if first_active == -1 %}
+            {% assign badge_label = "Delivered" %}
+            {% assign badge_class = "ws-badge--delivered" %}
+          {% elsif done_count > 0 %}
+            {% assign badge_label = "In Flight" %}
+            {% assign badge_class = "ws-badge--flight" %}
+          {% else %}
+            {% assign badge_label = "Coming Soon" %}
+            {% assign badge_class = "ws-badge--soon" %}
+          {% endif %}
+
+          {% assign run_id = run.name | slugify %}
+          <div class="col-lg-4 mb-30">
+            <div class="ws-shuttle-card">
+              <header class="ws-shuttle-header">
+                <h2 class="ws-shuttle-name" id="{{ run_id }}">{{ run.name }}{% include components/heading-anchor.html id=run_id %}</h2>
+                <span class="ws-badge {{ badge_class }}">{{ badge_label }}</span>
+              </header>
+
+              <ol class="ws-route">
+                {% if first_active == 0 %}
+                  <li class="ws-route-pad">
+                    {% include components/rocket.html mode="parked" %}
+                    <span class="ws-route-pad-label">On the launch pad</span>
+                  </li>
+                {% endif %}
+
+                {% for stop in run.stops %}
+                  {% assign i = forloop.index0 %}
+                  {% assign eff = status_list[i] %}
+                  {% assign has_rocket = false %}
+                  {% if i == first_active and i > 0 %}{% assign has_rocket = true %}{% endif %}
+                  <li class="ws-stop is-{{ eff }}{% if has_rocket %} has-rocket{% endif %}">
+                    {% if has_rocket %}
+                      {% include components/rocket.html mode="flying" %}
+                    {% endif %}
+                    <span class="ws-stop-dot">{% if eff == "done" %}<i class="jam jam-check"></i>{% endif %}</span>
+                    <span class="ws-stop-title">
+                      {% if eff == "done" %}<span class="visually-hidden">Completed: </span>{% elsif eff == "current" %}<span class="visually-hidden">In progress: </span>{% endif %}
+                      {{ stop.title }}
+                    </span>
+                    {% if stop.display_date %}<span class="ws-stop-date">{{ stop.display_date }}</span>{% endif %}
+                  </li>
+                {% endfor %}
+
+                {% if first_active == -1 %}
+                  <li class="ws-route-pad ws-route-pad--landed">
+                    {% include components/rocket.html mode="parked" %}
+                    <span class="ws-route-pad-label">Mission complete</span>
+                  </li>
+                {% endif %}
+              </ol>
+            </div>
+          </div>
+
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <p class="text-muted ws-status-note">
+          Dates for future stops are estimates and may shift as manufacturing
+          progresses. For the latest news, see the
+          <a href="{{ '/news' | relative_url }}">news page</a> or ask in our
+          <a href="{{ '/discord/' | relative_url }}">Discord</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
