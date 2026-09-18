@@ -435,6 +435,14 @@
     overflow: hidden;
 }
 
+/* The img sits inside an <a>; give it a definite height so the img's
+   height: 100% fills the figure instead of falling back to its natural
+   aspect ratio (which leaves a gap under images in taller figures). */
+.blog.grid .post figure.main a {
+    display: block;
+    height: 100%;
+}
+
 .blog.grid .post figure.main img {
     width: 100%;
     height: 100%;
@@ -457,9 +465,56 @@
     flex: 1;
 }
 
-/* ── News listing: prevent author byline from wrapping mid-phrase ── */
+/* ── News listing: stack date and author on their own lines ──
+   The theme joins them with a "•" drawn by `.meta span+span:before`. In the
+   3-column grid they rarely fit on one line, so the byline wrapped and the
+   bullet ended up dangling at the start of the second line. */
+.blog.grid .meta span {
+    display: block;
+}
+
+.blog.grid .meta span + span:before {
+    display: none;
+}
+
+/* Prevent the author byline from wrapping mid-phrase */
 .blog.grid .meta .author {
     white-space: nowrap;
+}
+
+/* ── News page: large cards for the newest posts, compact for the rest ── */
+.blog.news-featured {
+    margin-bottom: 1.5rem;
+}
+
+.blog.news-featured .post figure.main {
+    height: 300px;
+}
+
+.blog.news-featured h2.post-title {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.blog.news-compact .post figure.main {
+    height: 150px;
+}
+
+.blog.news-compact h2.post-title {
+    font-size: 1rem;
+    line-height: 1.35rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Keep compact cards short: at most 3 lines of excerpt */
+.blog.news-compact .post-content p {
+    font-size: 0.8rem;
+    line-height: 1.35rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
 }
 
 /* Footnote styling for tables */
