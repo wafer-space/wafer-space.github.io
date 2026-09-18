@@ -8,24 +8,46 @@ layout: default
   jekyll-paginate-v2 names every generated page "index.html", and Jekyll
   caches parsed Liquid templates by filename, so any Liquid in news.html's
   body would be swapped for the home page's cached index.html template.
+
+  The newest posts (first page only) are shown as large "featured" cards;
+  everything else uses smaller "compact" cards. Card sizes are styled via
+  the .news-featured / .news-compact rules in assets/css/custom.css.
 {% endcomment %}
+{% assign featured_count = 0 %}
+{% if paginator.page == 1 %}{% assign featured_count = 3 %}{% endif %}
 {% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
 
 <div class="wrapper light-wrapper">
   <div class="container inner">
-    <div class="blog grid grid-view boxed">
-      {% comment %}
-        Plain Bootstrap row rather than the theme's `row isotope`: isotope's
-        masonry packing ignores row boundaries, so cards got ragged heights
-        and fell out of date order. A flex row keeps each row's cards equal
-        height (see the `.blog.grid` rules in assets/css/custom.css).
-      {% endcomment %}
+    {% comment %}
+      Plain Bootstrap rows rather than the theme's `row isotope`: isotope's
+      masonry packing ignores row boundaries, so cards got ragged heights
+      and fell out of date order. A flex row keeps each row's cards equal
+      height (see the `.blog.grid` rules in assets/css/custom.css).
+    {% endcomment %}
+    {% if featured_count > 0 %}
+    <div class="blog grid grid-view boxed news-featured">
       <div class="row">
-        {% for post in paginator.posts %}
+        {% for post in paginator.posts limit: featured_count %}
         {% include posts/loops/post-loop.html
+          layout_class="col-lg-4"
           title_length=80
           excerpt_length=40
+          is_boxed=true
+          is_grid=true
+        %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="blog grid grid-view boxed news-compact">
+      <div class="row">
+        {% for post in paginator.posts offset: featured_count %}
+        {% include posts/loops/post-loop.html
+          layout_class="col-sm-6 col-lg-3"
+          title_length=80
+          excerpt_length=15
           is_boxed=true
           is_grid=true
         %}
