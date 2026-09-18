@@ -457,7 +457,19 @@
     flex: 1;
 }
 
-/* ── News listing: prevent author byline from wrapping mid-phrase ── */
+/* ── News listing: stack date and author on their own lines ──
+   The theme joins them with a "•" drawn by `.meta span+span:before`. In the
+   3-column grid they rarely fit on one line, so the byline wrapped and the
+   bullet ended up dangling at the start of the second line. */
+.blog.grid .meta span {
+    display: block;
+}
+
+.blog.grid .meta span + span:before {
+    display: none;
+}
+
+/* Prevent the author byline from wrapping mid-phrase */
 .blog.grid .meta .author {
     white-space: nowrap;
 }
