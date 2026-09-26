@@ -81,6 +81,43 @@ runs:
         description: "Chip-on-board packaged parts shipped"
         status: "delivery"
 
+    # Shuttle status page stops (rendered by /status.html).
+    # Explicit status ("done" | "current" | "pending") always wins; without it
+    # the page falls back to comparing `date` against the build time.
+    # Run 1 had no early bird pricing, so that stop is omitted.
+    stops:
+      - title: "Final Order Date"
+        date: "2025-11-28"
+        display_date: "28 November 2025"
+        status: "done"
+      - title: "GDS In Date"
+        date: "2025-12-03"
+        display_date: "3 December 2025"
+        status: "done"
+      - title: "GF Mask Manufacturing"
+        date: "2026-01-08"
+        display_date: "January – February 2026"
+        status: "done"
+      - title: "GF Wafer Manufacturing"
+        date: "2026-03-03"
+        display_date: "March – May 2026"
+        status: "done"
+      - title: "Dicing & Sorting"
+        date: "2026-05-29"
+        display_date: "Late May 2026"
+        status: "done"
+      - title: "Bare Dies Shipped"
+        date: "2026-06-03"
+        display_date: "Early June 2026"
+        status: "done"
+      - title: "Chip on Board Packaging"
+        date: "2026-06-15"
+        display_date: "June 2026"
+        status: "done"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "Rolling out from June 2026"
+        status: "current"
+
   gf180mcu_run_2:
     name: "GF180MCU Run 2"
     process: "GF180MCU"
@@ -168,6 +205,37 @@ runs:
         description: "Bare dies and packaged parts shipped to customers"
         status: "delivery"
 
+    # Shuttle status page stops (rendered by /status.html).
+    # Fab stage dates are estimates: GDS in 30 June 2026 plus the ~12-week
+    # fab time observed on Run 1, landing on the 16 October 2026 delivery.
+    stops:
+      - title: "Early Bird Deadline"
+        date: "2026-04-30"
+        display_date: "30 April 2026"
+        status: "done"
+      - title: "Final Order Date"
+        date: "2026-06-30"
+        display_date: "30 June 2026"
+        status: "done"
+      - title: "GDS In Date"
+        date: "2026-07-14"
+        display_date: "14 July 2026"
+        status: "done"
+      - title: "GF Mask Manufacturing"
+        display_date: "Late July 2026"
+        status: "done"
+      - title: "GF Wafer Manufacturing"
+        display_date: "Est. August – October 2026"
+        status: "current"
+      - title: "Dicing & Sorting"
+        display_date: "Est. October 2026"
+      - title: "Bare Dies Shipped"
+        display_date: "Est. 16 October 2026"
+      - title: "Chip on Board Packaging"
+        display_date: "Est. November 2026"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "Est. November 2026"
+
   gf180mcu_run_3:
     name: "GF180MCU Run 3"
     process: "GF180MCU"
@@ -253,3 +321,33 @@ runs:
         display_date: "Q2 2027"
         description: "Bare dies and packaged parts shipped to customers"
         status: "delivery"
+
+    # Shuttle status page stops (rendered by /status.html).
+    # Hard deadlines carry machine-readable dates so their status flips
+    # automatically at build time; manufacturing stages are estimates that
+    # get updated editorially as the run progresses.
+    stops:
+      # Deadline timestamps mirror the canonical early_bird_deadline /
+      # campaign_deadline / submission_deadline values above (end of day
+      # AoE) so a stop never shows as passed while orders are still open.
+      - title: "Early Bird Deadline"
+        date: "2026-10-01T11:59:00Z"
+        display_date: "30 September 2026"
+      - title: "Final Order Date"
+        date: "2026-12-10T11:59:00Z"
+        display_date: "9 December 2026"
+      - title: "GDS In Date"
+        date: "2026-12-17T11:59:00Z"
+        display_date: "16 December 2026"
+      - title: "GF Mask Manufacturing"
+        display_date: "Est. January 2027"
+      - title: "GF Wafer Manufacturing"
+        display_date: "Est. January – April 2027"
+      - title: "Dicing & Sorting"
+        display_date: "Est. April 2027"
+      - title: "Bare Dies Shipped"
+        display_date: "Est. 16 April 2027"
+      - title: "Chip on Board Packaging"
+        display_date: "Est. May 2027"
+      - title: "Chip on Board Packaged Shipped"
+        display_date: "Est. May 2027"

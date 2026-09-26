@@ -39,6 +39,7 @@ exclude:
   - Makefile
   - CLAUDE.md
   - .claude/
+  - docs/
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
