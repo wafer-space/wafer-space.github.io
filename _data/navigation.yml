@@ -28,3 +28,6 @@ main_menu:
     url: "/faq.html"
     menu_type: "simple"
 
+  - text: Community & Resources
+    url: "/community-resources"
+    menu_type: "simple"
