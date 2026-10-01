@@ -1,0 +1,16 @@
+{% comment %}
+  Inline SVG rocket for the shuttle status page (/status.html).
+
+  Usage: {% include components/rocket.html mode="flying" %}
+    mode: "flying" — nose down (travelling to the next stop), flame lit
+          "parked" — nose up (launch pad / mission complete), flame off
+{% endcomment %}
+<span class="ws-rocket ws-rocket--{{ include.mode | default: "flying" }}" aria-hidden="true">
+  <svg class="ws-rocket-svg" viewBox="0 0 24 36" width="24" height="36" xmlns="http://www.w3.org/2000/svg" focusable="false">
+    <path class="ws-rocket-flame" d="M12 25.5 C10.2 28 10.2 31 12 34.5 C13.8 31 13.8 28 12 25.5 Z"/>
+    <path class="ws-rocket-fin" d="M8 15.5 C5.2 17.5 4 20.5 4 24 L8 21.5 Z"/>
+    <path class="ws-rocket-fin" d="M16 15.5 C18.8 17.5 20 20.5 20 24 L16 21.5 Z"/>
+    <path class="ws-rocket-body" d="M12 1 C15 4 16 8 16 13 L16 21.5 C16 22.9 15 24 13.6 24 L10.4 24 C9 24 8 22.9 8 21.5 L8 13 C8 8 9 4 12 1 Z"/>
+    <circle class="ws-rocket-window" cx="12" cy="12" r="2.6"/>
+  </svg>
+</span>
