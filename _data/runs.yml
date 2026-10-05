@@ -300,27 +300,35 @@ runs:
         date: "2026-08-01"
         display_date: "1 August 2026"
         description: "Run 3 slots available for purchase on Crowd Supply"
-        status: "milestone"
+        table:
+          format: "milestone"
       - title: "Early Bird Deadline"
         date: "2026-09-30"
         display_date: "30 September 2026 @ 11:59 PM AoE"
         description: "Last day to purchase at early bird pricing"
-        status: "critical"
+        table:
+          format: "critical"
       - title: "Purchase Deadline"
         date: "2026-12-09"
         display_date: "9 December 2026 @ 11:59 PM AoE"
         description: "Final deadline to purchase slots"
-        status: "critical"
+        table:
+          format: "critical"
       - title: "Submission Deadline"
         date: "2026-12-16"
         display_date: "16 December 2026 @ 11:59 PM AoE"
         description: "Final deadline to submit clean GDS"
-        status: "critical"
+        table:
+          format: "critical"
+      - title: "GF Mask Manufacturing"
+        table:
+          show: false
       - title: "Parts Shipped"
         date: "2027-04-16"
         display_date: "Q2 2027"
         description: "Bare dies and packaged parts shipped to customers"
-        status: "delivery"
+        table:
+          format: "delivery"
 
     # Shuttle status page stops (rendered by /status.html).
     # Hard deadlines carry machine-readable dates so their status flips
