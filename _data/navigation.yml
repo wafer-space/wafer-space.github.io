@@ -5,19 +5,19 @@ main_menu:
     menu_type: "simple"
 
   - text: "About"
-    url: "/about.html"
+    url: "/about"
     menu_type: "simple"
 
   - text: "Pricing"
-    url: "/price.html"
+    url: "/price"
     menu_type: "simple"
 
   - text: "Technology"
-    url: "/technology.html"
+    url: "/technology"
     menu_type: "simple"
 
   - text: "Design Help"
-    url: "/design-help.html"
+    url: "/design-help"
     menu_type: "simple"
 
   - text: "News"
@@ -25,6 +25,6 @@ main_menu:
     menu_type: "simple"
 
   - text: "FAQ"
-    url: "/faq.html"
+    url: "/faq"
     menu_type: "simple"
 
