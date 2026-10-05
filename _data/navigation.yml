@@ -25,7 +25,7 @@ main_menu:
     menu_type: "simple"
 
   - text: "Status"
-    url: "/status.html"
+    url: "/status"
     menu_type: "simple"
 
   - text: "FAQ"
