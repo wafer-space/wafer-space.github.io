@@ -14,7 +14,19 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
       {% assign now_epoch = site.time | date: "%s" | plus: 0 %}
       {% for run_data in site.data.runs.runs %}
         {% assign run = run_data[1] %}
-        {% if run.stops %}
+        {% if run.timeline %}
+
+          {% comment %} not all entries should be shown in this card, so filter them here first {% endcomment %}
+          {% assign entries = "" | split: ',' %}
+          {% for entry in run.timeline %}
+            {% if entry.stop %}
+              {% unless entry.stop.show == false %}
+                {% assign entries = entries | push: entry %}
+              {% endunless %}
+            {% else %}
+              {% assign entries = entries | push: entry %}
+            {% endif %}
+          {% endfor %}
 
           {% comment %} Effective status per stop: explicit status wins,
              otherwise fall back to comparing the stop date with build time.
@@ -22,12 +34,12 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
              look at neighbouring stops. {% endcomment %}
           {% assign status_list = "" | split: "" %}
           {% assign done_count = 0 %}
-          {% for stop in run.stops %}
-            {% assign eff = stop.status %}
+          {% for entry in entries %}
+            {% assign eff = entry.stop.status %}
             {% unless eff %}
               {% assign eff = "pending" %}
-              {% if stop.date %}
-                {% assign stop_epoch = stop.date | date: "%s" | plus: 0 %}
+              {% if entry.date %}
+                {% assign stop_epoch = entry.date | date: "%s" | plus: 0 %}
                 {% if stop_epoch <= now_epoch %}{% assign eff = "done" %}{% endif %}
               {% endif %}
             {% endunless %}
@@ -49,9 +61,9 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
              (the Final Order Date stop is done); before that an active run
              is "Boarding" and anything else is "Coming Soon". {% endcomment %}
           {% assign orders_closed = false %}
-          {% for stop in run.stops %}
+          {% for entry in entries %}
             {% assign i = forloop.index0 %}
-            {% if stop.title contains "Final Order" and status_list[i] == "done" %}
+            {% if entry.title contains "Final Order" or entry.title contains "Purchase Deadline" and status_list[i] == "done" %}
               {% assign orders_closed = true %}
             {% endif %}
           {% endfor %}
@@ -86,7 +98,7 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
                   </li>
                 {% endif %}
 
-                {% for stop in run.stops %}
+                {% for entry in entries %}
                   {% assign i = forloop.index0 %}
                   {% assign eff = status_list[i] %}
                   {% assign has_rocket = false %}
@@ -98,9 +110,9 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
                     <span class="ws-stop-dot">{% if eff == "done" %}<i class="jam jam-check"></i>{% endif %}</span>
                     <span class="ws-stop-title">
                       {% if eff == "done" %}<span class="visually-hidden">Completed: </span>{% elsif eff == "current" %}<span class="visually-hidden">In progress: </span>{% endif %}
-                      {{ stop.title }}
+                      {{ entry.title }}
                     </span>
-                    {% if stop.display_date %}<span class="ws-stop-date">{{ stop.display_date }}</span>{% endif %}
+                    {% if entry.display_date %}<span class="ws-stop-date">{{ entry.display_date }}</span>{% endif %}
                   </li>
                 {% endfor %}
 
