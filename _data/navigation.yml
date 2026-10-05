@@ -9,7 +9,7 @@ main_menu:
     menu_type: "simple"
 
   - text: "Pricing"
-    url: "/price.html"
+    url: "/price"
     menu_type: "simple"
 
   - text: "Technology"
