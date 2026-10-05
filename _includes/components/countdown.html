@@ -263,11 +263,13 @@
                     </thead>
                     <tbody>
                       {% for milestone in run.timeline %}
-                        <tr class="text-center timeline-row timeline-{{ milestone.status }}">
+                        {% if milestone.table.show != false %}
+                        <tr class="text-center timeline-row timeline-{{ milestone.table.format }}">
                           <td class="font-weight-600">{{ milestone.title }}</td>
                           <td class="text-muted">{{ milestone.display_date }}</td>
                           <td class="text-muted">{{ milestone.description }}</td>
                         </tr>
+                        {% endif %}
                       {% endfor %}
                     </tbody>
                   </table>
