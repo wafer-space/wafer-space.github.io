@@ -25,6 +25,6 @@ main_menu:
     menu_type: "simple"
 
   - text: "FAQ"
-    url: "/faq.html"
+    url: "/faq"
     menu_type: "simple"
 
