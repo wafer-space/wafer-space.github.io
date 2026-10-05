@@ -74,7 +74,7 @@ external_links:
       text: "Design Help"
     - url: "/news"
       text: "News"
-    - url: "/faq.html"
+    - url: "/faq"
       text: "FAQ"
 
 # Site Wide External Links for footer
