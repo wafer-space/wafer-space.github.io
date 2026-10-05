@@ -195,6 +195,10 @@
     text-transform: uppercase;
 }
 
+.slot-badge.slot-badge-red {
+    background: #f04e4e;
+}
+
 /* Ensure table-responsive works everywhere */
 .table-responsive {
     overflow-x: auto;
