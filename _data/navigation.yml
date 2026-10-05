@@ -5,7 +5,7 @@ main_menu:
     menu_type: "simple"
 
   - text: "About"
-    url: "/about.html"
+    url: "/about"
     menu_type: "simple"
 
   - text: "Pricing"
