@@ -7,9 +7,11 @@
 {% assign eb_deadline = RUN.early_bird_deadline %}
 {% assign campaign_deadline = RUN.campaign_deadline %}
 {% assign sold_out = RUN.sold_out %}
+{% assign slot_is_sold_out = false %}
 
 {% if sold_out contains slot.id %}
   {% assign buy_link_text = "Sold Out" %}
+  {% assign slot_is_sold_out = true %}
 {% else %}
   {% assign buy_link_text = "Buy" %}
 {% endif %}
@@ -95,6 +97,9 @@
           {{ slot.name }}
           {% if slot.badge != "" %}
             <span class="slot-badge">{{ slot.badge }}</span>
+          {% endif %}
+          {% if slot_is_sold_out %}
+            <span class="slot-badge slot-badge-red">Sold Out!</span>
           {% endif %}
         </h2>
         <h3 class="display-3">{{ slot.short_name }} &mdash;&nbsp;{{ slot.quantity }}&nbsp;dies&nbsp;per&nbsp;slot</h3>
