@@ -13,7 +13,7 @@ main_menu:
     menu_type: "simple"
 
   - text: "Technology"
-    url: "/technology.html"
+    url: "/technology"
     menu_type: "simple"
 
   - text: "Design Help"
