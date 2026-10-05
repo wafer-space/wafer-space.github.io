@@ -66,7 +66,7 @@ external_links:
       text: "Home"
     - url: "/about"
       text: "About"
-    - url: "/price.html"
+    - url: "/price"
       text: "Pricing"
     - url: "/technology.html"
       text: "Technology"
