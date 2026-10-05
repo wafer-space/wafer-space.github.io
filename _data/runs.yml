@@ -198,7 +198,7 @@ runs:
       timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
       local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20261209T2359&p1=3399"
       title: "Purchase Deadline"
-      subtitle: "Final deadline to purchase a slot and submit your GDS"
+      subtitle: "Final deadline to purchase a slot"
       button_text: "Reserve"
       button_url: "https://buy.wafer.space/#products"
       priority: "urgent"
