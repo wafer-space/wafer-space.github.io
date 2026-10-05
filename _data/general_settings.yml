@@ -70,7 +70,7 @@ external_links:
       text: "Pricing"
     - url: "/technology.html"
       text: "Technology"
-    - url: "/design-help.html"
+    - url: "/design-help"
       text: "Design Help"
     - url: "/news"
       text: "News"
