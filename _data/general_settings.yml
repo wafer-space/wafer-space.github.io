@@ -68,7 +68,7 @@ external_links:
       text: "About"
     - url: "/price"
       text: "Pricing"
-    - url: "/technology.html"
+    - url: "/technology"
       text: "Technology"
     - url: "/design-help"
       text: "Design Help"
