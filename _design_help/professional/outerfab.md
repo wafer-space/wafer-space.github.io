@@ -10,7 +10,7 @@ social_accounts:
     url: "https://outerfab.com/"
 ---
 
-**[Outerfab](https://outerfab.com/)** turns bare silicon into boards you can work with, from a first prototype to a small production batch. Based in Shenzhen, it supports open-silicon designers, startups and research groups working with die from wafer.space, Tiny Tapeout and other shuttles.
+**[Outerfab](https://outerfab.com/)** turns bare silicon into boards you can work with, from a first prototype to a small production batch. Based in Shenzhen, it supports open-silicon designers, startups and research groups working with die from wafer.space and other shuttles.
 
 ### Services
 
@@ -22,7 +22,7 @@ social_accounts:
 - **Kitting and fulfilment:** Board QC, packing, kitting and shipping to customers or fulfilment partners.
 - **Crowd Supply launch support:** Pre-launch communication, campaign setup and management, and production and delivery coordination.
 
-Outerfab provides one point of contact for engineers and manufacturing partners. Assembly requirements and test coverage are agreed before production. Electrical connection checks do not establish whether the chip functions correctly.
+Outerfab provides one point of contact for engineers and manufacturing partners.
 
 ### Contact
 
