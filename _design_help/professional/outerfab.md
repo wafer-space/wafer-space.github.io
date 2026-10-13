@@ -22,8 +22,6 @@ social_accounts:
 - **Kitting and fulfilment:** Board QC, packing, kitting and shipping to customers or fulfilment partners.
 - **Crowd Supply launch support:** Pre-launch communication, campaign setup and management, and production and delivery coordination.
 
-Outerfab provides one point of contact for engineers and manufacturing partners.
-
 ### Contact
 
 - Email: [bonding@outerfab.com](mailto:bonding@outerfab.com)
