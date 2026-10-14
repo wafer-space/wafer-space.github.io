@@ -29,9 +29,9 @@ galleries:
               alt: "Even closer shot, note how delicate and thin the wire bonds are"
 ---
 
-# wafer.space x Tiny Tapeout - Hackaday 2026 Collaboration
+# wafer.space x Tiny Tapeout - Hackaday Europe 2026 Collaboration
 
-Earlier this year the [wafer.space](https://wafer.space) team attended Hackaday 2026, and if you did too, then your
+Earlier this year the [wafer.space](https://wafer.space) team attended Hackaday Europe 2026, and if you did too, then your
 swag bag had a bit of open source silicon inside!
 
 {% include image.html file="/assets/images/news/ws-tt-hackaday-collab-2026/closeup-multiple.jpg" description="A close-up image of the TTGF0p2 chip breakout boards" %}
@@ -49,7 +49,7 @@ Let's take a look at how they were made.
 
 ## Behind the Scenes
 
-Tiny Tapeout opened the TTGF0p2 shuttle back in November 2026, where users could submit designs for free onto the shuttle
+Tiny Tapeout opened the TTGF0p2 shuttle back in November 2025, where users could submit designs for free onto the shuttle
 due to its experimental nature. It was only available for 18 days, but it filled up quickly. Once the deadline arrived,
 TTGF0p2 was submitted onto Run #1 as `TTPG` and `TTP2`.
 
@@ -94,9 +94,9 @@ TODO video, see CS
 
 These are then moved into an oven for curing, and a vacuum is pulled to ensure that the epoxy is properly degassed.
 
-{% include image.html file="/assets/images/news/ws-tt-hackaday-collab-2026/finished-tray.jpg" description="A finished batch of breakout boards, destined for Hackaday 2026" %}
+{% include image.html file="/assets/images/news/ws-tt-hackaday-collab-2026/finished-tray.jpg" description="A finished batch of breakout boards, destined for Hackaday Europe 2026" %}
 
-Rinse and repeat a few more times, and eventually you'll have enough to give out one to each attendee of Hackaday 2026.
+Rinse and repeat a few more times, and eventually you'll have enough to give out one to each attendee of Hackaday Europe 2026.
 
 The process here is quite similar to what we already do for our chip-on-board packaging option, but you should check
 out [our update]({{"/news/chip-on-board-progress" | relative_url }}) on it for more close-ups!
