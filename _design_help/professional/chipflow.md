@@ -4,19 +4,19 @@ title: "ChipFlow"
 sub_title: "ASIC Design Platform & Services"
 category: "professional"
 avatar: "assets/images/design-help/chipflow-logo.png"
-website: "https://www.chipflow.io/"
+website: "https://github.com/ChipFlow"
 social_accounts:
-  - icon: "jam jam-globe"
-    url: "https://www.chipflow.io/"
+  - icon: "jam jam-github"
+    url: "https://github.com/ChipFlow"
   - icon: "jam jam-gitlab"
     url: "https://gitlab.com/ChipFlow"
   - icon: "jam jam-linkedin"
     url: "https://www.linkedin.com/company/chipflow"
   - icon: "jam jam-document"
-    url: "https://docs.chipflow.io/"
+    url: "https://github.com/ChipFlow/chipflow-lib/tree/main/docs"
 ---
 
-**[ChipFlow](https://www.chipflow.io/)** is a Spanish company democratizing custom silicon design through their comprehensive ASIC development platform. They provide an end-to-end solution that takes projects from concept to manufactured chips in just 12 months.
+**[ChipFlow](https://github.com/ChipFlow)** is a Spanish company democratizing custom silicon design through their comprehensive ASIC development platform. They provide an end-to-end solution that takes projects from concept to manufactured chips in just 12 months.
 
 ChipFlow offers flexible engagement models to suit different needs:
 
