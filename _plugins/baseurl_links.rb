@@ -7,7 +7,9 @@
 # Front matter `redirect:` targets used by the redirect layout have the same
 # problem.
 #
-# With an empty baseurl (production) nothing is changed.
+# The hooks run on every build so production exercises the same code as the
+# previews; with an empty baseurl every root-relative URL counts as already
+# prefixed, so the output is unchanged.
 
 module BaseurlLinks
   URL_ATTRIBUTE = /(\s(?:href|src|poster)\s*=\s*)(["'])(.*?)\2/i
@@ -36,7 +38,8 @@ module BaseurlLinks
     html.gsub(SRCSET_ATTRIBUTE) do
       # Capture before the nested sub below replaces Regexp.last_match
       attribute, quote, srcset = Regexp.last_match.captures
-      candidates = srcset.split(',').map do |candidate|
+      # -1 keeps trailing empty candidates so the attribute round-trips exactly
+      candidates = srcset.split(',', -1).map do |candidate|
         candidate.sub(/\A(\s*)(\S+)/) { "#{Regexp.last_match(1)}#{prefix(Regexp.last_match(2), base)}" }
       end
       "#{attribute}#{quote}#{candidates.join(',')}#{quote}"
@@ -47,8 +50,6 @@ end
 # Hook to prefix redirect targets before any layout renders them
 Jekyll::Hooks.register :site, :post_read do |site|
   base = BaseurlLinks.baseurl(site)
-  next if base.empty?
-
   (site.pages + site.documents).each do |item|
     target = item.data['redirect']
     item.data['redirect'] = BaseurlLinks.prefix(target, base) if target.is_a?(String)
@@ -59,7 +60,7 @@ end
 # jekyll-feed and anything else reading `content` only see this version
 Jekyll::Hooks.register [:pages, :documents], :post_convert do |item|
   base = BaseurlLinks.baseurl(item.site)
-  next if base.empty? || item.output_ext != '.html'
+  next if item.output_ext != '.html'
 
   item.content = BaseurlLinks.rewrite_html(item.content, base)
 end
@@ -69,7 +70,7 @@ end
 # by the hook above, carry the baseurl and are left alone)
 Jekyll::Hooks.register [:pages, :documents], :post_render do |item|
   base = BaseurlLinks.baseurl(item.site)
-  next if base.empty? || item.output_ext != '.html' || item.output.nil?
+  next if item.output_ext != '.html' || item.output.nil?
 
   item.output = BaseurlLinks.rewrite_html(item.output, base)
 end
