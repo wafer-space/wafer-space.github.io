@@ -170,17 +170,20 @@ runs:
       priority: "urgent"
       expired_message: "See you in the next shuttle!"
 
-    # Delivery date - when bare dies are shipped
+    # Delivery date - when the first batch of bare dies ships
     delivery_date:
-      date: "2026-10-16"
-      display_date: "16 October 2026"
+      date: "2026-10-31"
+      display_date: "Late October 2026"
       title: "Estimated Delivery"
-      subtitle: "GF180MCU Run 2 bare dies shipped to customers"
+      subtitle: "GF180MCU Run 2 first-batch bare dies shipped to customers"
       priority: "info"
 
     # Complete timeline for manufacturing process
-    # Fab stage dates are estimates: GDS in 30 June 2026 plus the ~12-week
-    # fab time observed on Run 1, landing on the 16 October 2026 delivery.
+    # Run 2's wafers come back in batches: a small first batch (enough for
+    # roughly 100-200 dies per project) arrived 17 September 2026 and was
+    # diced 8 October; GlobalFoundries capacity delays the remaining wafers
+    # to between December 2026 and early 2027. Estimate stops carry no
+    # machine date so a passed estimate never auto-flips to done.
     timeline:
       - title: "Campaign Opens"
         date: "2026-03-01"
@@ -221,35 +224,54 @@ runs:
         stop:
           status: "done"
       - title: "GF Wafer Manufacturing"
-        display_date: "Est. August – October 2026"
+        display_date: "August – September 2026"
+        stop:
+          status: "done"
+        table:
+          show: false
+      - title: "First Wafers Received"
+        date: "2026-09-17"
+        display_date: "17 September 2026"
+        description: "First batch of wafers back from GlobalFoundries — enough for roughly 100–200 dies per project"
+        table:
+          format: "milestone"
+        stop:
+          status: "done"
+      - title: "Dicing & Sorting (first batch)"
+        display_date: "Diced 8 October 2026; sorting October 2026"
         stop:
           status: "current"
         table:
           show: false
-      - title: "Dicing & Sorting"
-        display_date: "Est. October 2026"
+      - title: "Bare Dies Shipped (first batch)"
+        display_date: "Est. late October 2026"
         table:
           show: false
-      - title: "Bare Dies Shipped"
-        display_date: "Est. 16 October 2026"
-        table:
-          show: false
-      - title: "Chip on Board Packaging"
+      - title: "Chip on Board Packaging (first batch)"
         display_date: "Est. November 2026"
         table:
           show: false
-      - title: "Chip on Board Packaged Shipped"
+      - title: "Chip on Board Packaged Shipped (first batch)"
         display_date: "Est. November 2026"
         table:
           show: false
-      - title: "Parts Shipped"
-        date: "2026-10-01"
-        display_date: "Early Q4 2026"
-        description: "Bare dies and packaged parts shipped to customers"
+      - title: "First Batch Parts Shipped"
+        display_date: "Est. late October – November 2026"
+        description: "First-batch bare dies and packaged parts shipped to customers"
         table:
           format: "delivery"
         stop:
           show: false
+      - title: "Remaining Wafers Received"
+        display_date: "Est. December 2026 – early 2027"
+        description: "Remaining wafers delayed by GlobalFoundries capacity"
+        table:
+          format: "milestone"
+      - title: "Remaining Parts Shipped"
+        display_date: "Est. 2027"
+        description: "Remaining bare dies and packaged parts shipped to customers"
+        table:
+          format: "delivery"
 
 
   gf180mcu_run_3:
