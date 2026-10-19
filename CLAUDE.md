@@ -116,6 +116,9 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 2. `post_read` - Loads theme layouts, collections, and demo pages
 3. `post_write` - Copies theme assets and removes `_theme` from output
 
+### Internal Links and baseurl
+PR previews are built with `--baseurl /pr-NNN`. `_plugins/baseurl_links.rb` makes root-relative links work there, so in Markdown content (posts, collections, `.md` pages) and `redirect:` front matter you can simply write `[Discord](/discord)` or `redirect: /news`. In `.html` templates and HTML front-matter fields (e.g. `sub_title`), the plugin does not apply — use `{{ "/path" | relative_url }}`.
+
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
 
 ## Git Workflow
