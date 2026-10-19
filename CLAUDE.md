@@ -117,7 +117,7 @@ git clone --recursive https://github.com/wafer-space/wafer-space.github.io.git
 3. `post_write` - Copies theme assets and removes `_theme` from output
 
 ### Internal Links and baseurl
-PR previews are built with `--baseurl /pr-NNN`. `_plugins/baseurl_links.rb` makes root-relative links work there, so in Markdown content (posts, collections, `.md` pages) and `redirect:` front matter you can simply write `[Discord](/discord)` or `redirect: /news`. In `.html` templates and HTML front-matter fields (e.g. `sub_title`), the plugin does not apply — use `{{ "/path" | relative_url }}`.
+PR previews are built with `--baseurl /pr-NNN`. `_plugins/baseurl_links.rb` adds the baseurl to root-relative `href`/`src`/`poster`/`srcset` URLs in all rendered HTML (Markdown, `.html` pages, layouts, includes, HTML in front matter) and to `redirect:` front matter, so writing `[Discord](/discord)`, `<a href="/">` or `redirect: /news` works on previews. `{{ "/path" | relative_url }}` still works and is still needed for URLs the plugin can't see: ones built in JavaScript, CSS `url(...)` or `data-*` attributes.
 
 This architecture allows the main repository to focus on Wafer Space content while leveraging a full-featured proprietary theme for design and functionality.
 

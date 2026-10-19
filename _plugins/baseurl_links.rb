@@ -1,10 +1,11 @@
 # Plugin to make root-relative links honour site.baseurl
 #
-# Markdown links such as [Discord](/discord) are emitted verbatim by kramdown,
-# so they only work when the site is served from the domain root. The per-PR
-# preview builds use --baseurl /pr-NNN, where those links escape the preview
-# directory and 404. Front matter `redirect:` targets used by the redirect
-# layout have the same problem.
+# Markdown links such as [Discord](/discord), and HTML written as href="/x"
+# without relative_url, are emitted verbatim, so they only work when the site
+# is served from the domain root. The per-PR preview builds use
+# --baseurl /pr-NNN, where those links escape the preview directory and 404.
+# Front matter `redirect:` targets used by the redirect layout have the same
+# problem.
 #
 # With an empty baseurl (production) nothing is changed.
 
@@ -54,12 +55,21 @@ Jekyll::Hooks.register :site, :post_read do |site|
   end
 end
 
-# Hook to prefix links in converted Markdown, before it is placed in layouts
-# (theme layouts and includes already use relative_url)
+# Hook to prefix links in converted content, before it is placed in layouts;
+# jekyll-feed and anything else reading `content` only see this version
 Jekyll::Hooks.register [:pages, :documents], :post_convert do |item|
   base = BaseurlLinks.baseurl(item.site)
-  next if base.empty?
-  next unless item.site.config['markdown_ext'].split(',').include?(item.extname.delete_prefix('.'))
+  next if base.empty? || item.output_ext != '.html'
 
   item.content = BaseurlLinks.rewrite_html(item.content, base)
+end
+
+# Hook to prefix links in the fully rendered HTML, covering layouts, includes
+# and HTML in front matter (URLs already built with relative_url, or prefixed
+# by the hook above, carry the baseurl and are left alone)
+Jekyll::Hooks.register [:pages, :documents], :post_render do |item|
+  base = BaseurlLinks.baseurl(item.site)
+  next if base.empty? || item.output_ext != '.html' || item.output.nil?
+
+  item.output = BaseurlLinks.rewrite_html(item.output, base)
 end
