@@ -42,8 +42,6 @@ are free to download, at 200 to 500 MB per die.
 
 - **Die imaging**: optical microscopy panoramas of effectively unlimited size,
   at up to 1000x magnification, of a whole die or a region of interest
-- **Focus stacking**: features at every depth in focus, or multi-focus
-  panoramas with each layer in focus separately
 - **Decapsulation**: getting the die out of ceramic and epoxy (DIP, QFP, DFN,
   simple BGA) packages
 - **Deprocessing**: removing the metal layers that hide the features underneath
