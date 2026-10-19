@@ -63,7 +63,9 @@ Four companies are offering paid professional services specifically for [wafer.s
 
 <img src="{{ "/assets/images/news/getting-help/chipflow-logo-std-rounded.png" | relative_url }}" alt="chipflow-logo-std-rounded" class="img-fluid rounded">
 
-#### [ChipFlow](https://wafer.space/design-help.html#chipflow) · *Spain*
+#### ChipFlow · *Spain*
+
+*Update (October 2026): ChipFlow is no longer listed on our [design help](https://wafer.space/design-help.html) page.*
 
 Full-service ASIC development platform with cloud-based design tools, collaborative workflows, and pre-verified reference designs.
 
