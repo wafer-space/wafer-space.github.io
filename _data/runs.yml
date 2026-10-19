@@ -348,6 +348,16 @@ runs:
         description: "Last day to purchase at early bird pricing"
         table:
           format: "critical"
+      # Full 1x1 slots went on 22 September 2026; the last slot size
+      # (1x0.5) sold out on 8 October 2026.
+      - title: "Sold Out"
+        date: "2026-10-08"
+        display_date: "8 October 2026"
+        description: "Every Run 3 slot size has sold out — catch the next shuttle!"
+        table:
+          format: "milestone"
+        stop:
+          status: "done"
       - title: "Purchase Deadline"
         date: "2026-12-10T11:59:00Z"
         display_date: "9 December 2026"

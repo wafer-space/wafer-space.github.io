@@ -58,13 +58,16 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
           {% endfor %}
 
           {% comment %} A shuttle is "In Flight" once its doors have closed
-             (the Final Order Date stop is done); before that an active run
-             is "Boarding" and anything else is "Coming Soon". {% endcomment %}
+             (a Final Order / Purchase Deadline stop is done, or the run has
+             Sold Out early); before that an active run is "Boarding" and
+             anything else is "Coming Soon". {% endcomment %}
           {% assign orders_closed = false %}
           {% for entry in entries %}
             {% assign i = forloop.index0 %}
-            {% if entry.title contains "Final Order" or entry.title contains "Purchase Deadline" and status_list[i] == "done" %}
-              {% assign orders_closed = true %}
+            {% if status_list[i] == "done" %}
+              {% if entry.title contains "Final Order" or entry.title contains "Purchase Deadline" or entry.title contains "Sold Out" %}
+                {% assign orders_closed = true %}
+              {% endif %}
             {% endif %}
           {% endfor %}
 
