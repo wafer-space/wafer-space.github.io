@@ -1,0 +1,62 @@
+# PR Preview Build (Stage 1 - Untrusted Context)
+# This workflow runs for ALL pull requests, including those from forks
+# It has NO access to secrets. Its only job is to finish, which triggers
+# Stage 2 (pr-preview-deploy.yml) via workflow_run.
+#
+# SECURITY NOTE: This workflow runs the FORK's version of this file.
+# A malicious fork can modify this workflow arbitrarily. Therefore:
+# - Stage 2 uses nothing from this run except the event GitHub creates
+#   for it (head repository, branch and SHA), and checks those against
+#   the GitHub API
+# - The executable code check here is informational only, so authors see
+#   early that Stage 2 will block their preview
+name: PR Preview Build
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read  # Needed to list PR changed files
+
+jobs:
+  collect-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for executable code changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const isFork = pr.head.repo.full_name !== `${context.repo.owner}/${context.repo.repo}`;
+            console.log(`PR #${pr.number} from ${pr.head.repo.full_name} at ${pr.head.sha}`);
+            console.log(isFork ? '🌍 External contributor (fork PR)' : '🏠 Internal contributor');
+
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                per_page: 100
+              }
+            );
+
+            const dangerousPatterns = [
+              /^_plugins\//,
+              /^\.github\//,
+            ];
+
+            const dangerousFiles = files
+              .map(f => f.filename)
+              .filter(f => dangerousPatterns.some(p => p.test(f)));
+
+            if (dangerousFiles.length === 0) {
+              console.log('✅ No executable code changes');
+            } else if (isFork) {
+              core.warning(`Executable code modified, so Stage 2 will not deploy a preview for this fork PR: ${dangerousFiles.join(', ')}`);
+            } else {
+              console.log(`Executable code modified (allowed for internal PRs): ${dangerousFiles.join(', ')}`);
+            }
