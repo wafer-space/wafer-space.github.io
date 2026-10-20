@@ -38,12 +38,12 @@ module HeadingAnchors
     match && match.captures.compact.first
   end
 
-  # Plain text of a fragment, used only for slugs and emptiness checks. Any
-  # "<" or ">" left over from malformed markup is dropped. Named entities CGI
-  # does not know (&nbsp;, &mdash;, &sup2;, ...) become spaces, which slugify
-  # treats as word breaks.
+  # Plain text of a fragment, used only for slugs and emptiness checks. An
+  # unclosed tag is dropped along with the rest of the fragment, as are angle
+  # brackets decoded from entities. Named entities CGI does not know (&nbsp;,
+  # &mdash;, &sup2;, ...) become spaces, which slugify treats as word breaks.
   def text_of(html)
-    text = CGI.unescapeHTML(html.gsub(/<[^>]*>/, ''))
+    text = CGI.unescapeHTML(html.gsub(/<[^>]*>?/, ''))
     text.gsub(/[<>]/, '').gsub(/&[a-z][a-z0-9]*;/i, ' ').strip
   end
 
