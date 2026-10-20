@@ -25,7 +25,11 @@ permissions:
 jobs:
   cleanup-closed-pr-previews:
     runs-on: ubuntu-latest
-    
+    env:
+      # Same repository variables as pr-preview-deploy.yml
+      PREVIEW_REPOSITORY: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
+      PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,7 +46,7 @@ jobs:
           chmod 600 ~/.ssh/known_hosts
           
           # Clone the preview repository to check what needs cleanup
-          git clone git@github.com:wafer-space/preview.wafer.space.git preview-repo
+          git clone "git@github.com:${PREVIEW_REPOSITORY}.git" preview-repo
           cd preview-repo
           
           # Configure git for commits

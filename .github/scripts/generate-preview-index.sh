@@ -5,6 +5,12 @@ set -e  # Exit on any error
 TEMPLATE_FILE=".github/templates/preview-index.html"
 OUTPUT_FILE="index.html"
 
+# Where previews are served, e.g. https://preview.wafer.space, or a project
+# Pages site with a path such as https://user.github.io/preview.wafer.space
+PREVIEW_BASE_URL="${PREVIEW_BASE_URL:-https://preview.wafer.space}"
+PREVIEW_BASE_URL="${PREVIEW_BASE_URL%/}"
+BASE_PATH=$(echo "$PREVIEW_BASE_URL" | sed -E 's#^https://[^/]+##')
+
 # Validate template file exists
 if [ ! -f "$TEMPLATE_FILE" ]; then
   echo "ERROR: Template file $TEMPLATE_FILE not found!"
@@ -65,8 +71,8 @@ for dir in pr-*/; do
     fi
     
     PREVIEW_ITEMS+="<li>"
-    PREVIEW_ITEMS+="<a href=\"/$dir_escaped\">$display_title</a>"
-    PREVIEW_ITEMS+="<div class=\"preview-url\">https://preview.wafer.space/$dir_escaped</div>"
+    PREVIEW_ITEMS+="<a href=\"$BASE_PATH/$dir_escaped\">$display_title</a>"
+    PREVIEW_ITEMS+="<div class=\"preview-url\">$PREVIEW_BASE_URL/$dir_escaped</div>"
     PREVIEW_ITEMS+="</li>"
     FOUND_PREVIEWS=true
     PREVIEW_COUNT=$((PREVIEW_COUNT + 1))
