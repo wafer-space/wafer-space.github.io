@@ -12,18 +12,20 @@ Automatic preview deployments for pull requests using GitHub Pages with custom d
 
 ## How It Works
 
-Previews are built in two stages so that pull requests from forks get previews too, without giving fork code access to secrets:
+Previews are built in two stages so that pull requests from forks get previews too, without the PR's code ever running next to a secret. Every step is an action from [wafer-space/github-actions](https://github.com/wafer-space/github-actions/tree/main/pr-preview), pinned to a commit, so a PR here can't change what the privileged jobs run.
 
 1. **Stage 1, `pr-preview-build.yml` (`pull_request`, untrusted):** runs on every PR, including forks, with no secrets. It produces nothing Stage 2 uses. Finishing is what triggers Stage 2, and it warns early if a fork PR changes executable code.
-2. **Stage 2, `pr-preview-deploy.yml` (`workflow_run`, trusted):** runs from `main` with the secrets once Stage 1 finishes. It finds the PR using only the event's head repository, branch and SHA, checked against the GitHub API, and then:
-   - blocks fork PRs that change `_plugins/` or `.github/`, and comments to explain why;
-   - takes every script and template it runs from a separate checkout of `main`, never from the PR;
-   - for other fork PRs, replaces `_plugins/`, `Gemfile` and `.gitmodules` with the copies from `main`, removes `.bundle/` and any `Gemfile.lock` (it is gitignored, so `main` has none), and pins `plugins_dir`, `source` and `destination`;
-   - builds with the private theme, deploys to `/pr-[number]/`, comments the preview URL and starts the link check.
-3. **Verification, `preview-verification.yml` (`workflow_dispatch`):** started by Stage 2 with the PR number, preview URL and commit, and comments the link check results. It can also be run by hand from the Actions tab.
+2. **Stage 2, `pr-preview-deploy.yml` (`workflow_run`, trusted):** runs from `main` once Stage 1 finishes, as separate jobs:
+   - **find-pr** finds the PR using only the event's head repository, branch and SHA, checked against the GitHub API. It blocks fork PRs that change `_plugins/` or `.github/` (the **blocked** job comments to explain why), and works out the preview directory and the theme commit the PR's `_theme` points at.
+   - **fetch-theme** checks out the private theme with `JEKYLL_THEME_KEY` and uploads it as an artifact. It runs no PR code.
+   - **build** checks out the PR, adds the theme and builds the site, uploading it as an artifact. It is the only job that runs the PR's content, and it has **no secrets** and a read-only token. For fork PRs it first puts back `main`'s `_plugins/` and `Gemfile`, removes `.bundle/` and any `Gemfile.lock`, and pins `plugins_dir`, `source` and `destination`.
+   - **deploy** downloads the built site and pushes it to `/pr-[number]/` in the preview repository with `PREVIEW_KEY`, treating it purely as data. It then comments the preview URL and starts the link check.
+3. **Verification, `preview-verification.yml` (`workflow_dispatch`):** started by Stage 2 with the PR number, preview URL and commit, and comments the link check results. It can also be run by hand from the Actions tab. The link check's excluded URLs are listed in this workflow.
 4. Previews update on every push and are removed by `cleanup-previews.yml` when the PR closes.
 
-GitHub runs Stage 2 from `main` because it's a `workflow_run` workflow, and Stage 2 starts the verification on `main` too. So changes to either in a PR only take effect after merging, and their runs appear in the Actions tab rather than in the PR's checks.
+No job caches gems: jobs in a `workflow_run` workflow share `main`'s Actions cache, so the build job could otherwise poison it, and the production build in `jekyll.yml` installs gems fresh for the same reason.
+
+GitHub runs Stage 2 from `main` because it's a `workflow_run` workflow, and Stage 2 starts the verification on `main` too. So changes to either in a PR only take effect after merging, and their runs appear in the Actions tab rather than in the PR's checks. To change what the steps do, change the actions in wafer-space/github-actions, then update the commit they're pinned to here.
 
 ## Viewing Previews
 
@@ -43,7 +45,7 @@ https://preview.wafer.space/
 - Check GitHub Actions tab for workflow status
 - Ensure custom domain DNS is configured for `preview.wafer.space`
 - Wait up to 2 minutes for GitHub Pages deployment to complete
-- Verify SSH deploy key is configured for theme submodule access
+- Verify the `JEKYLL_THEME_KEY` deploy key can read the theme repository (the fetch-theme job)
 
 ### Preview shows 404 error
 - Check if Jekyll build completed successfully in workflow logs
