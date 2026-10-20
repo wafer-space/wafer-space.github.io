@@ -11,7 +11,7 @@ Automatic preview deployments for pull requests using GitHub Pages with custom d
 
 ## How It Works
 
-Previews are built in two stages so that pull requests from forks get previews too, without the PR's code ever running next to a secret. Every step is an action from [wafer-space/github-actions](https://github.com/wafer-space/github-actions/tree/main/pr-preview), pinned to a commit, so a PR here can't change what the privileged jobs run.
+Previews are built in two stages so that pull requests from forks get previews too, without the PR's code ever running next to a secret. Every step is an action from [wafer-space/actions](https://github.com/wafer-space/actions/tree/main/pr-preview), pinned to a commit, so a PR here can't change what the privileged jobs run.
 
 1. **Stage 1, `pr-preview-build.yml` (`pull_request`, untrusted):** runs on every PR, including forks, with no secrets and no permissions. It does nothing itself: finishing is what triggers Stage 2.
 2. **Stage 2, `pr-preview-deploy.yml` (`workflow_run`, trusted):** runs from `main` once Stage 1 finishes, as separate jobs:
@@ -24,7 +24,7 @@ Previews are built in two stages so that pull requests from forks get previews t
 
 **Never add an Actions cache to this repository's workflows.** Jobs in a `workflow_run` workflow share `main`'s cache, so a PR's build could write a poisoned one. That's why neither the preview build nor the production build in `jekyll.yml` caches gems.
 
-GitHub runs Stage 2 from `main` because it's a `workflow_run` workflow, and Stage 2 starts the verification on `main` too. So changes to either in a PR only take effect after merging, and their runs appear in the Actions tab rather than in the PR's checks. To change what the steps do, change the actions in wafer-space/github-actions, then update the commit they're pinned to here.
+GitHub runs Stage 2 from `main` because it's a `workflow_run` workflow, and Stage 2 starts the verification on `main` too. So changes to either in a PR only take effect after merging, and their runs appear in the Actions tab rather than in the PR's checks. To change what the steps do, change the actions in wafer-space/actions, then update the commit they're pinned to here.
 
 ## Viewing Previews
 
