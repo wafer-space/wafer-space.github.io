@@ -22,7 +22,10 @@
       {% endif %}
       <h4>{{include.provider.sub_title}}</h4>
       {% if include.provider.content %}
-      <p class="mb-10">{{include.provider.content | markdownify }}</p>
+      {% comment %} Every bio shares one page, so prefix kramdown's auto ids
+         (e.g. "contact") with the provider slug to keep them unique. {% endcomment %}
+      {% capture bio_id_prefix %} id="{{include.provider.slug}}-{% endcapture %}
+      <p class="mb-10">{{include.provider.content | markdownify | replace: ' id="', bio_id_prefix }}</p>
       {% endif %}
       {% if include.provider.social_accounts %}
       <ul class="social">
