@@ -1,9 +1,16 @@
 # Plugin to give headings a hover-revealed "#" permalink
 #
-# Pages opt in with `heading_anchors: true` in their front matter. Every
-# heading in the rendered page then gets an id (its own, or one made from its
-# text) and the same "#" link the theme's components/heading-anchor.html
-# include renders, so the theme's .heading-anchor CSS styles both alike.
+# Every heading in a rendered HTML page or document gets an id (its own, or
+# one made from its text) and the same "#" link the theme's
+# components/heading-anchor.html include renders, so the theme's
+# .heading-anchor CSS styles both alike.
+#
+# Listing pages are skipped: any page whose layout is named in the
+# `heading_anchors_skip_layouts` config list (the news index and its later
+# pages, tag and category archives, author pages), where the headings are
+# post-card titles and repeated "Read More"s. Front matter
+# `heading_anchors: false` turns the plugin off for one page, and
+# `heading_anchors: true` turns it on for a page with a skipped layout.
 #
 # A heading is left alone when:
 # - it already has a "#" link (theme partials that use the include);
@@ -46,6 +53,13 @@ module HeadingAnchors
   def text_of(html)
     text = CGI.unescapeHTML(html.split(/<[^>]*>?/).join)
     text.gsub(/[<>]/, '').gsub(/&[a-z][a-z0-9]*;/i, ' ').strip
+  end
+
+  def enabled?(item)
+    return false unless item.output_ext == '.html' && item.output
+    return item.data['heading_anchors'] unless item.data['heading_anchors'].nil?
+
+    !Array(item.site.config['heading_anchors_skip_layouts']).include?(item.data['layout'])
   end
 
   def anchor_link(id)
@@ -114,7 +128,7 @@ module HeadingAnchors
 end
 
 Jekyll::Hooks.register [:pages, :documents], :post_render do |item|
-  next unless item.data['heading_anchors'] && item.output_ext == '.html' && item.output
+  next unless HeadingAnchors.enabled?(item)
 
   item.output = HeadingAnchors.add_anchors(item.output)
 end
