@@ -139,9 +139,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y lynx html-xml-utils python3-pip jq bc
           
-          # Install muffet at pinned version with checksum verification
-          MUFFET_VERSION="v2.11.2"
-          MUFFET_SHA256="97d69581cf90c932be3b5622877bc3a60e50b0ea05d1609aaa6b2efdae15acd3"
+          # Install muffet at pinned version with checksum verification.
+          # update-muffet.yml opens a PR to update these when muffet releases
+          MUFFET_VERSION="v2.11.6"
+          MUFFET_SHA256="f190c7cf7b1c002120f1ac0164e4c50a35b5d9129799520e393bcd23820ab87a"
           MUFFET_URL="https://github.com/raviqqe/muffet/releases/download/${MUFFET_VERSION}/muffet_linux_amd64.tar.gz"
 
           wget -q -O muffet.tar.gz "$MUFFET_URL"
