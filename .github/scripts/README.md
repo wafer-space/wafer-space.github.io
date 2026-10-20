@@ -50,8 +50,6 @@ Manages PR preview deployment comments with update capability:
 
 - `create-deployment.js`: Creates GitHub deployment records
 - `update-deployment-status.js`: Updates deployment status
-- `comment-pr-cleanup.js`: Comments when previews are cleaned up
-- `cleanup-deployments.js`: Marks deployments as inactive
 - `generate-pr-directory-name.js`: Generates slugified directory names
 
 ## Best Practices
