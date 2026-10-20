@@ -14,7 +14,7 @@ Automatic preview deployments for pull requests using GitHub Pages with custom d
 
 Previews are built in two stages so that pull requests from forks get previews too, without the PR's code ever running next to a secret. Every step is an action from [wafer-space/github-actions](https://github.com/wafer-space/github-actions/tree/main/pr-preview), pinned to a commit, so a PR here can't change what the privileged jobs run.
 
-1. **Stage 1, `pr-preview-build.yml` (`pull_request`, untrusted):** runs on every PR, including forks, with no secrets. It produces nothing Stage 2 uses. Finishing is what triggers Stage 2, and it warns early if a fork PR changes executable code.
+1. **Stage 1, `pr-preview-build.yml` (`pull_request`, untrusted):** runs on every PR, including forks, with no secrets and no permissions. It does nothing itself: finishing is what triggers Stage 2.
 2. **Stage 2, `pr-preview-deploy.yml` (`workflow_run`, trusted):** runs from `main` once Stage 1 finishes, as separate jobs:
    - **find-pr** finds the PR using only the event's head repository, branch and SHA, checked against the GitHub API. It blocks fork PRs that change `_plugins/` or `.github/` (the **blocked** job comments to explain why), and works out the preview directory and the theme commit the PR's `_theme` points at.
    - **fetch-theme** checks out the private theme with `JEKYLL_THEME_KEY` and uploads it as an artifact. It runs no PR code.

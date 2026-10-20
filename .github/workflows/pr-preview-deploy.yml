@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Find pull request and check it is safe to build
         id: pr
-        uses: wafer-space/github-actions/pr-preview/find-pr@273b2c072b958163d5ddbc14b62ae4c043012ea9
+        uses: wafer-space/github-actions/pr-preview/find-pr@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           preview-repository: ${{ env.PREVIEW_REPOSITORY }}
           preview-base-url: ${{ env.PREVIEW_BASE_URL }}
@@ -75,7 +75,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/fetch-theme@273b2c072b958163d5ddbc14b62ae4c043012ea9
+      - uses: wafer-space/github-actions/pr-preview/fetch-theme@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           theme-repository: wafer-space/wafer-space-jekyll-theme
           theme-sha: ${{ needs.find-pr.outputs.theme-sha }}
@@ -88,7 +88,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/build@273b2c072b958163d5ddbc14b62ae4c043012ea9
+      - uses: wafer-space/github-actions/pr-preview/build@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           pr-sha: ${{ needs.find-pr.outputs.sha }}
           is-fork: ${{ needs.find-pr.outputs.is-fork }}
@@ -106,7 +106,7 @@ jobs:
     steps:
       - name: Deploy preview
         id: deploy
-        uses: wafer-space/github-actions/pr-preview/deploy@273b2c072b958163d5ddbc14b62ae4c043012ea9
+        uses: wafer-space/github-actions/pr-preview/deploy@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           preview-repository: ${{ env.PREVIEW_REPOSITORY }}
           preview-key: ${{ secrets.PREVIEW_KEY }}
@@ -119,7 +119,7 @@ jobs:
 
       - name: Comment on PR with preview URL
         if: steps.deploy.outputs.deployment-status == 'success'
-        uses: wafer-space/github-actions/pr-preview/comment@273b2c072b958163d5ddbc14b62ae4c043012ea9
+        uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           kind: deployed
           pr-number: ${{ needs.find-pr.outputs.number }}
@@ -146,7 +146,7 @@ jobs:
 
       - name: Comment on PR if deployment failed
         if: steps.deploy.outputs.deployment-status == 'failed'
-        uses: wafer-space/github-actions/pr-preview/comment@273b2c072b958163d5ddbc14b62ae4c043012ea9
+        uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           kind: failed
           pr-number: ${{ needs.find-pr.outputs.number }}
@@ -167,7 +167,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: wafer-space/github-actions/pr-preview/comment@273b2c072b958163d5ddbc14b62ae4c043012ea9
+      - uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
         with:
           kind: blocked
           pr-number: ${{ needs.find-pr.outputs.number }}
