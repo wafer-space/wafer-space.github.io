@@ -174,7 +174,7 @@ jobs:
 
       - name: Regenerate preview index
         if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
-        uses: wafer-space/github-actions/pr-preview/update-index@badd3285a86489cd50c63088badd2b63c53d737f
+        uses: wafer-space/actions/pr-preview/update-index@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           path: preview-repo
           preview-base-url: ${{ env.PREVIEW_BASE_URL }}

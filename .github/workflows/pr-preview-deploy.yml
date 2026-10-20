@@ -7,9 +7,9 @@
 # GitHub API. Only the build job runs the PR's code, and it gets no
 # secrets: fetch-theme hands it the private theme as an artifact, and
 # deploy pushes its output without running any of it. No job here may use
-# an Actions cache (see wafer-space/github-actions pr-preview/README.md).
+# an Actions cache (see wafer-space/actions pr-preview/README.md).
 #
-# The steps are actions in https://github.com/wafer-space/github-actions,
+# The steps are actions in https://github.com/wafer-space/actions,
 # pinned to a commit, so no PR to this repository changes what they run.
 name: PR Preview Deploy
 
@@ -52,7 +52,7 @@ jobs:
       baseurl: ${{ steps.pr.outputs.baseurl }}
     steps:
       - id: pr
-        uses: wafer-space/github-actions/pr-preview/find-pr@badd3285a86489cd50c63088badd2b63c53d737f
+        uses: wafer-space/actions/pr-preview/find-pr@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           preview-base-url: ${{ env.PREVIEW_BASE_URL }}
 
@@ -64,7 +64,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/fetch-theme@badd3285a86489cd50c63088badd2b63c53d737f
+      - uses: wafer-space/actions/pr-preview/fetch-theme@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           theme-repository: wafer-space/wafer-space-jekyll-theme
           theme-sha: ${{ needs.find-pr.outputs.theme-sha }}
@@ -77,7 +77,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/build@badd3285a86489cd50c63088badd2b63c53d737f
+      - uses: wafer-space/actions/pr-preview/build@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           pr-sha: ${{ needs.find-pr.outputs.sha }}
           baseurl: ${{ needs.find-pr.outputs.baseurl }}
@@ -90,7 +90,7 @@ jobs:
       pull-requests: write
       actions: write  # to start the link check
     steps:
-      - uses: wafer-space/github-actions/pr-preview/deploy@badd3285a86489cd50c63088badd2b63c53d737f
+      - uses: wafer-space/actions/pr-preview/deploy@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           preview-repository: ${{ env.PREVIEW_REPOSITORY }}
           preview-key: ${{ secrets.PREVIEW_KEY }}

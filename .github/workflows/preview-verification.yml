@@ -3,7 +3,7 @@
 # Including link checking, asset validation, and site functionality tests
 #
 # The steps are the verify action in
-# https://github.com/wafer-space/github-actions
+# https://github.com/wafer-space/actions
 
 name: Preview Site Verification
 
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Verify preview
-        uses: wafer-space/github-actions/pr-preview/verify@badd3285a86489cd50c63088badd2b63c53d737f
+        uses: wafer-space/actions/pr-preview/verify@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
         with:
           pr-number: ${{ github.event.inputs.pr_number }}
           preview-url: ${{ github.event.inputs.preview_url }}

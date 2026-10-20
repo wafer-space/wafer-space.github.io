@@ -104,7 +104,7 @@ cat detailed-verification.json | jq '.'
 
 ## Customization
 
-The checks are the `verify` action in [wafer-space/github-actions](https://github.com/wafer-space/github-actions/tree/main/pr-preview/verify), mostly `pr-preview/scripts/run-verification.sh` there. To change them, open a pull request there, then update the commit `preview-verification.yml` pins it to.
+The checks are the `verify` action in [wafer-space/actions](https://github.com/wafer-space/actions/tree/main/pr-preview/verify), mostly `pr-preview/scripts/run-verification.sh` there. To change them, open a pull request there, then update the commit `preview-verification.yml` pins it to.
 
 ### Excluded URLs
 The URLs muffet skips are the `muffet-excludes` input in `.github/workflows/preview-verification.yml`. Find out why a link fails before adding one (see `CLAUDE.md`).
