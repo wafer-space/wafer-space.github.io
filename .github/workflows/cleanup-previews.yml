@@ -31,9 +31,6 @@ jobs:
       PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
       - name: Setup SSH and clone preview repository
         id: find-cleanup
         run: |
@@ -140,19 +137,21 @@ jobs:
             console.log(`Cleanup summary: ${cleanupList.length} PR previews marked for cleanup`);
       
       - name: Perform cleanup of closed PR previews
+        id: remove
         if: steps.find-cleanup.outputs.cleanup_needed == 'true'
         run: |
           cd preview-repo
-          
+
           # Read cleanup list
           CLEANUP_LIST=$(cat /tmp/cleanup_list.json)
           CLEANUP_COUNT=$(echo "$CLEANUP_LIST" | jq length)
-          
+          echo "count=$CLEANUP_COUNT" >> "$GITHUB_OUTPUT"
+
           if [ "$CLEANUP_COUNT" -eq 0 ]; then
             echo "No previews need cleanup"
             exit 0
           fi
-          
+
           echo "Cleaning up $CLEANUP_COUNT preview(s)..."
           
           # Process each item in cleanup list
@@ -173,14 +172,20 @@ jobs:
             # Remove any redirect directories for this PR (pr-123-*)
             find . -maxdepth 1 -type d -name "pr-${PR_NUMBER}-*" -exec rm -rf {} + || true
           done
-          
-          # Copy script and template, then regenerate index
-          cp ../.github/scripts/generate-preview-index.sh ./
-          mkdir -p .github/templates
-          cp ../.github/templates/preview-index.html .github/templates/
-          chmod +x generate-preview-index.sh
-          ./generate-preview-index.sh
-          
+
+      - name: Regenerate preview index
+        if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
+        uses: wafer-space/github-actions/pr-preview/update-index@273b2c072b958163d5ddbc14b62ae4c043012ea9
+        with:
+          path: preview-repo
+          preview-base-url: ${{ env.PREVIEW_BASE_URL }}
+
+      - name: Commit and push cleanup
+        if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
+        run: |
+          cd preview-repo
+          CLEANUP_LIST=$(cat /tmp/cleanup_list.json)
+
           # Commit changes if any
           git add .
           if ! git diff --staged --quiet; then

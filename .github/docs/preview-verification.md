@@ -104,23 +104,13 @@ cat detailed-verification.json | jq '.'
 
 ## Customization
 
-### Adding New Checks
-To add new verification checks:
+The checks are the `verify` action in [wafer-space/github-actions](https://github.com/wafer-space/github-actions/tree/main/pr-preview/verify), mostly `pr-preview/scripts/run-verification.sh` there. To change them, open a pull request there, then update the commit `preview-verification.yml` pins it to.
 
-1. Edit `.github/workflows/preview-verification.yml`
-2. Add new check logic in the verification step
-3. Update the report generation
-4. Test with a preview deployment
+### Excluded URLs
+The URLs muffet skips are the `muffet-excludes` input in `.github/workflows/preview-verification.yml`. Find out why a link fails before adding one (see `CLAUDE.md`).
 
-### Modifying Thresholds
-Performance and other thresholds can be adjusted in:
-- Workflow file: Basic thresholds
-- Verification script: Detailed thresholds
-
-### Asset List
-Update the list of critical assets in:
-- Workflow: `ASSETS` array
-- Script: `CRITICAL_ASSETS` array
+### Thresholds and asset list
+The load-time threshold and the `CRITICAL_ASSETS` list are in `run-verification.sh` in the actions repository; `verify-preview-site.sh` here has its own copies for running by hand.
 
 ## Troubleshooting
 
