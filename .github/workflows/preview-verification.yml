@@ -345,6 +345,8 @@ jobs:
             --buffer-size=16384 \
             --exclude=".*mailto:.*" \
             --exclude=".*linkedin\.com.*" \
+            --exclude=".*hawaii\.edu.*" \
+            --exclude=".*timeanddate\.com.*" \
             --exclude=".*mabrains\.com.*" \
             --exclude=".*reddit\.com.*" \
             --exclude=".*electronics-lab\.com.*" \
