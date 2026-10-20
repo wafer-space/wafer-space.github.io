@@ -19,8 +19,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
-  deployments: write
+  pull-requests: read
 
 jobs:
   cleanup-closed-pr-previews:
@@ -175,7 +174,7 @@ jobs:
 
       - name: Regenerate preview index
         if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
-        uses: wafer-space/github-actions/pr-preview/update-index@5a34a8ef65817dee46db58d157748722138e5eb5
+        uses: wafer-space/github-actions/pr-preview/update-index@badd3285a86489cd50c63088badd2b63c53d737f
         with:
           path: preview-repo
           preview-base-url: ${{ env.PREVIEW_BASE_URL }}
@@ -201,57 +200,6 @@ jobs:
           else
             echo "No changes to commit"
           fi
-      
-      - name: Clean up GitHub deployments for closed PRs
-        if: steps.find-cleanup.outputs.cleanup_needed == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            
-            // Read cleanup list
-            const cleanupList = JSON.parse(fs.readFileSync('/tmp/cleanup_list.json', 'utf8'));
-            
-            console.log(`Cleaning up deployments for ${cleanupList.length} closed PRs`);
-            
-            for (const item of cleanupList) {
-              const prNumber = item.prNumber;
-              const environment = `pr-preview-${prNumber}`;
-              
-              try {
-                // Get all deployments for this PR environment
-                const { data: deployments } = await github.rest.repos.listDeployments({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  environment: environment,
-                });
-                
-                console.log(`Found ${deployments.length} deployments for PR #${prNumber}`);
-                
-                // Mark each deployment as inactive
-                for (const deployment of deployments) {
-                  if (!deployment.id || !Number.isInteger(deployment.id)) {
-                    console.log(`Skipping invalid deployment ID for PR #${prNumber}: ${deployment.id}`);
-                    continue;
-                  }
-                  
-                  await github.rest.repos.createDeploymentStatus({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    deployment_id: deployment.id,
-                    state: 'inactive',
-                    description: 'Scheduled cleanup - PR closed'
-                  });
-                  
-                  console.log(`Marked deployment ${deployment.id} as inactive for PR #${prNumber}`);
-                }
-              } catch (error) {
-                console.error(`Error cleaning up deployments for PR #${prNumber}:`, error.message);
-                // Continue with other PRs even if one fails
-              }
-            }
-            
-            console.log('Deployment cleanup completed');
       
       - name: Summary
         if: always()
