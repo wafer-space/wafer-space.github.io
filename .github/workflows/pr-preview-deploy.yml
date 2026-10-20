@@ -2,12 +2,12 @@
 # Triggered by workflow_run after Stage 1 (pr-preview-build.yml) finishes.
 # GitHub runs this file from the default branch, with access to secrets.
 #
-# SECURITY MODEL: Stage 1 runs the fork's version of its workflow, so
-# nothing it produces can be trusted. find-pr identifies the PR only from
-# the workflow_run event itself (head repository, branch and SHA, which
-# GitHub sets) plus the GitHub API. Only the build job runs the PR's
-# content, and it gets no secrets: fetch-theme hands it the private theme
-# as an artifact, and deploy pushes its output without running any of it.
+# SECURITY MODEL: find-pr identifies the PR only from the workflow_run
+# event (head repository, branch and SHA, which GitHub sets) plus the
+# GitHub API. Only the build job runs the PR's code, and it gets no
+# secrets: fetch-theme hands it the private theme as an artifact, and
+# deploy pushes its output without running any of it. No job here may use
+# an Actions cache (see wafer-space/github-actions pr-preview/README.md).
 #
 # The steps are actions in https://github.com/wafer-space/github-actions,
 # pinned to a commit, so no PR to this repository changes what they run.
@@ -20,155 +20,94 @@ on:
 
 permissions: {}
 
-# Prevent concurrent deployments - cancel old runs when new commits pushed.
-# workflow_run.pull_requests is always empty for fork PRs, so key on the
-# head repository and branch instead of the PR number.
+# Cancel old runs when new commits are pushed. workflow_run.pull_requests
+# is empty for fork PRs, so key on the head repository and branch.
 concurrency:
   group: pr-preview-deployment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
   cancel-in-progress: true
 
 env:
-  # Where previews are pushed and served. Repository variables let a fork
-  # deploy to its own preview repository, e.g. for testing changes to these
-  # workflows; a URL with a path (a project Pages site such as
-  # https://user.github.io/preview.wafer.space) is supported.
+  # Repository variables let a fork deploy to its own preview repository,
+  # e.g. to test changes to these workflows; a URL with a path (a project
+  # Pages site such as https://user.github.io/preview.wafer.space) works.
   PREVIEW_REPOSITORY: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
   PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
 
 jobs:
   find-pr:
-    # Only run if Stage 1 succeeded on a pull request
     if: >
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: read
       contents: read
+      pull-requests: read
     outputs:
       found: ${{ steps.pr.outputs.found }}
       number: ${{ steps.pr.outputs.number }}
       sha: ${{ steps.pr.outputs.sha }}
-      is-fork: ${{ steps.pr.outputs.is-fork }}
-      deployment-allowed: ${{ steps.pr.outputs.deployment-allowed }}
-      dangerous-files: ${{ steps.pr.outputs.dangerous-files }}
-      gemfile-modified: ${{ steps.pr.outputs.gemfile-modified }}
       theme-sha: ${{ steps.pr.outputs.theme-sha }}
       directory-name: ${{ steps.pr.outputs.directory-name }}
-      slugified-name: ${{ steps.pr.outputs.slugified-name }}
-      base-url: ${{ steps.pr.outputs.base-url }}
-      base-path: ${{ steps.pr.outputs.base-path }}
-      baseurl-path: ${{ steps.pr.outputs.baseurl-path }}
+      preview-url: ${{ steps.pr.outputs.preview-url }}
+      baseurl: ${{ steps.pr.outputs.baseurl }}
     steps:
-      - name: Find pull request and check it is safe to build
-        id: pr
-        uses: wafer-space/github-actions/pr-preview/find-pr@5a34a8ef65817dee46db58d157748722138e5eb5
+      - id: pr
+        uses: wafer-space/github-actions/pr-preview/find-pr@badd3285a86489cd50c63088badd2b63c53d737f
         with:
-          preview-repository: ${{ env.PREVIEW_REPOSITORY }}
           preview-base-url: ${{ env.PREVIEW_BASE_URL }}
 
-  # Runs no PR code: checks out the theme with its deploy key
+  # Runs no PR code
   fetch-theme:
     needs: find-pr
-    if: needs.find-pr.outputs.found == 'true' && needs.find-pr.outputs.deployment-allowed == 'true'
+    if: needs.find-pr.outputs.found == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/fetch-theme@5a34a8ef65817dee46db58d157748722138e5eb5
+      - uses: wafer-space/github-actions/pr-preview/fetch-theme@badd3285a86489cd50c63088badd2b63c53d737f
         with:
           theme-repository: wafer-space/wafer-space-jekyll-theme
           theme-sha: ${{ needs.find-pr.outputs.theme-sha }}
           ssh-key: ${{ secrets.JEKYLL_THEME_KEY }}
 
-  # Runs the PR's content, so it gets NO secrets and read-only permissions
+  # Runs the PR's code, so it gets NO secrets and a read-only token
   build:
     needs: [find-pr, fetch-theme]
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      - uses: wafer-space/github-actions/pr-preview/build@5a34a8ef65817dee46db58d157748722138e5eb5
+      - uses: wafer-space/github-actions/pr-preview/build@badd3285a86489cd50c63088badd2b63c53d737f
         with:
           pr-sha: ${{ needs.find-pr.outputs.sha }}
-          is-fork: ${{ needs.find-pr.outputs.is-fork }}
-          baseurl: ${{ needs.find-pr.outputs.baseurl-path }}
+          baseurl: ${{ needs.find-pr.outputs.baseurl }}
 
   # Runs no PR code: pushes the build job's artifact as data
   deploy:
     needs: [find-pr, build]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      deployments: write
       pull-requests: write
-      actions: write  # Needed to start the link check (preview-verification.yml)
+      actions: write  # to start the link check
     steps:
-      - name: Deploy preview
-        id: deploy
-        uses: wafer-space/github-actions/pr-preview/deploy@5a34a8ef65817dee46db58d157748722138e5eb5
+      - uses: wafer-space/github-actions/pr-preview/deploy@badd3285a86489cd50c63088badd2b63c53d737f
         with:
           preview-repository: ${{ env.PREVIEW_REPOSITORY }}
           preview-key: ${{ secrets.PREVIEW_KEY }}
-          base-url: ${{ needs.find-pr.outputs.base-url }}
-          base-path: ${{ needs.find-pr.outputs.base-path }}
+          preview-base-url: ${{ env.PREVIEW_BASE_URL }}
           directory-name: ${{ needs.find-pr.outputs.directory-name }}
-          slugified-name: ${{ needs.find-pr.outputs.slugified-name }}
+          preview-url: ${{ needs.find-pr.outputs.preview-url }}
           pr-number: ${{ needs.find-pr.outputs.number }}
           pr-sha: ${{ needs.find-pr.outputs.sha }}
 
-      - name: Comment on PR with preview URL
-        if: steps.deploy.outputs.deployment-status == 'success'
-        uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
-        with:
-          kind: deployed
-          pr-number: ${{ needs.find-pr.outputs.number }}
-          preview-url: ${{ steps.deploy.outputs.preview-url }}
-          head-sha: ${{ needs.find-pr.outputs.sha }}
-          is-fork: ${{ needs.find-pr.outputs.is-fork }}
-          gemfile-modified: ${{ needs.find-pr.outputs.gemfile-modified }}
-
-      # preview-verification.yml can't find the PR from a workflow_run event
-      # (this run is on the default branch, and pull_requests is empty for
-      # forks), so start it directly. workflow_dispatch is one of the two
-      # events GITHUB_TOKEN is allowed to trigger.
+      # workflow_dispatch is one of the two events GITHUB_TOKEN may trigger
       - name: Start link check
-        if: steps.deploy.outputs.deployment-status == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           PR_NUMBER: ${{ needs.find-pr.outputs.number }}
-          PREVIEW_URL: ${{ steps.deploy.outputs.preview-url }}
+          PREVIEW_URL: ${{ needs.find-pr.outputs.preview-url }}
           HEAD_SHA: ${{ needs.find-pr.outputs.sha }}
         run: |
           gh workflow run preview-verification.yml --repo "$GITHUB_REPOSITORY" --ref "$DEFAULT_BRANCH" \
             -f pr_number="$PR_NUMBER" -f preview_url="$PREVIEW_URL" -f head_sha="$HEAD_SHA"
-
-      - name: Comment on PR if deployment failed
-        if: steps.deploy.outputs.deployment-status == 'failed'
-        uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
-        with:
-          kind: failed
-          pr-number: ${{ needs.find-pr.outputs.number }}
-          error-message: ${{ steps.deploy.outputs.error-message }}
-
-      - name: Fail if deployment failed
-        if: steps.deploy.outputs.deployment-status == 'failed'
-        env:
-          ERROR_MESSAGE: ${{ steps.deploy.outputs.error-message }}
-        run: |
-          echo "::error::Preview deployment failed: $ERROR_MESSAGE"
-          exit 1
-
-  blocked:
-    needs: find-pr
-    if: needs.find-pr.outputs.found == 'true' && needs.find-pr.outputs.deployment-allowed == 'false'
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - uses: wafer-space/github-actions/pr-preview/comment@5a34a8ef65817dee46db58d157748722138e5eb5
-        with:
-          kind: blocked
-          pr-number: ${{ needs.find-pr.outputs.number }}
-          dangerous-files: ${{ needs.find-pr.outputs.dangerous-files }}

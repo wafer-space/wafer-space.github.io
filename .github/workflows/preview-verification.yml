@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Verify preview
-        uses: wafer-space/github-actions/pr-preview/verify@5a34a8ef65817dee46db58d157748722138e5eb5
+        uses: wafer-space/github-actions/pr-preview/verify@badd3285a86489cd50c63088badd2b63c53d737f
         with:
           pr-number: ${{ github.event.inputs.pr_number }}
           preview-url: ${{ github.event.inputs.preview_url }}
