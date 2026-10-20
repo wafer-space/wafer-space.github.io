@@ -6,6 +6,15 @@
 # update-muffet.py verifies the new release against muffet's published
 # checksums and checks that it still accepts every option the workflow
 # passes to it before changing anything.
+#
+# The branch and pull request are created with a GitHub App token rather
+# than GITHUB_TOKEN, because GitHub doesn't start workflows for events
+# GITHUB_TOKEN causes, so the pull request would get no checks. It needs:
+# - variable AUTOMATION_APP_CLIENT_ID: the App's client ID
+# - secret AUTOMATION_APP_PRIVATE_KEY: a private key for the App
+# The App needs Contents, Pull requests and Workflows (read and write)
+# permissions, and to be installed on this repository. Workflows is needed
+# because the change is to a file in .github/workflows/.
 
 name: Update muffet
 
@@ -14,9 +23,9 @@ on:
     - cron: '17 6 * * 1'  # Mondays 06:17 UTC
   workflow_dispatch:
 
+# GITHUB_TOKEN only reads; writes use the App token
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: update-muffet
@@ -27,8 +36,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1  # v3.2.0
+        with:
+          client-id: ${{ vars.AUTOMATION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.AUTOMATION_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Kept in .git/config so the git push below uses the App token
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Check for a newer muffet release
         id: update
@@ -39,7 +61,8 @@ jobs:
       - name: Open pull request
         if: steps.update.outputs.updated == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
           VERSION: ${{ steps.update.outputs.version }}
           PREVIOUS_VERSION: ${{ steps.update.outputs.previous_version }}
           RELEASE_URL: ${{ steps.update.outputs.release_url }}
@@ -51,8 +74,11 @@ jobs:
             exit 0
           fi
 
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Commit as the App's bot user, so the commits link to it
+          BOT_USER="${APP_SLUG}[bot]"
+          BOT_ID=$(gh api "users/${BOT_USER}" --jq .id)
+          git config user.name "$BOT_USER"
+          git config user.email "${BOT_ID}+${BOT_USER}@users.noreply.github.com"
           git switch -c "$BRANCH"
           git commit -am "CI: update muffet from ${PREVIOUS_VERSION} to ${VERSION}"
           git push origin "$BRANCH"
@@ -66,7 +92,7 @@ jobs:
           - \`muffet_linux_amd64.tar.gz\` matches the SHA256 in the release's published checksums file
           - the new binary's \`--help\` still lists every option \`preview-verification.yml\` passes to muffet
 
-          \`preview-verification.yml\` runs via \`workflow_run\`, so GitHub uses the copy on \`main\`: this pull request's own checks don't exercise the new version. The first preview checked after merging does.
+          Link checks always run \`main\`'s copy of \`preview-verification.yml\`, so this pull request's own checks don't exercise the new version. The first preview checked after merging does.
 
           Opened automatically by \`.github/workflows/update-muffet.yml\`.
           EOF
