@@ -336,8 +336,13 @@ jobs:
           # Run muffet with proper configuration for thorough checking
           # Identify honestly as a link checker: Cloudflare-fronted sites
           # (e.g. sourceforge.io, linuxgizmos.com) challenge requests that
-          # claim to be Chrome but don't behave like it
+          # claim to be Chrome but don't behave like it.
+          # Invalid TLS certificates on linked sites are only warned about
+          # (by summarise-muffet.py below), so muffet skips verification
           if muffet \
+            --skip-tls-verification \
+            --format=json \
+            --verbose \
             --timeout=30 \
             --max-connections=10 \
             --max-connections-per-host=5 \
@@ -347,7 +352,6 @@ jobs:
             --exclude=".*linkedin\.com.*" \
             --exclude=".*hawaii\.edu.*" \
             --exclude=".*timeanddate\.com.*" \
-            --exclude=".*mabrains\.com.*" \
             --exclude=".*reddit\.com.*" \
             --exclude=".*electronics-lab\.com.*" \
             --exclude=".*matrix\.to.*" \
@@ -359,7 +363,17 @@ jobs:
             --header="Accept-Encoding:gzip, deflate, br" \
             --header="Cache-Control:no-cache" \
             --header="Pragma:no-cache" \
-            "$PREVIEW_URL" > muffet-report.txt 2>&1; then
+            "$PREVIEW_URL" > muffet-report.json; then
+            MUFFET_PASSED=true
+          else
+            MUFFET_PASSED=false
+          fi
+          python3 .github/scripts/summarise-muffet.py muffet-report.json \
+            --site-url "$PREVIEW_URL" \
+            --failures muffet-report.txt \
+            --tls-warnings tls-warnings.md
+
+          if [ "$MUFFET_PASSED" = true ]; then
             echo "- ✅ All links and assets are valid (muffet)" >> $REPORT_FILE
           else
             echo "- ❌ muffet found broken links or assets:" >> $REPORT_FILE
@@ -376,8 +390,15 @@ jobs:
             echo "**Summary:** $BROKEN_LINKS broken links, $TIMEOUTS timeouts, $HTTP_ERRORS HTTP errors" >> $REPORT_FILE
             VERIFICATION_PASSED=false
           fi
+
+          # Warnings only: these sites still load if the visitor clicks through
+          if [ -s tls-warnings.md ]; then
+            echo "" >> $REPORT_FILE
+            echo "**Linked sites with invalid TLS certificates (warning only):**" >> $REPORT_FILE
+            cat tls-warnings.md >> $REPORT_FILE
+          fi
           echo "" >> $REPORT_FILE
-          
+
           # 5. Performance check
           echo "## 5. Performance Check" >> $REPORT_FILE
           LOAD_TIME=$(curl -s -w "%{time_total}" -o /dev/null "$PREVIEW_URL")
