@@ -1,0 +1,78 @@
+# Update muffet
+# preview-verification.yml installs muffet at a pinned version with a
+# SHA256 checksum. This workflow checks weekly for a newer muffet release
+# and opens a pull request that updates both.
+#
+# update-muffet.py verifies the new release against muffet's published
+# checksums and checks that it still accepts every option the workflow
+# passes to it before changing anything.
+
+name: Update muffet
+
+on:
+  schedule:
+    - cron: '17 6 * * 1'  # Mondays 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-muffet
+  cancel-in-progress: false
+
+jobs:
+  update-muffet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for a newer muffet release
+        id: update
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/update-muffet.py .github/workflows/preview-verification.yml
+
+      - name: Open pull request
+        if: steps.update.outputs.updated == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.update.outputs.version }}
+          PREVIOUS_VERSION: ${{ steps.update.outputs.previous_version }}
+          RELEASE_URL: ${{ steps.update.outputs.release_url }}
+        run: |
+          BRANCH="automation/update-muffet-${VERSION}"
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null; then
+            echo "Branch $BRANCH already exists, so a pull request for $VERSION is already open or was closed"
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$BRANCH"
+          git commit -am "CI: update muffet from ${PREVIOUS_VERSION} to ${VERSION}"
+          git push origin "$BRANCH"
+
+          cat > pr-body.md << EOF
+          Updates the muffet link checker used by \`preview-verification.yml\` from ${PREVIOUS_VERSION} to ${VERSION}.
+
+          Release notes: ${RELEASE_URL}
+
+          Checked by \`update-muffet.py\` before opening this pull request:
+          - \`muffet_linux_amd64.tar.gz\` matches the SHA256 in the release's published checksums file
+          - the new binary's \`--help\` still lists every option \`preview-verification.yml\` passes to muffet
+
+          \`preview-verification.yml\` runs via \`workflow_run\`, so GitHub uses the copy on \`main\`: this pull request's own checks don't exercise the new version. The first preview checked after merging does.
+
+          Opened automatically by \`.github/workflows/update-muffet.yml\`.
+          EOF
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "CI: update muffet to ${VERSION}" \
+            --body-file pr-body.md

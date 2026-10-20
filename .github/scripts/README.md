@@ -44,6 +44,7 @@ const result = await commentVerificationResults(github, context, core);
 - `generate-pr-directory-name.js`: Generates slugified directory names (`pr-preview-deploy.yml`)
 - `generate-preview-index.sh`: Builds the preview.wafer.space index page (`pr-preview-deploy.yml`, `cleanup-previews.yml`)
 - `summarise-muffet.py`: Turns muffet's JSON output into the link report and warns about invalid TLS certificates (`preview-verification.yml`)
+- `update-muffet.py`: Finds the latest muffet release and updates the pinned version and checksum (`update-muffet.yml`)
 - `verify-preview-site.sh`: Runs the preview checks by hand (see `.github/docs/preview-verification.md`)
 
 Preview deployment records and PR comments are created inline in `pr-preview-deploy.yml`.
