@@ -1,4 +1,4 @@
-<div id="{{include.provider.slug}}" class="box bg-white shadow mb-30">
+<div class="box bg-white shadow mb-30">
   <div class="row">
     {% if include.provider.avatar %}
     <div class="col-md-4">
@@ -16,9 +16,9 @@
     {% endif %}
     <div class="col-md-8">
       {% if include.provider.website %}
-      <h3><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a></h3>
+      <h3 id="{{include.provider.slug}}"><a href="{{include.provider.website}}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{include.provider.title}}</a></h3>
       {% else %}
-      <h3>{{include.provider.title}}</h3>
+      <h3 id="{{include.provider.slug}}">{{include.provider.title}}</h3>
       {% endif %}
       <h4>{{include.provider.sub_title}}</h4>
       {% if include.provider.content %}
