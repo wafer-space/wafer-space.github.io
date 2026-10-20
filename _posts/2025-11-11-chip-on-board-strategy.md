@@ -111,7 +111,7 @@ Panelized for efficient handling and assembly by wirebonding partners:
 {% include post-gallery.html gallery="mezzanine_panels" %}
 
 
-The standard configuration can be found in the [GitHub repository](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml). For easier viewing, it's also available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1pI2BAEWEexXcXN3vah3SR85zPIV6eAXPGXc2bcvoSGU/edit?gid=0#gid=0) that shows the complete pad mapping.
+The standard configuration can be found in the [GitHub repository](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml). For easier viewing, it's also available as a [Google Sheet](https://docs.google.com/spreadsheets/d/1pI2BAEWEexXcXN3vah3SR85zPIV6eAXPGXc2bcvoSGU/edit?gid=0) that shows the complete pad mapping.
 
 {% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-die-padring.png" description="Die padring layout with 74-pad configuration" class="img-fluid rounded" %}
 

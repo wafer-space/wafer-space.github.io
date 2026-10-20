@@ -34,9 +34,9 @@ In addition to the ASIC, a compact bring-up PCB was designed to enable hardware 
 ## SoC Overview
 
 The KianV SoC is built around an RV32IMA core - that's a 32-bit base with integer multiplication & division (`M`) and
-atomic instructions (`A`) extensions. In addition to those, it has support for [Zicntr](https://docs.riscv.org/reference/isa/unpriv/counters.html#7-1-1-zicntr-extension-for-base-counters-and-timers), [Zicsr](https://docs.riscv.org/reference/isa/unpriv/zicsr.html#csrinsts),
-[Zifencei](https://docs.riscv.org/reference/isa/unpriv/zifencei.html#zifencei), [SSTC](https://docs.riscv.org/reference/isa/priv/sstc.html#Sstc) and
-[Sv32](https://docs.riscv.org/reference/isa/priv/supervisor.html#sv32).
+atomic instructions (`A`) extensions. In addition to those, it has support for [Zicntr](https://docs.riscv.org/reference/isa/v20260120/unpriv/counters.html#6-1-1-zicntr-extension-for-base-counters-and-timers), [Zicsr](https://docs.riscv.org/reference/isa/v20260120/unpriv/zicsr.html#csrinsts),
+[Zifencei](https://docs.riscv.org/reference/isa/v20260120/unpriv/zifencei.html#zifencei), [SSTC](https://docs.riscv.org/reference/isa/v20260120/priv/sstc.html#Sstc) and
+[Sv32](https://docs.riscv.org/reference/isa/v20260120/priv/supervisor.html#sv32).
 
 
 The Sv32 extension allows KianV to access memory - this is done using a page-based 32-bit virtual memory system,

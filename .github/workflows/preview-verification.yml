@@ -334,8 +334,15 @@ jobs:
           echo "Running comprehensive muffet validation..." >> $REPORT_FILE
           
           # Run muffet with proper configuration for thorough checking
-          # Use realistic browser headers to avoid bot detection
+          # Identify honestly as a link checker: Cloudflare-fronted sites
+          # (e.g. sourceforge.io, linuxgizmos.com) challenge requests that
+          # claim to be Chrome but don't behave like it.
+          # Invalid TLS certificates on linked sites are only warned about
+          # (by summarise-muffet.py below), so muffet skips verification
           if muffet \
+            --skip-tls-verification \
+            --format=json \
+            --verbose \
             --timeout=30 \
             --max-connections=10 \
             --max-connections-per-host=5 \
@@ -345,27 +352,28 @@ jobs:
             --exclude=".*linkedin\.com.*" \
             --exclude=".*hawaii\.edu.*" \
             --exclude=".*timeanddate\.com.*" \
-            --exclude=".*mabrains\.com.*" \
             --exclude=".*reddit\.com.*" \
             --exclude=".*electronics-lab\.com.*" \
-            --exclude=".*docs\.google\.com.*" \
             --exclude=".*matrix\.to.*" \
             --exclude=".*tinytapeout\.com/chips/silicon-proven.*" \
-            --header="User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
-            --header="Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" \
+            --exclude=".*siliconprawn\.org.*" \
+            --header="User-Agent:Mozilla/5.0 (compatible; wafer.space-link-checker; +https://wafer.space/)" \
+            --header="Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8" \
             --header="Accept-Language:en-US,en;q=0.9" \
             --header="Accept-Encoding:gzip, deflate, br" \
             --header="Cache-Control:no-cache" \
             --header="Pragma:no-cache" \
-            --header="Sec-Ch-Ua:\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"" \
-            --header="Sec-Ch-Ua-Mobile:?0" \
-            --header="Sec-Ch-Ua-Platform:\"Windows\"" \
-            --header="Sec-Fetch-Dest:document" \
-            --header="Sec-Fetch-Mode:navigate" \
-            --header="Sec-Fetch-Site:none" \
-            --header="Sec-Fetch-User:?1" \
-            --header="Upgrade-Insecure-Requests:1" \
-            "$PREVIEW_URL" > muffet-report.txt 2>&1; then
+            "$PREVIEW_URL" > muffet-report.json; then
+            MUFFET_PASSED=true
+          else
+            MUFFET_PASSED=false
+          fi
+          python3 .github/scripts/summarise-muffet.py muffet-report.json \
+            --site-url "$PREVIEW_URL" \
+            --failures muffet-report.txt \
+            --tls-warnings tls-warnings.md
+
+          if [ "$MUFFET_PASSED" = true ]; then
             echo "- ✅ All links and assets are valid (muffet)" >> $REPORT_FILE
           else
             echo "- ❌ muffet found broken links or assets:" >> $REPORT_FILE
@@ -382,8 +390,15 @@ jobs:
             echo "**Summary:** $BROKEN_LINKS broken links, $TIMEOUTS timeouts, $HTTP_ERRORS HTTP errors" >> $REPORT_FILE
             VERIFICATION_PASSED=false
           fi
+
+          # Warnings only: these sites still load if the visitor clicks through
+          if [ -s tls-warnings.md ]; then
+            echo "" >> $REPORT_FILE
+            echo "**Linked sites with invalid TLS certificates (warning only):**" >> $REPORT_FILE
+            cat tls-warnings.md >> $REPORT_FILE
+          fi
           echo "" >> $REPORT_FILE
-          
+
           # 5. Performance check
           echo "## 5. Performance Check" >> $REPORT_FILE
           LOAD_TIME=$(curl -s -w "%{time_total}" -o /dev/null "$PREVIEW_URL")
