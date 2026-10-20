@@ -5,21 +5,21 @@
 name: Preview Site Verification
 
 on:
-  pull_request:
-    branches: ["main"]
-    types: [opened, synchronize, reopened]
-  
-  # Manual trigger for testing
+  # Started by pr-preview-deploy.yml once a preview is deployed, or by hand.
+  # It can't use workflow_run: that event gives no way to find the PR when
+  # the triggering run is itself a workflow_run run on the default branch.
   workflow_dispatch:
     inputs:
       pr_number:
         description: 'PR number to verify'
         required: true
-        default: '3'
       preview_url:
         description: 'Preview URL to verify'
         required: true
-        default: 'https://preview.wafer.space/pr-3/'
+      head_sha:
+        description: 'Commit the preview should be built from (default: the PR head)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -29,71 +29,53 @@ permissions:
 jobs:
   verify-preview:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+        with:
+          persist-credentials: false
+
       - name: Get PR information
         id: pr-info
         uses: actions/github-script@v7
+        # Pass workflow_dispatch inputs via env to prevent expression injection
+        env:
+          INPUT_PR_NUMBER: ${{ github.event.inputs.pr_number }}
+          INPUT_PREVIEW_URL: ${{ github.event.inputs.preview_url }}
+          INPUT_HEAD_SHA: ${{ github.event.inputs.head_sha }}
         with:
           script: |
-            // Handle manual workflow dispatch
-            if (context.eventName === 'workflow_dispatch') {
-              const prNumber = '${{ github.event.inputs.pr_number }}';
-              const previewUrl = '${{ github.event.inputs.preview_url }}';
-              
-              console.log(`Manual trigger - PR Number: ${prNumber}`);
-              console.log(`Manual trigger - Preview URL: ${previewUrl}`);
-              
-              core.setOutput('pr_number', prNumber);
-              core.setOutput('preview_url', previewUrl);
-              core.setOutput('pr_title', 'Manual Verification');
-              core.setOutput('head_sha', context.sha);
-              
+            const prNumber = process.env.INPUT_PR_NUMBER;
+            const previewUrl = process.env.INPUT_PREVIEW_URL;
+            if (!/^[0-9]{1,5}$/.test(prNumber)) {
+              core.setFailed(`Invalid PR number: ${prNumber}`);
               return;
             }
-            
-            // Handle pull_request trigger - fetch current PR state from API to avoid stale data
-            const prNumber = context.payload.pull_request.number;
-            const previewUrl = `https://preview.wafer.space/pr-${prNumber}/`;
-            
-            console.log(`PR Number: ${prNumber}`);
-            console.log(`Preview URL: ${previewUrl}`);
-            
-            // Always fetch current PR data from GitHub API to get the latest commit hash
-            // This avoids issues with stale data in context.payload after force pushes
+            if (!/^https:\/\/[A-Za-z0-9.-]+(\/[A-Za-z0-9._\/-]*)?$/.test(previewUrl)) {
+              core.setFailed(`Invalid preview URL: ${previewUrl}`);
+              return;
+            }
+
             const { data: pullRequest } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: prNumber
+              pull_number: Number(prNumber)
             });
-            
-            const currentHeadSha = pullRequest.head.sha;
-            const prTitle = pullRequest.title;
-            
-            console.log(`PR Title: ${prTitle}`);
-            console.log(`Current HEAD SHA from API: ${currentHeadSha}`);
-            console.log(`Original HEAD SHA from payload: ${context.payload.pull_request.head.sha}`);
-            
-            if (currentHeadSha !== context.payload.pull_request.head.sha) {
-              console.log(`⚠️  Detected stale commit hash in payload`);
-              console.log(`Payload hash: ${context.payload.pull_request.head.sha}`);
-              console.log(`Current hash: ${currentHeadSha}`);
-              console.log(`A newer commit has been pushed - aborting this workflow run`);
-              console.log(`A new workflow run should be triggered for the newer commit`);
-              core.setFailed('Workflow aborted due to stale commit hash - newer commit detected');
+            const headSha = process.env.INPUT_HEAD_SHA || pullRequest.head.sha;
+            if (!/^[0-9a-f]{40}$/.test(headSha)) {
+              core.setFailed(`Invalid head SHA: ${headSha}`);
               return;
             }
-            
-            console.log(`✅ Commit hash is current - proceeding with verification`);
-            
-            // Set outputs for subsequent steps using current API data
+
+            console.log(`PR #${prNumber}: ${pullRequest.title}`);
+            console.log(`Preview URL: ${previewUrl}`);
+            console.log(`Expected commit: ${headSha}`);
+
             core.setOutput('pr_number', prNumber);
             core.setOutput('preview_url', previewUrl);
-            core.setOutput('pr_title', prTitle);
-            core.setOutput('head_sha', currentHeadSha);
+            core.setOutput('pr_title', pullRequest.title);
+            core.setOutput('head_sha', headSha);
       
       - name: Wait for preview deployment to complete
         if: steps.pr-info.outputs.pr_number
@@ -170,7 +152,12 @@ jobs:
         run: |
           PREVIEW_URL="${{ steps.pr-info.outputs.preview_url }}"
           PR_NUMBER="${{ steps.pr-info.outputs.pr_number }}"
-          
+          # Split the preview URL into origin and path, e.g.
+          # https://preview.wafer.space and /pr-12 (or /preview.wafer.space/pr-12
+          # for a fork's previews served from a project Pages site)
+          PREVIEW_ORIGIN=$(echo "$PREVIEW_URL" | grep -oE '^https://[^/]+')
+          PREVIEW_PATH=$(echo "$PREVIEW_URL" | sed -E 's#^https://[^/]+##; s#/+$##')
+
           echo "Starting comprehensive verification of: $PREVIEW_URL"
           
           # Create verification report
@@ -215,9 +202,9 @@ jobs:
           fi
           
           # Check for baseurl configuration (flexible check for different implementations)
-          if echo "$CONTENT" | grep -q "window.siteBaseurl = '/pr-$PR_NUMBER'"; then
+          if echo "$CONTENT" | grep -qF "window.siteBaseurl = '$PREVIEW_PATH'"; then
             echo "- ✅ JavaScript baseurl configuration found" >> $REPORT_FILE
-          elif echo "$CONTENT" | grep -qE "(src|href)=\"/pr-$PR_NUMBER/"; then
+          elif echo "$CONTENT" | grep -qE "(src|href)=\"$PREVIEW_PATH/"; then
             echo "- ✅ Assets use correct PR baseurl paths" >> $REPORT_FILE
           else
             echo "- ⚠️  Baseurl configuration not detected (checking asset accessibility)" >> $REPORT_FILE
@@ -272,8 +259,8 @@ jobs:
             else
               # Handle both relative and absolute paths
               if [[ "$page_path" == /* ]]; then
-                # For absolute paths like /pr-46/about.html, use them directly with the domain
-                PAGE_URL="https://preview.wafer.space$page_path"
+                # For absolute paths like /pr-46/about.html, use them directly with the origin
+                PAGE_URL="$PREVIEW_ORIGIN$page_path"
               else
                 # For relative paths like how.html, append to PREVIEW_URL
                 PAGE_URL="$PREVIEW_URL$page_path"
@@ -297,7 +284,7 @@ jobs:
                 if [ -n "$asset_path" ]; then
                   # Handle relative vs absolute paths
                   if [[ "$asset_path" == /* ]]; then
-                    FULL_ASSET_URL="https://preview.wafer.space$asset_path"
+                    FULL_ASSET_URL="$PREVIEW_ORIGIN$asset_path"
                   else
                     FULL_ASSET_URL="$PREVIEW_URL$asset_path"
                   fi
@@ -449,14 +436,15 @@ jobs:
           script: |
             const commentVerificationResults = require('./.github/scripts/comment-verification-results.js');
             const result = await commentVerificationResults(github, context, core);
-            
-            const prNumber = context.payload.pull_request?.number || 'unknown';
+
+            const prNumber = process.env.PR_NUMBER;
             console.log(`Posted verification results to PR #${prNumber}`);
             console.log(`Comment ID: ${result.commentId}, Archived: ${result.archivedCount} previous comments`);
         env:
           VERIFICATION_STATUS: ${{ steps.verification.outputs.verification_status }}
           REPORT_CONTENT: ${{ steps.verification.outputs.report_content }}
           GITHUB_RUN_ID: ${{ github.run_id }}
+          PR_NUMBER: ${{ steps.pr-info.outputs.pr_number }}
       
       - name: Fail workflow if verification failed
         if: steps.verification.outputs.verification_status == 'failed'
