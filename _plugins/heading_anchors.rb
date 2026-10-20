@@ -29,7 +29,7 @@ module HeadingAnchors
   ID_ATTRIBUTE = /\sid\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))/i
   CLASS_ATTRIBUTE = /\sclass\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))/i
   # Comments and scripts are copied through untouched
-  SKIPPED_BLOCK = /(<!--.*?-->|<script\b.*?<\/script\s*>)/im
+  SKIPPED_BLOCK = /(<!--.*?-->|<script\b.*?<\/script\b[^>]*>)/im
 
   module_function
 
@@ -38,10 +38,13 @@ module HeadingAnchors
     match && match.captures.compact.first
   end
 
-  # Named entities CGI does not know (&nbsp;, &mdash;, &sup2;, ...) become
-  # spaces, which slugify treats as word breaks
+  # Plain text of a fragment, used only for slugs and emptiness checks. Any
+  # "<" or ">" left over from malformed markup is dropped. Named entities CGI
+  # does not know (&nbsp;, &mdash;, &sup2;, ...) become spaces, which slugify
+  # treats as word breaks.
   def text_of(html)
-    CGI.unescapeHTML(html.gsub(/<[^>]*>/, '')).gsub(/&[a-z][a-z0-9]*;/i, ' ').strip
+    text = CGI.unescapeHTML(html.gsub(/<[^>]*>/, ''))
+    text.gsub(/[<>]/, '').gsub(/&[a-z][a-z0-9]*;/i, ' ').strip
   end
 
   def anchor_link(id)
