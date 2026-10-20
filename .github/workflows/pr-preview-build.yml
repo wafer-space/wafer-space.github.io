@@ -1,17 +1,12 @@
 # PR Preview Build (Stage 1 - Untrusted Context)
-# This workflow runs for ALL pull requests, including those from forks
-# It has NO access to secrets. Its only job is to finish, which triggers
-# Stage 2 (pr-preview-deploy.yml) via workflow_run.
+# This workflow runs for ALL pull requests, including those from forks.
+# It does nothing itself: finishing is what triggers Stage 2
+# (pr-preview-deploy.yml) via workflow_run, which builds the preview.
 #
-# SECURITY NOTE: This workflow runs the FORK's version of this file.
-# A malicious fork can modify this workflow arbitrarily. Therefore:
-# - Stage 2 uses nothing from this run except the event GitHub creates
-#   for it (head repository, branch and SHA), and checks those against
-#   the GitHub API
-# - The executable code check here is informational only, so authors see
-#   early that Stage 2 will block their preview
-#
-# The steps are actions in https://github.com/wafer-space/github-actions
+# SECURITY NOTE: This workflow runs the FORK's version of this file, so a
+# fork can change it arbitrarily. Stage 2 therefore uses nothing from this
+# run except the event GitHub creates for it (head repository, branch and
+# SHA), and checks those against the GitHub API.
 name: PR Preview Build
 
 on:
@@ -19,13 +14,11 @@ on:
     branches: ["main"]
     types: [opened, synchronize, reopened]
 
-permissions:
-  contents: read
-  pull-requests: read  # Needed to list PR changed files
+permissions: {}
 
 jobs:
   collect-metadata:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for executable code changes
-        uses: wafer-space/github-actions/pr-preview/check-changes@273b2c072b958163d5ddbc14b62ae4c043012ea9
+      - name: Hand over to Stage 2
+        run: echo "PR Preview Deploy (pr-preview-deploy.yml) builds and deploys the preview once this finishes"
