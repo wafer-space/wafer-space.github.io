@@ -119,13 +119,12 @@ jekyll-archives:
     tag: '/tag/:name/'
     category: '/category/:name/'
 
-# Listing pages whose headings are post-card titles and "Read More"s get no
-# "#" heading permalinks (_plugins/heading_anchors.rb); every other page does
+# Listing pages whose headings are just post-card titles get no "#" heading
+# permalinks (_plugins/heading_anchors.rb); every other page does
 heading_anchors_skip_layouts:
   - news
   - tag
   - category
-  - author_page
 
 feed:
   collections:
