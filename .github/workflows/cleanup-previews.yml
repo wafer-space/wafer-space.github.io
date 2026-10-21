@@ -1,19 +1,23 @@
-# Scheduled Preview Cleanup Workflow
-# This workflow runs on a schedule to clean up preview deployments for closed PRs
-# This prevents the cleanup from appearing as a "skipped" check on open PRs
+# Cleanup Preview Deployments
+# Removes the previews of closed PRs from the preview repository every 15
+# minutes. Scheduled rather than on pull_request close, so it doesn't show
+# as a skipped check on open PRs.
+#
+# The step is the cleanup action in https://github.com/wafer-space/actions.
+# A copy of this repository only cleans up if its PREVIEW_REPOSITORY and
+# PREVIEW_BASE_URL variables are set (see pr-preview-deploy.yml).
 
 name: Cleanup Preview Deployments
 
 on:
   schedule:
-    # Run every 15 minutes to clean up closed PR previews
     - cron: '*/15 * * * *'
-  
+
   # Manual trigger for testing and immediate cleanup
   workflow_dispatch:
     inputs:
       pr_number:
-        description: 'Specific PR number to clean up (optional)'
+        description: 'Only clean up this PR (optional)'
         required: false
         default: ''
 
@@ -21,200 +25,20 @@ permissions:
   contents: read
   pull-requests: read
 
+concurrency:
+  group: cleanup-previews
+  cancel-in-progress: false
+
 jobs:
   cleanup-closed-pr-previews:
+    if: >
+      github.repository == 'wafer-space/wafer-space.github.io' ||
+      (vars.PREVIEW_REPOSITORY != '' && vars.PREVIEW_BASE_URL != '')
     runs-on: ubuntu-latest
-    env:
-      # Same repository variables as pr-preview-deploy.yml
-      PREVIEW_REPOSITORY: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
-      PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
-
     steps:
-      - name: Setup SSH and clone preview repository
-        id: find-cleanup
-        run: |
-          # Setup SSH for accessing the preview repository
-          eval $(ssh-agent -s)
-          echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-          
-          # Clone the preview repository to check what needs cleanup
-          git clone "git@github.com:${PREVIEW_REPOSITORY}.git" preview-repo
-          cd preview-repo
-          
-          # Configure git for commits
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Find all PR directories (pr-* pattern)
-          PR_DIRS=$(find . -maxdepth 1 -type d -name "pr-*" -exec basename {} \; | sort)
-          
-          if [ -z "$PR_DIRS" ]; then
-            echo "No PR preview directories found"
-            echo "cleanup_needed=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          
-          echo "Found PR directories: $PR_DIRS"
-          echo "cleanup_needed=true" >> $GITHUB_OUTPUT
-          
-          # Save the list for the next step (one directory per line)
-          printf '%s\n' $PR_DIRS > /tmp/pr_directories.txt
-      
-      - name: Check PR status and clean up closed PRs
-        if: steps.find-cleanup.outputs.cleanup_needed == 'true'
-        uses: actions/github-script@v7
+      - uses: wafer-space/actions/pr-preview/cleanup@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
         with:
-          script: |
-            const fs = require('fs');
-            
-            // Read the list of PR directories
-            const prDirs = fs.readFileSync('/tmp/pr_directories.txt', 'utf8').trim().split('\n').filter(Boolean);
-            
-            console.log(`Checking ${prDirs.length} PR directories for cleanup`);
-            
-            const cleanupList = [];
-            
-            // Check if specific PR was requested via workflow_dispatch
-            const specificPR = '${{ github.event.inputs.pr_number }}';
-            
-            for (const dirName of prDirs) {
-              // Extract PR number from directory name (pr-123 or pr-123-feature-name)
-              const prMatch = dirName.match(/^pr-(\d+)(?:-.*)?$/);
-              if (!prMatch) {
-                console.log(`Skipping invalid directory name: ${dirName}`);
-                continue;
-              }
-              
-              const prNumber = parseInt(prMatch[1]);
-              
-              // If specific PR requested, only process that one
-              if (specificPR && prNumber !== parseInt(specificPR)) {
-                continue;
-              }
-              
-              try {
-                // Check if PR exists and is closed
-                const { data: pr } = await github.rest.pulls.get({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: prNumber
-                });
-                
-                if (pr.state === 'closed') {
-                  console.log(`PR #${prNumber} is closed, marking for cleanup`);
-                  cleanupList.push({
-                    prNumber: prNumber,
-                    dirName: dirName,
-                    closedAt: pr.closed_at
-                  });
-                } else {
-                  console.log(`PR #${prNumber} is still open, keeping preview`);
-                }
-              } catch (error) {
-                if (error.status === 404) {
-                  console.log(`PR #${prNumber} not found (deleted), marking for cleanup`);
-                  cleanupList.push({
-                    prNumber: prNumber,
-                    dirName: dirName,
-                    closedAt: 'unknown'
-                  });
-                } else {
-                  console.error(`Error checking PR #${prNumber}:`, error.message);
-                }
-              }
-            }
-            
-            console.log(`Found ${cleanupList.length} PR previews to clean up`);
-            
-            // Save cleanup list for next step
-            fs.writeFileSync('/tmp/cleanup_list.json', JSON.stringify(cleanupList, null, 2));
-            
-            console.log(`Cleanup summary: ${cleanupList.length} PR previews marked for cleanup`);
-      
-      - name: Perform cleanup of closed PR previews
-        id: remove
-        if: steps.find-cleanup.outputs.cleanup_needed == 'true'
-        run: |
-          cd preview-repo
-
-          # Read cleanup list
-          CLEANUP_LIST=$(cat /tmp/cleanup_list.json)
-          CLEANUP_COUNT=$(echo "$CLEANUP_LIST" | jq length)
-          echo "count=$CLEANUP_COUNT" >> "$GITHUB_OUTPUT"
-
-          if [ "$CLEANUP_COUNT" -eq 0 ]; then
-            echo "No previews need cleanup"
-            exit 0
-          fi
-
-          echo "Cleaning up $CLEANUP_COUNT preview(s)..."
-          
-          # Process each item in cleanup list
-          echo "$CLEANUP_LIST" | jq -r '.[] | @base64' | while IFS= read -r item; do
-            # Decode the JSON item
-            ITEM_JSON=$(echo "$item" | base64 --decode)
-            DIR_NAME=$(echo "$ITEM_JSON" | jq -r '.dirName')
-            PR_NUMBER=$(echo "$ITEM_JSON" | jq -r '.prNumber')
-            
-            echo "Cleaning up directory: $DIR_NAME (PR #$PR_NUMBER)"
-            
-            # Remove the PR directory
-            if [ -d "$DIR_NAME" ]; then
-              rm -rf "$DIR_NAME"
-              echo "Removed directory: $DIR_NAME"
-            fi
-            
-            # Remove any redirect directories for this PR (pr-123-*)
-            find . -maxdepth 1 -type d -name "pr-${PR_NUMBER}-*" -exec rm -rf {} + || true
-          done
-
-      - name: Regenerate preview index
-        if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
-        uses: wafer-space/actions/pr-preview/update-index@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
-        with:
-          path: preview-repo
-          preview-base-url: ${{ env.PREVIEW_BASE_URL }}
-
-      - name: Commit and push cleanup
-        if: steps.find-cleanup.outputs.cleanup_needed == 'true' && steps.remove.outputs.count != '0'
-        run: |
-          cd preview-repo
-          CLEANUP_LIST=$(cat /tmp/cleanup_list.json)
-
-          # Commit changes if any
-          git add .
-          if ! git diff --staged --quiet; then
-            CLEANUP_SUMMARY=$(echo "$CLEANUP_LIST" | jq -r '.[] | "PR #\(.prNumber)"' | paste -sd ", " -)
-            git commit -m "Scheduled cleanup of closed PR previews: $CLEANUP_SUMMARY"
-            
-            # Re-setup SSH agent for push (may have expired)
-            eval $(ssh-agent -s)
-            echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
-            git push origin main
-            
-            echo "Cleanup completed and changes pushed"
-          else
-            echo "No changes to commit"
-          fi
-      
-      - name: Summary
-        if: always()
-        run: |
-          if [ -f /tmp/cleanup_list.json ]; then
-            CLEANUP_COUNT=$(cat /tmp/cleanup_list.json | jq length)
-            echo "✅ Scheduled cleanup completed"
-            echo "📊 Processed $CLEANUP_COUNT closed PR preview(s)"
-            
-            if [ "$CLEANUP_COUNT" -gt 0 ]; then
-              echo "🧹 Successfully cleaned up:"
-              cat /tmp/cleanup_list.json | jq -r '.[] | "  - PR #\(.prNumber) (\(.dirName))"'
-            else
-              echo "ℹ️  No cleanup needed - all previews are for open PRs"
-            fi
-          else
-            echo "ℹ️  No PR preview directories found"
-          fi
+          preview-repository: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
+          preview-key: ${{ secrets.PREVIEW_KEY }}
+          preview-base-url: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
+          pr-number: ${{ github.event.inputs.pr_number }}
