@@ -7,14 +7,15 @@
 #
 # Listing pages are skipped: any page whose layout is named in the
 # `heading_anchors_skip_layouts` config list (the news index and its later
-# pages, tag and category archives, author pages), where the headings are
-# post-card titles and repeated "Read More"s. Front matter
+# pages, tag and category archives), where the headings are just post-card
+# titles. Front matter
 # `heading_anchors: false` turns the plugin off for one page, and
 # `heading_anchors: true` turns it on for a page with a skipped layout.
 #
 # A heading is left alone when:
 # - it already has a "#" link (theme partials that use the include);
-# - it is footer/sidebar chrome (class "widget-title");
+# - it is footer/sidebar chrome (class "widget-title") or a hover caption
+#   over an image (class "from-top");
 # - it has a data-no-anchor attribute;
 # - its text has no word of two or more letters (countdown digits, "450+" or
 #   "22k" statistics);
@@ -35,6 +36,9 @@ module HeadingAnchors
   HEADING = /<h([1-6])(\s[^>]*)?>(.*?)<\/h\1\s*>/im
   ID_ATTRIBUTE = /\sid\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))/i
   CLASS_ATTRIBUTE = /\sclass\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))/i
+  # Footer/sidebar chrome and image-overlay captions ("Read More" on a post
+  # card, "Learn More" on an add-on) that only show on hover
+  SKIPPED_CLASSES = %w[widget-title from-top].freeze
   # Comments and scripts are copied through untouched
   SKIPPED_BLOCK = /(<!--.*?-->|<script\b.*?<\/script\b[^>]*>)/im
 
@@ -68,7 +72,7 @@ module HeadingAnchors
 
   def skip?(attrs, inner, text)
     inner.include?('class="heading-anchor"') ||
-      attribute(attrs, CLASS_ATTRIBUTE).to_s.split.include?('widget-title') ||
+      (attribute(attrs, CLASS_ATTRIBUTE).to_s.split & SKIPPED_CLASSES).any? ||
       attrs.to_s.match?(/\sdata-no-anchor\b/i) ||
       !text.match?(/\p{L}{2}/)
   end
