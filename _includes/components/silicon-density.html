@@ -11,9 +11,9 @@
       <div class="col-lg-8 offset-lg-2 text-center">
         <h2 class="title-color color-white">What fits on 1&nbsp;mm&sup2; of GF180MCU silicon?</h2>
         <h3 class="display-3">The theoretical maximum, then what designers achieved</h3>
-        <p class="lead">The maximum packs one kind of cell edge to edge, with no room for wiring. No real design gets
-          close, because the cells must be wired together. Every figure below is measured from the layouts of
-          {{ a.designs }} designs made on GF180MCU.</p>
+        <p class="lead">The maximum packs one kind of cell edge to edge, with no room for wiring, using the
+          densest library for that cell. No real design gets close, because the cells must be wired together. What
+          designers achieved is measured from the layouts of {{ a.designs }} designs made on GF180MCU.</p>
         <div class="space20"></div>
       </div>
     </div>
@@ -25,15 +25,19 @@
         <div class="box bg-white shadow p-30 h-100">
           <h3 class="mb-5 color-dark">~{% include components/density-number.html n=cell.per_mm2 %}</h3>
           <p class="mb-0 font-weight-600 color-dark">{{ entry[0] }}s per mm&sup2;</p>
-          <p class="mb-0 small text-muted">{{ cell.what }}: <code>{{ cell.cell }}</code>, {{ cell.width_um }}&nbsp;&times;&nbsp;{{ cell.height_um }}&nbsp;&micro;m,
-            from the {{ cell.library }} library</p>
+          <p class="mb-0 small text-muted">{{ cell.what }}: <a href="{{ cell.cell_url }}"><code>{{ cell.cell }}</code></a>,
+            {{ cell.width_um }}&nbsp;&times;&nbsp;{{ cell.height_um }}&nbsp;&micro;m, from the
+            <a href="{{ cell.library_url }}">{{ cell.library }}</a> library</p>
         </div>
       </div>
       {% endfor %}
     </div>
     <p class="table-footnote text-center">At most
       {% include components/density-number.html n=d.maxima.process_transistors_per_mm2.value %} transistors fit on a
-      square millimetre ({{ d.maxima.process_transistors_per_mm2.library }} <code>{{ d.maxima.process_transistors_per_mm2.cell }}</code>).</p>
+      square millimetre ({{ d.maxima.process_transistors_per_mm2.library }} <code>{{ d.maxima.process_transistors_per_mm2.cell }}</code>,
+      the cell with the most transistors for its size). A library's name gives its cell height in tracks and its
+      supply voltage: <em>7t-5V</em> is the foundry's 7-track 5&nbsp;V library, and <em>AS 7t-3.3V</em> is Avalon
+      Semiconductors' 7-track 3.3&nbsp;V library.</p>
 
     <div class="space60"></div>
 
@@ -86,11 +90,12 @@
             <div class="ws-strip-name">{{ g.group }}<br><small>{{ rows.size }} designs</small></div>
             <div class="ws-strip-track">
               {% for entry in mx %}<i class="ws-strip-max" style="left: {{ entry[1].per_mm2 | times: 100.0 | divided_by: axis }}%"></i>{% endfor %}
-              <i class="ws-strip-median" style="left: {{ g.median_density | times: 100.0 | divided_by: axis }}%" title="Typical: {{ g.median_density }} per mm²"></i>
+              <i class="ws-strip-median" style="left: {{ g.median_density | times: 100.0 | divided_by: axis }}%" title="Typical: {% include components/density-number.html n=g.median_density %} per mm²"></i>
               {% for r in rows %}
               <a class="ws-strip-dot ws-strip-{{ colour }}" href="{{ r.url }}"
                  style="left: {{ r.core_density | times: 100.0 | divided_by: axis }}%; top: {{ forloop.index0 | times: 4 | modulo: 9 | times: 10 | plus: 8 }}%"
-                 title="{{ r.name }} ({{ r.run }}, {{ r.slot }}): {{ r.core_density }} per mm²"></a>
+                 {% capture label %}{{ r.name }} ({{ r.run }}, {{ r.slot }}): {% include components/density-number.html n=r.core_density %} logic cells per mm²{% endcapture %}
+                 title="{{ label }}" aria-label="{{ label }}"></a>
               {% endfor %}
             </div>
           </div>
@@ -98,13 +103,16 @@
           <div class="ws-strip-row ws-strip-axis ws-strip-labels" aria-hidden="true">
             <div class="ws-strip-name"></div>
             <div class="ws-strip-track">
-              {% for entry in mx %}<span style="left: {{ entry[1].per_mm2 | times: 100.0 | divided_by: axis }}%">{{ entry[0] }}</span>{% endfor %}
+              {% for entry in mx %}<span style="left: {{ entry[1].per_mm2 | times: 100.0 | divided_by: axis }}%">All {{ entry[0] | downcase }}s</span>{% endfor %}
             </div>
           </div>
         </div>
-        <p class="table-footnote text-center">The short bar in each row is its typical (median) design. Tiny Tapeout tiles
-          run denser than whole dies: a tile is small and nearly all core, while a die's core also holds its wiring to
-          the pads, its memory and any empty space.</p>
+        <p class="table-footnote text-center">The white line in each row is its typical (median) design. Each dashed
+          line is a core packed with one kind of cell; a real design mixes small cells with large ones, so it can pass
+          the flip-flop line, but none comes near the others. Tiny Tapeout tiles run denser than whole dies: a tile is
+          small and nearly all core, while a die's core also holds its wiring to the pads, its memory and any empty
+          space. Most Google shuttle designs left much of the 9&nbsp;mm&sup2;
+          <a href="https://caravel-harness.readthedocs.io/">Caravel</a> user area empty.</p>
       </div>
     </div>
 
@@ -122,36 +130,40 @@
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <h4 class="text-center mb-20">wafer.space slots</h4>
+        <p class="table-footnote text-center d-md-none">Swipe the tables sideways for more columns.</p>
         <div class="table-responsive">
           <table class="table table-striped text-center ws-table-dark">
             <thead>
               <tr>
                 <th scope="col" class="text-left font-weight-bold">Slot</th>
-                <th scope="col" class="font-weight-bold">Core / whole slot</th>
-                <th scope="col" class="font-weight-bold">Designs</th>
                 <th scope="col" class="font-weight-bold">Typical logic cells</th>
                 <th scope="col" class="font-weight-bold">Most logic cells</th>
-                <th scope="col" class="font-weight-bold">Typical per mm&sup2;<br><small>core / whole slot</small></th>
-                <th scope="col" class="font-weight-bold">Maximum buffers<br><small>in the core</small></th>
+                <th scope="col" class="font-weight-bold">Theoretical maximum<br><small>all buffers, in the core</small></th>
+                <th scope="col" class="font-weight-bold">Typical per mm&sup2;<br><small>of core</small></th>
+                <th scope="col" class="font-weight-bold">Typical per mm&sup2;<br><small>of whole slot</small></th>
+                <th scope="col" class="font-weight-bold">Core / whole slot</th>
+                <th scope="col" class="font-weight-bold d-none d-md-table-cell">Designs</th>
               </tr>
             </thead>
             <tbody>
-              {% for s in a.by_slot %}{% if s.group == "wafer.space" %}
+              {% for slot in site.data.slots.slot_types %}{% assign s = a.by_slot | where: "slot_id", slot.id | first %}{% if s %}
               <tr>
-                <td class="text-left font-weight-600">{{ s.slot | replace: " slot", "" }}</td>
-                <td>{{ s.core_mm2 | round: 2 }} / {{ s.usable_mm2 | round: 2 }}&nbsp;mm&sup2;</td>
-                <td>{{ s.designs }}</td>
+                <td class="text-left font-weight-600 text-nowrap">{{ slot.short_name }}</td>
                 <td>{% include components/density-number.html n=s.median_logic_cells %}</td>
                 <td>{% include components/density-number.html n=s.most_cells.logic_cells %}<br><small><a href="{{ s.most_cells.url }}">{{ s.most_cells.name }}</a></small></td>
-                <td>{% include components/density-number.html n=s.median_density %} / {% include components/density-number.html n=s.median_usable_density %}</td>
                 <td>{% include components/density-number.html n=s.max_cells.Buffer %}</td>
+                <td>{% include components/density-number.html n=s.median_density %}</td>
+                <td>{% include components/density-number.html n=s.median_usable_density %}</td>
+                <td class="text-nowrap">{{ s.core_mm2 | round: 2 }} / {{ s.usable_mm2 | round: 2 }}&nbsp;mm&sup2;</td>
+                <td class="d-none d-md-table-cell">{{ s.designs }}</td>
               </tr>
               {% endif %}{% endfor %}
             </tbody>
           </table>
         </div>
-        <p class="table-footnote text-center">Typical is the median design of that size. Designs that are mostly
-          memory or analog circuits count too, so typical logic is well below what a slot can hold.</p>
+        <p class="table-footnote text-center">Slots are width &times; height. Typical is the median design of that
+          size, counting every design, digital or not: those that are mostly memory or analog circuits pull it down.
+          The whole slot is everything inside its seal ring, pad ring included.</p>
 
         <div class="space30"></div>
         <h4 class="text-center mb-20">Tiny Tapeout tiles on GF180MCU</h4>
@@ -161,7 +173,7 @@
               <tr>
                 <th scope="col" class="text-left font-weight-bold">Tiles</th>
                 <th scope="col" class="font-weight-bold">Area</th>
-                <th scope="col" class="font-weight-bold">Projects</th>
+                <th scope="col" class="font-weight-bold d-none d-md-table-cell">Projects</th>
                 <th scope="col" class="font-weight-bold">Typical logic cells</th>
                 <th scope="col" class="font-weight-bold">Most logic cells</th>
                 <th scope="col" class="font-weight-bold">Typical per mm&sup2;</th>
@@ -170,9 +182,9 @@
             <tbody>
               {% for s in a.by_slot %}{% if s.group == "Tiny Tapeout" %}
               <tr>
-                <td class="text-left font-weight-600">{{ s.slot | replace: " tiles", "" | replace: " tile", "" }}</td>
-                <td>{{ s.core_mm2 | round: 3 }}&nbsp;mm&sup2;</td>
-                <td>{{ s.designs }}</td>
+                <td class="text-left font-weight-600 text-nowrap">{{ s.slot | replace: " tiles", "" | replace: " tile", "" }}</td>
+                <td class="text-nowrap">{{ s.core_mm2 | round: 3 }}&nbsp;mm&sup2;</td>
+                <td class="d-none d-md-table-cell">{{ s.designs }}</td>
                 <td>{% include components/density-number.html n=s.median_logic_cells %}</td>
                 <td>{% include components/density-number.html n=s.most_cells.logic_cells %}<br><small><a href="{{ s.most_cells.url }}">{{ s.most_cells.name }}</a></small></td>
                 <td>{% include components/density-number.html n=s.median_density %}</td>
@@ -181,7 +193,8 @@
             </tbody>
           </table>
         </div>
-        <p class="table-footnote text-center">A project made on two chips from the same source counts once.</p>
+        <p class="table-footnote text-center">Every project counts, digital or not; a project made on two chips
+          from the same source counts once.</p>
 
         <div class="space30"></div>
         <h4 class="text-center mb-20">The densest designs</h4>
@@ -200,14 +213,15 @@
               {% for g in a.per_mm2.by_group %}{% assign r = g.densest %}
               <tr>
                 <td class="text-left"><a href="{{ r.url }}">{{ r.name }}</a></td>
-                <td>{{ r.run }}</td><td>{{ r.slot }}</td><td>{{ r.library }}</td>
+                <td><a href="{{ r.run_url }}">{{ r.run }}</a></td><td class="text-nowrap">{{ r.slot }}</td><td class="text-nowrap">{{ r.library }}</td>
                 <td><strong>{% include components/density-number.html n=r.core_density %}</strong></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
-        <p class="table-footnote text-center">The densest design made in each way. By library, typical designs reach
+        <p class="table-footnote text-center">The densest design made in each way. Across all
+          {{ a.digital | size }} digital designs, Tiny Tapeout projects included, the typical design reaches
           {% for l in a.per_mm2.by_library %}{% include components/density-number.html n=l.median_density %} with {{ l.library }}{% unless forloop.last %}, {% endunless %}{% endfor %}
           logic cells per mm&sup2; of core.</p>
       </div>
@@ -218,12 +232,12 @@
     <!-- SRAM Capacity Table -->
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-        <h4 class="text-center mb-30">SRAM Capacity</h4>
+        <h4 class="text-center mb-30">SRAM capacity</h4>
         <div class="table-responsive">
           <table class="table table-striped text-center ws-table-dark">
             <thead>
               <tr>
-                <th scope="col" class="text-left font-weight-bold">SRAM Type</th>
+                <th scope="col" class="text-left font-weight-bold">SRAM type</th>
                 <th scope="col" class="font-weight-bold">Voltage</th>
                 {% for slot in site.data.slots.slot_types %}
                   <th scope="col" class="font-weight-bold">{{ slot.short_name }}</th>
@@ -245,8 +259,9 @@
           </table>
         </div>
         <p class="table-footnote text-center">
-          Block counts use die area minus seal ring (26&micro;m each side). Run 1&rsquo;s most SRAM-heavy design
-          (<a href="https://github.com/wren6991/riscboy-180" target="_blank" rel="noopener">RISCBoy-180</a>) used 60 blocks in a full slot.
+          Block counts fill the whole slot inside its seal ring (26&nbsp;&micro;m each side), so they assume a
+          design without the default pad ring. Run 1&rsquo;s most SRAM-heavy design
+          (<a href="https://wafer.space/ws-run1/projects/RBOY.html">RISCBoy-180</a>) used 60 blocks in a full slot.
         </p>
       </div>
     </div>
