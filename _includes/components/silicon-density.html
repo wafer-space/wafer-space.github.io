@@ -89,7 +89,7 @@
               <i class="ws-strip-median" style="left: {{ g.median_density | times: 100.0 | divided_by: axis }}%" title="Typical: {{ g.median_density }} per mm²"></i>
               {% for r in rows %}
               <a class="ws-strip-dot ws-strip-{{ colour }}" href="{{ r.url }}"
-                 style="left: {{ r.core_density | times: 100.0 | divided_by: axis }}%; top: {{ forloop.index0 | modulo: 9 | times: 10 | plus: 8 }}%"
+                 style="left: {{ r.core_density | times: 100.0 | divided_by: axis }}%; top: {{ forloop.index0 | times: 4 | modulo: 9 | times: 10 | plus: 8 }}%"
                  title="{{ r.name }} ({{ r.run }}, {{ r.slot }}): {{ r.core_density }} per mm²"></a>
               {% endfor %}
             </div>
