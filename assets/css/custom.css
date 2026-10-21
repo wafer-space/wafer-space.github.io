@@ -522,3 +522,36 @@
 .dark-wrapper .table-footnote {
     color: rgba(255, 255, 255, 0.6);
 }
+
+/* ── Density strip chart (_includes/components/silicon-density.html) ──
+   One row per kind of design; a dot per design placed by its logic cells per mm² of core, on a shared axis
+   with the theoretical maxima as lines. Colours as on the run pages' timelines: wafer.space die, Tiny
+   Tapeout tile, Google shuttle. */
+.ws-strip { --ws-strip-1: #3987e5; --ws-strip-2: #eb6834; --ws-strip-3: #1baf7a; margin-bottom: 10px; }
+.ws-strip-row { display: grid; grid-template-columns: 150px 1fr; column-gap: 16px; align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.ws-strip-name { color: #fff; font-weight: 600; line-height: 1.3; }
+.ws-strip-name small { color: rgba(255, 255, 255, 0.6); font-weight: 400; }
+.ws-strip-track { position: relative; height: 90px; }
+.ws-strip-axis { border-bottom: 0; }
+.ws-strip-axis .ws-strip-track { height: 26px; }
+.ws-strip-axis span { position: absolute; top: 4px; transform: translateX(-50%); font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6); white-space: nowrap; }
+.ws-strip-labels .ws-strip-track { height: 30px; }
+.ws-strip-labels span { color: rgba(255, 255, 255, 0.85); }
+.ws-strip-max { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed rgba(255, 255, 255, 0.35); }
+.ws-strip-median { position: absolute; top: 4%; bottom: 4%; width: 3px; margin-left: -1.5px; background: #fff;
+    border-radius: 2px; z-index: 2; }
+.ws-strip-dot { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%;
+    opacity: 0.85; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
+.ws-strip-dot::before { content: ""; position: absolute; inset: -4px; }
+.ws-strip-dot:hover, .ws-strip-dot:focus-visible { opacity: 1; z-index: 3; transform: scale(1.6); outline: none; }
+.ws-strip-1 { background: var(--ws-strip-1); }
+.ws-strip-2 { background: var(--ws-strip-2); }
+.ws-strip-3 { background: var(--ws-strip-3); }
+@media (max-width: 767px) {
+    .ws-strip-row { grid-template-columns: 1fr; }
+    .ws-strip-name { padding-top: 8px; }
+    .ws-strip-axis .ws-strip-name { display: none; }
+    .ws-strip-labels span { font-size: 0.65rem; }
+}
