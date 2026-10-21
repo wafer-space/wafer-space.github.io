@@ -12,6 +12,8 @@ maxima:
       width_um: 2.24
       height_um: 3.92
       transistors_per_mm2: 455539
+      library_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
+      cell_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
     NAND gate:
       what: Basic logic gate
       library: 7t-5V
@@ -20,6 +22,8 @@ maxima:
       width_um: 2.8
       height_um: 3.92
       transistors_per_mm2: 364431
+      library_url: https://gf180mcu-pdk.readthedocs.io/en/latest/digital/standard_cells/gf180mcu_fd_sc_mcu7t5v0/index.html
+      cell_url: https://gf180mcu-pdk.readthedocs.io/en/latest/digital/standard_cells/gf180mcu_fd_sc_mcu7t5v0/cells/nand2/gf180mcu_fd_sc_mcu7t5v0__nand2_1.html
     Buffer:
       what: Strengthens a signal
       library: AS 7t-3.3V
@@ -28,6 +32,8 @@ maxima:
       width_um: 3.36
       height_um: 3.92
       transistors_per_mm2: 455539
+      library_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
+      cell_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
     Flip-flop:
       what: Stores one bit
       library: AS 7t-3.3V
@@ -36,6 +42,8 @@ maxima:
       width_um: 15.12
       height_um: 3.92
       transistors_per_mm2: 438668
+      library_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
+      cell_url: https://github.com/AvalonSemiconductors/gf180mcu_as_sc_mcu7t3v3
   process_transistors_per_mm2:
     value: 520616
     cell: nand2_2
@@ -248,6 +256,7 @@ achieved:
     median_utilisation: 0.246
     most_cells:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: CLON
       name: Cloneless2
       url: https://wafer.space/ws-run2/projects/CLON.html
@@ -264,6 +273,7 @@ achieved:
       sram_bits: 0
     densest:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: CLON
       name: Cloneless2
       url: https://wafer.space/ws-run2/projects/CLON.html
@@ -280,6 +290,7 @@ achieved:
       sram_bits: 0
     typical:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: CAFE
       name: FazyRV Hachure
       url: https://wafer.space/ws-run1/projects/CAFE.html
@@ -298,6 +309,7 @@ achieved:
       sram_bits: 81920
     densest_window:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: JKU1
       name: gf180mcu-jku-projects
       url: https://wafer.space/ws-run1/projects/JKU1.html
@@ -333,6 +345,7 @@ achieved:
     median_utilisation: 0.186
     most_cells:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
       url: https://wafer.space/ws-run2/projects/EURO.html
@@ -351,6 +364,7 @@ achieved:
       sram_bits: 0
     densest:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
       url: https://wafer.space/ws-run2/projects/EURO.html
@@ -369,6 +383,7 @@ achieved:
       sram_bits: 0
     typical:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: GD04
       name: Racquet Wide 1x0.5
       url: https://wafer.space/ws-run1/projects/GD04.html
@@ -387,6 +402,7 @@ achieved:
       sram_bits: 24576
     densest_window:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
       url: https://wafer.space/ws-run2/projects/EURO.html
@@ -422,6 +438,7 @@ achieved:
     median_utilisation: 0.041
     most_cells:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
       url: https://wafer.space/ws-run2/projects/DPK1.html
@@ -440,6 +457,7 @@ achieved:
       sram_bits: 32768
     densest:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
       url: https://wafer.space/ws-run2/projects/DPK1.html
@@ -458,6 +476,7 @@ achieved:
       sram_bits: 32768
     typical:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: HZ80
       name: FOSSi open-source replacement for Z80 classic 8-bit CPU (0.5 x 1 slot)
       url: https://wafer.space/ws-run1/projects/HZ80.html
@@ -476,6 +495,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
       url: https://wafer.space/ws-run2/projects/DPK1.html
@@ -511,6 +531,7 @@ achieved:
     median_utilisation: 0.386
     most_cells:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
       url: https://wafer.space/ws-run1/projects/TQVA.html
@@ -529,6 +550,7 @@ achieved:
       sram_bits: 4096
     densest:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
       url: https://wafer.space/ws-run1/projects/TQVA.html
@@ -547,6 +569,7 @@ achieved:
       sram_bits: 4096
     typical:
       run: wafer.space Run 2
+      run_url: https://wafer.space/ws-run2/
       code: TQVD
       name: TinyQV - RISC-V SoC with HDMI output
       url: https://wafer.space/ws-run2/projects/TQVD.html
@@ -564,6 +587,7 @@ achieved:
       sram_bits: 32768
     densest_window:
       run: wafer.space Run 1
+      run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
       url: https://wafer.space/ws-run1/projects/TQVA.html
@@ -599,6 +623,7 @@ achieved:
     median_utilisation: 0.591
     most_cells:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '295'
       name: ASCON Integrated Crypto Processor
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295.html
@@ -614,6 +639,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '295'
       name: ASCON Integrated Crypto Processor
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295.html
@@ -629,6 +655,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '295'
       name: KianV uLinux SoC
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/295.html
@@ -645,6 +672,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 0.3
+      run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '359'
       name: Tiny FABulous FPGA (3.3V version)
       url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359.html
@@ -676,6 +704,7 @@ achieved:
     median_utilisation: 0.621
     most_cells:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
@@ -692,6 +721,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
@@ -708,6 +738,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '197'
       name: LISA 8-Bit Microcontroller
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/197.html
@@ -724,6 +755,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
@@ -757,6 +789,7 @@ achieved:
     median_utilisation: 0.632
     most_cells:
       run: Tiny Tapeout GF 0.3
+      run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '199'
       name: TinyQV RISC-V SoC
       url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199.html
@@ -773,6 +806,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 0.3
+      run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '199'
       name: TinyQV RISC-V SoC
       url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199.html
@@ -789,6 +823,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '102'
       name: Silly-Faust
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102.html
@@ -805,6 +840,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '102'
       name: Silly-Faust
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102.html
@@ -838,6 +874,7 @@ achieved:
     median_utilisation: 0.622
     most_cells:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '135'
       name: serv_soc_wb
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135.html
@@ -854,6 +891,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '135'
       name: serv_soc_wb
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135.html
@@ -870,6 +908,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '101'
       name: AER Reflex Chip - MCP2515 CAN gateway
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/101.html
@@ -886,6 +925,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '391'
       name: megabytebeat
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391.html
@@ -919,6 +959,7 @@ achieved:
     median_utilisation: 0.53
     most_cells:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '195'
       name: LEA-128
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195.html
@@ -935,6 +976,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '195'
       name: LEA-128
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195.html
@@ -951,6 +993,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '454'
       name: Spiking Neural Network WTA Inference Engine (GF180)
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/454.html
@@ -965,6 +1008,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '386'
       name: Elemental Harmony Game
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386.html
@@ -998,6 +1042,7 @@ achieved:
     median_utilisation: 0.623
     most_cells:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '390'
       name: GPS_Accelerator
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
@@ -1014,6 +1059,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '390'
       name: GPS_Accelerator
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
@@ -1030,6 +1076,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 0.2
+      run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '103'
       name: Simon's Caterpillar
       url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/103.html
@@ -1046,6 +1093,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 0.3
+      run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '452'
       name: PolyWave
       url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452.html
@@ -1077,6 +1125,7 @@ achieved:
     median_utilisation: 0.69
     most_cells:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '353'
       name: DOTTEE VGA demo (TTGF26a)
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1093,6 +1142,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Tiny Tapeout GF 26a
+      run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '353'
       name: DOTTEE VGA demo (TTGF26a)
       url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1109,6 +1159,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Tiny Tapeout GF 0.3
+      run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '519'
       name: Simon Says memory game
       url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/519.html
@@ -1125,6 +1176,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Tiny Tapeout GF 26b
+      run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '547'
       name: Tiny RIng Oscillator PUF
       url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
@@ -1158,6 +1210,7 @@ achieved:
     median_utilisation: 0.012
     most_cells:
       run: Google GFMPW-0
+      run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
       url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1172,6 +1225,7 @@ achieved:
       sram_bits: 0
     densest:
       run: Google GFMPW-0
+      run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
       url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1186,6 +1240,7 @@ achieved:
       sram_bits: 0
     typical:
       run: Google GFMPW-0
+      run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 105A
       name: AS2650
       url: https://wafer.space/google-gf180mcu-mpw0/projects/105A.html
@@ -1200,6 +1255,7 @@ achieved:
       sram_bits: 0
     densest_window:
       run: Google GFMPW-0
+      run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
       url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1233,6 +1289,7 @@ achieved:
       median_utilisation: 0.487
       most_cells:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1249,6 +1306,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1265,6 +1323,7 @@ achieved:
         sram_bits: 0
       typical:
         run: Tiny Tapeout GF 0.2
+        run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '358'
         name: Notre Dame - CSE 30342 - DIC - Advanced FSM Final Project Example
         url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/358.html
@@ -1281,6 +1340,7 @@ achieved:
         sram_bits: 0
       densest_window:
         run: Tiny Tapeout GF 26b
+        run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
         url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
@@ -1308,6 +1368,7 @@ achieved:
       median_utilisation: 0.529
       most_cells:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1324,6 +1385,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1340,6 +1402,7 @@ achieved:
         sram_bits: 0
       typical:
         run: Tiny Tapeout GF 0.2
+        run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '033'
         name: wafer.space Logo VGA Screensaver
         url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/033.html
@@ -1356,6 +1419,7 @@ achieved:
         sram_bits: 0
       densest_window:
         run: Tiny Tapeout GF 26b
+        run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
         url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
@@ -1382,6 +1446,7 @@ achieved:
       median_utilisation: 0.186
       most_cells:
         run: Tiny Tapeout GF 0.2
+        run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
         url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
@@ -1398,6 +1463,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Tiny Tapeout GF 0.2
+        run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
         url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
@@ -1414,6 +1480,7 @@ achieved:
         sram_bits: 0
       typical:
         run: wafer.space Run 1
+        run_url: https://wafer.space/ws-run1/
         code: JKU2
         name: gf180mcu-jku-atbs-adc
         url: https://wafer.space/ws-run1/projects/JKU2.html
@@ -1432,6 +1499,7 @@ achieved:
         sram_bits: 0
       densest_window:
         run: Tiny Tapeout GF 0.2
+        run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
         url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
@@ -1458,6 +1526,7 @@ achieved:
       median_utilisation: 0.32
       most_cells:
         run: Tiny Tapeout GF 26b
+        run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '612'
         name: Detronyx Arithmetic Lab Tile
         url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612.html
@@ -1474,6 +1543,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Tiny Tapeout GF 26b
+        run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '612'
         name: Detronyx Arithmetic Lab Tile
         url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612.html
@@ -1490,6 +1560,7 @@ achieved:
         sram_bits: 0
       typical:
         run: wafer.space Run 2
+        run_url: https://wafer.space/ws-run2/
         code: NAX1
         name: Naxos CoB
         url: https://wafer.space/ws-run2/projects/NAX1.html
@@ -1507,6 +1578,7 @@ achieved:
         sram_bits: 81920
       densest_window:
         run: Tiny Tapeout GF 0.3
+        run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
         code: '359'
         name: Tiny FABulous FPGA (3.3V version)
         url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359.html
@@ -1532,6 +1604,7 @@ achieved:
       median_utilisation: 0.218
       most_cells:
         run: wafer.space Run 2
+        run_url: https://wafer.space/ws-run2/
         code: CLON
         name: Cloneless2
         url: https://wafer.space/ws-run2/projects/CLON.html
@@ -1548,6 +1621,7 @@ achieved:
         sram_bits: 0
       densest:
         run: wafer.space Run 2
+        run_url: https://wafer.space/ws-run2/
         code: CLON
         name: Cloneless2
         url: https://wafer.space/ws-run2/projects/CLON.html
@@ -1564,6 +1638,7 @@ achieved:
         sram_bits: 0
       typical:
         run: wafer.space Run 1
+        run_url: https://wafer.space/ws-run1/
         code: GD04
         name: Racquet Wide 1x0.5
         url: https://wafer.space/ws-run1/projects/GD04.html
@@ -1582,6 +1657,7 @@ achieved:
         sram_bits: 24576
       densest_window:
         run: wafer.space Run 1
+        run_url: https://wafer.space/ws-run1/
         code: JKU1
         name: gf180mcu-jku-projects
         url: https://wafer.space/ws-run1/projects/JKU1.html
@@ -1610,6 +1686,7 @@ achieved:
       median_utilisation: 0.622
       most_cells:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1626,6 +1703,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1642,6 +1720,7 @@ achieved:
         sram_bits: 0
       typical:
         run: Tiny Tapeout GF 26a
+        run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '547'
         name: Memristive Crossbar Peripheral Controller (GF180)
         url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/547.html
@@ -1656,6 +1735,7 @@ achieved:
         sram_bits: 0
       densest_window:
         run: Tiny Tapeout GF 26b
+        run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
         url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
@@ -1682,6 +1762,7 @@ achieved:
       median_utilisation: 0.012
       most_cells:
         run: Google GFMPW-0
+        run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
         url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1696,6 +1777,7 @@ achieved:
         sram_bits: 0
       densest:
         run: Google GFMPW-0
+        run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
         url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1710,6 +1792,7 @@ achieved:
         sram_bits: 0
       typical:
         run: Google GFMPW-0
+        run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 105A
         name: AS2650
         url: https://wafer.space/google-gf180mcu-mpw0/projects/105A.html
@@ -1724,6 +1807,7 @@ achieved:
         sram_bits: 0
       densest_window:
         run: Google GFMPW-0
+        run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
         url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
@@ -1738,6 +1822,7 @@ achieved:
         sram_bits: 0
   densest:
   - run: Tiny Tapeout GF 26a
+    run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '353'
     name: DOTTEE VGA demo (TTGF26a)
     url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
@@ -1753,6 +1838,7 @@ achieved:
     clock_period_ns: 40.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26b
+    run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '067'
     name: Car Trip
     url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/067.html
@@ -1768,6 +1854,7 @@ achieved:
     clock_period_ns: 39.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26a
+    run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '486'
     name: BioPulse Tile
     url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486.html
@@ -1783,6 +1870,7 @@ achieved:
     clock_period_ns: 50.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26a
+    run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '390'
     name: GPS_Accelerator
     url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
@@ -1798,6 +1886,7 @@ achieved:
     clock_period_ns: 100.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26a
+    run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '129'
     name: 7-Segment Neural Predictor
     url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/129.html
@@ -1814,6 +1903,7 @@ achieved:
     sram_bits: 0
   densest_windows:
   - run: Tiny Tapeout GF 26b
+    run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '547'
     name: Tiny RIng Oscillator PUF
     url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
@@ -1829,6 +1919,7 @@ achieved:
     clock_period_ns: 20.0
     sram_bits: 0
   - run: Tiny Tapeout GF 0.3
+    run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
     code: '452'
     name: PolyWave
     url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452.html
@@ -1842,6 +1933,7 @@ achieved:
     volts: 5.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26b
+    run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '386'
     name: Elemental Harmony Game
     url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386.html
@@ -1857,6 +1949,7 @@ achieved:
     clock_period_ns: 100.0
     sram_bits: 0
   - run: Tiny Tapeout GF 0.2
+    run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
     code: '391'
     name: megabytebeat
     url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391.html
@@ -1872,6 +1965,7 @@ achieved:
     clock_period_ns: 20.0
     sram_bits: 0
   - run: Tiny Tapeout GF 26a
+    run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '486'
     name: BioPulse Tile
     url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486.html
