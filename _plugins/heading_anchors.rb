@@ -17,8 +17,8 @@
 # - it is footer/sidebar chrome (class "widget-title") or a hover caption
 #   over an image (class "from-top");
 # - it has a data-no-anchor attribute;
-# - its text has no word of two or more letters (countdown digits, "450+" or
-#   "22k" statistics);
+# - its text never has two letters in a row (countdown digits, "450+" or "22k"
+#   statistics; "5th" or "22kg" would still get a link);
 # - it is a subtitle: one level below an anchored heading, with only tags in
 #   between (a section's display-3 tagline, a team card's role); the heading
 #   above it carries the link.
@@ -73,7 +73,7 @@ module HeadingAnchors
   def skip?(attrs, inner, text)
     inner.include?('class="heading-anchor"') ||
       (attribute(attrs, CLASS_ATTRIBUTE).to_s.split & SKIPPED_CLASSES).any? ||
-      attrs.to_s.match?(/\sdata-no-anchor\b/i) ||
+      attrs.to_s.match?(/\sdata-no-anchor(?![\w-])/i) ||
       !text.match?(/\p{L}{2}/)
   end
 
