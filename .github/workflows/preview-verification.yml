@@ -27,6 +27,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  statuses: write
   actions: read
 
 jobs:
@@ -35,7 +36,7 @@ jobs:
 
     steps:
       - name: Verify preview
-        uses: wafer-space/actions/pr-preview/verify@83623a7977fdfdadb8d5a0b4ab97e858a9a675b3
+        uses: wafer-space/actions/pr-preview/verify@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
         with:
           pr-number: ${{ github.event.inputs.pr_number }}
           preview-url: ${{ github.event.inputs.preview_url }}
