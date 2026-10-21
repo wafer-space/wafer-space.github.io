@@ -103,7 +103,7 @@
           <div class="ws-strip-row ws-strip-axis ws-strip-labels" aria-hidden="true">
             <div class="ws-strip-name"></div>
             <div class="ws-strip-track">
-              {% for entry in mx %}<span style="left: {{ entry[1].per_mm2 | times: 100.0 | divided_by: axis }}%">All {{ entry[0] | downcase }}s</span>{% endfor %}
+              {% for entry in mx %}<span style="left: {{ entry[1].per_mm2 | times: 100.0 | divided_by: axis }}%">All {% if entry[0] contains "NAND" %}{{ entry[0] }}{% else %}{{ entry[0] | downcase }}{% endif %}s</span>{% endfor %}
             </div>
           </div>
         </div>
