@@ -555,7 +555,11 @@
 .ws-strip-1 { background: var(--ws-strip-1); }
 .ws-strip-2 { background: var(--ws-strip-2); }
 .ws-strip-3 { background: var(--ws-strip-3); }
+.ws-strip-axis:first-child span:first-child { transform: none; }
+.ws-strip-axis:first-child span:last-child { transform: translateX(-100%); }
 @media (max-width: 767px) {
+    .ws-strip-labels .ws-strip-track { height: 44px; }
+    .ws-strip-labels span:nth-child(even) { top: 22px; }
     .ws-strip-row { grid-template-columns: 1fr; }
     .ws-strip-name { padding-top: 8px; }
     .ws-strip-axis .ws-strip-name { display: none; }
