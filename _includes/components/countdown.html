@@ -78,7 +78,7 @@
                   <!-- Expired message - shown when countdown reaches zero -->
                   <div class="countdown-expired text-center" style="display: none;">
                     <div class="box bg-white shadow p-4">
-                      <h3 class="mb-0 text-warning"><i class="jam jam-shopping-cart mr-2"></i>{{ deadline.expired_message | default: 'Early bird deadline passed' }}</h3>
+                      <h3 class="mb-0 text-warning" data-no-anchor><i class="jam jam-shopping-cart mr-2"></i>{{ deadline.expired_message | default: 'Early bird deadline passed' }}</h3>
                     </div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@
                   <!-- Expired message - shown when countdown reaches zero -->
                   <div class="countdown-expired text-center" style="display: none;">
                     <div class="box bg-white shadow p-4">
-                      <h3 class="mb-0 text-danger"><i class="jam jam-rocket mr-2"></i>{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
+                      <h3 class="mb-0 text-danger" data-no-anchor><i class="jam jam-rocket mr-2"></i>{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
                     </div>
                   </div>
                 </div>
@@ -238,7 +238,7 @@
                   <!-- Expired message - shown when countdown reaches zero -->
                   <div class="countdown-expired text-center" style="display: none;">
                     <div class="box bg-white shadow p-4">
-                      <h3 class="mb-0 text-warning">{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
+                      <h3 class="mb-0 text-warning" data-no-anchor>{{ deadline.expired_message | default: 'Deadline passed' }}</h3>
                     </div>
                   </div>
                 </div>
