@@ -64,17 +64,17 @@ external_links:
   links:
     - url: "/"
       text: "Home"
-    - url: "/about/"
+    - url: "/about"
       text: "About"
-    - url: "/price/"
+    - url: "/price"
       text: "Pricing"
-    - url: "/technology/"
+    - url: "/technology"
       text: "Technology"
-    - url: "/design-help/"
+    - url: "/design-help"
       text: "Design Help"
     - url: "/news"
       text: "News"
-    - url: "/faq/"
+    - url: "/faq"
       text: "FAQ"
 
 # Site Wide External Links for footer
