@@ -130,7 +130,7 @@ while IFS= read -r asset_path; do
         
         # Handle relative vs absolute paths
         if [[ "$asset_path" == /* ]]; then
-            FULL_ASSET_URL="https://preview.wafer.space$asset_path"
+            FULL_ASSET_URL="$(echo "$PREVIEW_URL" | grep -oE '^https?://[^/]+')$asset_path"
         else
             FULL_ASSET_URL="$PREVIEW_URL$asset_path"
         fi

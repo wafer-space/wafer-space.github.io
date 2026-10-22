@@ -1,0 +1,132 @@
+# PR Preview Deploy (Stage 2 - Trusted Context)
+# Triggered by workflow_run after Stage 1 (pr-preview-build.yml) finishes.
+# GitHub runs this file from the default branch, with access to secrets.
+#
+# SECURITY MODEL: find-pr identifies the PR only from the workflow_run
+# event (head repository, branch and SHA, which GitHub sets) plus the
+# GitHub API. Only the build job runs the PR's code, and it gets no
+# secrets: fetch-theme hands it the private theme as an artifact, and
+# deploy pushes its output without running any of it. No job here may use
+# an Actions cache (see wafer-space/actions pr-preview/README.md).
+#
+# The steps are actions in https://github.com/wafer-space/actions,
+# pinned to a commit, so no PR to this repository changes what they run.
+name: PR Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ["PR Preview Build"]
+    types: [completed]
+
+permissions: {}
+
+# One run at a time per PR branch. A newer commit's run waits instead of
+# cancelling one that may already have pushed; deploy skips a commit the
+# PR has moved on from. workflow_run.pull_requests is empty for fork PRs,
+# so key on the head repository and branch.
+concurrency:
+  group: pr-preview-deployment-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+# In wafer-space/wafer-space.github.io these default to the wafer-space
+# theme and preview site. A copy of this repository in someone's own
+# account uses their own fork of the theme (<owner>/wafer-space-jekyll-
+# theme, or the THEME_REPOSITORY variable) with their own JEKYLL_THEME_KEY,
+# and only deploys if the PREVIEW_REPOSITORY and PREVIEW_BASE_URL
+# variables are set, e.g. to <owner>/preview.wafer.space and
+# https://<owner>.github.io/preview.wafer.space, with their own PREVIEW_KEY.
+# Never give a copy a key to the wafer-space theme.
+env:
+  PREVIEW_REPOSITORY: ${{ vars.PREVIEW_REPOSITORY || (github.repository == 'wafer-space/wafer-space.github.io' && 'wafer-space/preview.wafer.space' || '') }}
+  PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL || (github.repository == 'wafer-space/wafer-space.github.io' && 'https://preview.wafer.space' || '') }}
+  THEME_REPOSITORY: ${{ vars.THEME_REPOSITORY || (github.repository == 'wafer-space/wafer-space.github.io' && 'wafer-space/wafer-space-jekyll-theme' || format('{0}/wafer-space-jekyll-theme', github.repository_owner)) }}
+
+jobs:
+  find-pr:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      (github.repository == 'wafer-space/wafer-space.github.io' ||
+       (vars.PREVIEW_REPOSITORY != '' && vars.PREVIEW_BASE_URL != '' &&
+        vars.THEME_REPOSITORY != 'wafer-space/wafer-space-jekyll-theme'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      found: ${{ steps.pr.outputs.found }}
+      number: ${{ steps.pr.outputs.number }}
+      sha: ${{ steps.pr.outputs.sha }}
+      theme-sha: ${{ steps.pr.outputs.theme-sha }}
+      directory-name: ${{ steps.pr.outputs.directory-name }}
+      preview-url: ${{ steps.pr.outputs.preview-url }}
+      baseurl: ${{ steps.pr.outputs.baseurl }}
+    steps:
+      - id: pr
+        uses: wafer-space/actions/pr-preview/find-pr@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
+        with:
+          preview-base-url: ${{ env.PREVIEW_BASE_URL }}
+
+  # Runs no PR code. GitHub serves every commit in the theme's fork
+  # network from THEME_REPOSITORY, so a PR's _theme can point at a commit
+  # in the author's own fork of the theme.
+  fetch-theme:
+    needs: find-pr
+    if: needs.find-pr.outputs.found == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: wafer-space/actions/pr-preview/fetch-theme@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
+        with:
+          theme-repository: ${{ env.THEME_REPOSITORY }}
+          theme-sha: ${{ needs.find-pr.outputs.theme-sha }}
+          ssh-key: ${{ secrets.JEKYLL_THEME_KEY }}
+
+  # Runs the PR's code, so it gets NO secrets and a read-only token
+  build:
+    needs: [find-pr, fetch-theme]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: wafer-space/actions/pr-preview/build@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
+        with:
+          pr-sha: ${{ needs.find-pr.outputs.sha }}
+          baseurl: ${{ needs.find-pr.outputs.baseurl }}
+
+  # Runs no PR code: pushes the build job's artifact as data. Also runs
+  # when the build failed, to report that on the PR.
+  deploy:
+    needs: [find-pr, build]
+    if: ${{ !cancelled() && needs.find-pr.outputs.found == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      statuses: write
+      actions: write  # to start the link check
+    steps:
+      - id: deploy
+        uses: wafer-space/actions/pr-preview/deploy@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
+        with:
+          build-result: ${{ needs.build.result }}
+          preview-repository: ${{ env.PREVIEW_REPOSITORY }}
+          preview-key: ${{ secrets.PREVIEW_KEY }}
+          preview-base-url: ${{ env.PREVIEW_BASE_URL }}
+          directory-name: ${{ needs.find-pr.outputs.directory-name }}
+          preview-url: ${{ needs.find-pr.outputs.preview-url }}
+          pr-number: ${{ needs.find-pr.outputs.number }}
+          pr-sha: ${{ needs.find-pr.outputs.sha }}
+
+      # workflow_dispatch is one of the two events GITHUB_TOKEN may trigger
+      - name: Start link check
+        if: steps.deploy.outputs.deployed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          PR_NUMBER: ${{ needs.find-pr.outputs.number }}
+          PREVIEW_URL: ${{ needs.find-pr.outputs.preview-url }}
+          HEAD_SHA: ${{ needs.find-pr.outputs.sha }}
+        run: |
+          gh workflow run preview-verification.yml --repo "$GITHUB_REPOSITORY" --ref "$DEFAULT_BRANCH" \
+            -f pr_number="$PR_NUMBER" -f preview_url="$PREVIEW_URL" -f head_sha="$HEAD_SHA"
