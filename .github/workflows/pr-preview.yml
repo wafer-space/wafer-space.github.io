@@ -187,23 +187,23 @@ jobs:
           echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
 
           # Other PRs deploy to the same preview repository in parallel, so a push can be
-          # rejected because main moved. Replay this deploy on the latest main and retry.
+          # rejected because main moved. Merge the latest main and retry.
           for attempt in 1 2 3 4 5; do
             if git push origin main; then
               exit 0
             fi
-            echo "Push rejected (attempt $attempt), rebasing onto latest preview main"
+            echo "Push rejected (attempt $attempt), merging latest preview main"
             sleep $((attempt * 10))
             git fetch origin main
             # Each PR only touches its own directory; on a conflict in shared files
             # (the preview index) keep ours, then regenerate the index from all PR dirs
-            if ! git rebase -X theirs origin/main; then
-              git rebase --abort
+            if ! git merge --no-edit -X ours origin/main; then
+              git merge --abort
               exit 1
             fi
             ./generate-preview-index.sh
             git add .
-            git diff --staged --quiet || git commit --amend --no-edit
+            git diff --staged --quiet || git commit -m "Regenerate preview index"
           done
           echo "Failed to push preview after 5 attempts"
           exit 1
