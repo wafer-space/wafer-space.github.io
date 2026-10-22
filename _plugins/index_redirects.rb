@@ -18,12 +18,22 @@ module IndexRedirects
 
   module_function
 
-  def outputs(site)
-    (site.pages + site.static_files).map { |item| item.url.sub(%r{\A/}, '') }
+  # Output paths relative to the site root (not URLs, which the "/:title"
+  # permalink can strip of ".html")
+  def output_path(site, item)
+    item.destination(site.dest).delete_prefix(File.join(site.dest, ''))
   end
 
+  def outputs(site)
+    (site.pages + site.static_files).map { |item| output_path(site, item) }
+  end
+
+  # Only pages read from a real source file: generated pages such as tag and
+  # category archives also report a ".../index.html" relative_path
   def candidates(site)
     site.pages.filter_map do |page|
+      next if page.is_a?(Jekyll::PageWithoutAFile) || !File.file?(site.in_source_dir(page.relative_path))
+
       match = SOURCE.match(page.relative_path)
       dir = match && match[1]
       dir if dir && page.url == "/#{dir}/"
