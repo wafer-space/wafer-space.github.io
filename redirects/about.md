@@ -1,5 +1,0 @@
----
-permalink: /about.html
-redirect: /about
-layout: redirect
----
