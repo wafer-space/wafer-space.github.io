@@ -36,7 +36,7 @@ runs:
       title: "Design Submission Deadline"
       subtitle: "Submit your GDSII files for GF180MCU Run 1"
       button_text: "Submit"
-      button_url: "/how.html"
+      button_url: "/technology/"
       priority: "important"
       expired_message: "Submissions closed"
 
