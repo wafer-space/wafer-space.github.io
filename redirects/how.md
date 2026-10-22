@@ -1,5 +1,5 @@
 ---
 permalink: /how.html
-redirect: /how
+redirect: /technology/
 layout: redirect
 ---
