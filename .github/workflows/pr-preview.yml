@@ -114,10 +114,16 @@ jobs:
       - name: Create PR directory and user-friendly redirect
         run: |
           cd preview-repo
-          # Create main directory for this PR (pr-123)
-          mkdir -p ${{ steps.pr-directory.outputs.directory_name }}
-          # Copy the built site from temp location to the preview directory
-          cp -r /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}/* ${{ steps.pr-directory.outputs.directory_name }}/
+          DIR_NAME="${{ steps.pr-directory.outputs.directory_name }}"
+          # Guard the rm -rf below: only ever remove a pr-123 style directory
+          if ! [[ "$DIR_NAME" =~ ^pr-[0-9]+$ ]]; then
+            echo "ERROR: Invalid PR directory name: $DIR_NAME"
+            exit 1
+          fi
+          # Replace the main directory for this PR (pr-123) with the built site from
+          # the temp location, so files removed by later pushes don't stay in the preview
+          rm -rf "$DIR_NAME"
+          cp -r "/tmp/pr-site-$DIR_NAME" "$DIR_NAME"
           
           # Create redirect page for slugified URL if different from main directory
           if [ "${{ steps.pr-directory.outputs.slugified_name }}" != "${{ steps.pr-directory.outputs.directory_name }}" ]; then
