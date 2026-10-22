@@ -1,38 +1,40 @@
-# Plugin to keep the old "/page.html" URLs working for pages kept as
-# "page/index.html"
+# Plugin to send "/page/" and "/page/index.html" to "/page", and to list
+# every redirect for Cloudflare Bulk Redirects
 #
-# A page whose source is <dir>/index.html (or .md) and whose URL is "/<dir>/"
-# gets a generated <dir>.html that uses the redirect layout to send visitors
-# to "/<dir>/", so links and bookmarks to the old flat URL still land on it.
+# The site's "/:title" permalink writes about.html, which GitHub Pages serves
+# at /about: that is the page's canonical URL. GitHub Pages also serves the
+# same file at /about.html, and /about/ would 404, so for every such page:
 #
-# The target keeps its trailing slash on purpose: GitHub Pages serves "/<dir>"
-# from <dir>.html when that file exists, so redirecting to "/<dir>" would load
-# the redirect page again, forever.
+# - a <page>/index.html using the redirect layout is generated, sending
+#   /about/ and /about/index.html to /about (GitHub Pages serves /about from
+#   about.html before it looks at the directory, so this can't loop);
+# - /about.html, /about/ and /about/index.html are listed in redirects.json
+#   and redirects.csv, so Cloudflare can answer all three with a real 301.
+#   GitHub Pages can't redirect /about.html itself: it is the page.
 #
-# Pages without such a source file (redirect stubs, archives, later pages of
-# the paginated news index) are skipped, and so is any <dir>.html the site
-# already outputs, such as a hand-written stub with a different target.
+# Only pages read from a real source file count (not archives, redirect pages
+# or paginated pages such as the news index), and a <page>/index.html the site
+# already outputs is left alone.
 #
-# Every page using `redirect:` front matter (these generated pages and the
-# stubs in redirects/) is also listed in redirects.json and redirects.csv at
-# the site root, in the formats Cloudflare Bulk Redirects take: the JSON is
-# the body of the API's list-items calls, and the CSV is the dashboard's
-# import format. Both always use the production hostname from `url`, without
-# any preview baseurl. Bulk Redirects match paths exactly, so each redirect is
-# listed under both the URL it is served at and the URL GitHub Pages also
-# serves it at ("/x.html" and "/x", or "/x/" and "/x").
+# redirects.json and redirects.csv at the site root also list every other page
+# using `redirect:` front matter (the stubs in redirects/), in the formats
+# Cloudflare Bulk Redirects take: the JSON is the body of the API's list-items
+# calls, and the CSV is the dashboard's import format. Both always use the
+# production hostname from `url`, without any preview baseurl. Bulk Redirects
+# match paths exactly, so each redirect is listed under every path GitHub
+# Pages serves it at.
 
 require 'csv'
 require 'json'
 require 'uri'
 
 module IndexRedirects
-  SOURCE = %r{\A([^/]+(?:/[^/]+)*)/index\.(?:html|md)\z}
+  SKIP = %w[index.html 404.html].freeze
 
   module_function
 
   # Output paths relative to the site root (not URLs, which the "/:title"
-  # permalink can strip of ".html")
+  # permalink strips of ".html")
   def output_path(site, item)
     item.destination(site.dest).delete_prefix(File.join(site.dest, ''))
   end
@@ -41,22 +43,24 @@ module IndexRedirects
     (site.pages + site.static_files).map { |item| output_path(site, item) }
   end
 
-  # Only pages read from a real source file: generated pages such as tag and
-  # category archives also report a ".../index.html" relative_path
-  def candidates(site)
+  # Pages written to <page>.html and served at "/<page>": the "<page>" of each
+  def canonical_pages(site)
     site.pages.filter_map do |page|
       next if page.is_a?(Jekyll::PageWithoutAFile) || !File.file?(site.in_source_dir(page.relative_path))
+      next if page.data['redirect'] || page.data['layout'] == 'none'
+      # jekyll-paginate-v2 later writes these as <page>/index.html (the news
+      # index is served at /news/), so a stub there would collide with it
+      next if page.data.dig('pagination', 'enabled')
 
-      match = SOURCE.match(page.relative_path)
-      dir = match && match[1]
-      dir if dir && page.url == "/#{dir}/"
+      path = output_path(site, page)
+      next if SKIP.include?(path) || !path.end_with?('.html')
+
+      name = path.delete_suffix('.html')
+      name if page.url == "/#{name}"
     end
   end
 
-  # The paths GitHub Pages serves a written file at. Taken from the output
-  # path, not page.url: the site's "/:title" permalink drops ".html" from the
-  # generated pages' URLs, and stubs in redirects/ use ".../index.html"
-  # permalinks
+  # The paths GitHub Pages serves a written file at
   def source_paths(site, item)
     path = "/#{output_path(site, item)}"
     if path.end_with?('/index.html')
@@ -79,28 +83,33 @@ module IndexRedirects
     target.start_with?('/') && !target.start_with?('//') ? "#{origin}#{target}" : target
   end
 
+  def entry(host, path, target)
+    entry = { 'source_url' => "#{host}#{path}", 'target_url' => target, 'status_code' => 301 }
+    # Preserving the query string replaces the target's own, so only do it
+    # for targets without one (checked as a string: URI() rejects some real
+    # targets, such as Matrix links with a second "#")
+    entry['preserve_query_string'] = true unless target.split('#', 2).first.include?('?')
+    entry
+  end
+
   def entries(site)
     origin = site.config['url'].to_s.chomp('/')
     host = URI(origin).host
     base = BaseurlLinks.baseurl(site)
 
-    items = (site.pages + site.documents).flat_map do |item|
+    # The page itself is the only thing at /<page>.html, so that one comes
+    # from the page, not from a redirect page
+    items = canonical_pages(site).map { |name| entry(host, "/#{name}.html", "#{origin}/#{name}") }
+    items += (site.pages + site.documents).flat_map do |item|
       target = item.data['redirect']
       next [] unless target.is_a?(String)
 
       target = absolute_target(target, base, origin)
       source_paths(site, item).filter_map do |path|
-        next if "#{origin}#{path}" == target # would redirect to itself
-
-        entry = { 'source_url' => "#{host}#{path}", 'target_url' => target, 'status_code' => 301 }
-        # Preserving the query string replaces the target's own, so only do it
-        # for targets without one (checked as a string: URI() rejects some real
-        # targets, such as Matrix links with a second "#")
-        entry['preserve_query_string'] = true unless target.split('#', 2).first.include?('?')
-        entry
+        entry(host, path, target) unless "#{origin}#{path}" == target # would redirect to itself
       end
     end
-    items.uniq { |entry| entry['source_url'] }.sort_by { |entry| entry['source_url'] }
+    items.uniq { |item| item['source_url'] }.sort_by { |item| item['source_url'] }
   end
 
   def json(entries)
@@ -126,13 +135,14 @@ class IndexRedirectGenerator < Jekyll::Generator
     base = BaseurlLinks.baseurl(site)
     taken = IndexRedirects.outputs(site)
 
-    IndexRedirects.candidates(site).each do |dir|
-      next if taken.include?("#{dir}.html")
+    IndexRedirects.canonical_pages(site).each do |name|
+      next if taken.include?("#{name}/index.html")
 
-      page = Jekyll::PageWithoutAFile.new(site, site.source, File.dirname(dir), "#{File.basename(dir)}.html")
+      page = Jekyll::PageWithoutAFile.new(site, site.source, name, 'index.html')
+      page.data['permalink'] = "/#{name}/index.html"
       page.data['layout'] = 'redirect'
       # The baseurl_links post_read hook has already run, so prefix here
-      page.data['redirect'] = BaseurlLinks.prefix("/#{dir}/", base)
+      page.data['redirect'] = BaseurlLinks.prefix("/#{name}", base)
       page.data['sitemap'] = false
       site.pages << page
     end
