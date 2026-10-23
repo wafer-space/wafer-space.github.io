@@ -1,0 +1,4 @@
+# preview.wafer.space hosts PR previews of https://wafer.space and should
+# not appear in search results.
+User-agent: *
+Disallow: /

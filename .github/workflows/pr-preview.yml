@@ -141,7 +141,13 @@ jobs:
           if [ ! -f CNAME ]; then
             echo "preview.wafer.space" > CNAME
           fi
-          
+
+      - name: Install robots.txt for the preview host
+        run: |
+          cd preview-repo
+          # Overwrite on every deploy so changes to the template reach the preview host
+          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-robots.txt" robots.txt
+
       - name: Create index page for preview listing
         run: |
           cd preview-repo
