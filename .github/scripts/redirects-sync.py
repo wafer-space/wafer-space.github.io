@@ -9,8 +9,10 @@ The Worker doesn't retry, so this script does: while the site still serves
 an older file (GitHub Pages publishing delay or a cache: HTTP 409
 not_published), another bulk operation is pending (503 busy), or Cloudflare
 hadn't finished the write (202 pending), it waits and asks again, until
---timeout. A newer revision already loaded counts as success: the deploy
-that brought it syncs it.
+--timeout. It also asks again when the revision the Worker read back from
+the list is older than the one requested, which happens when another sync's
+older write lands just after this one's. A newer revision already loaded
+counts as success: the deploy that brought it syncs it.
 
 Reads the Worker's URL from REDIRECTS_SYNC_URL and its bearer token from
 REDIRECTS_SYNC_SECRET. When either is missing (as on pull requests from
@@ -108,8 +110,15 @@ def main():
         print(f"HTTP {status}: {json.dumps(body, indent=2) if isinstance(body, dict) else body}")
         state = body.get("status") if isinstance(body, dict) else None
         if status == 200:
-            return 0
-        if status is not None and (status, state) not in RETRY:
+            # The Worker reports the revision the list holds (read back after
+            # a write). Another sync's older write can land just after this
+            # one's, so only stop once the list holds at least our revision.
+            held = (body.get("list") or {}).get("number") if isinstance(body, dict) else None
+            if args.number is None or (isinstance(held, int) and held >= args.number):
+                return 0
+            state = f"list_behind (list holds {held})"
+            print(f"The list holds revision {held}, older than {args.number}")
+        if status not in (None, 200) and (status, state) not in RETRY:
             print(f"::error::Redirects sync failed: HTTP {status} {state or ''}".rstrip())
             return 1
         if time.monotonic() + delay > deadline:
