@@ -109,15 +109,12 @@ def main():
         status, body = post(url, secret)
         print(f"HTTP {status}: {json.dumps(body, indent=2) if isinstance(body, dict) else body}")
         state = body.get("status") if isinstance(body, dict) else None
-        if status == 200:
-            # The Worker reports the revision the list holds (read back after
-            # a write). Another sync's older write can land just after this
-            # one's, so only stop once the list holds at least our revision.
-            held = (body.get("list") or {}).get("number") if isinstance(body, dict) else None
-            if args.number is None or (isinstance(held, int) and held >= args.number):
-                return 0
-            state = f"list_behind (list holds {held})"
-            print(f"The list holds revision {held}, older than {args.number}")
+        # A 200 reports the revision the list holds (read back after a write).
+        # Another sync's older write can land just after this one's, so only
+        # stop once the list holds at least our revision; otherwise retry.
+        held = (body.get("list") or {}).get("number", -1) if isinstance(body, dict) else -1
+        if status == 200 and (args.number is None or held >= args.number):
+            return 0
         if status not in (None, 200) and (status, state) not in RETRY:
             print(f"::error::Redirects sync failed: HTTP {status} {state or ''}".rstrip())
             return 1
