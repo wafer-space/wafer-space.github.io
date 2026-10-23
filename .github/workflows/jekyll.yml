@@ -50,6 +50,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: false
+          # Full history and tags: redirects.json records `git describe`
+          fetch-depth: 0
       
       - name: Initialize submodules with SSH
         run: |

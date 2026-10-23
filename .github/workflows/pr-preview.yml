@@ -30,6 +30,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           submodules: false
+          # Full history and tags: redirects.json records `git describe`
+          fetch-depth: 0
           
       - name: Create deployment
         id: deployment
