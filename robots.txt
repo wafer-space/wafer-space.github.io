@@ -1,0 +1,16 @@
+---
+layout: null
+---
+{%- comment -%}
+  PR previews are built with a non-empty baseurl, so keep them out of search
+  engines. Crawlers only read robots.txt at the root of a host, so
+  pr-preview.yml also installs .github/templates/preview-robots.txt at the
+  root of preview.wafer.space.
+{%- endcomment -%}
+{%- if site.baseurl and site.baseurl != "" -%}
+User-agent: *
+Disallow: /
+{% else -%}
+User-agent: *
+Allow: /
+{% endif -%}
