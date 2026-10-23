@@ -37,6 +37,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    outputs:
+      redirects_number: ${{ steps.redirects-revision.outputs.number }}
+      redirects_commit: ${{ steps.redirects-revision.outputs.commit }}
     steps:
       - name: Setup SSH for private submodule
         run: |
@@ -74,6 +77,9 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: Read the redirect list's revision
+        id: redirects-revision
+        run: python3 .github/scripts/redirects-sync.py --from-file _site/redirects.json --print-revision >> "$GITHUB_OUTPUT"
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
@@ -89,3 +95,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Checkout the sync script
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts/redirects-sync.py
+          sparse-checkout-cone-mode: false
+
+      # Load the redirects.json just deployed into Cloudflare's wafer.space Bulk
+      # Redirects, retrying until Pages serves it. A later deploy's revision
+      # counts as success. See github.com/wafer-space/cloudflare-redirects-sync.
+      - name: Sync Cloudflare redirects
+        run: >-
+          python3 .github/scripts/redirects-sync.py --list wafer_space
+          --number "${{ needs.build.outputs.redirects_number }}"
+          --commit "${{ needs.build.outputs.redirects_commit }}"
+        env:
+          REDIRECTS_SYNC_URL: ${{ vars.REDIRECTS_SYNC_URL }}
+          REDIRECTS_SYNC_SECRET: ${{ secrets.REDIRECTS_SYNC_SECRET }}
