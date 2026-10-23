@@ -291,6 +291,20 @@ jobs:
           echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
           echo "error_message=Git commit hash verification failed - deployment may be outdated" >> $GITHUB_OUTPUT
         
+      # Load the preview redirects.json just pushed into Cloudflare's
+      # preview.wafer.space Bulk Redirects, retrying until Pages serves it. A
+      # later deploy's revision counts as success, and the Worker's cron
+      # trigger catches up anyway, so a failure here doesn't fail the deploy.
+      # See github.com/wafer-space/cloudflare-redirects-sync.
+      - name: Sync Cloudflare redirects
+        continue-on-error: true
+        run: >-
+          python3 .github/scripts/redirects-sync.py --list preview_wafer_space
+          --from-file preview-repo/redirects.json
+        env:
+          REDIRECTS_SYNC_URL: ${{ vars.REDIRECTS_SYNC_URL }}
+          REDIRECTS_SYNC_SECRET: ${{ secrets.REDIRECTS_SYNC_SECRET }}
+
       - name: Update deployment status
         if: always()
         uses: actions/github-script@v7
