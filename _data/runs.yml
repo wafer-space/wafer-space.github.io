@@ -100,11 +100,24 @@ runs:
         display_date: "4 May 2026"
         description: "Sorted dies from the main batch of wafers shipped"
         status: "delivery"
-      - title: "Remaining Packaged Parts"
+      - title: "Packaged Parts Shipped"
         date: "2026-10-31"
-        display_date: "End of October 2026"
-        description: "Chip-on-board parts for the remaining projects"
+        display_date: "31 October 2026 (expected)"
+        description: "Chip-on-board packaged parts from the main batch of wafers shipped"
         status: "delivery"
+        done: false
+      - title: "Last Bare Dies Shipped"
+        date: "2026-11-05"
+        display_date: "5 November 2026 (expected)"
+        description: "Sorted dies from the last wafers shipped"
+        status: "delivery"
+        done: false
+      - title: "Last Packaged Parts Shipped"
+        date: "2026-12-05"
+        display_date: "5 December 2026 (expected)"
+        description: "Chip-on-board packaged parts from the last wafers shipped"
+        status: "delivery"
+        done: false
 
   gf180mcu_run_2:
     name: "GF180MCU Run 2"
@@ -214,40 +227,52 @@ runs:
         status: "milestone"
         done: false
       - title: "First Bare Dies Shipped"
-        date: "2026-10-31"
-        display_date: "Late October 2026"
+        date: "2026-10-22"
+        display_date: "22 October 2026 (expected)"
         description: "Initial bare dies shipped to customers"
         status: "delivery"
         done: false
       - title: "First Packaged Parts Shipped"
         date: "2026-11-12"
-        display_date: "Early November 2026"
+        display_date: "12 November 2026 (expected)"
         description: "Initial chip-on-board packaged parts shipped"
         status: "delivery"
         done: false
       - title: "Main Wafer Lot Returned"
         date: "2026-12-10"
-        display_date: "Around 10 December 2026"
+        display_date: "10 December 2026 (expected)"
         description: "The first full lot of Run 2 wafers back from GlobalFoundries"
         status: "milestone"
         done: false
       - title: "Main Lot Bare Dies Shipped"
         date: "2026-12-31"
-        display_date: "End of December 2026"
+        display_date: "31 December 2026 (expected)"
         description: "Bare dies from the main lot shipped to customers"
         status: "delivery"
         done: false
+      - title: "Last Wafer Lot Returned"
+        date: "2027-01-15"
+        display_date: "15 January 2027 (expected)"
+        description: "The rest of the Run 2 wafers back from GlobalFoundries"
+        status: "milestone"
+        done: false
       - title: "Main Lot Packaged Parts Shipped"
         date: "2027-01-21"
-        display_date: "January 2027"
+        display_date: "21 January 2027 (expected)"
         description: "Chip-on-board packaged parts from the main lot shipped"
         status: "delivery"
         done: false
-      - title: "Last Wafer Lot Returned"
-        date: "2027-06-30"
-        display_date: "2027, date not yet set"
-        description: "The rest of the Run 2 wafers"
-        status: "milestone"
+      - title: "Last Lot Bare Dies Shipped"
+        date: "2027-02-05"
+        display_date: "5 February 2027 (expected)"
+        description: "Bare dies from the last lot shipped to customers"
+        status: "delivery"
+        done: false
+      - title: "Last Lot Packaged Parts Shipped"
+        date: "2027-02-26"
+        display_date: "26 February 2027 (expected)"
+        description: "Chip-on-board packaged parts from the last lot shipped"
+        status: "delivery"
         done: false
 
   gf180mcu_run_3:
