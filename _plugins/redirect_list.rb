@@ -12,7 +12,7 @@
 #
 # The first entry records the revision the list was built from: /revision
 # redirects (302) to the commit on GitHub, and in the JSON its comment is
-# `git describe` for that commit (v0.0-<commits since v0.0>-g<hash>). The
+# `git describe` for that commit (v0.0-<commits since v0.0>-g<full hash>). The
 # redirects sync Worker (github.com/wafer-space/cloudflare-redirects-sync)
 # uses it to tell which list is newer, so a late or cached copy never
 # replaces a newer one. It needs the v0.0 tag and full history: check out
@@ -104,22 +104,19 @@ module RedirectList
       end
     end
     items = items.uniq { |item| item['source_url'] }.sort_by { |item| item['source_url'] }
-    taken = items.find { |item| item['source_url'] == "#{host}#{REVISION_PATH}" }
-    raise Jekyll::Errors::FatalException, "#{REVISION_PATH} is reserved for the redirect list's revision" if taken
+    if items.any? { |item| item['source_url'] == "#{host}#{REVISION_PATH}" }
+      raise Jekyll::Errors::FatalException, "#{REVISION_PATH} is reserved for the redirect list's revision"
+    end
 
     items
   end
 
-  # git describe and the full hash of the commit being built, or nil
+  # git describe for the commit being built, with its full hash
+  # (v0.0-<n>-g<40 hex digits>), or nil
   def revision(site)
-    describe, status = Open3.capture2('git', 'describe', '--tags', '--long', '--match', 'v[0-9]*', 'HEAD',
-                                      chdir: site.source)
-    return nil unless status.success?
-
-    commit, status = Open3.capture2('git', 'rev-parse', 'HEAD', chdir: site.source)
-    return nil unless status.success?
-
-    { 'describe' => describe.strip, 'commit' => commit.strip }
+    describe, status = Open3.capture2('git', 'describe', '--tags', '--long', '--abbrev=40', '--match', 'v[0-9]*',
+                                      'HEAD', chdir: site.source)
+    describe.strip if status.success?
   rescue SystemCallError
     nil
   end
@@ -127,10 +124,10 @@ module RedirectList
   def revision_item(site, revision)
     host = URI(site.config['url'].to_s).host
     {
-      'comment' => revision['describe'],
+      'comment' => revision,
       'redirect' => {
         'source_url' => "#{host}#{REVISION_PATH}",
-        'target_url' => "#{COMMIT_URL}#{revision['commit']}",
+        'target_url' => "#{COMMIT_URL}#{revision[/-g(\h{40})\z/, 1]}",
         'status_code' => 302
       }
     }
@@ -168,5 +165,5 @@ Jekyll::Hooks.register :site, :post_write do |site|
   File.write(File.join(site.dest, 'redirects.json'), RedirectList.json(entries, revision_item))
   File.write(File.join(site.dest, 'redirects.csv'), RedirectList.csv(entries, revision_item))
   Jekyll.logger.info 'Redirects:', "wrote #{entries.size} redirect list entries" \
-                                   "#{" at #{revision['describe']}" if revision}"
+                                   "#{" at #{revision}" if revision}"
 end
