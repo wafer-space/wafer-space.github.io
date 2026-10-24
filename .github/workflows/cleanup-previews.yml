@@ -137,6 +137,9 @@ jobs:
       
       - name: Perform cleanup of closed PR previews
         if: steps.find-cleanup.outputs.cleanup_needed == 'true'
+        env:
+          # Recorded in the preview redirects.json's revision item
+          PREVIEW_SOURCE_COMMIT: ${{ github.sha }}
         run: |
           cd preview-repo
           
@@ -170,12 +173,8 @@ jobs:
             find . -maxdepth 1 -type d -name "pr-${PR_NUMBER}-*" -exec rm -rf {} + || true
           done
           
-          # Copy script and template, then regenerate index
-          cp ../.github/scripts/generate-preview-index.sh ./
-          mkdir -p .github/templates
-          cp ../.github/templates/preview-index.html .github/templates/
-          chmod +x generate-preview-index.sh
-          ./generate-preview-index.sh
+          # Regenerate the preview index and redirects.json
+          python3 ../.github/scripts/generate-preview-root.py
           
           # Commit changes if any
           git add .

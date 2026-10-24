@@ -142,24 +142,13 @@ jobs:
             echo "preview.wafer.space" > CNAME
           fi
           
-      - name: Create index page for preview listing
+      - name: Generate the preview index and redirects.json
+        env:
+          # Recorded in the preview redirects.json's revision item
+          PREVIEW_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: |
           cd preview-repo
-          # Copy script and template from temp location, then generate preview index
-          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ]; then
-            echo "ERROR: Preview generation script not found in temp location"
-            exit 1
-          fi
-          if [ ! -f "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" ]; then
-            echo "ERROR: Preview template not found in temp location"
-            exit 1
-          fi
-          
-          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-index.sh" ./
-          mkdir -p .github/templates
-          cp "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/templates/preview-index.html" .github/templates/
-          chmod +x generate-preview-index.sh
-          ./generate-preview-index.sh
+          python3 "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-root.py"
           
       - name: Deploy to preview repository
         run: |
