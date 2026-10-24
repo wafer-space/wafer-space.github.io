@@ -68,6 +68,8 @@ external_links:
       text: "About"
     - url: "/price.html"
       text: "Pricing"
+    - url: "/status"
+      text: "Shuttle Status"
     - url: "/technology.html"
       text: "Technology"
     - url: "/design-help.html"

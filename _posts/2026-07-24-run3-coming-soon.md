@@ -33,7 +33,7 @@ The tools are open source. The PDK is open source. Your design can be open or cl
 Run 1 has been packaged and shipped to all of our customers -- from hobbyists to academics, and from industry specialists
 to community groups, people have been able to get their hands on their very own custom silicon. Many are testing their
 designs right now, and our chip-on-board packaging solution has been popular and successful! Read more about it in
-our dedicated [chip-on-board progress update](/news/chip-on-board-progress).
+our dedicated [chip-on-board progress update]({{ "/news/chip-on-board-progress" | relative_url }}).
 
 Run 2 has now been closed and will begin manufacturing shortly. It features several interesting projects such as:
 
