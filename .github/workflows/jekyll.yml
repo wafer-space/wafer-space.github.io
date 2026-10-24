@@ -27,12 +27,6 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   # Build job
   build:
@@ -77,9 +71,14 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      # For the sync-redirects job. If it can't be read, the site still
+      # deploys and that job reports the error.
       - name: Read the redirect list's revision
         id: redirects-revision
-        run: python3 .github/scripts/redirects-sync.py --from-file _site/redirects.json --print-revision >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+        run: >-
+          python3 .github/scripts/redirects-sync.py --list wafer_space
+          --from-file _site/redirects.json --print-revision >> "$GITHUB_OUTPUT"
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
@@ -91,10 +90,32 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+    # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Load the redirects.json just deployed into Cloudflare's wafer.space Bulk
+  # Redirects, retrying until Pages serves it; a later deploy's revision
+  # counts as success. See github.com/wafer-space/cloudflare-redirects-sync.
+  # A job of its own, so re-running a failed sync never re-publishes this
+  # run's (possibly older) site, and a slow sync doesn't hold up the next
+  # deploy. It fails the run, as the site is then live with stale redirects
+  # until the Worker's cron trigger loads them.
+  sync-redirects:
+    runs-on: ubuntu-latest
+    needs: [build, deploy]
+    steps:
+      - name: Check the redirect list's revision was read
+        if: needs.build.outputs.redirects_number == '' || needs.build.outputs.redirects_commit == ''
+        run: |
+          echo "::error::The build couldn't read the revision of _site/redirects.json (see its \"Read the redirect list's revision\" step)"
+          exit 1
 
       - name: Checkout the sync script
         uses: actions/checkout@v4
@@ -102,12 +123,9 @@ jobs:
           sparse-checkout: .github/scripts/redirects-sync.py
           sparse-checkout-cone-mode: false
 
-      # Load the redirects.json just deployed into Cloudflare's wafer.space Bulk
-      # Redirects, retrying until Pages serves it. A later deploy's revision
-      # counts as success. See github.com/wafer-space/cloudflare-redirects-sync.
       - name: Sync Cloudflare redirects
         run: >-
-          python3 .github/scripts/redirects-sync.py --list wafer_space
+          python3 .github/scripts/redirects-sync.py --list wafer_space --require-secrets
           --number "${{ needs.build.outputs.redirects_number }}"
           --commit "${{ needs.build.outputs.redirects_commit }}"
         env:
