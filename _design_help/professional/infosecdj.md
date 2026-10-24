@@ -27,13 +27,13 @@ is his micrograph of the wafer.space logo die). Every image is a stitched
 panorama of the whole die, published on the run pages:
 
 - **[All Run 1 die photographs](https://wafer.space/ws-run1/#photos)** — 21 designs
-- [KIAN](https://wafer.space/ws-run1/projects/KIAN.html#photo) — KianV, a 32-bit RISC-V Linux SoC
-- [MOLE](https://wafer.space/ws-run1/projects/MOLE.html#photo) — FABulous FPGA
-- [RBOY](https://wafer.space/ws-run1/projects/RBOY.html#photo) — RISCBoy-180
-- [GD03](https://wafer.space/ws-run1/projects/GD03.html#photo) — Racquet, a 23 core SoC
-- [TQVA](https://wafer.space/ws-run1/projects/TQVA.html#photo) — TinyQV, a crowdsourced RISC-V SoC
-- [MOSB](https://wafer.space/ws-run1/projects/MOSB.html#photo) — MOSbiusV3
-- [WSLG](https://wafer.space/ws-run1/projects/WSLG.html#photo) — the wafer.space logo die
+- [KIAN](https://wafer.space/ws-run1/projects/KIAN#photo) — KianV, a 32-bit RISC-V Linux SoC
+- [MOLE](https://wafer.space/ws-run1/projects/MOLE#photo) — FABulous FPGA
+- [RBOY](https://wafer.space/ws-run1/projects/RBOY#photo) — RISCBoy-180
+- [GD03](https://wafer.space/ws-run1/projects/GD03#photo) — Racquet, a 23 core SoC
+- [TQVA](https://wafer.space/ws-run1/projects/TQVA#photo) — TinyQV, a crowdsourced RISC-V SoC
+- [MOSB](https://wafer.space/ws-run1/projects/MOSB#photo) — MOSbiusV3
+- [WSLG](https://wafer.space/ws-run1/projects/WSLG#photo) — the wafer.space logo die
 
 The [full-resolution files](https://data.wafer.space/infosecdj.net/release-1/)
 are free to download, at 200 to 500 MB per die.
