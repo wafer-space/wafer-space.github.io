@@ -134,14 +134,17 @@ jobs:
             echo "Created user-friendly redirect from ${{ steps.pr-directory.outputs.slugified_name }} to ${{ steps.pr-directory.outputs.directory_name }}"
           fi
           
-      - name: Ensure CNAME file exists
+      - name: Ensure CNAME and robots.txt files exist
         run: |
           cd preview-repo
           # Ensure CNAME file exists (should already be configured in preview repo)
           if [ ! -f CNAME ]; then
             echo "preview.wafer.space" > CNAME
           fi
-          
+          # Keep the whole preview host out of search engines (always rewritten
+          # so the file can't drift from this content)
+          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+
       - name: Create index page for preview listing
         run: |
           cd preview-repo
