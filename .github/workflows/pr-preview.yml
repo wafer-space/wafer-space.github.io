@@ -172,6 +172,9 @@ jobs:
           python3 "/tmp/pr-tools-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-root.py"
           
       - name: Deploy to preview repository
+        env:
+          # Recorded in the preview redirects.json's revision item
+          PREVIEW_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: |
           cd preview-repo
           git add .
@@ -185,8 +188,32 @@ jobs:
           # Re-setup SSH agent for push (ssh-agent doesn't persist between steps)
           eval $(ssh-agent -s)
           echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
-          git push origin main
-          
+
+          # Other PRs deploy to the same preview repository in parallel, so a push can be
+          # rejected because main moved. Merge the latest main and retry.
+          for attempt in 1 2 3 4 5; do
+            if git push origin main; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt), merging latest preview main"
+            sleep $((attempt * 10))
+            git fetch origin main
+            # Each PR only touches its own directory; on a conflict in shared files
+            # (the preview index and redirects.json) keep ours, then regenerate both
+            # from all PR dirs. The commit straight after is the one redirects.json's
+            # revision number counts, so it always goes up.
+            if ! git merge --no-edit -X ours origin/main; then
+              git merge --abort
+              exit 1
+            fi
+            rm -rf generate-preview-index.sh .github/templates
+            python3 "/tmp/pr-tools-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-root.py"
+            git add .
+            git diff --staged --quiet || git commit -m "Regenerate the preview index and redirects.json"
+          done
+          echo "Failed to push preview after 5 attempts"
+          exit 1
+
       - name: Wait for Pages deployment and verify accessibility
         id: verify-deployment
         run: |
