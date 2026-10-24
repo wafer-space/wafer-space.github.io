@@ -1,0 +1,649 @@
+---
+layout: default
+title: "Is wafer.space right for you?"
+sub_title: |
+  Find the perfect silicon manufacturing path for your project.
+header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
+
+about_area:
+  enable: false
+
+video_area:
+  enable: false
+
+clients_carousel:
+  enable: false
+---
+{% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
+{% include layouts/header/page-title.html %}
+
+<div class="wrapper light-wrapper">
+    <div class="container inner">
+        <h2 class="section-title mb-20">Choose Your Silicon Adventure</h2>
+        <p class="lead larger">Let's find the perfect manufacturing path for your project through our interactive decision tree.</p>
+        <div class="space20"></div>
+        
+        <!-- Decision Tree Container -->
+        <div class="decision-tree-container">
+            <div class="decision-tree" id="decisionTree">
+                <!-- Background stars -->
+                <div class="stars"></div>
+                
+                <!-- Decision Tree Steps -->
+                <div class="decision-step active" id="step1" data-step="1">
+                    <div class="decision-card">
+                        <div class="step-icon">🌍</div>
+                        <h3>Where do you want your silicon manufactured?</h3>
+                        <p>Geographic preferences can affect cost, lead time, and compliance requirements.</p>
+                        <div class="options">
+                            <button class="option-btn" data-next="step2a" data-choice="usa">
+                                <span class="flag">🇺🇸</span>
+                                <span>USA</span>
+                            </button>
+                            <button class="option-btn" data-next="step2b" data-choice="asia">
+                                <span class="flag">🇸🇬</span>
+                                <span>Asia</span>
+                            </button>
+                            <button class="option-btn" data-next="step2c" data-choice="europe">
+                                <span class="flag">🇪🇺</span>
+                                <span>Europe</span>
+                            </button>
+                            <button class="option-btn" data-next="step2d" data-choice="no-preference">
+                                <span class="flag">🌐</span>
+                                <span>No Preference</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step2a" data-step="2">
+                    <div class="decision-card">
+                        <div class="step-icon">🏭</div>
+                        <h3>USA Manufacturing</h3>
+                        <p>Looking for US-based semiconductor manufacturing with ITAR compliance.</p>
+                        <div class="recommendation">
+                            <div class="service-card">
+                                <div class="service-icon">🏢</div>
+                                <h4>ChipFoundry.io</h4>
+                                <p>US-based foundry services with ITAR compliance and advanced process nodes.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step2b" data-step="2">
+                    <div class="decision-card">
+                        <div class="step-icon">🔬</div>
+                        <h3>Do you need specific technology features?</h3>
+                        <p>Some projects require specialized process capabilities or device types.</p>
+                        <div class="options">
+                            <button class="option-btn" data-next="step3a" data-choice="reram">
+                                <span class="tech-icon">🧠</span>
+                                <span>ReRAM</span>
+                            </button>
+                            <button class="option-btn" data-next="step3b" data-choice="sige">
+                                <span class="tech-icon">⚡</span>
+                                <span>SiGe FETs</span>
+                            </button>
+                            <button class="option-btn" data-next="step3c" data-choice="standard">
+                                <span class="tech-icon">💎</span>
+                                <span>Standard CMOS</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step2c" data-step="2">
+                    <div class="decision-card">
+                        <div class="step-icon">🏛️</div>
+                        <h3>European Manufacturing</h3>
+                        <p>Looking for European semiconductor manufacturing with GDPR compliance.</p>
+                        <div class="recommendation">
+                            <div class="service-card">
+                                <div class="service-icon">🔬</div>
+                                <h4>IHP</h4>
+                                <p>European research institute offering specialized processes and prototyping services.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step2d" data-step="2">
+                    <div class="decision-card">
+                        <div class="step-icon">📊</div>
+                        <h3>Have you created silicon before?</h3>
+                        <p>Your experience level helps us recommend the best approach for your project.</p>
+                        <div class="options">
+                            <button class="option-btn" data-next="step4a" data-choice="experienced">
+                                <span class="exp-icon">👨‍💼</span>
+                                <span>Yes, I'm experienced</span>
+                            </button>
+                            <button class="option-btn" data-next="step4b" data-choice="beginner">
+                                <span class="exp-icon">🎓</span>
+                                <span>No, this is my first time</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step3a" data-step="3">
+                    <div class="decision-card">
+                        <div class="step-icon">🧠</div>
+                        <h3>ReRAM Technology</h3>
+                        <p>Specialized memory technology requires specific foundry capabilities.</p>
+                        <div class="recommendation">
+                            <div class="service-card">
+                                <div class="service-icon">🔬</div>
+                                <h4>Specialized Foundries</h4>
+                                <p>Contact specialized foundries that support ReRAM process integration.</p>
+                                <a href="#" class="btn btn-primary">Contact Us</a>
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step3b" data-step="3">
+                    <div class="decision-card">
+                        <div class="step-icon">⚡</div>
+                        <h3>SiGe FETs</h3>
+                        <p>Silicon-Germanium FETs require specialized BiCMOS processes.</p>
+                        <div class="recommendation">
+                            <div class="service-card">
+                                <div class="service-icon">🔬</div>
+                                <h4>IHP</h4>
+                                <p>IHP offers specialized SiGe BiCMOS processes for high-frequency applications.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step3c" data-step="3">
+                    <div class="decision-card">
+                        <div class="step-icon">💎</div>
+                        <h3>Standard CMOS</h3>
+                        <p>Standard CMOS processes are perfect for most digital and mixed-signal designs.</p>
+                        <div class="options">
+                            <button class="option-btn" data-next="step4a" data-choice="experienced">
+                                <span class="exp-icon">👨‍💼</span>
+                                <span>I'm experienced</span>
+                            </button>
+                            <button class="option-btn" data-next="step4b" data-choice="beginner">
+                                <span class="exp-icon">🎓</span>
+                                <span>First time</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step4a" data-step="4">
+                    <div class="decision-card">
+                        <div class="step-icon">🚀</div>
+                        <h3>Perfect! wafer.space is for you</h3>
+                        <p>You're experienced and need standard CMOS manufacturing. wafer.space offers professional-grade silicon manufacturing with excellent support.</p>
+                        <div class="recommendation">
+                            <div class="service-card featured">
+                                <div class="service-icon">🏢</div>
+                                <h4>wafer.space</h4>
+                                <p>Low volume manufacturing for experienced designers. Professional quality with GlobalFoundries fabrication.</p>
+                                <div class="features">
+                                    <div class="feature">✅ GF180MCU process</div>
+                                    <div class="feature">✅ Low volume friendly</div>
+                                    <div class="feature">✅ Professional support</div>
+                                </div>
+                                <a href="/free.html" class="btn btn-primary">Get Started</a>
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <div class="decision-step" id="step4b" data-step="4">
+                    <div class="decision-card">
+                        <div class="step-icon">🎓</div>
+                        <h3>Start with Tiny Tapeout</h3>
+                        <p>For first-time silicon creators, we recommend starting with Tiny Tapeout to learn the process.</p>
+                        <div class="recommendation">
+                            <div class="service-card">
+                                <div class="service-icon">🎯</div>
+                                <h4>Tiny Tapeout</h4>
+                                <p>Perfect for beginners! Share a wafer tile with others and learn silicon design for just $50-200.</p>
+                                <div class="features">
+                                    <div class="feature">✅ Beginner friendly</div>
+                                    <div class="feature">✅ Educational resources</div>
+                                    <div class="feature">✅ Community support</div>
+                                </div>
+                                <a href="/tiny-tapeout.html" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="next-step">
+                            <h5>Ready for more?</h5>
+                            <p>Once you've created your first chip with Tiny Tapeout, come back to wafer.space for your next project!</p>
+                        </div>
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                    </div>
+                </div>
+                
+                <!-- Floating rocket -->
+                <div class="adventure-rocket" id="adventureRocket">
+                    <svg class="rocket-svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M16 4 L13 9 L13 22 L19 22 L19 9 Z" fill="#4A90E2"/>
+                        <path d="M13 22 L10 28 L13 25 L19 25 L22 28 L19 22 Z" fill="#87CEEB"/>
+                        <circle cx="16" cy="13" r="3" fill="#FFD700"/>
+                        <path d="M16 19 L14 23 L16 22 L18 23 Z" fill="#FF6B6B"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Journey Progress -->
+        <div class="journey-progress" id="journeyProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Step 1 of 4</div>
+        </div>
+    </div>
+</div>
+
+<style>
+.decision-tree-container {
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 40px 0;
+}
+
+.decision-tree {
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 300px 200px;
+    animation: twinkle 8s linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.decision-step {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.decision-step.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.decision-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.step-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.decision-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.decision-card p {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.option-btn {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+.flag, .tech-icon, .exp-icon {
+    font-size: 20px;
+}
+
+.service-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.service-card.featured {
+    border-color: #4A90E2;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.service-card h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.feature {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.next-step {
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.next-step h5 {
+    color: #4A90E2;
+    margin-bottom: 10px;
+}
+
+.restart-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.restart-btn:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.adventure-rocket {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    animation: rocket-float 4s ease-in-out infinite;
+}
+
+@keyframes rocket-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.journey-progress {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4A90E2 0%, #357ABD 100%);
+    width: 25%;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .decision-tree {
+        padding: 20px;
+    }
+    
+    .decision-card {
+        padding: 25px;
+    }
+    
+    .step-icon {
+        font-size: 40px;
+    }
+    
+    .decision-card h3 {
+        font-size: 20px;
+    }
+    
+    .options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .option-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+</style>
+
+<script>
+function showStep(stepId) {
+    // Hide all steps
+    document.querySelectorAll('.decision-step').forEach(step => {
+        step.classList.remove('active');
+    });
+    
+    // Show target step
+    document.getElementById(stepId).classList.add('active');
+    
+    // Update progress
+    const stepNum = document.getElementById(stepId).dataset.step;
+    updateProgress(stepNum);
+    
+    // Animate rocket
+    animateRocket();
+}
+
+function updateProgress(stepNum) {
+    const progress = (stepNum / 4) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+    document.getElementById('progressText').textContent = `Step ${stepNum} of 4`;
+}
+
+function animateRocket() {
+    const rocket = document.getElementById('adventureRocket');
+    rocket.style.animation = 'none';
+    rocket.offsetHeight; // Trigger reflow
+    rocket.style.animation = 'rocket-float 4s ease-in-out infinite';
+}
+
+function restartJourney() {
+    showStep('step1');
+}
+
+// Initialize event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.option-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const nextStep = this.dataset.next;
+            if (nextStep) {
+                setTimeout(() => showStep(nextStep), 300);
+            }
+        });
+    });
+});
+</script>
+
+<!--/.wrapper-->
+{% if page.about_area.enable %}
+<div class="wrapper light-wrapper">
+    <div class="container inner">
+        <div class="row align-items-center">
+          <div class="col-lg-6 order-lg-2 text-center">
+            <div class="position-relative">
+              {% if page.about_area.image %}
+              <figure>
+                <img src="{{page.about_area.image}}" alt="{{page.about_area.title}}"/>
+              </figure>
+              {% endif %}
+              <div class="row counter counter-s position-absolute" style="top: 45%; right: 8%;">
+                <div class="col-md-10 text-center">
+                  <div class="box bg-white shadow">
+                    {% if page.about_area.projects_number %}
+                     <h3><span class="value">{{page.about_area.projects_number}}</span>+</h3>
+                    {% endif %}
+                    {% if page.about_area.project_tag %}
+                     <p>{{page.about_area.project_tag}}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space30 d-none d-md-block d-lg-none"></div>
+          <div class="col-lg-6 pr-60 pr-md-15">
+            {% if page.about_area.title %}
+             <h2 class="section-title mb-20">{{ page.about_area.title }}</h2>
+            {% endif %}
+            {% if  page.about_area.sub_title %}
+             <p class="lead larger">{{page.about_area.sub_title}}</p>
+            {% endif %}
+            <div class="space20"></div>
+            <ul class="progress-list">
+              {% for skills in page.about_area.skills %}
+              <li>
+                <p>{{skills.title}}</p>
+                <div class="progressbar line {{skills.style}}" data-value="{{skills.numbers}}"></div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if page.video_area.enable %}
+<div class="video-area">
+  <div class="wrapper image-wrapper bg-image inverse-text" data-image-src="{{page.video_area.image}}">
+    <div class="container inner pt-140 pb-140 text-center">
+      <div class="row">
+        <div class="col-md-7 mx-auto">
+          <h2 class="section-title text-center">{{page.video_area.title}}</h2>
+          <p class="lead larger text-center">{{page.video_area.sub_title}}</p>
+          <div class="space10"></div>
+          <div class="light-gallery-wrapper">
+            <a href="{{page.video_area.video_url}}" class="btn-play lightbox"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if page.clients_carousel.enable %}
+<div class="wrapper gray-wrapper">
+    <div class="container inner">
+      {% include components/clients/clients-carousel.html %}
+    </div>
+</div>
+{% endif %}
+
+<div class="space120"></div>
+
+{% include layouts/footer/footer-1.html %}
