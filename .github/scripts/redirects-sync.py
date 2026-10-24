@@ -62,7 +62,11 @@ class Worker:
     def call(self, method, path):
         """(status, body) for one request, or (None, error text)."""
         url = f"{self.base}{path}?{urllib.parse.urlencode({'list': self.name})}"
-        request = urllib.request.Request(url, method=method, headers={"Authorization": f"Bearer {self.secret}"})
+        # Cloudflare's Browser Integrity Check refuses urllib's default
+        # User-Agent on workers.dev ("error code: 1010")
+        headers = {"Authorization": f"Bearer {self.secret}",
+                   "User-Agent": "wafer-space/wafer-space.github.io/.github/scripts/redirects-sync.py"}
+        request = urllib.request.Request(url, method=method, headers=headers)
         try:
             with urllib.request.urlopen(request, timeout=120) as response:
                 status, raw = response.status, response.read()
