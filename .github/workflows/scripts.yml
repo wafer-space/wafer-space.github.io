@@ -1,0 +1,23 @@
+# Unit tests for the Python scripts the workflows run
+name: Script tests
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths: [".github/scripts/**", ".github/workflows/scripts.yml"]
+  push:
+    branches: ["main"]
+    paths: [".github/scripts/**", ".github/workflows/scripts.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run the script tests
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
