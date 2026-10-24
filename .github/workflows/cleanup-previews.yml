@@ -173,7 +173,9 @@ jobs:
             find . -maxdepth 1 -type d -name "pr-${PR_NUMBER}-*" -exec rm -rf {} + || true
           done
           
-          # Regenerate the preview index and redirects.json
+          # Regenerate the preview index and redirects.json, removing what
+          # the shell script this replaced left in the preview repository
+          rm -rf generate-preview-index.sh .github/templates
           python3 ../.github/scripts/generate-preview-root.py
           
           # Commit changes if any

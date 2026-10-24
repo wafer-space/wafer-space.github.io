@@ -94,7 +94,24 @@ jobs:
           # Copy built site and workflow files to temp location before switching branches
           cp -r _site /tmp/pr-site-${{ steps.pr-directory.outputs.directory_name }}
           cp -r .github /tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}
-          
+
+      - name: Get the preview index generator from the base branch
+        run: |
+          # The generator writes the preview site's shared index.html and
+          # redirects.json (loaded into Cloudflare), so run the base branch's
+          # copy, not this pull request's
+          TOOLS="/tmp/pr-tools-${{ steps.pr-directory.outputs.directory_name }}"
+          mkdir -p "$TOOLS/scripts" "$TOOLS/templates"
+          git fetch --no-tags --depth=1 origin "${{ github.event.pull_request.base.sha }}"
+          if git cat-file -e FETCH_HEAD:.github/scripts/generate-preview-root.py; then
+            git show FETCH_HEAD:.github/scripts/generate-preview-root.py > "$TOOLS/scripts/generate-preview-root.py"
+            git show FETCH_HEAD:.github/templates/preview-index.html > "$TOOLS/templates/preview-index.html"
+          else
+            echo "The base branch has no generate-preview-root.py yet; using this pull request's"
+            cp .github/scripts/generate-preview-root.py "$TOOLS/scripts/"
+            cp .github/templates/preview-index.html "$TOOLS/templates/"
+          fi
+
       - name: Setup SSH and clone preview repository
         run: |
           # Setup SSH for deploying to dedicated preview repository (memory-only)
@@ -148,7 +165,9 @@ jobs:
           PREVIEW_SOURCE_COMMIT: ${{ github.event.pull_request.head.sha }}
         run: |
           cd preview-repo
-          python3 "/tmp/pr-github-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-root.py"
+          # Left in the preview repository by the shell script this replaced
+          rm -rf generate-preview-index.sh .github/templates
+          python3 "/tmp/pr-tools-${{ steps.pr-directory.outputs.directory_name }}/scripts/generate-preview-root.py"
           
       - name: Deploy to preview repository
         run: |
