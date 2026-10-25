@@ -65,7 +65,7 @@ Four companies are offering paid professional services specifically for [wafer.s
 
 #### ChipFlow · *Spain*
 
-*Update (October 2026): ChipFlow is no longer listed on our [design help](https://wafer.space/design-help.html) page.*
+*Update (October 2026): ChipFlow is no longer listed on our [design help](https://wafer.space/design-help) page.*
 
 Full-service ASIC development platform with cloud-based design tools, collaborative workflows, and pre-verified reference designs.
 
@@ -76,7 +76,7 @@ Full-service ASIC development platform with cloud-based design tools, collaborat
 
 <img src="{{ "/assets/images/news/getting-help/mabrains-logo-std-rounded.png" | relative_url }}" alt="mabrains-logo-std-rounded" class="img-fluid rounded">
 
-#### [Mabrains](https://wafer.space/design-help.html#mabrains) · *Egypt*
+#### [Mabrains](https://wafer.space/design-help#mabrains) · *Egypt*
 
 PDK development, analog &amp; digital design, physical design &amp; layout, design verification, and AMS modeling. Over 25 years of experience, with expertise in AI/ML integration.
 
@@ -87,7 +87,7 @@ PDK development, analog &amp; digital design, physical design &amp; layout, desi
 
 <img src="{{ "/assets/images/news/getting-help/precision-logo-std-rounded.png" | relative_url }}" alt="precision-logo-std-rounded" class="img-fluid rounded">
 
-#### [Precision Innovations](https://wafer.space/design-help.html#precision) · *USA*
+#### [Precision Innovations](https://wafer.space/design-help#precision) · *USA*
 
 Primary developers of OpenROAD, offering commercial support, custom development, training &amp; education, and rapid turnaround design flows. If you're using OpenROAD and need expert tool support, these are the people who built it.
 
@@ -98,7 +98,7 @@ Primary developers of OpenROAD, offering commercial support, custom development,
 
 <img src="{{ "/assets/images/news/getting-help/slice-logo-std-rounded.png" | relative_url }}" alt="slice-logo-std-rounded" class="img-fluid rounded">
 
-#### [SLICE Semiconductor](https://wafer.space/design-help.html#slicesemi) · *Ireland*
+#### [SLICE Semiconductor](https://wafer.space/design-help#slicesemi) · *Ireland*
 
 Low-cost ASIC development, mixed-signal IC design contracting, and consulting across technology nodes from 180nm to 3nm.
 
@@ -132,7 +132,7 @@ Don't let timeline concerns stop you from [reserving your spot](https://buy.wafe
 
 If you're feeling time pressure or want expert assistance, reach out to companies sooner rather than later. The **December 3rd GDS submission deadline** is approaching.
 
-1. Visit [wafer.space/design-help.html](https://wafer.space/design-help.html) for full company details
+1. Visit [wafer.space/design-help.html](https://wafer.space/design-help) for full company details
 2. Contact companies directly for quotes and availability
 3. Be specific about what you need (review, partial help, full service)
 

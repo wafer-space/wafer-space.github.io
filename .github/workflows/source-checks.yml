@@ -1,0 +1,26 @@
+# Checks on the source files that need neither a site build nor the private
+# theme, so they run on every pull request (including from forks) and push.
+name: Source checks
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  no-html-links:
+    name: No internal .html links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      # Pages are served at their URL without ".html" (about.html is /about),
+      # and Cloudflare redirects the ".html" form, so link to the canonical URL
+      - name: Check for internal links ending in .html
+        run: python3 .github/scripts/check-html-links.py
