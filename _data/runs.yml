@@ -10,6 +10,16 @@ runs:
     status: "complete"
     featured: false
 
+    # The Crowd Supply campaign, for the buy.wafer.space short links that
+    # _plugins/redirect_list.rb lists for Cloudflare: buy.wafer.space/run<N>
+    # goes to each run's campaign, and buy.wafer.space itself to the oldest
+    # campaign whose status is "prelaunch" (taking sign-ups, not yet orders)
+    # or "open" (taking orders); "sold_out" and "closed" campaigns are passed
+    # over.
+    campaign:
+      url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-1"
+      status: "closed"
+
     # Campaign deadline - when slot purchases close
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Nov 28 = Nov 29 11:59 UTC
     campaign_deadline:
@@ -87,6 +97,10 @@ runs:
     run_number: 2
     status: "active"
     featured: false
+
+    campaign:
+      url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-2"
+      status: "closed"
 
     # Early bird pricing deadline
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Apr 30 = May 1 11:59 UTC
@@ -175,6 +189,10 @@ runs:
     status: "active"
     featured: true
 
+    campaign:
+      url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-3"
+      status: "sold_out"
+
     # Early bird pricing deadline
     # AoE = Anywhere on Earth (UTC-12), 11:59 PM AoE Apr 30 = May 1 11:59 UTC
     early_bird_deadline:
@@ -253,3 +271,14 @@ runs:
         display_date: "Q2 2027"
         description: "Bare dies and packaged parts shipped to customers"
         status: "delivery"
+
+  gf180mcu_run_4:
+    name: "GF180MCU Run 4"
+    process: "GF180MCU"
+    run_number: 4
+    status: "upcoming"
+    featured: false
+
+    campaign:
+      url: "https://www.crowdsupply.com/wafer-space/gf180mcu-run-4"
+      status: "prelaunch"
