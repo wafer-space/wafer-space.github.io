@@ -259,7 +259,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: CLON
       name: Cloneless2
-      url: https://wafer.space/ws-run2/projects/CLON.html
+      url: https://wafer.space/ws-run2/projects/CLON
       slot: 1 × 1 slot
       core_mm2: 12.9029
       usable_mm2: 19.6537
@@ -276,7 +276,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: CLON
       name: Cloneless2
-      url: https://wafer.space/ws-run2/projects/CLON.html
+      url: https://wafer.space/ws-run2/projects/CLON
       slot: 1 × 1 slot
       core_mm2: 12.9029
       usable_mm2: 19.6537
@@ -293,7 +293,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: CAFE
       name: FazyRV Hachure
-      url: https://wafer.space/ws-run1/projects/CAFE.html
+      url: https://wafer.space/ws-run1/projects/CAFE
       slot: 1 × 1 slot
       core_mm2: 12.9174
       usable_mm2: 19.6537
@@ -312,7 +312,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: JKU1
       name: gf180mcu-jku-projects
-      url: https://wafer.space/ws-run1/projects/JKU1.html
+      url: https://wafer.space/ws-run1/projects/JKU1
       slot: 1 × 1 slot
       core_mm2: 12.9174
       usable_mm2: 19.6537
@@ -348,7 +348,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
-      url: https://wafer.space/ws-run2/projects/EURO.html
+      url: https://wafer.space/ws-run2/projects/EURO
       slot: 1 × ½ slot
       core_mm2: 5.0201
       usable_mm2: 9.6097
@@ -367,7 +367,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
-      url: https://wafer.space/ws-run2/projects/EURO.html
+      url: https://wafer.space/ws-run2/projects/EURO
       slot: 1 × ½ slot
       core_mm2: 5.0201
       usable_mm2: 9.6097
@@ -386,7 +386,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: GD04
       name: Racquet Wide 1x0.5
-      url: https://wafer.space/ws-run1/projects/GD04.html
+      url: https://wafer.space/ws-run1/projects/GD04
       slot: 1 × ½ slot
       core_mm2: 5.0201
       usable_mm2: 9.6097
@@ -405,7 +405,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: EURO
       name: EuroSynth
-      url: https://wafer.space/ws-run2/projects/EURO.html
+      url: https://wafer.space/ws-run2/projects/EURO
       slot: 1 × ½ slot
       core_mm2: 5.0201
       usable_mm2: 9.6097
@@ -441,7 +441,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
-      url: https://wafer.space/ws-run2/projects/DPK1.html
+      url: https://wafer.space/ws-run2/projects/DPK1
       slot: ½ × 1 slot
       core_mm2: 4.4584
       usable_mm2: 9.5684
@@ -460,7 +460,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
-      url: https://wafer.space/ws-run2/projects/DPK1.html
+      url: https://wafer.space/ws-run2/projects/DPK1
       slot: ½ × 1 slot
       core_mm2: 4.4584
       usable_mm2: 9.5684
@@ -479,7 +479,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: HZ80
       name: FOSSi open-source replacement for Z80 classic 8-bit CPU (0.5 x 1 slot)
-      url: https://wafer.space/ws-run1/projects/HZ80.html
+      url: https://wafer.space/ws-run1/projects/HZ80
       slot: ½ × 1 slot
       core_mm2: 4.4584
       usable_mm2: 9.5684
@@ -498,7 +498,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: DPK1
       name: bio180
-      url: https://wafer.space/ws-run2/projects/DPK1.html
+      url: https://wafer.space/ws-run2/projects/DPK1
       slot: ½ × 1 slot
       core_mm2: 4.4584
       usable_mm2: 9.5684
@@ -534,7 +534,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
-      url: https://wafer.space/ws-run1/projects/TQVA.html
+      url: https://wafer.space/ws-run1/projects/TQVA
       slot: ½ × ½ slot
       core_mm2: 1.7326
       usable_mm2: 4.6785
@@ -553,7 +553,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
-      url: https://wafer.space/ws-run1/projects/TQVA.html
+      url: https://wafer.space/ws-run1/projects/TQVA
       slot: ½ × ½ slot
       core_mm2: 1.7326
       usable_mm2: 4.6785
@@ -572,7 +572,7 @@ achieved:
       run_url: https://wafer.space/ws-run2/
       code: TQVD
       name: TinyQV - RISC-V SoC with HDMI output
-      url: https://wafer.space/ws-run2/projects/TQVD.html
+      url: https://wafer.space/ws-run2/projects/TQVD
       slot: ½ × ½ slot
       core_mm2: 1.7326
       usable_mm2: 4.6785
@@ -590,7 +590,7 @@ achieved:
       run_url: https://wafer.space/ws-run1/
       code: TQVA
       name: TinyQV - Crowdsourced RISC-V SoC
-      url: https://wafer.space/ws-run1/projects/TQVA.html
+      url: https://wafer.space/ws-run1/projects/TQVA
       slot: ½ × ½ slot
       core_mm2: 1.7326
       usable_mm2: 4.6785
@@ -626,7 +626,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '295'
       name: ASCON Integrated Crypto Processor
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295
       slot: 4 × 4 tiles
       core_mm2: 1.0656
       logic_cells: 30184
@@ -642,7 +642,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '295'
       name: ASCON Integrated Crypto Processor
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295
       slot: 4 × 4 tiles
       core_mm2: 1.0656
       logic_cells: 30184
@@ -658,7 +658,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '295'
       name: KianV uLinux SoC
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/295.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/295
       slot: 4 × 4 tiles
       core_mm2: 1.0656
       logic_cells: 20266
@@ -675,7 +675,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '359'
       name: Tiny FABulous FPGA (3.3V version)
-      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359.html
+      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359
       slot: 4 × 4 tiles
       core_mm2: 1.0656
       logic_cells: 25184
@@ -707,7 +707,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101
       slot: 3 × 4 tiles
       core_mm2: 0.7992
       logic_cells: 22709
@@ -724,7 +724,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101
       slot: 3 × 4 tiles
       core_mm2: 0.7992
       logic_cells: 22709
@@ -741,7 +741,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '197'
       name: LISA 8-Bit Microcontroller
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/197.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/197
       slot: 3 × 4 tiles
       core_mm2: 0.7992
       logic_cells: 17231
@@ -758,7 +758,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '101'
       name: SCµM-BLE-RX
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101
       slot: 3 × 4 tiles
       core_mm2: 0.7992
       logic_cells: 22709
@@ -792,7 +792,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '199'
       name: TinyQV RISC-V SoC
-      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199.html
+      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199
       slot: 4 × 2 tiles
       core_mm2: 0.4752
       logic_cells: 12513
@@ -809,7 +809,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '199'
       name: TinyQV RISC-V SoC
-      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199.html
+      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199
       slot: 4 × 2 tiles
       core_mm2: 0.4752
       logic_cells: 12513
@@ -826,7 +826,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '102'
       name: Silly-Faust
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102
       slot: 4 × 2 tiles
       core_mm2: 0.4752
       logic_cells: 9814
@@ -843,7 +843,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '102'
       name: Silly-Faust
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102
       slot: 4 × 2 tiles
       core_mm2: 0.4752
       logic_cells: 9814
@@ -877,7 +877,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '135'
       name: serv_soc_wb
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135
       slot: 3 × 2 tiles
       core_mm2: 0.3564
       logic_cells: 9987
@@ -894,7 +894,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '135'
       name: serv_soc_wb
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135
       slot: 3 × 2 tiles
       core_mm2: 0.3564
       logic_cells: 9987
@@ -911,7 +911,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '101'
       name: AER Reflex Chip - MCP2515 CAN gateway
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/101.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/101
       slot: 3 × 2 tiles
       core_mm2: 0.3564
       logic_cells: 8164
@@ -928,7 +928,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '391'
       name: megabytebeat
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391
       slot: 3 × 2 tiles
       core_mm2: 0.3564
       logic_cells: 8785
@@ -962,7 +962,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '195'
       name: LEA-128
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195
       slot: 2 × 2 tiles
       core_mm2: 0.2343
       logic_cells: 6850
@@ -979,7 +979,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '195'
       name: LEA-128
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195
       slot: 2 × 2 tiles
       core_mm2: 0.2343
       logic_cells: 6850
@@ -996,7 +996,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '454'
       name: Spiking Neural Network WTA Inference Engine (GF180)
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/454.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/454
       slot: 2 × 2 tiles
       core_mm2: 0.2343
       logic_cells: 4367
@@ -1011,7 +1011,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '386'
       name: Elemental Harmony Game
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386
       slot: 2 × 2 tiles
       core_mm2: 0.2343
       logic_cells: 6656
@@ -1045,7 +1045,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '390'
       name: GPS_Accelerator
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390
       slot: 1 × 2 tiles
       core_mm2: 0.1155
       logic_cells: 3457
@@ -1062,7 +1062,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '390'
       name: GPS_Accelerator
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390
       slot: 1 × 2 tiles
       core_mm2: 0.1155
       logic_cells: 3457
@@ -1079,7 +1079,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
       code: '103'
       name: Simon's Caterpillar
-      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/103.html
+      url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/103
       slot: 1 × 2 tiles
       core_mm2: 0.1155
       logic_cells: 2486
@@ -1096,7 +1096,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '452'
       name: PolyWave
-      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452.html
+      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452
       slot: 1 × 2 tiles
       core_mm2: 0.1089
       logic_cells: 1985
@@ -1128,7 +1128,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '353'
       name: DOTTEE VGA demo (TTGF26a)
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
       slot: 1 × 1 tile
       core_mm2: 0.056
       logic_cells: 1919
@@ -1145,7 +1145,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
       code: '353'
       name: DOTTEE VGA demo (TTGF26a)
-      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+      url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
       slot: 1 × 1 tile
       core_mm2: 0.056
       logic_cells: 1919
@@ -1162,7 +1162,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
       code: '519'
       name: Simon Says memory game
-      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/519.html
+      url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/519
       slot: 1 × 1 tile
       core_mm2: 0.056
       logic_cells: 1301
@@ -1179,7 +1179,7 @@ achieved:
       run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
       code: '547'
       name: Tiny RIng Oscillator PUF
-      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+      url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
       slot: 1 × 1 tile
       core_mm2: 0.056
       logic_cells: 1039
@@ -1213,7 +1213,7 @@ achieved:
       run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
-      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
       slot: Caravel user area
       core_mm2: 8.9971
       logic_cells: 64755
@@ -1228,7 +1228,7 @@ achieved:
       run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
-      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
       slot: Caravel user area
       core_mm2: 8.9971
       logic_cells: 64755
@@ -1243,7 +1243,7 @@ achieved:
       run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 105A
       name: AS2650
-      url: https://wafer.space/google-gf180mcu-mpw0/projects/105A.html
+      url: https://wafer.space/google-gf180mcu-mpw0/projects/105A
       slot: Caravel user area
       core_mm2: 8.9971
       logic_cells: 4846
@@ -1258,7 +1258,7 @@ achieved:
       run_url: https://wafer.space/google-gf180mcu-mpw0/
       code: 45D6
       name: Ophelia eFPGA
-      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+      url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
       slot: Caravel user area
       core_mm2: 8.9971
       logic_cells: 64755
@@ -1292,7 +1292,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1309,7 +1309,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1326,7 +1326,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '358'
         name: Notre Dame - CSE 30342 - DIC - Advanced FSM Final Project Example
-        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/358.html
+        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/358
         slot: 1 × 2 tiles
         core_mm2: 0.1155
         logic_cells: 2044
@@ -1343,7 +1343,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
-        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1039
@@ -1371,7 +1371,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1388,7 +1388,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1405,7 +1405,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '033'
         name: wafer.space Logo VGA Screensaver
-        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/033.html
+        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/033
         slot: 1 × 2 tiles
         core_mm2: 0.1155
         logic_cells: 2228
@@ -1422,7 +1422,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
-        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1039
@@ -1449,7 +1449,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
-        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
+        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134
         slot: 2 × 2 tiles
         core_mm2: 0.2343
         logic_cells: 3625
@@ -1466,7 +1466,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
-        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
+        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134
         slot: 2 × 2 tiles
         core_mm2: 0.2343
         logic_cells: 3625
@@ -1483,7 +1483,7 @@ achieved:
         run_url: https://wafer.space/ws-run1/
         code: JKU2
         name: gf180mcu-jku-atbs-adc
-        url: https://wafer.space/ws-run1/projects/JKU2.html
+        url: https://wafer.space/ws-run1/projects/JKU2
         slot: 1 × ½ slot
         core_mm2: 5.0201
         usable_mm2: 9.6097
@@ -1502,7 +1502,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
         code: '134'
         name: VGA Drop (audio/visual demo)
-        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
+        url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134
         slot: 2 × 2 tiles
         core_mm2: 0.2343
         logic_cells: 3625
@@ -1529,7 +1529,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '612'
         name: Detronyx Arithmetic Lab Tile
-        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612.html
+        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1427
@@ -1546,7 +1546,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '612'
         name: Detronyx Arithmetic Lab Tile
-        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612.html
+        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1427
@@ -1563,7 +1563,7 @@ achieved:
         run_url: https://wafer.space/ws-run2/
         code: NAX1
         name: Naxos CoB
-        url: https://wafer.space/ws-run2/projects/NAX1.html
+        url: https://wafer.space/ws-run2/projects/NAX1
         slot: 1 × ½ slot
         core_mm2: 5.0201
         usable_mm2: 9.6097
@@ -1581,7 +1581,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
         code: '359'
         name: Tiny FABulous FPGA (3.3V version)
-        url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359.html
+        url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359
         slot: 4 × 4 tiles
         core_mm2: 1.0656
         logic_cells: 25184
@@ -1607,7 +1607,7 @@ achieved:
         run_url: https://wafer.space/ws-run2/
         code: CLON
         name: Cloneless2
-        url: https://wafer.space/ws-run2/projects/CLON.html
+        url: https://wafer.space/ws-run2/projects/CLON
         slot: 1 × 1 slot
         core_mm2: 12.9029
         usable_mm2: 19.6537
@@ -1624,7 +1624,7 @@ achieved:
         run_url: https://wafer.space/ws-run2/
         code: CLON
         name: Cloneless2
-        url: https://wafer.space/ws-run2/projects/CLON.html
+        url: https://wafer.space/ws-run2/projects/CLON
         slot: 1 × 1 slot
         core_mm2: 12.9029
         usable_mm2: 19.6537
@@ -1641,7 +1641,7 @@ achieved:
         run_url: https://wafer.space/ws-run1/
         code: GD04
         name: Racquet Wide 1x0.5
-        url: https://wafer.space/ws-run1/projects/GD04.html
+        url: https://wafer.space/ws-run1/projects/GD04
         slot: 1 × ½ slot
         core_mm2: 5.0201
         usable_mm2: 9.6097
@@ -1660,7 +1660,7 @@ achieved:
         run_url: https://wafer.space/ws-run1/
         code: JKU1
         name: gf180mcu-jku-projects
-        url: https://wafer.space/ws-run1/projects/JKU1.html
+        url: https://wafer.space/ws-run1/projects/JKU1
         slot: 1 × 1 slot
         core_mm2: 12.9174
         usable_mm2: 19.6537
@@ -1689,7 +1689,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1706,7 +1706,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '353'
         name: DOTTEE VGA demo (TTGF26a)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1919
@@ -1723,7 +1723,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
         code: '547'
         name: Memristive Crossbar Peripheral Controller (GF180)
-        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/547.html
+        url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/547
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1228
@@ -1738,7 +1738,7 @@ achieved:
         run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
         code: '547'
         name: Tiny RIng Oscillator PUF
-        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+        url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
         slot: 1 × 1 tile
         core_mm2: 0.056
         logic_cells: 1039
@@ -1765,7 +1765,7 @@ achieved:
         run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
-        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
         slot: Caravel user area
         core_mm2: 8.9971
         logic_cells: 64755
@@ -1780,7 +1780,7 @@ achieved:
         run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
-        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
         slot: Caravel user area
         core_mm2: 8.9971
         logic_cells: 64755
@@ -1795,7 +1795,7 @@ achieved:
         run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 105A
         name: AS2650
-        url: https://wafer.space/google-gf180mcu-mpw0/projects/105A.html
+        url: https://wafer.space/google-gf180mcu-mpw0/projects/105A
         slot: Caravel user area
         core_mm2: 8.9971
         logic_cells: 4846
@@ -1810,7 +1810,7 @@ achieved:
         run_url: https://wafer.space/google-gf180mcu-mpw0/
         code: 45D6
         name: Ophelia eFPGA
-        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+        url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
         slot: Caravel user area
         core_mm2: 8.9971
         logic_cells: 64755
@@ -1825,7 +1825,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '353'
     name: DOTTEE VGA demo (TTGF26a)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
     slot: 1 × 1 tile
     core_mm2: 0.056
     logic_cells: 1919
@@ -1841,7 +1841,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '067'
     name: Car Trip
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/067.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/067
     slot: 1 × 1 tile
     core_mm2: 0.056
     logic_cells: 1901
@@ -1857,7 +1857,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '486'
     name: BioPulse Tile
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486
     slot: 1 × 1 tile
     core_mm2: 0.056
     logic_cells: 1822
@@ -1873,7 +1873,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '390'
     name: GPS_Accelerator
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390
     slot: 1 × 2 tiles
     core_mm2: 0.1155
     logic_cells: 3457
@@ -1889,7 +1889,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '129'
     name: 7-Segment Neural Predictor
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/129.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/129
     slot: 1 × 2 tiles
     core_mm2: 0.1155
     logic_cells: 3389
@@ -1906,7 +1906,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '547'
     name: Tiny RIng Oscillator PUF
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
     slot: 1 × 1 tile
     core_mm2: 0.056
     logic_cells: 1039
@@ -1922,7 +1922,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/
     code: '452'
     name: PolyWave
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452
     slot: 1 × 2 tiles
     core_mm2: 0.1089
     logic_cells: 1985
@@ -1936,7 +1936,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/
     code: '386'
     name: Elemental Harmony Game
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386
     slot: 2 × 2 tiles
     core_mm2: 0.2343
     logic_cells: 6656
@@ -1952,7 +1952,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/
     code: '391'
     name: megabytebeat
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391
     slot: 3 × 2 tiles
     core_mm2: 0.3564
     logic_cells: 8785
@@ -1968,7 +1968,7 @@ achieved:
     run_url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/
     code: '486'
     name: BioPulse Tile
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486
     slot: 1 × 1 tile
     core_mm2: 0.056
     logic_cells: 1822
@@ -1985,7 +1985,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '353'
     name: DOTTEE VGA demo (TTGF26a)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/353
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 34268
@@ -1994,7 +1994,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '067'
     name: Car Trip
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/067.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/067
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 33946
@@ -2003,7 +2003,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '486'
     name: BioPulse Tile
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/486
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 32536
@@ -2012,7 +2012,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '390'
     name: GPS_Accelerator
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/390
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 29931
@@ -2021,7 +2021,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '129'
     name: 7-Segment Neural Predictor
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/129.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/129
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 29342
@@ -2030,7 +2030,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '195'
     name: LEA-128
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/195
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 29236
@@ -2039,7 +2039,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '551'
     name: Tiny Quantum Circuit Simulator
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/551.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/551
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 28571
@@ -2048,7 +2048,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '036'
     name: Neural Spike Detector
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/036.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/036
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 28537
@@ -2057,7 +2057,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '101'
     name: SCµM-BLE-RX
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/101
     slot: 3 × 4 tiles
     library: 7t-5V
     core_density: 28415
@@ -2066,7 +2066,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '386'
     name: Elemental Harmony Game
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/386
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 28408
@@ -2075,7 +2075,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: 038
     name: 'Hardware Entropy Explorer: UART/SPI TRNG and PUF'
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/038.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/038
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 28407
@@ -2084,7 +2084,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '352'
     name: 'Hardware Entropy Explorer: UART/SPI TRNG and PUF'
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/352.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/352
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 28329
@@ -2093,7 +2093,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '295'
     name: ASCON Integrated Crypto Processor
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/295
     slot: 4 × 4 tiles
     library: 7t-5V
     core_density: 28326
@@ -2102,7 +2102,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '036'
     name: FSK Modem
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/036.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/036
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 28078
@@ -2111,7 +2111,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '135'
     name: serv_soc_wb
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/135
     slot: 3 × 2 tiles
     library: 7t-5V
     core_density: 28022
@@ -2120,7 +2120,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '551'
     name: BRISQ
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/551.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/551
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 27768
@@ -2129,7 +2129,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '005'
     name: 2x2 CNN Accelerator PE Grid with UART
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/005.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/005
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 27429
@@ -2138,7 +2138,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '450'
     name: USB CDC (Serial) Device
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/450.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/450
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 27316
@@ -2147,7 +2147,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '356'
     name: Arctic0 16-bit CPU
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/356.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/356
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 27290
@@ -2156,7 +2156,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '545'
     name: BF
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/545.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/545
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 27161
@@ -2165,7 +2165,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '519'
     name: Simon Says memory game
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/519.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/519
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 26911
@@ -2174,7 +2174,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '547'
     name: WokwiPWM
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/547.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/547
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 26446
@@ -2183,7 +2183,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '358'
     name: 'Hardware Entropy Explorer: UART/SPI TRNG and PUF (Analog)'
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/358.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/358
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 26390
@@ -2192,7 +2192,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '199'
     name: TinyQV RISC-V SoC
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/199
     slot: 4 × 2 tiles
     library: 7t-5V
     core_density: 26332
@@ -2201,7 +2201,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '071'
     name: 4-Neuron LIF Spiking Neural Network
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/071.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/071
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 26054
@@ -2210,7 +2210,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '578'
     name: Balanced Ternary Multiplier
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/578.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/578
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 25929
@@ -2219,7 +2219,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '354'
     name: PWM-Analyser
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/354.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/354
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 25628
@@ -2228,7 +2228,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '390'
     name: Smerity-Mandelbrot
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/390.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/390
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 25510
@@ -2237,7 +2237,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '612'
     name: Detronyx Arithmetic Lab Tile
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/612
     slot: 1 × 1 tile
     library: AS 7t-3.3V
     core_density: 25482
@@ -2246,7 +2246,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '130'
     name: USB CDC (Serial) Device
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/130.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/130
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 25481
@@ -2255,7 +2255,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '454'
     name: Tensor Processing Unit For GF
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/454.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/454
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 25463
@@ -2264,7 +2264,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '033'
     name: 60 Hz Grid-Forming ASIC with Dump-Load Control
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/033.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/033
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 25420
@@ -2273,7 +2273,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: 039
     name: TinyQV RISC-V SoC
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/039.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/039
     slot: 3 × 4 tiles
     library: 7t-5V
     core_density: 25130
@@ -2282,7 +2282,7 @@ achieved:
     run: wafer.space Run 2
     code: CLON
     name: Cloneless2
-    url: https://wafer.space/ws-run2/projects/CLON.html
+    url: https://wafer.space/ws-run2/projects/CLON
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 25081
@@ -2292,7 +2292,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '579'
     name: PRISM 8 with TinySnake
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/579.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/579
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 25018
@@ -2301,7 +2301,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '391'
     name: megabytebeat
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/391
     slot: 3 × 2 tiles
     library: 7t-5V
     core_density: 24649
@@ -2310,7 +2310,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '513'
     name: Classic 8-bit era Programmable Sound Generator SN76489
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/513.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/513
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 24643
@@ -2319,7 +2319,7 @@ achieved:
     run: wafer.space Run 1
     code: '2975'
     name: Cloneless1
-    url: https://wafer.space/ws-run1/projects/2975.html
+    url: https://wafer.space/ws-run1/projects/2975
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 24525
@@ -2329,7 +2329,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: 038
     name: RRAM Characterization Platform (DC sweep + endurance + retention + histogram, GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/038.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/038
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 24303
@@ -2338,7 +2338,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '610'
     name: PDM Voice Activity Detector
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/610.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/610
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 24232
@@ -2347,7 +2347,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: 038
     name: Lightscan
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/038.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/038
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 24208
@@ -2356,7 +2356,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '356'
     name: RHD2164-MCU-SPI Bridge
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/356.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/356
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 24182
@@ -2365,7 +2365,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '611'
     name: UNIZG-FER VGA project
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/611.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/611
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 23821
@@ -2374,7 +2374,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '359'
     name: Tiny FABulous FPGA (3.3V version)
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/359
     slot: 4 × 4 tiles
     library: AS 7t-3.3V
     core_density: 23634
@@ -2383,7 +2383,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '288'
     name: Notre Dame - Lockpick Game TT Example
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/288.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/288
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23567
@@ -2392,7 +2392,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '129'
     name: 2x2 MAC Systolic array with DFT
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/129.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/129
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23472
@@ -2401,7 +2401,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '384'
     name: teenytpu
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/384.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/384
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23264
@@ -2410,7 +2410,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '519'
     name: Simon Says memory game
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/519.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/519
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 23232
@@ -2419,7 +2419,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '355'
     name: Simon Says memory game
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/355.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/355
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 23232
@@ -2428,7 +2428,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '358'
     name: Pong
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/358.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/358
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23203
@@ -2437,7 +2437,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '359'
     name: Simple RISC-V
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/359.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/359
     slot: 4 × 2 tiles
     library: 7t-5V
     core_density: 23148
@@ -2446,7 +2446,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '199'
     name: VGA Nyan Cat
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/199.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/199
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23048
@@ -2455,7 +2455,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '003'
     name: VGA Nyan Cat
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/003.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/003
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 23048
@@ -2464,7 +2464,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '615'
     name: Video mode tester
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/615.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/615
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 22982
@@ -2473,7 +2473,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '101'
     name: AER Reflex Chip - MCP2515 CAN gateway
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/101.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/101
     slot: 3 × 2 tiles
     library: 7t-5V
     core_density: 22907
@@ -2482,7 +2482,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '549'
     name: Ring Oscillator PVT Sensor & TRNG (GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/549.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/549
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 22607
@@ -2491,7 +2491,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '034'
     name: 2x2 MAC Systolic array with DFT
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/034.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/034
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 22606
@@ -2500,7 +2500,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '450'
     name: Simple MAC Engine w/ Postproc
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/450.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/450
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 22519
@@ -2509,7 +2509,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '032'
     name: Zedulo TestChip1
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/032.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/032
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 22179
@@ -2518,7 +2518,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '611'
     name: Video mode tester
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/611.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/611
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 22036
@@ -2527,7 +2527,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '545'
     name: Flame demo
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/545.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/545
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 21964
@@ -2536,7 +2536,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '547'
     name: Memristive Crossbar Peripheral Controller (GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/547.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/547
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 21929
@@ -2545,7 +2545,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '032'
     name: Hardware UTF Encoder/Decoder
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/032.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/032
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 21786
@@ -2554,7 +2554,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: 039
     name: Programmable_Pipeline-RISC-V
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/039.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/039
     slot: 4 × 4 tiles
     library: 7t-5V
     core_density: 21768
@@ -2563,7 +2563,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '482'
     name: SAP 8 Bit Computer
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/482.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/482
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 21679
@@ -2572,7 +2572,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '197'
     name: LISA 8-Bit Microcontroller
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/197.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/197
     slot: 3 × 4 tiles
     library: 7t-5V
     core_density: 21560
@@ -2581,7 +2581,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '103'
     name: Simon's Caterpillar
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/103.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/103
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 21524
@@ -2590,7 +2590,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '577'
     name: Custom DVD Screensaver for VGA
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/577.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/577
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 21500
@@ -2599,7 +2599,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '258'
     name: Abad2048
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/258.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/258
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 21229
@@ -2608,7 +2608,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '358'
     name: Stochastic neuron + STDP controller (merged, GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/358.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/358
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 21082
@@ -2617,7 +2617,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '455'
     name: Zilog Z80
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/455.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/455
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 20990
@@ -2626,7 +2626,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '070'
     name: xoroshiro64
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/070.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/070
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 20964
@@ -2635,7 +2635,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '195'
     name: Tiny Pixel Processor
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/195.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/195
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 20849
@@ -2644,7 +2644,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '288'
     name: 100Mbps Ethernet Accelerator Wrapper
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/288.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/288
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 20831
@@ -2653,7 +2653,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '102'
     name: Silly-Faust
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/102
     slot: 4 × 2 tiles
     library: 7t-5V
     core_density: 20652
@@ -2662,7 +2662,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '135'
     name: raybox-zero TTGF0p2 edition
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/135.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/135
     slot: 3 × 4 tiles
     library: 7t-5V
     core_density: 20646
@@ -2671,7 +2671,7 @@ achieved:
     run: wafer.space Run 1
     code: TQVA
     name: TinyQV - Crowdsourced RISC-V SoC
-    url: https://wafer.space/ws-run1/projects/TQVA.html
+    url: https://wafer.space/ws-run1/projects/TQVA
     slot: ½ × ½ slot
     library: 7t-5V
     core_density: 20611
@@ -2681,7 +2681,7 @@ achieved:
     run: wafer.space Run 2
     code: TQVA
     name: TinyQV - Crowdsourced RISC-V SoC
-    url: https://wafer.space/ws-run2/projects/TQVA.html
+    url: https://wafer.space/ws-run2/projects/TQVA
     slot: ½ × ½ slot
     library: 7t-5V
     core_density: 20611
@@ -2691,7 +2691,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '581'
     name: Aswarby INT8 MAC
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/581.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/581
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 20464
@@ -2700,7 +2700,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '103'
     name: Music for ASICs
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/103.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/103
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 20433
@@ -2709,7 +2709,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '551'
     name: PVTMonitorSuite
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/551.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/551
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 20054
@@ -2718,7 +2718,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '194'
     name: 2048 sliding tile puzzle game (VGA)
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/194.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/194
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 19974
@@ -2727,7 +2727,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '481'
     name: ROTFPGA v2
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/481.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/481
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 19645
@@ -2736,7 +2736,7 @@ achieved:
     run: wafer.space Run 2
     code: BTX1
     name: BTX
-    url: https://wafer.space/ws-run2/projects/BTX1.html
+    url: https://wafer.space/ws-run2/projects/BTX1
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 19579
@@ -2746,7 +2746,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '515'
     name: VGA Tiny Logo
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/515.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/515
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 19554
@@ -2755,7 +2755,7 @@ achieved:
     run: wafer.space Run 2
     code: DPK2
     name: cordic-romless-x8
-    url: https://wafer.space/ws-run2/projects/DPK2.html
+    url: https://wafer.space/ws-run2/projects/DPK2
     slot: ½ × ½ slot
     library: 7t-5V
     core_density: 19314
@@ -2765,7 +2765,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '033'
     name: wafer.space Logo VGA Screensaver
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/033.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/033
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 19290
@@ -2774,7 +2774,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '295'
     name: KianV uLinux SoC
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/295.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/295
     slot: 4 × 4 tiles
     library: 7t-5V
     core_density: 19018
@@ -2783,7 +2783,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '356'
     name: 2048 sliding tile puzzle game (VGA)
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/356.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/356
     slot: 3 × 2 tiles
     library: 7t-5V
     core_density: 18900
@@ -2792,7 +2792,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '517'
     name: I2C Slave Template with Emulated Sensor
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/517.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/517
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 18768
@@ -2801,7 +2801,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '549'
     name: Dog Battle Game
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/549.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/549
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 18696
@@ -2810,7 +2810,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '454'
     name: Spiking Neural Network WTA Inference Engine (GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/454.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/454
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 18638
@@ -2819,7 +2819,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '102'
     name: Custom DVD Screensaver for VGA
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/102.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/102
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 18554
@@ -2828,7 +2828,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '547'
     name: Tiny RIng Oscillator PUF
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/547
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 18554
@@ -2837,7 +2837,7 @@ achieved:
     run: wafer.space Run 2
     code: SCUP
     name: GF180MCU Peripherals
-    url: https://wafer.space/ws-run2/projects/SCUP.html
+    url: https://wafer.space/ws-run2/projects/SCUP
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 18512
@@ -2847,7 +2847,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '452'
     name: PolyWave
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/452
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 18228
@@ -2856,7 +2856,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '545'
     name: Quadrature sine generator
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/545.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/545
     slot: 1 × 1 tile
     library: 7t-5V
     core_density: 18161
@@ -2865,7 +2865,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '102'
     name: Tiny FABulous FPGA
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/102.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/102
     slot: 4 × 4 tiles
     library: 7t-5V
     core_density: 18048
@@ -2874,7 +2874,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '358'
     name: Notre Dame - CSE 30342 - DIC - Advanced FSM Final Project Example
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/358.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/358
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 17697
@@ -2883,7 +2883,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '288'
     name: Philippine flag waving
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/288.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/288
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 17558
@@ -2892,7 +2892,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '451'
     name: Asicle v2
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/451.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/451
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 17149
@@ -2901,7 +2901,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '100'
     name: Neuromorphic PUF (distinct-tap LFSR arbiter + memristor XOR, GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/100.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/100
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 17065
@@ -2910,7 +2910,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: 099
     name: Until heat death do us part
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/099.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/099
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 16906
@@ -2919,7 +2919,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: 038
     name: Wildcat RISC-V
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/038.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/038
     slot: 3 × 2 tiles
     library: 7t-5V
     core_density: 16462
@@ -2928,7 +2928,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '448'
     name: APA102 to WS2812 Translator
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/448.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/448
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 16442
@@ -2937,7 +2937,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '034'
     name: Neuromorphic Spike Codec (GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/034.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/034
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 16442
@@ -2946,7 +2946,7 @@ achieved:
     run: wafer.space Run 2
     code: MOLE
     name: FABulous FPGA
-    url: https://wafer.space/ws-run2/projects/MOLE.html
+    url: https://wafer.space/ws-run2/projects/MOLE
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 16397
@@ -2956,7 +2956,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '198'
     name: easy PAL
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/198.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/198
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 16364
@@ -2965,7 +2965,7 @@ achieved:
     run: wafer.space Run 1
     code: TTP2
     name: Tiny Tapeout GF 0.2, standard
-    url: https://wafer.space/ws-run1/projects/TTP2.html
+    url: https://wafer.space/ws-run1/projects/TTP2
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 15793
@@ -2975,7 +2975,7 @@ achieved:
     run: wafer.space Run 1
     code: TTPG
     name: Tiny Tapeout GF 0.2, power-gated
-    url: https://wafer.space/ws-run1/projects/TTPG.html
+    url: https://wafer.space/ws-run1/projects/TTPG
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 15793
@@ -2985,7 +2985,7 @@ achieved:
     run: wafer.space Run 1
     code: MOLE
     name: FABulous FPGA
-    url: https://wafer.space/ws-run1/projects/MOLE.html
+    url: https://wafer.space/ws-run1/projects/MOLE
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 15774
@@ -2995,7 +2995,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '134'
     name: VGA Drop (audio/visual demo)
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/134
     slot: 2 × 2 tiles
     library: 9t-5V
     core_density: 15472
@@ -3004,7 +3004,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: 098
     name: CIM Controller with BIST and Fault Map (GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/098.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/098
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 15229
@@ -3013,7 +3013,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '450'
     name: Programmable Waveform and PWM Generator
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/450.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/450
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 15194
@@ -3022,7 +3022,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '354'
     name: 8-bit RISC CPU
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/354.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/354
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 14961
@@ -3031,7 +3031,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '196'
     name: Quickscope
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/196.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/196
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 14874
@@ -3040,7 +3040,7 @@ achieved:
     run: wafer.space Run 2
     code: DPK1
     name: bio180
-    url: https://wafer.space/ws-run2/projects/DPK1.html
+    url: https://wafer.space/ws-run2/projects/DPK1
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 14856
@@ -3050,7 +3050,7 @@ achieved:
     run: Tiny Tapeout GF 0.3
     code: '033'
     name: Simple Signal Generator
-    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/033.html
+    url: https://wafer.space/tinytapeouts/ttgf0p3/ws-run2-t0p3/projects/033
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 14753
@@ -3059,7 +3059,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: 039
     name: ChaCha20
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/039.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/039
     slot: 3 × 4 tiles
     library: 7t-5V
     core_density: 14661
@@ -3068,7 +3068,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '295'
     name: UTOSS RISC-V core
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/295.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/295
     slot: 4 × 4 tiles
     library: 7t-5V
     core_density: 14193
@@ -3077,7 +3077,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '199'
     name: 100Mbps 3 port Ethernet switch
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/199.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/199
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 14072
@@ -3086,7 +3086,7 @@ achieved:
     run: wafer.space Run 2
     code: TQVE
     name: TinyQV - RISC-V SoC with experimental pad setup
-    url: https://wafer.space/ws-run2/projects/TQVE.html
+    url: https://wafer.space/ws-run2/projects/TQVE
     slot: ½ × ½ slot
     library: AS 7t-3.3V
     core_density: 13930
@@ -3096,7 +3096,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: 096
     name: Asynchronous-AER Spike Router (4-phase REQ/ACK, 16-entry routing table, GF180)
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/096.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/096
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 13801
@@ -3105,7 +3105,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '352'
     name: Procedural ASIC
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/352.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/352
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 13688
@@ -3114,7 +3114,7 @@ achieved:
     run: wafer.space Run 2
     code: TQVD
     name: TinyQV - RISC-V SoC with HDMI output
-    url: https://wafer.space/ws-run2/projects/TQVD.html
+    url: https://wafer.space/ws-run2/projects/TQVD
     slot: ½ × ½ slot
     library: AS 7t-3.3V
     core_density: 13672
@@ -3123,7 +3123,7 @@ achieved:
     run: wafer.space Run 2
     code: EURO
     name: EuroSynth
-    url: https://wafer.space/ws-run2/projects/EURO.html
+    url: https://wafer.space/ws-run2/projects/EURO
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 13561
@@ -3133,7 +3133,7 @@ achieved:
     run: wafer.space Run 1
     code: JKU1
     name: gf180mcu-jku-projects
-    url: https://wafer.space/ws-run1/projects/JKU1.html
+    url: https://wafer.space/ws-run1/projects/JKU1
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 13506
@@ -3143,7 +3143,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '388'
     name: Tiny TPU Systolic Array
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/388.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/388
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 13238
@@ -3152,7 +3152,7 @@ achieved:
     run: Tiny Tapeout GF 26b
     code: '129'
     name: CWRU CHIPS Simple Counter with 7-segment Display
-    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/129.html
+    url: https://wafer.space/tinytapeouts/ttgf26b/ws-run2-t26b/projects/129
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 12797
@@ -3161,7 +3161,7 @@ achieved:
     run: wafer.space Run 2
     code: T26B
     name: Tiny Tapeout GF 26b
-    url: https://wafer.space/ws-run2/projects/T26B.html
+    url: https://wafer.space/ws-run2/projects/T26B
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 12087
@@ -3171,7 +3171,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '199'
     name: Very Low Resource Digital Implementation of Bioimpedance Analysis
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/199.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/199
     slot: 2 × 2 tiles
     library: 7t-5V
     core_density: 12057
@@ -3180,7 +3180,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '384'
     name: LEDs Racer
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/384.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/384
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 11385
@@ -3189,7 +3189,7 @@ achieved:
     run: wafer.space Run 1
     code: CHES
     name: chess-move-generator
-    url: https://wafer.space/ws-run1/projects/CHES.html
+    url: https://wafer.space/ws-run1/projects/CHES
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 11231
@@ -3199,7 +3199,7 @@ achieved:
     run: wafer.space Run 2
     code: T26A
     name: Tiny Tapeout GF 26a
-    url: https://wafer.space/ws-run2/projects/T26A.html
+    url: https://wafer.space/ws-run2/projects/T26A
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 11193
@@ -3209,7 +3209,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '454'
     name: CAN Controller for Rocket
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/454.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/454
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 10545
@@ -3218,7 +3218,7 @@ achieved:
     run: wafer.space Run 2
     code: CAB1
     name: Cabrera CoB
-    url: https://wafer.space/ws-run2/projects/CAB1.html
+    url: https://wafer.space/ws-run2/projects/CAB1
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 10398
@@ -3228,7 +3228,7 @@ achieved:
     run: Tiny Tapeout GF 0.2
     code: '385'
     name: Frequency Counter SSD1306 OLED
-    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/385.html
+    url: https://wafer.space/tinytapeouts/ttgf0p2/ws-run1-ttp2/projects/385
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 10017
@@ -3237,7 +3237,7 @@ achieved:
     run: wafer.space Run 2
     code: NAX1
     name: Naxos CoB
-    url: https://wafer.space/ws-run2/projects/NAX1.html
+    url: https://wafer.space/ws-run2/projects/NAX1
     slot: 1 × ½ slot
     library: AS 7t-3.3V
     core_density: 9944
@@ -3246,7 +3246,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '386'
     name: Pong in Verilog
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/386.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/386
     slot: 1 × 2 tiles
     library: 7t-5V
     core_density: 9835
@@ -3255,7 +3255,7 @@ achieved:
     run: wafer.space Run 2
     code: SCTP
     name: SlugTPU
-    url: https://wafer.space/ws-run2/projects/SCTP.html
+    url: https://wafer.space/ws-run2/projects/SCTP
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 9648
@@ -3265,7 +3265,7 @@ achieved:
     run: Tiny Tapeout GF 26a
     code: '103'
     name: Minimal RV32E SoC with UART Loader
-    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/103.html
+    url: https://wafer.space/tinytapeouts/ttgf26a/ws-run2-t26a/projects/103
     slot: 4 × 2 tiles
     library: 7t-5V
     core_density: 9383
@@ -3274,7 +3274,7 @@ achieved:
     run: wafer.space Run 2
     code: T0P3
     name: Tiny Tapeout GF 0.3
-    url: https://wafer.space/ws-run2/projects/T0P3.html
+    url: https://wafer.space/ws-run2/projects/T0P3
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 9216
@@ -3284,7 +3284,7 @@ achieved:
     run: wafer.space Run 2
     code: SCML
     name: ML-Audio SC
-    url: https://wafer.space/ws-run2/projects/SCML.html
+    url: https://wafer.space/ws-run2/projects/SCML
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 8631
@@ -3294,7 +3294,7 @@ achieved:
     run: wafer.space Run 1
     code: TQVB
     name: TinyQV - Crowdsourced RISC-V SoC (0.5x1)
-    url: https://wafer.space/ws-run1/projects/TQVB.html
+    url: https://wafer.space/ws-run1/projects/TQVB
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 7944
@@ -3304,7 +3304,7 @@ achieved:
     run: wafer.space Run 1
     code: CAFE
     name: FazyRV Hachure
-    url: https://wafer.space/ws-run1/projects/CAFE.html
+    url: https://wafer.space/ws-run1/projects/CAFE
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 7784
@@ -3314,7 +3314,7 @@ achieved:
     run: wafer.space Run 1
     code: GD02
     name: Racquet Half r1p0 (1/2 slot)
-    url: https://wafer.space/ws-run1/projects/GD02.html
+    url: https://wafer.space/ws-run1/projects/GD02
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 7753
@@ -3324,7 +3324,7 @@ achieved:
     run: Google GFMPW-0
     code: 45D6
     name: Ophelia eFPGA
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/45D6
     slot: Caravel user area
     library: 7t-5V
     core_density: 7197
@@ -3333,7 +3333,7 @@ achieved:
     run: wafer.space Run 1
     code: TQVC
     name: TinyQV - Crowdsourced RISC-V SoC (1x0.5)
-    url: https://wafer.space/ws-run1/projects/TQVC.html
+    url: https://wafer.space/ws-run1/projects/TQVC
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 7194
@@ -3343,7 +3343,7 @@ achieved:
     run: wafer.space Run 2
     code: TQVC
     name: TinyQV - Crowdsourced RISC-V SoC (1x0.5)
-    url: https://wafer.space/ws-run2/projects/TQVC.html
+    url: https://wafer.space/ws-run2/projects/TQVC
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 7194
@@ -3353,7 +3353,7 @@ achieved:
     run: wafer.space Run 1
     code: GD04
     name: Racquet Wide 1x0.5
-    url: https://wafer.space/ws-run1/projects/GD04.html
+    url: https://wafer.space/ws-run1/projects/GD04
     slot: 1 × ½ slot
     library: 9t-5V
     core_density: 7077
@@ -3363,7 +3363,7 @@ achieved:
     run: wafer.space Run 2
     code: GD04
     name: Racquet Wide 1x0.5
-    url: https://wafer.space/ws-run2/projects/GD04.html
+    url: https://wafer.space/ws-run2/projects/GD04
     slot: 1 × ½ slot
     library: 9t-5V
     core_density: 7077
@@ -3373,7 +3373,7 @@ achieved:
     run: wafer.space Run 1
     code: KIAN
     name: 'KianV: A 32-bit RISC-V Linux SoC taped out on GF180MCU'
-    url: https://wafer.space/ws-run1/projects/KIAN.html
+    url: https://wafer.space/ws-run1/projects/KIAN
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 6885
@@ -3383,7 +3383,7 @@ achieved:
     run: wafer.space Run 1
     code: RZML
     name: LGN FashionMNIST - Logic Gate Network trained on FashionMNIST
-    url: https://wafer.space/ws-run1/projects/RZML.html
+    url: https://wafer.space/ws-run1/projects/RZML
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 6852
@@ -3393,7 +3393,7 @@ achieved:
     run: wafer.space Run 2
     code: AS04
     name: Multi-Project die using 3.3V SCL
-    url: https://wafer.space/ws-run2/projects/AS04.html
+    url: https://wafer.space/ws-run2/projects/AS04
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 6760
@@ -3403,7 +3403,7 @@ achieved:
     run: wafer.space Run 1
     code: AS03
     name: WS-Multi
-    url: https://wafer.space/ws-run1/projects/AS03.html
+    url: https://wafer.space/ws-run1/projects/AS03
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 6706
@@ -3413,7 +3413,7 @@ achieved:
     run: wafer.space Run 2
     code: AMM1
     name: raybox-zero wafer.space run 2 half height
-    url: https://wafer.space/ws-run2/projects/AMM1.html
+    url: https://wafer.space/ws-run2/projects/AMM1
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 6296
@@ -3423,7 +3423,7 @@ achieved:
     run: wafer.space Run 1
     code: GD03
     name: Racquet r2p0 - 23 core SoC
-    url: https://wafer.space/ws-run1/projects/GD03.html
+    url: https://wafer.space/ws-run1/projects/GD03
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 6054
@@ -3432,7 +3432,7 @@ achieved:
     run: wafer.space Run 2
     code: KIAN
     name: 'KianV: A 32-bit RISC-V Linux SoC taped out on GF180MCU Run 2'
-    url: https://wafer.space/ws-run2/projects/KIAN.html
+    url: https://wafer.space/ws-run2/projects/KIAN
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 5949
@@ -3442,7 +3442,7 @@ achieved:
     run: wafer.space Run 1
     code: RBOY
     name: RISCBoy-180
-    url: https://wafer.space/ws-run1/projects/RBOY.html
+    url: https://wafer.space/ws-run1/projects/RBOY
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 5415
@@ -3453,7 +3453,7 @@ achieved:
     code: CAFE
     name: 'Expresso Ethernet Chip: 100Mbps Ethernet switch + Heat death of the Universe Beacon - 0.5x0.5 version - Preferred
       version'
-    url: https://wafer.space/ws-run2/projects/CAFE.html
+    url: https://wafer.space/ws-run2/projects/CAFE
     slot: ½ × ½ slot
     library: 7t-5V
     core_density: 5048
@@ -3463,7 +3463,7 @@ achieved:
     run: wafer.space Run 1
     code: TZ01
     name: TillitisZedulo-testchip2025
-    url: https://wafer.space/ws-run1/projects/TZ01.html
+    url: https://wafer.space/ws-run1/projects/TZ01
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 4491
@@ -3473,7 +3473,7 @@ achieved:
     run: wafer.space Run 1
     code: JKU2
     name: gf180mcu-jku-atbs-adc
-    url: https://wafer.space/ws-run1/projects/JKU2.html
+    url: https://wafer.space/ws-run1/projects/JKU2
     slot: 1 × ½ slot
     library: 9t-5V
     core_density: 4477
@@ -3483,7 +3483,7 @@ achieved:
     run: wafer.space Run 2
     code: SCMT
     name: microTheia
-    url: https://wafer.space/ws-run2/projects/SCMT.html
+    url: https://wafer.space/ws-run2/projects/SCMT
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 3679
@@ -3492,7 +3492,7 @@ achieved:
     run: wafer.space Run 2
     code: PSOC
     name: Simplest possible PicoSoC implementation using wafer.space flow
-    url: https://wafer.space/ws-run2/projects/PSOC.html
+    url: https://wafer.space/ws-run2/projects/PSOC
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 3660
@@ -3501,7 +3501,7 @@ achieved:
     run: Google GFMPW-0
     code: 56C6
     name: One-hot FABulous FPGA
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/56C6.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/56C6
     slot: Caravel user area
     library: 7t-5V
     core_density: 3561
@@ -3510,7 +3510,7 @@ achieved:
     run: wafer.space Run 1
     code: BTAP
     name: BreakingTTAPs
-    url: https://wafer.space/ws-run1/projects/BTAP.html
+    url: https://wafer.space/ws-run1/projects/BTAP
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 3346
@@ -3520,7 +3520,7 @@ achieved:
     run: Google GFMPW-0
     code: C979
     name: VerilogBoy
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/C979.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/C979
     slot: Caravel user area
     library: 7t-5V
     core_density: 3012
@@ -3529,7 +3529,7 @@ achieved:
     run: wafer.space Run 2
     code: QZ80
     name: FOSSi open-source replacement for Z80 classic 8-bit CPU (0.5 x 0.5 slot)
-    url: https://wafer.space/ws-run2/projects/QZ80.html
+    url: https://wafer.space/ws-run2/projects/QZ80
     slot: ½ × ½ slot
     library: 9t-5V
     core_density: 2941
@@ -3539,7 +3539,7 @@ achieved:
     run: wafer.space Run 1
     code: OCD1
     name: openframe_caravel_picorv32
-    url: https://wafer.space/ws-run1/projects/OCD1.html
+    url: https://wafer.space/ws-run1/projects/OCD1
     slot: 1 × 1 slot
     library: AS 7t-3.3V
     core_density: 2668
@@ -3549,7 +3549,7 @@ achieved:
     run: Google GFMPW-0
     code: '6079'
     name: Serv tri-core (GF180 MPW0 Serv)
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/6079.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/6079
     slot: Caravel user area
     library: 7t-5V
     core_density: 1928
@@ -3558,7 +3558,7 @@ achieved:
     run: Google GFMPW-0
     code: FF8E
     name: Hash accelerator with clock multiplexing
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/FF8E.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/FF8E
     slot: Caravel user area
     library: 7t-5V
     core_density: 1441
@@ -3567,7 +3567,7 @@ achieved:
     run: wafer.space Run 2
     code: DCO0
     name: Standard Cell DCO+TDC
-    url: https://wafer.space/ws-run2/projects/DCO0.html
+    url: https://wafer.space/ws-run2/projects/DCO0
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 1422
@@ -3577,7 +3577,7 @@ achieved:
     run: wafer.space Run 1
     code: MOSB
     name: MOSbiusV3
-    url: https://wafer.space/ws-run1/projects/MOSB.html
+    url: https://wafer.space/ws-run1/projects/MOSB
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 1386
@@ -3587,7 +3587,7 @@ achieved:
     run: wafer.space Run 1
     code: HZ80
     name: FOSSi open-source replacement for Z80 classic 8-bit CPU (0.5 x 1 slot)
-    url: https://wafer.space/ws-run1/projects/HZ80.html
+    url: https://wafer.space/ws-run1/projects/HZ80
     slot: ½ × 1 slot
     library: 9t-5V
     core_density: 1154
@@ -3597,7 +3597,7 @@ achieved:
     run: wafer.space Run 2
     code: HZ80
     name: FOSSi open-source replacement for Z80 classic 8-bit CPU (0.5 x 1 slot)
-    url: https://wafer.space/ws-run2/projects/HZ80.html
+    url: https://wafer.space/ws-run2/projects/HZ80
     slot: ½ × 1 slot
     library: 9t-5V
     core_density: 1154
@@ -3607,7 +3607,7 @@ achieved:
     run: wafer.space Run 1
     code: WSLG
     name: wafer.space Logo
-    url: https://wafer.space/ws-run1/projects/WSLG.html
+    url: https://wafer.space/ws-run1/projects/WSLG
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 1106
@@ -3617,7 +3617,7 @@ achieved:
     run: wafer.space Run 2
     code: WSLG
     name: wafer.space Logo
-    url: https://wafer.space/ws-run2/projects/WSLG.html
+    url: https://wafer.space/ws-run2/projects/WSLG
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 1106
@@ -3627,7 +3627,7 @@ achieved:
     run: wafer.space Run 2
     code: AS16
     name: 16-bit RISC CPU
-    url: https://wafer.space/ws-run2/projects/AS16.html
+    url: https://wafer.space/ws-run2/projects/AS16
     slot: 1 × ½ slot
     library: 7t-5V
     core_density: 1097
@@ -3637,7 +3637,7 @@ achieved:
     run: wafer.space Run 2
     code: SALU
     name: Simple ALU
-    url: https://wafer.space/ws-run2/projects/SALU.html
+    url: https://wafer.space/ws-run2/projects/SALU
     slot: ½ × ½ slot
     library: 7t-5V
     core_density: 928
@@ -3647,7 +3647,7 @@ achieved:
     run: wafer.space Run 2
     code: FS03
     name: Test chip with 5V SRAM blocks
-    url: https://wafer.space/ws-run2/projects/FS03.html
+    url: https://wafer.space/ws-run2/projects/FS03
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 847
@@ -3657,7 +3657,7 @@ achieved:
     run: Google MPW-18H1
     code: '0002'
     name: OSU 3.3V standard cell test (vlsiffra adder)
-    url: https://wafer.space/google-gf180mcu-mpw18h1/projects/0002.html
+    url: https://wafer.space/google-gf180mcu-mpw18h1/projects/0002
     slot: Caravel user area
     library: OSU 9t-3.3V
     core_density: 816
@@ -3666,7 +3666,7 @@ achieved:
     run: wafer.space Run 2
     code: FS01
     name: Test chip with 3.3V SRAM blocks using regular design rules
-    url: https://wafer.space/ws-run2/projects/FS01.html
+    url: https://wafer.space/ws-run2/projects/FS01
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 791
@@ -3676,7 +3676,7 @@ achieved:
     run: wafer.space Run 2
     code: FS02
     name: Test chip with 3.3V SRAM blocks using SRAM design rules
-    url: https://wafer.space/ws-run2/projects/FS02.html
+    url: https://wafer.space/ws-run2/projects/FS02
     slot: ½ × 1 slot
     library: 7t-5V
     core_density: 781
@@ -3686,7 +3686,7 @@ achieved:
     run: Google GFMPW-0
     code: B676
     name: SPELL for GF180
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/B676.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/B676
     slot: Caravel user area
     library: 7t-5V
     core_density: 718
@@ -3695,7 +3695,7 @@ achieved:
     run: Google GFMPW-0
     code: 66AD
     name: ALU (paper)
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/66AD.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/66AD
     slot: Caravel user area
     library: 7t-5V
     core_density: 662
@@ -3704,7 +3704,7 @@ achieved:
     run: Google GFMPW-0
     code: 105A
     name: AS2650
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/105A.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/105A
     slot: Caravel user area
     library: 7t-5V
     core_density: 539
@@ -3713,7 +3713,7 @@ achieved:
     run: Google GFMPW-0
     code: F0DD
     name: Pyramiden Core (RV16U)
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/F0DD.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/F0DD
     slot: Caravel user area
     library: 7t-5V
     core_density: 431
@@ -3722,7 +3722,7 @@ achieved:
     run: wafer.space Run 1
     code: RZ80
     name: FOSSi open-source replacement for Z80 classic 8-bit CPU
-    url: https://wafer.space/ws-run1/projects/RZ80.html
+    url: https://wafer.space/ws-run1/projects/RZ80
     slot: 1 × 1 slot
     library: 9t-5V
     core_density: 403
@@ -3732,7 +3732,7 @@ achieved:
     run: wafer.space Run 1
     code: BRWN
     name: FA25_Engn2912e_Saligane_Brown
-    url: https://wafer.space/ws-run1/projects/BRWN.html
+    url: https://wafer.space/ws-run1/projects/BRWN
     slot: 1 × 1 slot
     library: 7t-5V
     core_density: 339
@@ -3742,7 +3742,7 @@ achieved:
     run: Google GFMPW-0
     code: 8BB5
     name: PWM / Wishbone core
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/8BB5.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/8BB5
     slot: Caravel user area
     library: 7t-5V
     core_density: 275
@@ -3751,7 +3751,7 @@ achieved:
     run: Google GFMPW-0
     code: E91D
     name: EduRISC16
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/E91D.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/E91D
     slot: Caravel user area
     library: 7t-5V
     core_density: 226
@@ -3760,7 +3760,7 @@ achieved:
     run: Google GFMPW-0
     code: 6E0D
     name: Synchronous modulator
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/6E0D.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/6E0D
     slot: Caravel user area
     library: 7t-5V
     core_density: 173
@@ -3769,7 +3769,7 @@ achieved:
     run: Google GFMPW-0
     code: 9DDB
     name: Asynchronous modulator
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/9DDB.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/9DDB
     slot: Caravel user area
     library: 7t-5V
     core_density: 163
@@ -3778,7 +3778,7 @@ achieved:
     run: Google GFMPW-0
     code: 0ABD
     name: VGA Clock for GF180
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/0ABD.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/0ABD
     slot: Caravel user area
     library: 7t-5V
     core_density: 147
@@ -3787,7 +3787,7 @@ achieved:
     run: Google GFMPW-0
     code: 9C7C
     name: GreenRio (GF version)
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/9C7C.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/9C7C
     slot: Caravel user area
     library: 7t-5V
     core_density: 147
@@ -3796,7 +3796,7 @@ achieved:
     run: Google GFMPW-0
     code: 1E9A
     name: HyperRAM controller
-    url: https://wafer.space/google-gf180mcu-mpw0/projects/1E9A.html
+    url: https://wafer.space/google-gf180mcu-mpw0/projects/1E9A
     slot: Caravel user area
     library: 7t-5V
     core_density: 128
