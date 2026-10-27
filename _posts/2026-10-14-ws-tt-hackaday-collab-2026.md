@@ -100,8 +100,8 @@ The process here is quite similar to what we already do for our chip-on-board pa
 out [our update]({{"/news/chip-on-board-progress" | relative_url }}) on it for more close-ups!
 
 ## Get Started Today
-Run #3 is in full swing at the moment, so don't miss your opportunity to tape out. You've got until **9 December 2026**
-to purchase a slot, and the submission deadline a week after on **16 December 2026**.
+Tiny Tapeout will be at Pasadena, CA for the [2026 Hackaday Supercon](https://hackaday.com/tag/2026-hackaday-supercon/)
+with a bunch more breakout boards — come for a chance of getting your very own!
 
 Read more on our [Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-3) page, jump in with our
 [project template](https://github.com/wafer-space/gf180mcu-project-template) and join our
