@@ -88,9 +88,7 @@ Epoxy is mixed and then poured into a syringe. It will be manually applied for e
 
 {% include image.html file="/assets/images/news/ws-tt-hackaday-collab-2026/epoxy-ready-tray.jpg" description="Breakout boards sitting on a tray ready for the epoxy treatment" %}
 
-<!--
-TODO video, see CS
--->
+{% include youtube.html id="OnXY0xpLpRU" caption="" autoplay=true mute=true controls=true %}
 
 These are then moved into an oven for curing, and a vacuum is pulled to ensure that the epoxy is properly degassed.
 
