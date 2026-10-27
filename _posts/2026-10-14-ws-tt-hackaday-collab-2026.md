@@ -29,8 +29,6 @@ galleries:
               alt: "Even closer shot, note how delicate and thin the wire bonds are"
 ---
 
-# wafer.space x Tiny Tapeout - Hackaday Europe 2026 Collaboration
-
 Earlier this year the [wafer.space](https://wafer.space) team attended Hackaday Europe 2026, and if you did too, then your
 swag bag had a bit of open source silicon inside!
 
