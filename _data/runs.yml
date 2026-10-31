@@ -172,9 +172,9 @@ runs:
 
     # Delivery date - when bare dies are shipped
     delivery_date:
-      date: "2026-10-16"
-      display_date: "16 October 2026"
-      title: "Estimated Delivery"
+      date: "2026-10-30"
+      display_date: "30 October 2026"
+      title: "First Delivery"
       subtitle: "GF180MCU Run 2 bare dies shipped to customers"
       priority: "info"
 
@@ -221,20 +221,18 @@ runs:
         description: "The initial wafers cut into individual dies"
         status: "milestone"
       - title: "First Dies Sorted"
-        date: "2026-10-22"
-        display_date: "22 October 2026 (expected)"
+        date: "2026-10-27"
+        display_date: "27 October 2026"
         description: "Dies from the initial wafers picked and sorted by project"
         status: "milestone"
-        done: false
       - title: "First Bare Dies Shipped"
-        date: "2026-10-22"
-        display_date: "22 October 2026 (expected)"
+        date: "2026-10-30"
+        display_date: "30 October 2026"
         description: "Initial bare dies shipped to customers"
         status: "delivery"
-        done: false
       - title: "First Packaged Parts Shipped"
-        date: "2026-11-12"
-        display_date: "12 November 2026 (expected)"
+        date: "2026-11-20"
+        display_date: "20 November 2026 (expected)"
         description: "Initial chip-on-board packaged parts shipped"
         status: "delivery"
         done: false
