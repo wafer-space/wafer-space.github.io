@@ -371,6 +371,24 @@ jobs:
               body: failureBody
             });
 
+      # Load the preview redirects.json just pushed into Cloudflare's
+      # preview.wafer.space Bulk Redirects, retrying until Pages serves it. A
+      # later deploy's revision counts as success, and the Worker's cron
+      # trigger catches up anyway, so a failure here doesn't fail the deploy.
+      # It runs last so a slow Worker doesn't hold up the comments above, and
+      # only where the branch has the script (older branches get this
+      # workflow file from the merge ref, but check out their own head).
+      # See github.com/wafer-space/cloudflare-redirects-sync.
+      - name: Sync Cloudflare redirects
+        if: hashFiles('.github/scripts/redirects-sync.py') != ''
+        continue-on-error: true
+        run: >-
+          python3 .github/scripts/redirects-sync.py --list preview_wafer_space
+          --from-file preview-repo/redirects.json
+        env:
+          REDIRECTS_SYNC_URL: ${{ vars.REDIRECTS_SYNC_URL }}
+          REDIRECTS_SYNC_SECRET: ${{ secrets.REDIRECTS_SYNC_SECRET }}
+
   # Note: Preview cleanup has been moved to a scheduled workflow
   # See .github/workflows/cleanup-previews.yml for automated cleanup of closed PR previews
   # This prevents the cleanup job from appearing as a "skipped" check on open PRs
