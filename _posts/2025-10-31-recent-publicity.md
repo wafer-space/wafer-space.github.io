@@ -76,7 +76,7 @@ Whether you're curious or committed, here's how to engage:
 
 1. **Quick start** - Read the [Electronics-Lab interview](https://www.electronics-lab.com/e-lab-interview-wafer-space-founder-aims-to-make-custom-silicon-accessible-again/) or watch the [HackWare talk](https://www.youtube.com/watch?v=0nqV9Eo17wA) to grasp the mission
 2. **Deep dive** - Watch the [Teardown session](https://youtu.be/tEOmnN8IAjs) or listen to [The Amp Hour](https://theamphour.com/703-building-wafer-space-with-tim-ansell/) for technical and business insights
-3. **Connect with community** - Join [Discord](https://discord.gg/43y2t53jpE) or [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) to ask questions and learn from others
+3. **Connect with community** - Join [Discord](https://discord.gg/Qphn3AQDB8) or [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) to ask questions and learn from others
 4. **Evaluate your project** - Use the resources above to determine if Run 1 fits your needs
 
 **Ready to participate?** Campaign closes November 28th. Reserve your slot at [buy.wafer.space](https://buy.wafer.space/).

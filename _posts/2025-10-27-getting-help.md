@@ -116,7 +116,7 @@ Think of professional services as part of a spectrum of options, not an all-or-n
 
 You might handle 90% of your design independently and bring in expert review for critical analog sections. Or maybe you want someone to handle the entire physical design while you focus on verification. The approach you choose depends on your timeline, budget, and where you want to spend your effort.
 
-**Important note about community resources**: The [Discord](https://discord.gg/43y2t53jpE) and [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) channels are great places to learn and get guidance from others in the community. However, remember that ultimately you're responsible for your own design—either doing the work directly or paying someone to do it for you. Community members can point you in the right direction, but they're not substitute engineers for your project.
+**Important note about community resources**: The [Discord](https://discord.gg/Qphn3AQDB8) and [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) channels are great places to learn and get guidance from others in the community. However, remember that ultimately you're responsible for your own design—either doing the work directly or paying someone to do it for you. Community members can point you in the right direction, but they're not substitute engineers for your project.
 
 ## What Should You Do Next?
 
@@ -138,7 +138,7 @@ If you're feeling time pressure or want expert assistance, reach out to companie
 
 ### Free community resources (always available):
 
-- **Discord**: [discord.gg/43y2t53jpE](https://discord.gg/43y2t53jpE)
+- **Discord**: [discord.gg/Qphn3AQDB8](https://discord.gg/Qphn3AQDB8)
 - **Matrix**: [#gf180mcu:fossi-chat.org](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 - **Documentation**: [gf180mcu-pdk.readthedocs.io](https://gf180mcu-pdk.readthedocs.io/)
 

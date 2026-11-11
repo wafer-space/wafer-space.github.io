@@ -121,7 +121,7 @@ _Do they work?_
 
 We've been able to successfully run Tiny Tapeout's own factory test on their TTGF0p2 shuttle, and can confirm that it
 works as expected. We'd love to hear about your testing successes when you get your hands on your COBs, so please
-come join our community on [Discord](https://discord.gg/43y2t53jpE)!
+come join our community on [Discord](https://discord.gg/Qphn3AQDB8)!
 
 {% include youtube.html id="nAksPk27yB0" caption="Tiny Tapeout's TTGF0p2 factory test counting up (in binary, as shown on the LEDs)" autoplay=true %}
 
@@ -162,6 +162,6 @@ Run 2 slots are available on Crowd Supply until **30 June 2026**. Standard prici
 Chip-on-board packaging is available as an add-on for $1,500 ($1.50/die).
 
 * [Run 2 on Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2)
-* [Discord](https://discord.gg/43y2t53jpE)
+* [Discord](https://discord.gg/Qphn3AQDB8)
 
 \- Tim 'mithro' Ansell

@@ -1,5 +1,5 @@
 ---
 permalink:  /discord/index.html
-redirect:   https://discord.gg/43y2t53jpE
+redirect:   https://discord.gg/Qphn3AQDB8
 layout:     redirect
 ---

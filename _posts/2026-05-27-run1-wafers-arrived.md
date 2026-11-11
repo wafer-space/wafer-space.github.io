@@ -55,7 +55,7 @@ Every slot includes 1,000 dies. Half slots are new for Run 2.
 
 ## Stay in Touch
 
-* **Discord**: [discord.gg/43y2t53jpE](https://discord.gg/43y2t53jpE)
+* **Discord**: [discord.gg/Qphn3AQDB8](https://discord.gg/Qphn3AQDB8)
 * **Matrix**: [#gf180mcu:fossi-chat.org](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 
 Tune back in later for more updates.

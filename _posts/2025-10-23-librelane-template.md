@@ -143,7 +143,7 @@ It's worth watching if you want to understand the full capabilities beyond just 
 
 **The template is an example to help you get started**, not a mandatory requirement. You can use LibreLane directly, adapt the template to your needs, or build your own workflow entirely. It's there to make your life easier, not to constrain how you work.
 
-**Community support is available** through the [FOSSi Foundation chat](https://fossi-chat.org/) and the wafer.space [Discord](https://discord.gg/43y2t53jpE) / [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) channels. LibreLane has active developers and users who can help.
+**Community support is available** through the [FOSSi Foundation chat](https://fossi-chat.org/) and the wafer.space [Discord](https://discord.gg/Qphn3AQDB8) / [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org) channels. LibreLane has active developers and users who can help.
 
 ## Resources
 
@@ -159,7 +159,7 @@ It's worth watching if you want to understand the full capabilities beyond just 
 
 **Community**:
 - FOSSi Foundation: [fossi-chat.org](https://fossi-chat.org/)
-- wafer.space Discord: [discord.gg/43y2t53jpE](https://discord.gg/43y2t53jpE)
+- wafer.space Discord: [discord.gg/Qphn3AQDB8](https://discord.gg/Qphn3AQDB8)
 - wafer.space Matrix: [#gf180mcu:fossi-chat.org](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 
 ## Why This Matters

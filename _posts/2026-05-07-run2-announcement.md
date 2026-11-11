@@ -55,7 +55,7 @@ The campaign closes on **30 June 2026**, with delivery of bare dies in Q4 2026. 
 If you are interested in Run 2, or if you want to share it with someone who missed Run 1, here is how to stay in the loop:
 
 - **Run 2 Launch Page**: [Visit our Crowd Supply page](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2) for more information about Run 2 and how you can get started
-- **Discord**: [discord.gg/43y2t53jpE](https://discord.gg/43y2t53jpE)
+- **Discord**: [discord.gg/Qphn3AQDB8](https://discord.gg/Qphn3AQDB8)
 - **Matrix**: [#gf180mcu:fossi-chat.org](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 
 ## Thank You
