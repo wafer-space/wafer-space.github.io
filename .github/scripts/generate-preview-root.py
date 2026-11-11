@@ -28,7 +28,9 @@ hostname) is moved under the preview, keeping only the fields this sets:
   left as is, and an entry with any other target is skipped;
 - the status becomes 302, because browsers cache a 301 indefinitely and a
   preview's redirects change with every push;
-- the preview's own revision item (wafer.space/revision) is left out.
+- the preview's own revision item (wafer.space/revision) is left out, and
+  so are the entries for other hosts (the buy.wafer.space campaign links),
+  as previews only cover the preview host.
 
 Its first item records the revision, as the Worker requires:
 preview.wafer.space/revision redirects to PREVIEW_SOURCE_COMMIT (the site
@@ -60,6 +62,8 @@ COMMIT_URL = "https://github.com/wafer-space/wafer-space.github.io/commit/"
 LISTED_DIR = re.compile(r"^pr-([0-9]+)(?:-(.*))?$")
 TARGET = re.compile(r"^https://wafer\.space(?=$|[/?#])/?(.*)$", re.S)
 ABSOLUTE = re.compile(r"^https?://[^/?#\s]+", re.I)
+# A source on some host: <host>/<path>
+HOSTED = re.compile(r"^[a-z0-9.-]+/", re.I)
 # The fields of a redirect this writes, besides source_url and target_url
 KEPT_FIELDS = ("preserve_query_string", "preserve_path_suffix")
 # Cloudflare's Free plan allows 10,000 redirects across all lists
@@ -130,10 +134,15 @@ def preview_items(directory):
         return []
     items = []
     seen = set()
+    other_hosts = 0
     for item in data:
         redirect = item.get("redirect") if isinstance(item, dict) else None
         source = redirect.get("source_url") if isinstance(redirect, dict) else None
         target = redirect.get("target_url") if isinstance(redirect, dict) else None
+        if isinstance(source, str) and HOSTED.match(source) and not source.startswith(f"{PRODUCTION_HOST}/"):
+            # The buy.wafer.space campaign links: previews only cover the preview host
+            other_hosts += 1
+            continue
         if (not isinstance(source, str) or not source.startswith(f"{PRODUCTION_HOST}/")
                 or not isinstance(target, str) or not ABSOLUTE.match(target)):
             print(f"Warning: skipping an entry of {path}: {json.dumps(item)[:200]}")
@@ -155,6 +164,8 @@ def preview_items(directory):
                 **{key: redirect[key] for key in KEPT_FIELDS if isinstance(redirect.get(key), bool)},
             },
         })
+    if other_hosts:
+        print(f"Left out {other_hosts} entries of {path} for other hosts")
     return items
 
 
