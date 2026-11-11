@@ -4,6 +4,12 @@ title: "Design Help"
 sub_title: "Get assistance with your GF180MCU chip designs"
 header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
 ---
+<style>
+  #provider-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
 {% include layouts/nav/nav.html drop_search=false alignment_class="ms-auto" %}
 {% include layouts/header/page-title.html %}
 
@@ -16,11 +22,104 @@ header_image: "/assets/images/header/mpw-one-partial-dice-top-1.jpg"
       <br><small class="text-muted"><em>Note: These services are not affiliated with or endorsed by wafer.space.
       Please contact them directly to discuss your project needs.</em></small>
     </p>
+    <div class="sr-only" aria-live="polite">
+      Provider order is randomized for fairness. Visual order may differ from screen reader order.
+    </div>
 
-    {% assign professional_help = site.design_help | where: "category", "professional" %}
-    {% for provider in professional_help %}
-      {% include design_help/provider.html provider=provider %}
-    {% endfor %}
+    <div id="provider-list">
+      {% assign professional_help = site.design_help | where: "category", "professional" %}
+      {% for provider in professional_help %}
+        {% include design_help/provider.html provider=provider %}
+      {% endfor %}
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+
+        // LCG (Linear Congruential Generator) parameters - MINSTD
+        var LCG_MODULUS = 2147483647; // 2^31 - 1 (Mersenne prime)
+        var LCG_MULTIPLIER = 16807;
+
+        // Seeded Random Number Generator (Linear Congruential Generator)
+        function SeededRandom(seed) {
+          this.seed = seed % LCG_MODULUS;
+          if (this.seed <= 0) this.seed += LCG_MODULUS - 1;
+        }
+
+        SeededRandom.prototype.next = function() {
+          this.seed = (this.seed * LCG_MULTIPLIER) % LCG_MODULUS;
+          return (this.seed - 1) / (LCG_MODULUS - 1);
+        };
+
+        // Fisher-Yates shuffle with seeded random
+        function shuffleArray(array, random) {
+          var shuffled = array.slice();
+          for (var i = shuffled.length - 1; i > 0; i--) {
+            var j = Math.floor(random.next() * (i + 1));
+            var temp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = temp;
+          }
+          return shuffled;
+        }
+
+        // Get or create seed from localStorage
+        var SEED_KEY = 'designHelpProviderSeed';
+        var seed;
+
+        try {
+          seed = localStorage.getItem(SEED_KEY);
+          if (!seed) {
+            seed = Math.floor(Math.random() * LCG_MODULUS);
+            localStorage.setItem(SEED_KEY, seed);
+          } else {
+            seed = parseInt(seed, 10);
+            // Validate seed is a valid number in expected range
+            if (isNaN(seed) || seed <= 0 || seed >= LCG_MODULUS) {
+              seed = Math.floor(Math.random() * LCG_MODULUS);
+              localStorage.setItem(SEED_KEY, seed);
+            }
+          }
+        } catch (e) {
+          // localStorage not available (private mode, etc.)
+          if (console && console.debug) {
+            console.debug('Failed to access localStorage for provider shuffle:', e);
+          }
+          seed = Math.floor(Math.random() * LCG_MODULUS);
+        }
+
+        // Get all provider items
+        var container = document.getElementById('provider-list');
+        if (!container) return;
+
+        var providers = container.querySelectorAll('.provider-item');
+        if (providers.length <= 1) return; // No need to shuffle if 0 or 1 items
+
+        // Create array of indices
+        var indices = [];
+        for (var i = 0; i < providers.length; i++) {
+          indices.push(i);
+        }
+
+        // Shuffle indices using seeded random
+        var random = new SeededRandom(seed);
+        var shuffledIndices = shuffleArray(indices, random);
+
+        // Apply CSS order to each provider
+        for (var i = 0; i < providers.length; i++) {
+          providers[i].style.order = shuffledIndices[i];
+        }
+
+        // Re-scroll to hash target if present (fixes race condition)
+        if (window.location.hash) {
+          var target = document.getElementById(window.location.hash.substring(1));
+          if (target) {
+            target.scrollIntoView();
+          }
+        }
+      })();
+    </script>
   </div>
 </div>
 
