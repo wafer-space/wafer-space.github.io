@@ -62,6 +62,6 @@ sure to keep an eye out.
 Run 2 is open until **30 June 2026**.
 
 * [Run 2 on Crowd Supply](https://www.crowdsupply.com/wafer-space/gf180mcu-run-2)
-* [Discord](https://discord.gg/43y2t53jpE)
+* [Discord](https://discord.gg/Qphn3AQDB8)
 
 \- Tim 'mithro' Ansell

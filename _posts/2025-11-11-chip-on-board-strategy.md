@@ -130,7 +130,7 @@ The community has developed several **[KiCad](https://www.kicad.org/) symbols** 
 The **pad mapping symbol** corresponds to the default 74-pad wirebonding padframe and [default configuration](https://github.com/wafer-space/gf180mcu-project-template/blob/main/librelane/config.yaml) from the [**GF180MCU Project Template**](https://github.com/wafer-space/gf180mcu-project-template).
 
 > Some users have suggested reducing the number of ground and power pads. If there is sufficient demand, an alternate default configuration will be created.
-> Join the discussion on our [**Discord server**](https://discord.gg/43y2t53jpE).
+> Join the discussion on our [**Discord server**](https://discord.gg/Qphn3AQDB8).
 
 {% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-default-74pad-wirebond-symbol.png" description="Default 74-pad wirebonding padframe symbol" %}
 
@@ -182,7 +182,7 @@ MosBius provides students and designers the opportunity to explore MOS circuit t
 
 {% include image.html file="/assets/images/news/chip-on-board-strategy/padframes-cob-mosbius.png" description="MosBius Project chip design from Columbia University" %}
 
-*Image and design by @xianglin_pu on [wafer.space Discord](https://discord.gg/43y2t53jpE)*
+*Image and design by @xianglin_pu on [wafer.space Discord](https://discord.gg/Qphn3AQDB8)*
 
 ---
 
@@ -251,7 +251,7 @@ The community is exploring multiple **COB packaging varieties** and would love y
 
 Join the community and help shape the future of accessible silicon design:
 
-* **Discord:** [discord.gg/43y2t53jpE](https://discord.gg/43y2t53jpE) (see **#cob** channel)
+* **Discord:** [discord.gg/Qphn3AQDB8](https://discord.gg/Qphn3AQDB8) (see **#cob** channel)
 
 * **Matrix:** [#gf180mcu.org](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 
@@ -259,4 +259,4 @@ Together, the community can make custom silicon as easy and affordable as PCB de
 
 ---
 
-**Thanks to Andrew Wingate for this guest post!** If you're interested in chip-on-board packaging, join the **#cob channel** on the [wafer.space Discord](https://discord.gg/43y2t53jpE) to discuss designs, share feedback, and help contribute to making COB packaging accessible for everyone.
+**Thanks to Andrew Wingate for this guest post!** If you're interested in chip-on-board packaging, join the **#cob channel** on the [wafer.space Discord](https://discord.gg/Qphn3AQDB8) to discuss designs, share feedback, and help contribute to making COB packaging accessible for everyone.

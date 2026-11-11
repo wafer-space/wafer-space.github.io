@@ -60,7 +60,7 @@ Pricing details are coming soon. Subscribe to this campaign to be notified the m
 You do not need to wait for the campaign to launch to start designing. The tools and PDK are available today:
 
 - **Start designing**: Clone the [gf180mcu-project-template](https://github.com/wafer-space/gf180mcu-project-template) and start experimenting. It includes a complete Nix environment with all the tools you need.
-- **Join the community**: The [wafer.space Discord](https://discord.gg/43y2t53jpE) is where designers help each other with pad rings, DRC issues, floorplanning, and everything in between. It is also the fastest way to get answers from the wafer.space team.
+- **Join the community**: The [wafer.space Discord](https://discord.gg/Qphn3AQDB8) is where designers help each other with pad rings, DRC issues, floorplanning, and everything in between. It is also the fastest way to get answers from the wafer.space team.
 - **Study Run 1 designs**: Browse the [29 public designs from Run 1](https://github.com/wafer-space/ws-run1) to see what fits in the die area and how others approached their layouts.
 
 The earlier you start, the more time you have to iterate. The best designs from Run 1 were the ones that started early and took advantage of community feedback.

@@ -23,11 +23,11 @@ Less than 48 hours remain in the first shuttle campaign! If you hope to be on th
 
 Once you've purchased your slot, you have until **3rd December 2025 @ 11:59 PM [AoE](https://en.wikipedia.org/wiki/Anywhere_on_Earth)** ([see in your timezone](https://www.timeanddate.com/worldclock/fixedtime.html?iso=20251203T2359&p1=3399)) to submit your GDS files.
 
-Run [gf180mcu-precheck](https://github.com/wafer-space/gf180mcu-precheck) locally to verify your design before submitting. The precheck has been and will continue to be updated, so join the [Discord](https://discord.gg/43y2t53jpE) to get notified of changes. This is the same DRC check that [platform.wafer.space](https://platform.wafer.space/) will run, so catching issues locally saves time.
+Run [gf180mcu-precheck](https://github.com/wafer-space/gf180mcu-precheck) locally to verify your design before submitting. The precheck has been and will continue to be updated, so join the [Discord](https://discord.gg/Qphn3AQDB8) to get notified of changes. This is the same DRC check that [platform.wafer.space](https://platform.wafer.space/) will run, so catching issues locally saves time.
 
 **Submit early!** The DRC queue will get busy as the deadline approaches. If you find problems at the last minute, you may not have time to fix them.
 
-If you run into issues, join the [wafer.space Discord](https://discord.gg/43y2t53jpE). Many people are putting the finishing touches on their designs right now, and problems you encounter have likely been solved by others who can offer guidance.
+If you run into issues, join the [wafer.space Discord](https://discord.gg/Qphn3AQDB8). Many people are putting the finishing touches on their designs right now, and problems you encounter have likely been solved by others who can offer guidance.
 
 {% include image.html file="/assets/images/news/final-reminder/waferspace-rainbow-open.png" description="wafer.space bringing open accessible custom silicon fabrication" %}
 

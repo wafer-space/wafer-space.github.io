@@ -114,7 +114,7 @@ Linux was booted in a gate-level simulation which painstakingly ran for an entir
 This was using the mainline 6.19 version of the Linux kernel, and was validated against a Micron SDRAM simulation model
 driven by the author's SDRAM controller.
 
-Run 1 silicon is being shipped as we speak, so why not join our [Discord](https://discord.gg/43y2t53jpE) or [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org)
+Run 1 silicon is being shipped as we speak, so why not join our [Discord](https://discord.gg/Qphn3AQDB8) or [Matrix](https://matrix.to/#/#gf180mcu:fossi-chat.org)
 channels to see some silicon validation?
 
 KianV was taped out onto a full-sized die (20.1 mm²), with an approximate core utilization of 65% and an estimated

@@ -37,7 +37,7 @@ If you are considering a slot, now is the time to start:
 
 * Clone the [gf180mcu-project-template](https://github.com/wafer-space/gf180mcu-project-template) to start designing
 * Browse [29 open-source Run 1 designs](https://github.com/wafer-space/ws-run1) for reference
-* Join the [Discord](https://discord.gg/43y2t53jpE) to ask questions and connect with other designers
+* Join the [Discord](https://discord.gg/Qphn3AQDB8) to ask questions and connect with other designers
 * Check the [slot specifications](https://mithro.github.io/gf180mcu-project-template/) for padframe layouts and constraints
 
 The final deadline to purchase a slot and submit your GDS is **30 June 2026**.

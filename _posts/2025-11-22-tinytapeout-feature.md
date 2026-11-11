@@ -92,7 +92,7 @@ We're thrilled to have **Tiny Tapeout** and **Matt Venn** on board for our first
 
 Explore the [Tiny Tapeout website](https://tinytapeout.com/) for project ideas and tutorials, and watch the [YouTube channel](https://www.youtube.com/@ZeroToASICcourse) for walkthroughs and interviews. If you need something more structured, Matt's excellent [Zero to ASIC course](https://zerotoasiccourse.com/) will give you the knowledge and confidence to bring your ideas to silicon.
 
-Even if you haven't done a tapeout yet, join the community and start learning! Connect with us on the [wafer.space Discord](https://discord.gg/43y2t53jpE) and join the **#tinytapeout** channel, or the [Tiny Tapeout Discord](https://discord.gg/rPK2nSjxy8) and join the **#ttgf0p2-tapeout** channel. (You can also find us on [Matrix at #gf180mcu](https://matrix.to/#/#gf180mcu:fossi-chat.org).)
+Even if you haven't done a tapeout yet, join the community and start learning! Connect with us on the [wafer.space Discord](https://discord.gg/Qphn3AQDB8) and join the **#tinytapeout** channel, or the [Tiny Tapeout Discord](https://discord.gg/rPK2nSjxy8) and join the **#ttgf0p2-tapeout** channel. (You can also find us on [Matrix at #gf180mcu](https://matrix.to/#/#gf180mcu:fossi-chat.org).)
 
 With Tiny Tapeout, anyone can get started with just a web browser and a few hours. [Why not give it a try?](https://tinytapeout.com/)
 
