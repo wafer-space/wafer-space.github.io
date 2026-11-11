@@ -136,6 +136,7 @@ jobs:
             console.log(`Cleanup summary: ${cleanupList.length} PR previews marked for cleanup`);
       
       - name: Perform cleanup of closed PR previews
+        id: cleanup
         if: steps.find-cleanup.outputs.cleanup_needed == 'true'
         env:
           # Recorded in the preview redirects.json's revision item
@@ -188,12 +189,27 @@ jobs:
             eval $(ssh-agent -s)
             echo "${{ secrets.PREVIEW_KEY }}" | ssh-add -
             git push origin main
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
             
             echo "Cleanup completed and changes pushed"
           else
             echo "No changes to commit"
           fi
       
+      # Drop the removed previews from Cloudflare's preview.wafer.space Bulk
+      # Redirects once Pages serves the cleanup. The Worker's cron trigger
+      # catches up anyway, so a failure here doesn't fail the cleanup.
+      # See github.com/wafer-space/cloudflare-redirects-sync.
+      - name: Sync Cloudflare redirects
+        if: steps.cleanup.outputs.pushed == 'true'
+        continue-on-error: true
+        run: >-
+          python3 .github/scripts/redirects-sync.py --list preview_wafer_space
+          --from-file preview-repo/redirects.json
+        env:
+          REDIRECTS_SYNC_URL: ${{ vars.REDIRECTS_SYNC_URL }}
+          REDIRECTS_SYNC_SECRET: ${{ secrets.REDIRECTS_SYNC_SECRET }}
+
       - name: Clean up GitHub deployments for closed PRs
         if: steps.find-cleanup.outputs.cleanup_needed == 'true'
         uses: actions/github-script@v7
