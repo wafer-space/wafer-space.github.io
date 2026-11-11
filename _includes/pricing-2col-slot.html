@@ -2,8 +2,19 @@
 {% assign slot = include.slot %}
 {% assign is_dark = false %}
 {% if include.wrapper_class contains 'dark-wrapper' %}{% assign is_dark = true %}{% endif %}
-{% assign eb_deadline = site.data.runs.runs.gf180mcu_run_3.early_bird_deadline %}
-{% assign campaign_deadline = site.data.runs.runs.gf180mcu_run_3.campaign_deadline %}
+
+{% assign RUN = site.data.runs.runs.gf180mcu_run_3 %}
+{% assign eb_deadline = RUN.early_bird_deadline %}
+{% assign campaign_deadline = RUN.campaign_deadline %}
+{% assign sold_out = RUN.sold_out %}
+{% assign slot_is_sold_out = false %}
+
+{% if sold_out contains slot.id %}
+  {% assign buy_link_text = "Sold Out" %}
+  {% assign slot_is_sold_out = true %}
+{% else %}
+  {% assign buy_link_text = "Buy" %}
+{% endif %}
 
 <div id="slot-{{ slot.id }}" class="wrapper {{ include.wrapper_class | default: 'light-wrapper' }}">
   <div class="container inner">
@@ -36,7 +47,7 @@
                 </div>
                 <!--/.panel-heading -->
                 <div class="panel-footer">
-                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
+                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> {{buy_link_text}}</a>
                 </div>
               </div>
               <!--/.pricing -->
@@ -64,7 +75,7 @@
                 </div>
                 <!--/.panel-heading -->
                 <div class="panel-footer">
-                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> Buy</a>
+                  <a href="{{ site.data.slots.buy_url }}" class="btn" role="button"><i class="icofont-shopping-cart"></i> {{buy_link_text}}</a>
                 </div>
               </div>
               <!--/.pricing -->
@@ -86,6 +97,9 @@
           {{ slot.name }}
           {% if slot.badge != "" %}
             <span class="slot-badge">{{ slot.badge }}</span>
+          {% endif %}
+          {% if slot_is_sold_out %}
+            <span class="slot-badge slot-badge-red">Sold Out!</span>
           {% endif %}
         </h2>
         <h3 class="display-3">{{ slot.short_name }} &mdash;&nbsp;{{ slot.quantity }}&nbsp;dies&nbsp;per&nbsp;slot</h3>
