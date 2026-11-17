@@ -287,7 +287,7 @@ runs:
       display_date: "30 September 2026 @ 11:59 PM"
       timezone: "AoE"
       timezone_link: "https://en.wikipedia.org/wiki/Anywhere_on_Earth"
-      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20261001T2359&p1=3399"
+      local_time_link: "https://www.timeanddate.com/worldclock/fixedtime.html?iso=20260930T2359&p1=3399"
       title: "Early Bird Deadline"
       subtitle: "Lock in early bird pricing for GF180MCU Run 3"
       button_text: "Reserve"
