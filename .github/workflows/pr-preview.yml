@@ -23,7 +23,10 @@ concurrency:
 jobs:
   deploy-preview:
     if: github.event.action != 'closed'
-    runs-on: ubuntu-latest
+    # Pinned: the ruby/setup-ruby version below does not recognise the
+    # ubuntu-26.04 image that ubuntu-latest now resolves to. Move this and
+    # the setup-ruby pin together.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
