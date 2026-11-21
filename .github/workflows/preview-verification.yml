@@ -339,6 +339,8 @@ jobs:
           # claim to be Chrome but don't behave like it.
           # Invalid TLS certificates on linked sites are only warned about
           # (by summarise-muffet.py below), so muffet skips verification
+          # Crowd Supply (and buy.wafer.space, which redirects there) blocks
+          # automated fetches with 403s and bot challenges, so it is skipped
           if muffet \
             --skip-tls-verification \
             --format=json \
@@ -358,6 +360,8 @@ jobs:
             --exclude=".*tinytapeout\.com/chips/silicon-proven.*" \
             --exclude=".*siliconprawn\.org.*" \
             --exclude=".*rc2014\.co\.uk.*" \
+            --exclude="^https?://(www\.)?crowdsupply\.com([/?#:]|$)" \
+            --exclude="^https?://buy\.wafer\.space([/?#:]|$)" \
             --header="User-Agent:Mozilla/5.0 (compatible; wafer.space-link-checker; +https://wafer.space/)" \
             --header="Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8" \
             --header="Accept-Language:en-US,en;q=0.9" \
