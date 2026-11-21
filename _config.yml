@@ -1,6 +1,11 @@
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://wafer.space" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: "/:title"
+# The host of the Crowd Supply campaign short links (buy.wafer.space/run<N>,
+# and buy.wafer.space itself for the oldest campaign still taking buyers),
+# which _plugins/redirect_list.rb lists for Cloudflare from the campaigns in
+# _data/runs.yml
+buy_host: "buy.wafer.space"
 
 # Build settings
 #theme: minima

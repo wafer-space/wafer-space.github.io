@@ -10,6 +10,11 @@
 # `url`, without any preview baseurl. Bulk Redirects match paths exactly, so
 # each redirect is listed under every path GitHub Pages serves it at.
 #
+# They also list the Crowd Supply campaign short links on `buy_host`
+# (buy.wafer.space), from the campaigns in _data/runs.yml: /run<N> for each
+# run, and every other path for the oldest campaign still taking buyers (see
+# buy_entries).
+#
 # The first entry records the revision the list was built from: /revision
 # redirects (302) to the commit on GitHub, and in the JSON its comment is
 # `git describe` for that commit (v0.0-<commits since v0.0>-g<full hash>). The
@@ -28,6 +33,11 @@ module RedirectList
   SKIP = %w[index.html 404.html].freeze
   REVISION_PATH = '/revision'
   COMMIT_URL = 'https://github.com/wafer-space/wafer-space.github.io/commit/'
+  # The Bulk Redirects options an entry can set, in the CSV column order
+  FLAGS = %w[preserve_query_string include_subdomains subpath_matching preserve_path_suffix].freeze
+  # A campaign's status in _data/runs.yml, and the ones buy_host sends buyers to
+  CAMPAIGN_STATUSES = %w[prelaunch open sold_out closed].freeze
+  TAKING_BUYERS = %w[prelaunch open].freeze
 
   module_function
 
@@ -77,13 +87,59 @@ module RedirectList
     target.start_with?('/') && !target.start_with?('//') ? "#{origin}#{target}" : target
   end
 
-  def entry(host, path, target)
-    entry = { 'source_url' => "#{host}#{path}", 'target_url' => target, 'status_code' => 301 }
+  # A redirect, with any further Bulk Redirects options (include_subdomains,
+  # subpath_matching, preserve_path_suffix)
+  def entry(host, path, target, status = 301, **options)
+    entry = { 'source_url' => "#{host}#{path}", 'target_url' => target, 'status_code' => status }
     # Preserving the query string replaces the target's own, so only do it
     # for targets without one (checked as a string: URI() rejects some real
     # targets, such as Matrix links with a second "#")
     entry['preserve_query_string'] = true unless target.split('#', 2).first.include?('?')
-    entry
+    entry.merge(options.transform_keys(&:to_s))
+  end
+
+  # The Crowd Supply campaigns in _data/runs.yml, oldest run first, as
+  # [run number, campaign URL, campaign status]
+  def campaigns(site)
+    runs = site.data.dig('runs', 'runs') || {}
+    found = runs.filter_map do |key, run|
+      campaign = run['campaign']
+      next if campaign.nil?
+
+      number, url, status = run['run_number'], campaign['url'], campaign['status']
+      unless number.is_a?(Integer) && url.is_a?(String) && url.start_with?('https://') &&
+             CAMPAIGN_STATUSES.include?(status)
+        raise Jekyll::Errors::FatalException, "_data/runs.yml: #{key} needs an integer run_number and a campaign " \
+                                              "with an https URL and a status of #{CAMPAIGN_STATUSES.join(', ')}"
+      end
+
+      [number, url, status]
+    end
+    found.sort_by(&:first)
+  end
+
+  # The campaign short links on `buy_host`: /run<N> for each run, with
+  # anything under it (/run3/updates/x), and every other path for the oldest
+  # campaign still taking buyers (prelaunch or open), or the newest campaign
+  # when none is. The run links are permanent (301), but the current campaign
+  # changes, so that one is a 302, which browsers don't cache. Both cover
+  # www.<host> too.
+  def buy_entries(site)
+    host = site.config['buy_host'].to_s
+    return [] if host.empty?
+
+    found = campaigns(site)
+    raise Jekyll::Errors::FatalException, "buy_host is set but no run in _data/runs.yml has a campaign" if found.empty?
+
+    current = found.find { |_, _, status| TAKING_BUYERS.include?(status) }
+    if current.nil?
+      current = found.last
+      Jekyll.logger.warn 'Redirects:', "no campaign is taking buyers; #{host} goes to the newest, run #{current.first}"
+    end
+    entries = found.map do |number, url, _|
+      entry(host, "/run#{number}", url, 301, include_subdomains: true, subpath_matching: true, preserve_path_suffix: true)
+    end
+    entries << entry(host, '/', current[1], 302, include_subdomains: true, subpath_matching: true, preserve_path_suffix: false)
   end
 
   def entries(site)
@@ -103,6 +159,7 @@ module RedirectList
         entry(host, path, target) unless "#{origin}#{path}" == target # would redirect to itself
       end
     end
+    items += buy_entries(site)
     items = items.uniq { |item| item['source_url'] }.sort_by { |item| item['source_url'] }
     if items.any? { |item| item['source_url'] == "#{host}#{REVISION_PATH}" }
       raise Jekyll::Errors::FatalException, "#{REVISION_PATH} is reserved for the redirect list's revision"
@@ -139,13 +196,14 @@ module RedirectList
     JSON.pretty_generate(items) + "\n"
   end
 
-  # No header row; columns are source, target, status, preserve query string
+  # No header row; columns are source, target, status, then the FLAGS: TRUE or
+  # FALSE where the entry sets one, blank (Cloudflare's default) where not
   def csv(entries, revision_item)
-    CSV.generate do |rows|
-      rows << revision_item['redirect'].values_at('source_url', 'target_url', 'status_code') + ['FALSE'] if revision_item
-      entries.each do |entry|
-        rows << [entry['source_url'], entry['target_url'], entry['status_code'],
-                 entry['preserve_query_string'] ? 'TRUE' : 'FALSE']
+    rows = revision_item ? [revision_item['redirect']] + entries : entries
+    CSV.generate do |csv|
+      rows.each do |entry|
+        csv << entry.values_at('source_url', 'target_url', 'status_code') +
+               FLAGS.map { |flag| entry[flag].to_s.upcase if entry.key?(flag) }
       end
     end
   end
