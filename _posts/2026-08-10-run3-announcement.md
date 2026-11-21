@@ -41,8 +41,9 @@ approaches.
 | Date | Milestone |
 |------|-----------|
 | 1 August 2026 | Campaign opens on Crowd Supply. |
-| 15 December 2026 | Slot purchase deadline. |
-| 29 December 2026 | Deadline to submit GDS files. |
+| 30 September 2026 | Last day for early bird pricing. |
+| 9 December 2026 | Slot purchase deadline. |
+| 16 December 2026 | Deadline to submit GDS files. |
 | Q2 2027 | Bare dies and packaged parts shipped to customers. |
 
 <br>
