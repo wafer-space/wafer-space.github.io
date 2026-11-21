@@ -1,0 +1,8 @@
+{%- comment -%}
+  A count in short form: 1.47M, 76k, 7.3k, 540. Pass n=<number>.
+{%- endcomment -%}
+{%- assign n = include.n | round -%}
+{%- if n >= 1000000 -%}{{ n | divided_by: 10000 | divided_by: 100.0 }}M
+{%- elsif n >= 10000 -%}{{ n | plus: 500 | divided_by: 1000 }}k
+{%- elsif n >= 1000 -%}{{ n | plus: 50 | divided_by: 100 | divided_by: 10.0 }}k
+{%- else -%}{{ n }}{%- endif -%}
