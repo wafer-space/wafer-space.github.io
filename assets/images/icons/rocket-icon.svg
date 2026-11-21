@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Rocket body -->
+  <path d="M32 8 C28 8, 25 11, 25 15 L25 45 C25 49, 28 52, 32 52 C36 52, 39 49, 39 45 L39 15 C39 11, 36 8, 32 8 Z" 
+        fill="#4A90E2" stroke="#2E5C8A" stroke-width="1"/>
+  
+  <!-- Rocket nose cone -->
+  <path d="M32 2 C29 2, 25 6, 25 15 L39 15 C39 6, 35 2, 32 2 Z" 
+        fill="#6BA3F5" stroke="#2E5C8A" stroke-width="1"/>
+  
+  <!-- Window -->
+  <circle cx="32" cy="20" r="4" fill="#87CEEB" stroke="#2E5C8A" stroke-width="1"/>
+  <circle cx="32" cy="20" r="2" fill="#E0F6FF"/>
+  
+  <!-- Fins -->
+  <path d="M25 45 L18 52 L18 60 L25 52 Z" fill="#E74C3C" stroke="#C0392B" stroke-width="1"/>
+  <path d="M39 45 L46 52 L46 60 L39 52 Z" fill="#E74C3C" stroke="#C0392B" stroke-width="1"/>
+  
+  <!-- Engine flames -->
+  <g opacity="0.8">
+    <path d="M28 52 L26 58 L30 56 Z" fill="#FF6B35"/>
+    <path d="M32 52 L30 60 L34 60 Z" fill="#FF8E35"/>
+    <path d="M36 52 L34 56 L38 58 Z" fill="#FF6B35"/>
+  </g>
+  
+  <!-- Body details -->
+  <rect x="26" y="30" width="12" height="2" fill="#2E5C8A" opacity="0.3"/>
+  <rect x="26" y="35" width="12" height="2" fill="#2E5C8A" opacity="0.3"/>
+  <rect x="26" y="40" width="12" height="2" fill="#2E5C8A" opacity="0.3"/>
+</svg>
