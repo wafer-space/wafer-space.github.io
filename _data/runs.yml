@@ -249,8 +249,8 @@ runs:
         status: "delivery"
         done: false
       - title: "Last Wafer Lot Returned"
-        date: "2027-01-15"
-        display_date: "15 January 2027 (expected)"
+        date: "2027-02-12"
+        display_date: "12 February 2027 (expected)"
         description: "The rest of the Run 2 wafers back from GlobalFoundries"
         status: "milestone"
         done: false
@@ -261,14 +261,14 @@ runs:
         status: "delivery"
         done: false
       - title: "Last Lot Bare Dies Shipped"
-        date: "2027-02-05"
-        display_date: "5 February 2027 (expected)"
+        date: "2027-03-05"
+        display_date: "5 March 2027 (expected)"
         description: "Bare dies from the last lot shipped to customers"
         status: "delivery"
         done: false
       - title: "Last Lot Packaged Parts Shipped"
-        date: "2027-02-26"
-        display_date: "26 February 2027 (expected)"
+        date: "2027-03-26"
+        display_date: "26 March 2027 (expected)"
         description: "Chip-on-board packaged parts from the last lot shipped"
         status: "delivery"
         done: false
