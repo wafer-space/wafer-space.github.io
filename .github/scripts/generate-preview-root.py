@@ -15,7 +15,7 @@ preview build has under pr-NNN/ doesn't count. It is rewritten on every run
 so it can't drift from ROBOTS_TXT.
 
 A preview is a pr-NNN directory with an index.html, or its pr-NNN-title
-alias; both files only cover those.
+alias; index.html and redirects.json only cover those.
 
 index.html lists every preview, from .github/templates/preview-index.html
 next to this script.
