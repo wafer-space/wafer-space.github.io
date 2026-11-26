@@ -58,7 +58,6 @@ muffet \
   --exclude=".*matrix\.to.*" \
   --exclude=".*tinytapeout\.com/chips/silicon-proven.*" \
   --exclude=".*siliconprawn\.org.*" \
-  --exclude=".*rc2014\.co\.uk.*" \
   --exclude="^https?://(www\.)?crowdsupply\.com([/?#:]|$)" \
   --exclude="^https?://buy\.wafer\.space([/?#:]|$)" \
   --header="User-Agent:Mozilla/5.0 (compatible; wafer.space-link-checker; +https://wafer.space/)" \
