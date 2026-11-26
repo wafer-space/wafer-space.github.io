@@ -35,6 +35,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # The exclude list shared with the production check, from the branch
+      # this run is on: pr-preview-deploy.yml starts it on the default
+      # branch, never on a pull request's
+      - name: Check out the link check's exclude list
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/muffet-excludes.txt
+          sparse-checkout-cone-mode: false
+
+      - name: Read the exclude list
+        id: excludes
+        run: |
+          {
+            echo 'patterns<<MUFFET_EXCLUDES_END'
+            grep -v -E '^(#|$)' .github/muffet-excludes.txt
+            echo 'MUFFET_EXCLUDES_END'
+          } >> "$GITHUB_OUTPUT"
+
       - name: Verify preview
         uses: wafer-space/actions/pr-preview/verify@61f75d177ab19cbf089205f1124373e32b5e33ca
         with:
@@ -42,19 +61,5 @@ jobs:
           preview-url: ${{ github.event.inputs.preview_url }}
           head-sha: ${{ github.event.inputs.head_sha }}
           # URL regular expressions muffet skips. Don't add one without
-          # finding out why the link fails first (see CLAUDE.md). Crowd
-          # Supply (and buy.wafer.space, which redirects there) blocks
-          # automated fetches with 403s and bot challenges
-          muffet-excludes: |
-            .*mailto:.*
-            .*linkedin\.com.*
-            .*hawaii\.edu.*
-            .*timeanddate\.com.*
-            .*reddit\.com.*
-            .*electronics-lab\.com.*
-            .*matrix\.to.*
-            .*tinytapeout\.com/chips/silicon-proven.*
-            .*siliconprawn\.org.*
-            .*rc2014\.co\.uk.*
-            ^https?://(www\.)?crowdsupply\.com([/?#:]|$)
-            ^https?://buy\.wafer\.space([/?#:]|$)
+          # finding out why the link fails first (see CLAUDE.md)
+          muffet-excludes: ${{ steps.excludes.outputs.patterns }}

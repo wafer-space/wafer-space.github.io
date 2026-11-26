@@ -14,18 +14,17 @@
 # them to keep muffet out of the sibling project sites (see
 # production-verification.yml).
 #
-# This is the one place the link checker is configured, so the preview
-# check (preview-verification.yml) and the production check
-# (production-verification.yml) can't drift apart. In particular the
-# --exclude list is shared: never add to it without asking first (CLAUDE.md).
+# The URLs muffet skips are in .github/muffet-excludes.txt, which the
+# preview check (preview-verification.yml) reads too: never add to it without
+# asking first (CLAUDE.md). The preview check runs muffet through the verify
+# action in wafer-space/actions (pr-preview/scripts/run-muffet.sh), whose
+# flags match the ones here: keep them the same.
 #
 # Identify honestly as a link checker: Cloudflare-fronted sites (e.g.
 # sourceforge.io, linuxgizmos.com) challenge requests that claim to be Chrome
 # but don't behave like it.
 # Invalid TLS certificates on linked sites are only warned about (by
 # summarise-muffet.py), so muffet skips verification.
-# Crowd Supply (and buy.wafer.space, which redirects there) blocks automated
-# fetches with 403s and bot challenges, so it is skipped.
 
 set -u
 
@@ -39,6 +38,19 @@ REPORT="$2"
 shift 2
 ERRORS="${REPORT%.json}.err"
 
+EXCLUDES_FILE="$(dirname "$0")/../muffet-excludes.txt"
+if [ ! -r "$EXCLUDES_FILE" ]; then
+  echo "can't read $EXCLUDES_FILE" >&2
+  exit 2
+fi
+EXCLUDE_ARGS=()
+while IFS= read -r pattern; do
+  case "$pattern" in
+    '' | '#'*) ;;
+    *) EXCLUDE_ARGS+=("--exclude=$pattern") ;;
+  esac
+done < "$EXCLUDES_FILE"
+
 STATUS=0
 muffet \
   --skip-tls-verification \
@@ -49,18 +61,7 @@ muffet \
   --max-connections-per-host=5 \
   --rate-limit=20 \
   --buffer-size=16384 \
-  --exclude=".*mailto:.*" \
-  --exclude=".*linkedin\.com.*" \
-  --exclude=".*hawaii\.edu.*" \
-  --exclude=".*timeanddate\.com.*" \
-  --exclude=".*reddit\.com.*" \
-  --exclude=".*electronics-lab\.com.*" \
-  --exclude=".*matrix\.to.*" \
-  --exclude=".*tinytapeout\.com/chips/silicon-proven.*" \
-  --exclude=".*siliconprawn\.org.*" \
-  --exclude=".*rc2014\.co\.uk.*" \
-  --exclude="^https?://(www\.)?crowdsupply\.com([/?#:]|$)" \
-  --exclude="^https?://buy\.wafer\.space([/?#:]|$)" \
+  "${EXCLUDE_ARGS[@]}" \
   --header="User-Agent:Mozilla/5.0 (compatible; wafer.space-link-checker; +https://wafer.space/)" \
   --header="Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8" \
   --header="Accept-Language:en-US,en;q=0.9" \

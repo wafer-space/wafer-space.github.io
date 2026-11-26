@@ -1,0 +1,25 @@
+# URL regular expressions the link checker (muffet) skips, one per line.
+# Lines starting with # and blank lines are ignored.
+#
+# Both link checks read this file: the preview check (preview-verification.yml,
+# through the verify action's muffet-excludes input) and the production check
+# (production-verification.yml, through .github/scripts/check-links.sh).
+#
+# Exclusions hide broken links. Never add one without finding out why the
+# link fails first, and asking (see CLAUDE.md).
+
+.*mailto:.*
+.*linkedin\.com.*
+.*hawaii\.edu.*
+.*timeanddate\.com.*
+.*reddit\.com.*
+.*electronics-lab\.com.*
+.*matrix\.to.*
+.*tinytapeout\.com/chips/silicon-proven.*
+.*siliconprawn\.org.*
+.*rc2014\.co\.uk.*
+
+# Crowd Supply (and buy.wafer.space, which redirects there) blocks automated
+# fetches with 403s and bot challenges
+^https?://(www\.)?crowdsupply\.com([/?#:]|$)
+^https?://buy\.wafer\.space([/?#:]|$)

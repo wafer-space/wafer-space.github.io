@@ -107,7 +107,7 @@ cat detailed-verification.json | jq '.'
 The checks are the `verify` action in [wafer-space/actions](https://github.com/wafer-space/actions/tree/main/pr-preview/verify), mostly `pr-preview/scripts/run-verification.sh` there. To change them, open a pull request there, then update the commit `preview-verification.yml` pins it to.
 
 ### Excluded URLs
-The URLs muffet skips are the `muffet-excludes` input in `.github/workflows/preview-verification.yml`. Find out why a link fails before adding one (see `CLAUDE.md`).
+The URLs muffet skips are listed in `.github/muffet-excludes.txt`, which the production check (`production-verification.yml`) uses too. Find out why a link fails before adding one (see `CLAUDE.md`).
 
 ### Thresholds and asset list
 The load-time threshold and the `CRITICAL_ASSETS` list are in `run-verification.sh` in the actions repository; `verify-preview-site.sh` here has its own copies for running by hand.
