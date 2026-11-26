@@ -35,8 +35,9 @@ The theme and `wafer-space/preview.wafer.space` are only used for PRs to wafer-s
 
 - Fork the theme to `<you>/wafer-space-jekyll-theme`, or set the `THEME_REPOSITORY` variable, and add a read-only deploy key on it whose private key is the copy's `JEKYLL_THEME_KEY` secret.
 - Fork `wafer-space/preview.wafer.space`, delete its `CNAME` and turn on Pages. Set the `PREVIEW_REPOSITORY` variable to it and `PREVIEW_BASE_URL` to where Pages serves it, e.g. `https://<you>.github.io/preview.wafer.space`. Add a deploy key with write access on it whose private key is the copy's `PREVIEW_KEY` secret.
+- Make sure the copy has the `v0.0` tag (`git push <copy> v0.0`): preview builds are production builds, and the site's redirect list fails them without it.
 
-Without the variables, the copy's preview and cleanup workflows do nothing. Never give a copy a key to the wafer-space theme.
+Without the variables, the copy's preview and cleanup workflows do nothing. Never give a copy a key to the wafer-space theme. A copy's preview index is the actions' default one, not wafer.space's `generate-preview-root.py`, which writes wafer.space's own preview list.
 
 ## Viewing Previews
 
