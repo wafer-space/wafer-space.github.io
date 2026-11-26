@@ -1,0 +1,24 @@
+# PR Preview Build (Stage 1 - Untrusted Context)
+# This workflow runs for ALL pull requests, including those from forks.
+# It does nothing itself: finishing is what triggers Stage 2
+# (pr-preview-deploy.yml) via workflow_run, which builds the preview.
+#
+# SECURITY NOTE: This workflow runs the FORK's version of this file, so a
+# fork can change it arbitrarily. Stage 2 therefore uses nothing from this
+# run except the event GitHub creates for it (head repository, branch and
+# SHA), and checks those against the GitHub API.
+name: PR Preview Build
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  collect-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hand over to Stage 2
+        run: echo "PR Preview Deploy (pr-preview-deploy.yml) builds and deploys the preview once this finishes"

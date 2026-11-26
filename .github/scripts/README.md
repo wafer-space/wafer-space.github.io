@@ -1,50 +1,12 @@
-# GitHub Scripts Documentation
+# GitHub Scripts
 
-This directory contains reusable JavaScript modules for GitHub Actions workflows.
+- `verify-preview-site.sh`: Runs the preview checks by hand (see `.github/docs/preview-verification.md`)
+- `generate-preview-root.py`: Writes the root of preview.wafer.space, the preview index (from `.github/templates/preview-index.html`) and the `redirects.json` the redirects sync Worker loads into Cloudflare. The preview deploy and cleanup actions run it as their `root-script`, from the default branch's checkout, never a pull request's.
+- `check-html-links.py`: The **Source checks** workflow's check for internal links ending in `.html`
 
-## Comment Lifecycle Management
+The PR preview workflows (`pr-preview-build.yml`, `pr-preview-deploy.yml`, `preview-verification.yml` and `cleanup-previews.yml`) run actions from [wafer-space/actions](https://github.com/wafer-space/actions/tree/main/pr-preview), pinned to a commit. Their scripts and templates live there, so the privileged preview jobs never run code from the pull request being previewed. See `.github/workflows/pr-preview.md`.
 
-### comment-verification-results.js
-
-Manages verification comment lifecycle to keep PR comment threads clean:
-
-**Features:**
-- Creates new verification comments with current results
-- Archives previous verification comments using collapsible sections
-- Identifies verification comments using unique HTML markers
-- Preserves comment history for accountability
-
-**Usage:**
-```javascript
-// In GitHub Actions workflow (from repository root)
-const commentVerificationResults = require('./.github/scripts/comment-verification-results.js');
-const result = await commentVerificationResults(github, context, core);
-```
-
-**Environment Variables Required:**
-- `VERIFICATION_STATUS`: 'success' or 'failed'
-- `REPORT_CONTENT`: Full verification report content
-- `GITHUB_RUN_ID`: Current workflow run ID
-
-**Comment Structure:**
-- New comments show full verification details prominently
-- Old comments are collapsed with "Previous verification results (archived)" header
-- All verification comments have `<!-- VERIFICATION_COMMENT_MARKER -->` for identification
-- Timestamps and run IDs help track verification history
-
-**Benefits:**
-- ✅ Only latest verification is prominently visible
-- ✅ Historical data preserved but collapsed
-- ✅ Clean PR comment threads
-- ✅ Easy identification of verification comments
-- ✅ Graceful error handling for individual comment updates
-
-### comment-pr-preview.js
-
-Manages PR preview deployment comments with update capability:
-- Updates existing preview comments instead of creating duplicates
-- Handles preview deployment status changes
-- Uses template-based comment generation
+## Production Link Check
 
 ### report-production-links.js
 
@@ -58,14 +20,14 @@ the `<!-- PRODUCTION_LINK_CHECK -->` marker in their body.
 - `REPORT_CONTENT`: Full verification report content
 - `GITHUB_RUN_ID`: Current workflow run ID
 
-## Link Checking
+### Link Checking
 
 - `check-links.sh <site-url> <json-report> [extra muffet options...]`: runs
-  muffet with the shared configuration, including the exclude list (don't
-  extend it without asking, see `CLAUDE.md`). Exits 0 (all fine), 1 (broken
-  links in the report) or 2 (muffet couldn't check the site; its stderr is in
-  the `.err` file next to the report). Used by both the preview and the
-  production checks.
+  muffet for the production check, skipping the URLs in
+  `.github/muffet-excludes.txt` (shared with the preview check; don't extend
+  it without asking, see `CLAUDE.md`). Exits 0 (all fine), 1 (broken links in
+  the report) or 2 (muffet couldn't check the site; its stderr is in the
+  `.err` file next to the report).
 - `summarise-muffet.py`: turns muffet's JSON into the broken-link list and the
   TLS-certificate warnings for the report.
 - `wait-for-commit.py <site-url> [--commit SHA [--or-descendant]]`: waits
@@ -75,36 +37,3 @@ the `<!-- PRODUCTION_LINK_CHECK -->` marker in their body.
   share the production domain, as names or as muffet `--exclude` arguments.
 - `check-sibling-links.py`: checks this site's links into those sibling sites
   (status and fragment), since muffet is told not to follow them.
-
-### Other Scripts
-
-- `create-deployment.js`: Creates GitHub deployment records
-- `update-deployment-status.js`: Updates deployment status
-- `generate-pr-directory-name.js`: Generates slugified directory names
-
-## Best Practices
-
-1. **Error Handling**: All scripts include comprehensive error handling
-2. **Input Validation**: User inputs are validated and sanitized
-3. **Idempotent Operations**: Scripts can be run multiple times safely
-4. **Logging**: Detailed console output for debugging
-5. **Security**: Path validation and input sanitization throughout
-
-## Testing and Validation
-
-### Manual Testing
-This PR demonstrates the comment lifecycle management through:
-1. **Integration Testing**: Multiple verification runs on PR #12 validate the archival system
-2. **UI Testing**: Verification that collapsed sections render correctly in GitHub interface
-3. **Error Handling**: Graceful handling when comment updates fail
-
-### Recommended Unit Tests
-Future improvements could include:
-- **Archive Logic**: Test comment identification and archival transformation
-- **Error Scenarios**: Test behavior when GitHub API calls fail
-- **Comment Parsing**: Test extraction of verification markers and content
-- **Environment Validation**: Test required environment variable handling
-
-### Testing Notes
-
-This documentation update is used to test the verification comment lifecycle management system by triggering a second verification run.

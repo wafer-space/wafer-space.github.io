@@ -3,8 +3,9 @@
 # every deploy and once a day, so links that break between deploys (an
 # external page going away) are noticed without waiting for a pull request.
 #
-# Pull requests are checked by preview-verification.yml instead; the muffet
-# configuration both use is .github/scripts/check-links.sh.
+# Pull requests are checked by preview-verification.yml instead. Both skip
+# the URLs in .github/muffet-excludes.txt; this one runs muffet through
+# .github/scripts/check-links.sh.
 #
 # The other repositories' GitHub Pages sites share the domain (wafer.space/
 # ws-run1/ and so on). muffet is kept out of them, since they are not this

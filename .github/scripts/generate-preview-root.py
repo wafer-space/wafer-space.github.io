@@ -2,11 +2,13 @@
 """Generate the root of preview.wafer.space: index.html and redirects.json.
 
 Run from the root of the preview.wafer.space repository, just before the
-commit that will hold the result (pr-preview.yml and cleanup-previews.yml run
-it after adding or removing previews, and pr-preview.yml again after merging
-in another deploy's push). Both files are built first and only then written,
-so a failure leaves the previous pair in place. The workflows run the base
-branch's copy of this script and its template, not a pull request's.
+commit that will hold the result: the wafer-space/actions pr-preview deploy
+and cleanup actions run it as their root-script after adding or removing
+previews (pr-preview-deploy.yml and cleanup-previews.yml), and again on
+each retry, which starts from the preview repository's new main rather than
+merging. Both files are built first and only then written, so a failure
+leaves the previous pair in place. The workflows run the default branch's
+copy of this script and its template, never a pull request's.
 
 It also writes robots.txt, which disallows everything, so no crawler (search,
 AI or other) visits the previews. Crawlers only read it at the root of a

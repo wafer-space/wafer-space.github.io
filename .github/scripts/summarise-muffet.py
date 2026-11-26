@@ -49,9 +49,15 @@ def https_hosts(results, own_host):
     hosts = set()
     for page in results:
         for link in page.get("links", []):
-            parsed = urllib.parse.urlsplit(link["url"])
-            if parsed.scheme == "https" and parsed.hostname and parsed.hostname != own_host:
-                hosts.add((parsed.hostname, parsed.port or 443))
+            try:
+                parsed = urllib.parse.urlsplit(link["url"])
+                host, port = parsed.hostname, parsed.port
+            except ValueError:
+                # A malformed URL (https://[abc/, https://host:abc/) is
+                # muffet's to report; it mustn't stop the rest of the summary
+                continue
+            if parsed.scheme == "https" and host and host != own_host:
+                hosts.add((host, port or 443))
     return sorted(hosts)
 
 
