@@ -60,9 +60,12 @@ the `<!-- PRODUCTION_LINK_CHECK -->` marker in their body.
 
 ## Link Checking
 
-- `check-links.sh <site-url> <json-report>`: runs muffet with the shared
-  configuration, including the exclude list (don't extend it without asking,
-  see `CLAUDE.md`). Used by both the preview and the production checks.
+- `check-links.sh <site-url> <json-report> [extra muffet options...]`: runs
+  muffet with the shared configuration, including the exclude list (don't
+  extend it without asking, see `CLAUDE.md`). Exits 0 (all fine), 1 (broken
+  links in the report) or 2 (muffet couldn't check the site; its stderr is in
+  the `.err` file next to the report). Used by both the preview and the
+  production checks.
 - `summarise-muffet.py`: turns muffet's JSON into the broken-link list and the
   TLS-certificate warnings for the report.
 - `wait-for-commit.py <site-url> [--commit SHA [--or-descendant]]`: waits

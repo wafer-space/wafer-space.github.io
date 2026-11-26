@@ -3,9 +3,12 @@
 #
 #   check-links.sh <site-url> <json-report-path> [extra muffet options...]
 #
-# Exits with muffet's status: 0 when every link and asset resolved, 1 when
-# some didn't (the report then lists them), other values for muffet's own
-# errors. Summarise the report with summarise-muffet.py.
+# Exits 0 when every link and asset resolved, 1 when some didn't (the JSON
+# report lists them), and 2 when muffet couldn't check the site at all (it
+# couldn't fetch the root page, or an option was wrong): muffet itself exits 1
+# for both, so the two are told apart by whether it wrote a JSON report. Its
+# stderr is copied to <json-report-path> with .err in place of .json, for the
+# report. Summarise the report with summarise-muffet.py.
 #
 # Extra options go to muffet after the shared ones; the production check uses
 # them to keep muffet out of the sibling project sites (see
@@ -34,7 +37,9 @@ fi
 SITE_URL="$1"
 REPORT="$2"
 shift 2
+ERRORS="${REPORT%.json}.err"
 
+STATUS=0
 muffet \
   --skip-tls-verification \
   --format=json \
@@ -63,4 +68,15 @@ muffet \
   --header="Cache-Control:no-cache" \
   --header="Pragma:no-cache" \
   "$@" \
-  "$SITE_URL" > "$REPORT"
+  "$SITE_URL" > "$REPORT" 2> "$ERRORS" || STATUS=$?
+cat "$ERRORS" >&2
+
+if [ "$STATUS" -eq 0 ]; then
+  exit 0
+fi
+# A JSON report means muffet checked the site and some links failed
+if python3 -m json.tool "$REPORT" > /dev/null; then
+  exit 1
+fi
+echo "muffet produced no report (exit status $STATUS)" >&2
+exit 2

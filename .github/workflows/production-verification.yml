@@ -74,23 +74,25 @@ jobs:
           sudo mv /tmp/muffet /usr/local/bin/
           muffet --version
 
+      # GITHUB_REPOSITORY is set for every event; github.event.repository
+      # isn't in a schedule payload
       - name: List the sibling project sites to keep muffet out of
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 .github/scripts/sibling-sites.py \
-            --owner "${{ github.repository_owner }}" \
-            --repo "${{ github.event.repository.name }}" \
+            --owner "$GITHUB_REPOSITORY_OWNER" \
+            --repo "${GITHUB_REPOSITORY#*/}" \
             --site-url "$SITE_URL" > sibling-sites.txt
           python3 .github/scripts/sibling-sites.py \
-            --owner "${{ github.repository_owner }}" \
-            --repo "${{ github.event.repository.name }}" \
+            --owner "$GITHUB_REPOSITORY_OWNER" \
+            --repo "${GITHUB_REPOSITORY#*/}" \
             --site-url "$SITE_URL" --format muffet-excludes > sibling-excludes.txt
           cat sibling-sites.txt
 
       # status is "success", "failed" (broken links, which the issue tracks)
-      # or "error" (muffet couldn't check the site, e.g. the runner was
-      # blocked: the run goes red but no issue is opened)
+      # or "error" (the site couldn't be checked, e.g. the runner was
+      # blocked, or a script crashed: the run goes red but no issue is opened)
       - name: Check links and assets
         id: check
         run: |
@@ -109,12 +111,15 @@ jobs:
 
           # The links into the sibling sites that muffet was told to skip
           SIBLING_EXIT=0
+          touch sibling-report.txt
           python3 .github/scripts/check-sibling-links.py muffet-report.json \
             --site-url "$SITE_URL" \
             --sites sibling-sites.txt \
             --failures sibling-report.txt || SIBLING_EXIT=$?
           if [ "$SIBLING_EXIT" -eq 1 ] && [ "$STATUS" = success ]; then
             STATUS=failed
+          elif [ "$SIBLING_EXIT" -gt 1 ]; then
+            STATUS=error
           fi
           cat sibling-report.txt >> muffet-report.txt
 
@@ -138,8 +143,9 @@ jobs:
                 echo '```'
                 ;;
               *)
-                echo "⚠️ muffet could not check the site (exit status $MUFFET_EXIT):"
+                echo "⚠️ The site could not be checked (check-links.sh exit $MUFFET_EXIT, check-sibling-links.py exit $SIBLING_EXIT):"
                 echo '```'
+                head -50 muffet-report.err
                 head -50 muffet-report.txt
                 echo '```'
                 ;;
