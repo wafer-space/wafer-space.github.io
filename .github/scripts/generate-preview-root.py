@@ -8,8 +8,13 @@ in another deploy's push). Both files are built first and only then written,
 so a failure leaves the previous pair in place. The workflows run the base
 branch's copy of this script and its template, not a pull request's.
 
+It also writes robots.txt, which disallows everything, so no crawler (search,
+AI or other) visits the previews. Crawlers only read it at the root of a
+host, so the copy each preview build has under pr-NNN/ doesn't count. It is
+rewritten on every run so it can't drift from ROBOTS_TXT.
+
 A preview is a pr-NNN directory with an index.html, or its pr-NNN-title
-alias; both files only cover those.
+alias; index.html and redirects.json only cover those.
 
 index.html lists every preview, from .github/templates/preview-index.html
 next to this script.
@@ -64,6 +69,7 @@ ABSOLUTE = re.compile(r"^https?://[^/?#\s]+", re.I)
 KEPT_FIELDS = ("preserve_query_string", "preserve_path_suffix")
 # Cloudflare's Free plan allows 10,000 redirects across all lists
 WARN_TOTAL = 9000
+ROBOTS_TXT = "User-agent: *\nDisallow: /\n"
 
 
 def previews(directories):
@@ -192,6 +198,7 @@ def main():
 
     Path("index.html").write_text(page)
     Path("redirects.json").write_text(json.dumps(items, indent=2) + "\n")
+    Path("robots.txt").write_text(ROBOTS_TXT)
     print(f"Generated preview index with {len(found)} active previews")
     print(f"Wrote redirects.json at {revision}: {len(items)} entries from {covered} preview(s)")
     if len(items) > WARN_TOTAL:
