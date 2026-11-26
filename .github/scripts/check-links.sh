@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Run muffet over a deployed copy of the site and write its JSON report.
 #
-#   check-links.sh <site-url> <json-report-path>
+#   check-links.sh <site-url> <json-report-path> [extra muffet options...]
 #
 # Exits with muffet's status: 0 when every link and asset resolved, 1 when
 # some didn't (the report then lists them), other values for muffet's own
 # errors. Summarise the report with summarise-muffet.py.
+#
+# Extra options go to muffet after the shared ones; the production check uses
+# them to keep muffet out of the sibling project sites (see
+# production-verification.yml).
 #
 # This is the one place the link checker is configured, so the preview
 # check (preview-verification.yml) and the production check
@@ -22,13 +26,14 @@
 
 set -u
 
-if [ "$#" -ne 2 ]; then
-  echo "usage: $0 <site-url> <json-report-path>" >&2
+if [ "$#" -lt 2 ]; then
+  echo "usage: $0 <site-url> <json-report-path> [extra muffet options...]" >&2
   exit 2
 fi
 
 SITE_URL="$1"
 REPORT="$2"
+shift 2
 
 muffet \
   --skip-tls-verification \
@@ -57,4 +62,5 @@ muffet \
   --header="Accept-Encoding:gzip, deflate, br" \
   --header="Cache-Control:no-cache" \
   --header="Pragma:no-cache" \
+  "$@" \
   "$SITE_URL" > "$REPORT"
