@@ -1,0 +1,185 @@
+# Production Site Verification Workflow
+# Runs the link checker against the live site, https://wafer.space/, after
+# every deploy and once a day, so links that break between deploys (an
+# external page going away) are noticed without waiting for a pull request.
+#
+# Pull requests are checked by preview-verification.yml instead; the muffet
+# configuration both use is .github/scripts/check-links.sh.
+#
+# The other repositories' GitHub Pages sites share the domain (wafer.space/
+# ws-run1/ and so on). muffet is kept out of them, since they are not this
+# repository's content and one has over a thousand pages, and this site's
+# links into them are checked by check-sibling-links.py instead.
+#
+# Failures open (or add to) one issue labelled "broken-links", which closes
+# itself when the links pass again.
+
+name: Production Site Verification
+
+on:
+  # After the Pages deploy of main; the job skips if the deploy failed
+  workflow_run:
+    workflows: ["Deploy Jekyll site to Pages"]
+    types: [completed]
+    branches: ["main"]
+
+  # Daily, to catch external links that break between deploys
+  schedule:
+    - cron: '17 3 * * *'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+# One check at a time, so two runs don't both open an issue
+concurrency:
+  group: production-verification
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://wafer.space/
+
+jobs:
+  verify-production:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          # Full history, so the wait below can tell a later deploy from an
+          # older one
+          fetch-depth: 0
+
+      # After a deploy, check the commit that was deployed rather than
+      # whatever the site served before it. A later deploy (two pushes close
+      # together) also counts. Scheduled and manual runs take the site as it is.
+      - name: Wait for the site to serve the deployed commit
+        env:
+          EXPECTED_COMMIT: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          if [ -n "$EXPECTED_COMMIT" ]; then
+            python3 .github/scripts/wait-for-commit.py "$SITE_URL" --commit "$EXPECTED_COMMIT" --or-descendant --timeout 600
+          else
+            python3 .github/scripts/wait-for-commit.py "$SITE_URL" --timeout 120
+          fi
+
+      - name: Install muffet
+        run: |
+          wget -qO- https://github.com/raviqqe/muffet/releases/latest/download/muffet_linux_amd64.tar.gz | tar -xzf - -C /tmp
+          sudo mv /tmp/muffet /usr/local/bin/
+          muffet --version
+
+      # GITHUB_REPOSITORY is set for every event; github.event.repository
+      # isn't in a schedule payload
+      - name: List the sibling project sites to keep muffet out of
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 .github/scripts/sibling-sites.py \
+            --owner "$GITHUB_REPOSITORY_OWNER" \
+            --repo "${GITHUB_REPOSITORY#*/}" \
+            --site-url "$SITE_URL" > sibling-sites.txt
+          python3 .github/scripts/sibling-sites.py \
+            --owner "$GITHUB_REPOSITORY_OWNER" \
+            --repo "${GITHUB_REPOSITORY#*/}" \
+            --site-url "$SITE_URL" --format muffet-excludes > sibling-excludes.txt
+          cat sibling-sites.txt
+
+      # status is "success", "failed" (broken links, which the issue tracks)
+      # or "error" (the site couldn't be checked, e.g. the runner was
+      # blocked, or a script crashed: the run goes red but no issue is opened)
+      - name: Check links and assets
+        id: check
+        run: |
+          mapfile -t SIBLING_EXCLUDES < sibling-excludes.txt
+          MUFFET_EXIT=0
+          .github/scripts/check-links.sh "$SITE_URL" muffet-report.json "${SIBLING_EXCLUDES[@]}" || MUFFET_EXIT=$?
+          case "$MUFFET_EXIT" in
+            0) STATUS=success ;;
+            1) STATUS=failed ;;
+            *) STATUS=error ;;
+          esac
+          python3 .github/scripts/summarise-muffet.py muffet-report.json \
+            --site-url "$SITE_URL" \
+            --failures muffet-report.txt \
+            --tls-warnings tls-warnings.md
+
+          # The links into the sibling sites that muffet was told to skip
+          SIBLING_EXIT=0
+          touch sibling-report.txt
+          python3 .github/scripts/check-sibling-links.py muffet-report.json \
+            --site-url "$SITE_URL" \
+            --sites sibling-sites.txt \
+            --failures sibling-report.txt || SIBLING_EXIT=$?
+          if [ "$SIBLING_EXIT" -eq 1 ] && [ "$STATUS" = success ]; then
+            STATUS=failed
+          elif [ "$SIBLING_EXIT" -gt 1 ]; then
+            STATUS=error
+          fi
+          cat sibling-report.txt >> muffet-report.txt
+
+          SERVED_COMMIT=$(curl -s -H "Cache-Control: no-cache" "$SITE_URL" | grep -oE '<meta name="git-commit" content="[a-f0-9]{40}"' | grep -oE '[a-f0-9]{40}' || echo "unknown")
+
+          REPORT_FILE="verification-report.md"
+          {
+            echo "# Production Site Verification Report"
+            echo "**URL:** $SITE_URL"
+            echo "**Deployed commit:** $SERVED_COMMIT"
+            echo "**Timestamp:** $(date -u)"
+            echo ""
+            case "$STATUS" in
+              success)
+                echo "✅ All links and assets are valid (muffet)"
+                ;;
+              failed)
+                echo "❌ Broken links or assets:"
+                echo '```'
+                head -200 muffet-report.txt
+                echo '```'
+                ;;
+              *)
+                echo "⚠️ The site could not be checked (check-links.sh exit $MUFFET_EXIT, check-sibling-links.py exit $SIBLING_EXIT):"
+                echo '```'
+                # .err exists whenever check-links.sh ran; don't abort the report if it didn't
+                head -50 muffet-report.err || true
+                head -50 muffet-report.txt
+                echo '```'
+                ;;
+            esac
+            # Warnings only: these sites still load if the visitor clicks through
+            if [ -s tls-warnings.md ]; then
+              echo ""
+              echo "**Linked sites with invalid TLS certificates (warning only):**"
+              cat tls-warnings.md
+            fi
+          } > "$REPORT_FILE"
+
+          cat "$REPORT_FILE"
+          cat "$REPORT_FILE" >> "$GITHUB_STEP_SUMMARY"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+
+      - name: Open, update or close the broken-links issue
+        if: steps.check.outputs.status != 'error'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            process.env.REPORT_CONTENT = fs.readFileSync('verification-report.md', 'utf8');
+            const reportProductionLinks = require('./.github/scripts/report-production-links.js');
+            const result = await reportProductionLinks(github, context, core);
+            console.log(`Issue action: ${result.action}` + (result.issueNumber ? ` (#${result.issueNumber})` : ''));
+        env:
+          CHECK_STATUS: ${{ steps.check.outputs.status }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+
+      - name: Fail if links are broken or couldn't be checked
+        if: steps.check.outputs.status != 'success'
+        run: |
+          echo "The production link check did not pass (status: ${{ steps.check.outputs.status }})."
+          echo "See the job summary or the broken-links issue for details."
+          exit 1

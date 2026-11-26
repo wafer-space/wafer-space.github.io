@@ -147,11 +147,13 @@ Make sure you are on the right branch before doing any work.
 
 ## Preview Verification
 
-Pull requests are checked by the `preview-verification.yml` workflow, which runs the [muffet](https://github.com/raviqqe/muffet) link checker against the per-PR preview site.
+Pull requests are checked by the `preview-verification.yml` workflow, which runs the [muffet](https://github.com/raviqqe/muffet) link checker against the per-PR preview site. The live site is checked the same way by `production-verification.yml`, after every Pages deploy of `main` and once a day; when it finds broken links it opens (or comments on) an issue labelled `broken-links` and closes it once they pass again. Both workflows run muffet through `.github/scripts/check-links.sh`, which is the one place its flags and exclude list live.
+
+The other wafer-space repositories' GitHub Pages sites are served under the same domain (`wafer.space/ws-run1/`, `wafer.space/tinytapeouts/`, …). The production check keeps muffet out of them (`sibling-sites.py` lists them from the GitHub API) because they are other repositories' content, and checks this site's links into them with `check-sibling-links.py` instead, so nothing on this site goes unchecked.
 
 ### NEVER Add Muffet Exclusions Without Confirmation
 
-**NEVER add exclusions to `.github/workflows/preview-verification.yml` without first asking the user for confirmation using the AskUserQuestion tool.** Exclusions hide potential problems and should be deliberate decisions, not automatic fixes.
+**NEVER add exclusions to `.github/scripts/check-links.sh` without first asking the user for confirmation using the AskUserQuestion tool.** Exclusions hide potential problems and should be deliberate decisions, not automatic fixes.
 
 Before proposing an exclusion, you MUST:
 1. Investigate the root cause of the failure
