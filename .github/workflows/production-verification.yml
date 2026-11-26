@@ -145,7 +145,8 @@ jobs:
               *)
                 echo "⚠️ The site could not be checked (check-links.sh exit $MUFFET_EXIT, check-sibling-links.py exit $SIBLING_EXIT):"
                 echo '```'
-                head -50 muffet-report.err
+                # .err exists whenever check-links.sh ran; don't abort the report if it didn't
+                head -50 muffet-report.err || true
                 head -50 muffet-report.txt
                 echo '```'
                 ;;
