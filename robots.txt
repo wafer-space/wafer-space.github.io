@@ -4,8 +4,8 @@ layout: null
 {%- comment -%}
   PR previews are built with a non-empty baseurl, so keep them out of search
   engines. Crawlers only read robots.txt at the root of a host, so
-  pr-preview.yml also writes a disallow-all robots.txt at the
-  root of preview.wafer.space.
+  .github/scripts/generate-preview-root.py also writes a disallow-all
+  robots.txt at the root of preview.wafer.space.
 {%- endcomment -%}
 {%- if site.baseurl and site.baseurl != "" -%}
 User-agent: *

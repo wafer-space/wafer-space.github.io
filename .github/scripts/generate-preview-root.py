@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-"""Generate the root of preview.wafer.space: index.html and redirects.json.
+"""Generate the root of preview.wafer.space: index.html, redirects.json and robots.txt.
 
 Run from the root of the preview.wafer.space repository, just before the
 commit that will hold the result (pr-preview.yml and cleanup-previews.yml run
 it after adding or removing previews, and pr-preview.yml again after merging
-in another deploy's push). Both files are built first and only then written,
-so a failure leaves the previous pair in place. The workflows run the base
-branch's copy of this script and its template, not a pull request's.
+in another deploy's push). index.html and redirects.json are built first and
+only then written, so a failure leaves the previous pair in place. The
+workflows run the base branch's copy of this script and its template, not a
+pull request's.
+
+robots.txt disallows everything, so no crawler (search, AI or other) visits
+the previews. Crawlers only read it at the root of a host, so the copy each
+preview build has under pr-NNN/ doesn't count. It is rewritten on every run
+so it can't drift from ROBOTS_TXT.
 
 A preview is a pr-NNN directory with an index.html, or its pr-NNN-title
 alias; both files only cover those.
@@ -64,6 +70,7 @@ ABSOLUTE = re.compile(r"^https?://[^/?#\s]+", re.I)
 KEPT_FIELDS = ("preserve_query_string", "preserve_path_suffix")
 # Cloudflare's Free plan allows 10,000 redirects across all lists
 WARN_TOTAL = 9000
+ROBOTS_TXT = "User-agent: *\nDisallow: /\n"
 
 
 def previews(directories):
@@ -192,6 +199,7 @@ def main():
 
     Path("index.html").write_text(page)
     Path("redirects.json").write_text(json.dumps(items, indent=2) + "\n")
+    Path("robots.txt").write_text(ROBOTS_TXT)
     print(f"Generated preview index with {len(found)} active previews")
     print(f"Wrote redirects.json at {revision}: {len(items)} entries from {covered} preview(s)")
     if len(items) > WARN_TOTAL:
