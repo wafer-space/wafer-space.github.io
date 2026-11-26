@@ -36,9 +36,23 @@ jobs:
       (vars.PREVIEW_REPOSITORY != '' && vars.PREVIEW_BASE_URL != '')
     runs-on: ubuntu-latest
     steps:
-      - uses: wafer-space/actions/pr-preview/cleanup@33cb4040b0bceb4f726fc82a01d688cc0e10c75c
+      # The generator for the preview repository's index and redirects.json
+      # (loaded into Cloudflare)
+      - name: Check out the preview root generator
+        if: github.repository == 'wafer-space/wafer-space.github.io'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            .github/scripts
+            .github/templates
+
+      - uses: wafer-space/actions/pr-preview/cleanup@71e41254ef43b553dfd846c462ad0cb534d8966b
         with:
           preview-repository: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
           preview-key: ${{ secrets.PREVIEW_KEY }}
           preview-base-url: ${{ vars.PREVIEW_BASE_URL || 'https://preview.wafer.space' }}
           pr-number: ${{ github.event.inputs.pr_number }}
+          # It writes wafer.space's preview list, so a copy of this
+          # repository uses the action's default index instead
+          root-script: ${{ github.repository == 'wafer-space/wafer-space.github.io' && '.github/scripts/generate-preview-root.py' || '' }}
