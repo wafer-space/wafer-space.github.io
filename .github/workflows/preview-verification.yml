@@ -50,7 +50,8 @@ jobs:
         run: |
           {
             echo 'patterns<<MUFFET_EXCLUDES_END'
-            grep -v -E '^(#|$)' .github/muffet-excludes.txt
+            # grep exits 1 when it prints nothing, i.e. no excludes
+            grep -v -E '^(#|$)' .github/muffet-excludes.txt || [ "$?" -eq 1 ]
             echo 'MUFFET_EXCLUDES_END'
           } >> "$GITHUB_OUTPUT"
 
