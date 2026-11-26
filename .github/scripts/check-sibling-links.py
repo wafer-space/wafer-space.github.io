@@ -13,7 +13,8 @@ that id (or name) on the page, as muffet would.
 
 Failures are written to --failures in muffet's text format (page URL, then
 tab-indented "<error>\t<link>" lines), ready to append to muffet's own list.
-Exits 0 when every link is fine, 1 when some aren't, 2 for usage errors.
+Exits 0 when every link is fine, 1 when some aren't, 2 for usage errors and
+3 if the script itself failed.
 
 Uses only the standard library so it runs on a bare GitHub runner.
 """
@@ -25,6 +26,7 @@ import http.client
 import json
 import re
 import sys
+import traceback
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -34,8 +36,11 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Cache-Control": "no-cache",
 }
-ATTRIBUTE = re.compile(r"""\b(?:href|src|poster)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.IGNORECASE)
-ID_ATTRIBUTE = re.compile(r"""\b(?:id|name)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.IGNORECASE)
+# The attributes muffet reads. The lookbehind keeps data-src, data-id and the
+# like out, as muffet ignores data-* attributes.
+ATTRIBUTE = re.compile(r"""(?<![\w-])(?:href|src|poster)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.IGNORECASE)
+SRCSET = re.compile(r"""(?<![\w-])srcset\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.IGNORECASE)
+ID_ATTRIBUTE = re.compile(r"""(?<![\w-])(?:id|name)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.IGNORECASE)
 
 
 def fetch(url):
@@ -62,9 +67,19 @@ def sibling_prefix(url, site_host, sites):
     return first if first in sites else None
 
 
+def link_values(page):
+    yield from attribute_values(page, ATTRIBUTE)
+    # srcset is "url [descriptor], url [descriptor], ..."
+    for srcset in attribute_values(page, SRCSET):
+        for candidate in srcset.split(","):
+            url = candidate.strip().split()[0] if candidate.strip() else ""
+            if url:
+                yield url
+
+
 def links_into_siblings(page_url, page, site_host, sites):
     found = set()
-    for value in attribute_values(page, ATTRIBUTE):
+    for value in link_values(page):
         value = value.strip()
         if not value or value.startswith(("#", "mailto:", "javascript:", "data:", "tel:")):
             continue
@@ -156,4 +171,8 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception:  # noqa: BLE001 - a crash must not look like "links broken" (exit 1)
+        traceback.print_exc()
+        sys.exit(3)

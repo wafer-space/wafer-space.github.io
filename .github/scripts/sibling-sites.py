@@ -14,6 +14,11 @@ this site into them instead.
 prints a --exclude=<regex> argument per line for check-links.sh. REPO itself
 is left out. GITHUB_TOKEN, if set, is sent for the higher API rate limit.
 
+Repositories served on their own domain (a CNAME) are listed too; their
+excludes match nothing, which is harmless. The converse matters: a repository
+with Pages whose name equals one of this site's top-level pages (say "about")
+would take that page out of the crawl. Don't name repositories after pages.
+
 Uses only the standard library so it runs on a bare GitHub runner.
 """
 
@@ -49,9 +54,10 @@ def sibling_sites(owner, repo):
 
 
 def muffet_exclude(site_url, name):
-    base = site_url.rstrip("/")
-    # The site itself, or anything under it: /<repo>, /<repo>/..., /<repo>?...
-    return f"--exclude=^{re.escape(base)}/{re.escape(name)}([/?#]|$)"
+    parts = urllib.parse.urlsplit(site_url)
+    # Either scheme (muffet doesn't rewrite http to https before matching),
+    # then the site itself or anything under it: /<repo>, /<repo>/..., /<repo>?...
+    return f"--exclude=^https?://{re.escape(parts.netloc)}/{re.escape(name)}([/?#]|$)"
 
 
 def main():
