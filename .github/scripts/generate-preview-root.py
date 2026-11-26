@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""Generate the root of preview.wafer.space: index.html, redirects.json and robots.txt.
+"""Generate the root of preview.wafer.space: index.html and redirects.json.
 
 Run from the root of the preview.wafer.space repository, just before the
 commit that will hold the result (pr-preview.yml and cleanup-previews.yml run
 it after adding or removing previews, and pr-preview.yml again after merging
-in another deploy's push). index.html and redirects.json are built first and
-only then written, so a failure leaves the previous pair in place. The
-workflows run the base branch's copy of this script and its template, not a
-pull request's.
+in another deploy's push). Both files are built first and only then written,
+so a failure leaves the previous pair in place. The workflows run the base
+branch's copy of this script and its template, not a pull request's.
 
-robots.txt disallows everything, so no crawler (search, AI or other) visits
-the previews. Crawlers only read it at the root of a host, so the copy each
-preview build has under pr-NNN/ doesn't count. It is rewritten on every run
-so it can't drift from ROBOTS_TXT.
+It also writes robots.txt, which disallows everything, so no crawler (search,
+AI or other) visits the previews. Crawlers only read it at the root of a
+host, so the copy each preview build has under pr-NNN/ doesn't count. It is
+rewritten on every run so it can't drift from ROBOTS_TXT.
 
 A preview is a pr-NNN directory with an index.html, or its pr-NNN-title
 alias; index.html and redirects.json only cover those.
