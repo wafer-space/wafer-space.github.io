@@ -47,7 +47,7 @@ jobs:
             .github/scripts
             .github/templates
 
-      - uses: wafer-space/actions/pr-preview/cleanup@1eea3cbb354ada2df6af676d05fdfc950c734f83
+      - uses: wafer-space/actions/pr-preview/cleanup@61f75d177ab19cbf089205f1124373e32b5e33ca
         with:
           preview-repository: ${{ vars.PREVIEW_REPOSITORY || 'wafer-space/preview.wafer.space' }}
           preview-key: ${{ secrets.PREVIEW_KEY }}
