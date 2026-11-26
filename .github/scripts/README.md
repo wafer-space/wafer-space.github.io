@@ -65,8 +65,13 @@ the `<!-- PRODUCTION_LINK_CHECK -->` marker in their body.
   see `CLAUDE.md`). Used by both the preview and the production checks.
 - `summarise-muffet.py`: turns muffet's JSON into the broken-link list and the
   TLS-certificate warnings for the report.
-- `wait-for-commit.py <site-url> [--commit SHA]`: waits until a deployed copy
-  of the site is serving, or is serving the given commit.
+- `wait-for-commit.py <site-url> [--commit SHA [--or-descendant]]`: waits
+  until a deployed copy of the site is serving, or is serving the given commit
+  (or, with `--or-descendant`, a later one).
+- `sibling-sites.py`: lists the organisation's other GitHub Pages sites, which
+  share the production domain, as names or as muffet `--exclude` arguments.
+- `check-sibling-links.py`: checks this site's links into those sibling sites
+  (status and fragment), since muffet is told not to follow them.
 
 ### Other Scripts
 

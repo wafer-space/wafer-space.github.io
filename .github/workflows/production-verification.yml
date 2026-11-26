@@ -6,6 +6,11 @@
 # Pull requests are checked by preview-verification.yml instead; the muffet
 # configuration both use is .github/scripts/check-links.sh.
 #
+# The other repositories' GitHub Pages sites share the domain (wafer.space/
+# ws-run1/ and so on). muffet is kept out of them, since they are not this
+# repository's content and one has over a thousand pages, and this site's
+# links into them are checked by check-sibling-links.py instead.
+#
 # Failures open (or add to) one issue labelled "broken-links", which closes
 # itself when the links pass again.
 
@@ -46,16 +51,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: false
+          # Full history, so the wait below can tell a later deploy from an
+          # older one
+          fetch-depth: 0
 
       # After a deploy, check the commit that was deployed rather than
-      # whatever the site served before it. Scheduled and manual runs take
-      # the site as it is.
+      # whatever the site served before it. A later deploy (two pushes close
+      # together) also counts. Scheduled and manual runs take the site as it is.
       - name: Wait for the site to serve the deployed commit
         env:
           EXPECTED_COMMIT: ${{ github.event.workflow_run.head_sha }}
         run: |
           if [ -n "$EXPECTED_COMMIT" ]; then
-            python3 .github/scripts/wait-for-commit.py "$SITE_URL" --commit "$EXPECTED_COMMIT" --timeout 600
+            python3 .github/scripts/wait-for-commit.py "$SITE_URL" --commit "$EXPECTED_COMMIT" --or-descendant --timeout 600
           else
             python3 .github/scripts/wait-for-commit.py "$SITE_URL" --timeout 120
           fi
@@ -66,18 +74,49 @@ jobs:
           sudo mv /tmp/muffet /usr/local/bin/
           muffet --version
 
+      - name: List the sibling project sites to keep muffet out of
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 .github/scripts/sibling-sites.py \
+            --owner "${{ github.repository_owner }}" \
+            --repo "${{ github.event.repository.name }}" \
+            --site-url "$SITE_URL" > sibling-sites.txt
+          python3 .github/scripts/sibling-sites.py \
+            --owner "${{ github.repository_owner }}" \
+            --repo "${{ github.event.repository.name }}" \
+            --site-url "$SITE_URL" --format muffet-excludes > sibling-excludes.txt
+          cat sibling-sites.txt
+
+      # status is "success", "failed" (broken links, which the issue tracks)
+      # or "error" (muffet couldn't check the site, e.g. the runner was
+      # blocked: the run goes red but no issue is opened)
       - name: Check links and assets
         id: check
         run: |
-          if .github/scripts/check-links.sh "$SITE_URL" muffet-report.json; then
-            MUFFET_PASSED=true
-          else
-            MUFFET_PASSED=false
-          fi
+          mapfile -t SIBLING_EXCLUDES < sibling-excludes.txt
+          MUFFET_EXIT=0
+          .github/scripts/check-links.sh "$SITE_URL" muffet-report.json "${SIBLING_EXCLUDES[@]}" || MUFFET_EXIT=$?
+          case "$MUFFET_EXIT" in
+            0) STATUS=success ;;
+            1) STATUS=failed ;;
+            *) STATUS=error ;;
+          esac
           python3 .github/scripts/summarise-muffet.py muffet-report.json \
             --site-url "$SITE_URL" \
             --failures muffet-report.txt \
             --tls-warnings tls-warnings.md
+
+          # The links into the sibling sites that muffet was told to skip
+          SIBLING_EXIT=0
+          python3 .github/scripts/check-sibling-links.py muffet-report.json \
+            --site-url "$SITE_URL" \
+            --sites sibling-sites.txt \
+            --failures sibling-report.txt || SIBLING_EXIT=$?
+          if [ "$SIBLING_EXIT" -eq 1 ] && [ "$STATUS" = success ]; then
+            STATUS=failed
+          fi
+          cat sibling-report.txt >> muffet-report.txt
 
           SERVED_COMMIT=$(curl -s -H "Cache-Control: no-cache" "$SITE_URL" | grep -oE '<meta name="git-commit" content="[a-f0-9]{40}"' | grep -oE '[a-f0-9]{40}' || echo "unknown")
 
@@ -88,14 +127,23 @@ jobs:
             echo "**Deployed commit:** $SERVED_COMMIT"
             echo "**Timestamp:** $(date -u)"
             echo ""
-            if [ "$MUFFET_PASSED" = true ]; then
-              echo "✅ All links and assets are valid (muffet)"
-            else
-              echo "❌ muffet found broken links or assets:"
-              echo '```'
-              head -200 muffet-report.txt
-              echo '```'
-            fi
+            case "$STATUS" in
+              success)
+                echo "✅ All links and assets are valid (muffet)"
+                ;;
+              failed)
+                echo "❌ Broken links or assets:"
+                echo '```'
+                head -200 muffet-report.txt
+                echo '```'
+                ;;
+              *)
+                echo "⚠️ muffet could not check the site (exit status $MUFFET_EXIT):"
+                echo '```'
+                head -50 muffet-report.txt
+                echo '```'
+                ;;
+            esac
             # Warnings only: these sites still load if the visitor clicks through
             if [ -s tls-warnings.md ]; then
               echo ""
@@ -106,13 +154,10 @@ jobs:
 
           cat "$REPORT_FILE"
           cat "$REPORT_FILE" >> "$GITHUB_STEP_SUMMARY"
-          if [ "$MUFFET_PASSED" = true ]; then
-            echo "status=success" >> "$GITHUB_OUTPUT"
-          else
-            echo "status=failed" >> "$GITHUB_OUTPUT"
-          fi
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
 
       - name: Open, update or close the broken-links issue
+        if: steps.check.outputs.status != 'error'
         uses: actions/github-script@v7
         with:
           script: |
@@ -125,9 +170,9 @@ jobs:
           CHECK_STATUS: ${{ steps.check.outputs.status }}
           GITHUB_RUN_ID: ${{ github.run_id }}
 
-      - name: Fail if links are broken
-        if: steps.check.outputs.status == 'failed'
+      - name: Fail if links are broken or couldn't be checked
+        if: steps.check.outputs.status != 'success'
         run: |
-          echo "The production link check found broken links or assets."
+          echo "The production link check did not pass (status: ${{ steps.check.outputs.status }})."
           echo "See the job summary or the broken-links issue for details."
           exit 1
