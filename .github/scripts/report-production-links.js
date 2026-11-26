@@ -19,10 +19,13 @@ const LABEL_COLOUR = 'd73a4a';
 const LABEL_DESCRIPTION = 'The production link check found broken links or assets';
 const TITLE = 'Broken links on wafer.space';
 const MARKER = '<!-- PRODUCTION_LINK_CHECK -->';
+// GitHub rejects issue and comment bodies over 65,536 characters
+const MAX_REPORT_CHARS = 60000;
+const TRUNCATED_NOTE = '\n```\n\n*(report truncated; the full report is in the run\'s job summary)*';
 
 module.exports = async function reportProductionLinks(github, context, core) {
   const status = process.env.CHECK_STATUS;
-  const report = process.env.REPORT_CONTENT;
+  let report = process.env.REPORT_CONTENT;
   const runId = process.env.GITHUB_RUN_ID;
 
   if (status !== 'success' && status !== 'failed') {
@@ -30,6 +33,10 @@ module.exports = async function reportProductionLinks(github, context, core) {
   }
   if (!report) {
     throw new Error('REPORT_CONTENT is empty');
+  }
+  if (report.length > MAX_REPORT_CHARS) {
+    // The cut may land inside the report's code block; the note closes it
+    report = report.slice(0, MAX_REPORT_CHARS) + TRUNCATED_NOTE;
   }
 
   const { owner, repo } = context.repo;
