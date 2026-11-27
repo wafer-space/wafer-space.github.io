@@ -136,32 +136,6 @@ addons:
       - "Includes all designs from this run"
       - "Perfect for custom dicing or display"
 
-# Silicon density reference data
-# Source: Tiny Tapeout tile spreadsheet (GF180 column)
-# Reference tile: 347µm × 161µm = 55,867 µm²
-# Site: 0.56µm × 3.92µm = 2.1952 µm²
-density:
-  site_width_um: 0.56
-  site_height_um: 3.92
-  site_area_um2: 2.1952
-  sites_per_mm2: 455539
-
-  # Standard cell sizes (in sites wide) and max cells per reference tile
-  # Per mm² is computed as: (1,000,000 / tile_area_um2) * per_tile
-  cells:
-    - name: "Flip-Flop (FF_1)"
-      sites_wide: 29
-      per_tile: 800
-      per_mm2: 14320
-    - name: "Buffer (BUF_4)"
-      sites_wide: 14
-      per_tile: 1700
-      per_mm2: 30430
-    - name: "3-input AND (AND3_2)"
-      sites_wide: 11
-      per_tile: 2200
-      per_mm2: 39380
-
 # SRAM capacity data
 # Computed using: floor(avail_width / block_width) × floor(avail_height / block_height)
 # Available area = die dimensions minus seal ring (26µm each side)
